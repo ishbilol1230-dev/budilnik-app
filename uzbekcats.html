@@ -1,139 +1,88 @@
 <!DOCTYPE html>
 <html lang="uz">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Uzbek Cats - Mushuklar platformasi</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Uzbek Cats</title>
+
     <style>
+        /* =========================================================
+           RESET
+        ========================================================= */
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
 
         :root {
-            --primary: #f97316;
-            --primary-dark: #ea580c;
-            --primary-light: #fb923c;
-            --secondary: #1e293b;
-            --bg: #f8fafc;
-            --card-bg: #ffffff;
-            --text: #0f172a;
-            --text-secondary: #64748b;
-            --border: #e2e8f0;
-            --success: #22c55e;
-            --danger: #ef4444;
-            --shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
-            --radius: 16px;
-            --radius-sm: 10px;
+            --orange: #ff7a00;
+            --orange-dark: #e96500;
+            --orange-light: #fff1e5;
+            --bg: #f7f7f8;
+            --white: #ffffff;
+            --text: #171717;
+            --muted: #8b8b8f;
+            --border: #eeeeef;
+            --green: #20b26b;
+            --red: #ef4444;
+            --shadow: 0 8px 30px rgba(0,0,0,.06);
+            --radius: 22px;
         }
 
         body {
-            font-family: 'Inter', sans-serif;
+            font-family:
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                Roboto,
+                Arial,
+                sans-serif;
+
             background: var(--bg);
             color: var(--text);
             min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            padding: 20px;
         }
 
-        .app-container {
-            max-width: 480px;
-            width: 100%;
-            background: var(--card-bg);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            overflow: hidden;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            height: fit-content;
-            min-height: 90vh;
+        button,
+        input,
+        select,
+        textarea {
+            font: inherit;
         }
 
-        /* HEADER */
-        .header {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            padding: 24px 20px 16px;
-            color: white;
-            position: sticky;
-            top: 0;
-            z-index: 10;
+        button {
+            border: none;
+            cursor: pointer;
         }
 
-        .header-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        img {
+            max-width: 100%;
+            display: block;
         }
 
-        .header h1 {
-            font-size: 20px;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+        /* =========================================================
+           APP
+        ========================================================= */
 
-        .header h1 i {
-            font-size: 26px;
-        }
-
-        .header-badge {
-            background: rgba(255, 255, 255, 0.2);
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 11px;
-            font-weight: 600;
-            letter-spacing: 0.3px;
-        }
-
-        .user-info {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-top: 12px;
-            padding-top: 12px;
-            border-top: 1px solid rgba(255, 255, 255, 0.15);
-            font-size: 13px;
-        }
-
-        .user-info .number {
-            background: rgba(255, 255, 255, 0.2);
-            padding: 2px 10px;
-            border-radius: 12px;
-            font-weight: 600;
-        }
-
-        .user-info .score {
-            background: rgba(255, 215, 0, 0.25);
-            padding: 2px 10px;
-            border-radius: 12px;
-            font-weight: 600;
-        }
-
-        .user-info .referrals {
-            background: rgba(0, 255, 200, 0.2);
-            padding: 2px 10px;
-            border-radius: 12px;
-            font-weight: 600;
-        }
-
-        /* MAIN CONTENT */
-        .main-content {
-            flex: 1;
-            padding: 20px;
-            overflow-y: auto;
+        .app {
+            max-width: 560px;
+            min-height: 100vh;
+            margin: auto;
             background: var(--bg);
+            position: relative;
+            overflow-x: hidden;
         }
 
         .page {
             display: none;
-            animation: fadeIn 0.3s ease;
+            min-height: 100vh;
+            padding-bottom: 100px;
+            animation: fadeIn .25s ease;
         }
 
         .page.active {
@@ -141,1954 +90,3657 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(6px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        /* MENU BUTTONS */
-        .menu-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+        /* =========================================================
+           TOP HEADER
+        ========================================================= */
+
+        .topbar {
+            padding: 18px 18px 12px;
+            background: var(--white);
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .topbar-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
             gap: 12px;
-            margin-top: 4px;
         }
 
-        .menu-btn {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-sm);
-            padding: 18px 12px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.2s;
-            font-weight: 500;
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .brand-logo {
+            width: 44px;
+            height: 44px;
+            border-radius: 15px;
+            background: linear-gradient(135deg, #ff9b3d, var(--orange));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 25px;
+            box-shadow: 0 7px 18px rgba(255,122,0,.25);
+        }
+
+        .brand h1 {
+            font-size: 19px;
+            font-weight: 800;
+        }
+
+        .brand p {
+            font-size: 12px;
+            color: var(--muted);
+            margin-top: 2px;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .icon-btn {
+            width: 42px;
+            height: 42px;
+            border-radius: 14px;
+            background: #f7f7f8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 19px;
+        }
+
+        /* =========================================================
+           SEARCH
+        ========================================================= */
+
+        .search-box {
+            margin-top: 15px;
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            height: 48px;
+            border: none;
+            outline: none;
+            background: #f5f5f6;
+            border-radius: 16px;
+            padding: 0 48px 0 45px;
             font-size: 14px;
-            color: var(--text);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 16px;
+            top: 14px;
+            color: var(--muted);
+        }
+
+        .filter-btn {
+            position: absolute;
+            right: 7px;
+            top: 7px;
+            width: 34px;
+            height: 34px;
+            background: var(--white);
+            border-radius: 11px;
+        }
+
+        /* =========================================================
+           HOME HERO
+        ========================================================= */
+
+        .hero {
+            margin: 18px;
+            padding: 24px;
+            min-height: 180px;
+            border-radius: 28px;
+            background:
+                radial-gradient(circle at 90% 10%, rgba(255,255,255,.25), transparent 30%),
+                linear-gradient(135deg, #ff8b21, #f25d00);
+            color: white;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(255,102,0,.2);
+        }
+
+        .hero::after {
+            content: "🐱";
+            position: absolute;
+            right: -5px;
+            bottom: -25px;
+            font-size: 130px;
+            opacity: .2;
+            transform: rotate(-10deg);
+        }
+
+        .hero h2 {
+            font-size: 27px;
+            line-height: 1.15;
+            max-width: 280px;
+        }
+
+        .hero p {
+            margin-top: 10px;
+            max-width: 290px;
+            font-size: 13px;
+            line-height: 1.5;
+            opacity: .9;
+        }
+
+        .hero button {
+            margin-top: 17px;
+            background: white;
+            color: var(--orange-dark);
+            padding: 11px 17px;
+            border-radius: 13px;
+            font-weight: 700;
+        }
+
+        /* =========================================================
+           QUICK ACTIONS
+        ========================================================= */
+
+        .section {
+            padding: 0 18px;
+            margin-top: 22px;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 13px;
+        }
+
+        .section-title h3 {
+            font-size: 18px;
+        }
+
+        .section-title span {
+            font-size: 12px;
+            color: var(--orange);
+            font-weight: 700;
+        }
+
+        .quick-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .quick-card {
+            background: white;
+            padding: 15px 8px;
+            border-radius: 18px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: .2s;
+        }
+
+        .quick-card:active {
+            transform: scale(.96);
+        }
+
+        .quick-icon {
+            font-size: 26px;
+            margin-bottom: 7px;
+        }
+
+        .quick-card strong {
+            display: block;
+            font-size: 12px;
+        }
+
+        .quick-card small {
+            display: block;
+            margin-top: 4px;
+            color: var(--muted);
+            font-size: 10px;
+        }
+
+        /* =========================================================
+           CATEGORY
+        ========================================================= */
+
+        .category-scroll {
+            display: flex;
+            gap: 9px;
+            overflow-x: auto;
+            padding-bottom: 4px;
+            scrollbar-width: none;
+        }
+
+        .category-scroll::-webkit-scrollbar {
+            display: none;
+        }
+
+        .category {
+            flex: 0 0 auto;
+            background: white;
+            border: 1px solid var(--border);
+            padding: 10px 14px;
+            border-radius: 14px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .category.active {
+            background: var(--orange);
+            color: white;
+            border-color: var(--orange);
+        }
+
+        /* =========================================================
+           ADS
+        ========================================================= */
+
+        .ads-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .ad-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            position: relative;
+            transition: .2s;
+        }
+
+        .ad-card:active {
+            transform: scale(.98);
+        }
+
+        .ad-image {
+            height: 160px;
+            background: #eee;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ad-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .ad-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 55px;
+            background: linear-gradient(135deg, #fff1e5, #ffe1c8);
+        }
+
+        .ad-badge {
+            position: absolute;
+            top: 9px;
+            left: 9px;
+            background: rgba(255,255,255,.92);
+            color: var(--orange-dark);
+            padding: 5px 8px;
+            border-radius: 9px;
+            font-size: 9px;
+            font-weight: 800;
+        }
+
+        .favorite {
+            position: absolute;
+            right: 9px;
+            top: 9px;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: rgba(255,255,255,.9);
+        }
+
+        .ad-body {
+            padding: 12px;
+        }
+
+        .ad-body h4 {
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .ad-price {
+            color: var(--orange-dark);
+            font-size: 14px;
+            font-weight: 800;
+        }
+
+        .ad-location {
+            color: var(--muted);
+            font-size: 10px;
+            margin-top: 6px;
+        }
+
+        /* =========================================================
+           BOTTOM NAV
+        ========================================================= */
+
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 560px;
+            height: 76px;
+            background: rgba(255,255,255,.94);
+            backdrop-filter: blur(18px);
+            border-top: 1px solid var(--border);
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            z-index: 100;
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+
+        .nav-item {
+            background: transparent;
+            color: #999;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 6px;
+            justify-content: center;
+            gap: 4px;
+            font-size: 10px;
         }
 
-        .menu-btn:hover {
-            transform: translateY(-2px);
+        .nav-item span:first-child {
+            font-size: 21px;
+        }
+
+        .nav-item.active {
+            color: var(--orange);
+            font-weight: 700;
+        }
+
+        /* =========================================================
+           PAGE HEADER
+        ========================================================= */
+
+        .page-header {
+            background: white;
+            padding: 20px 18px;
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .back-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 13px;
+            background: #f5f5f6;
+        }
+
+        .page-header h2 {
+            font-size: 19px;
+        }
+
+        /* =========================================================
+           FORM
+        ========================================================= */
+
+        .form-container {
+            padding: 18px;
+        }
+
+        .form-card {
+            background: white;
+            padding: 18px;
+            border-radius: 22px;
+            margin-bottom: 14px;
             box-shadow: var(--shadow);
-            border-color: var(--primary);
         }
 
-        .menu-btn i {
-            font-size: 24px;
-            color: var(--primary);
+        .form-card h3 {
+            font-size: 16px;
+            margin-bottom: 14px;
         }
 
-        .menu-btn.primary {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
+        .label {
+            display: block;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 7px;
         }
 
-        .menu-btn.primary i {
-            color: white;
-        }
-
-        .menu-btn.primary:hover {
-            background: var(--primary-dark);
-        }
-
-        .menu-btn.full {
-            grid-column: 1 / -1;
-        }
-
-        .menu-btn .badge {
-            font-size: 11px;
-            background: var(--danger);
-            color: white;
-            padding: 2px 10px;
-            border-radius: 12px;
-            font-weight: 600;
-        }
-
-        /* ADMIN PANEL */
-        .admin-panel {
-            background: var(--card-bg);
-            border-radius: var(--radius-sm);
-            padding: 16px;
+        .input,
+        .select,
+        .textarea {
+            width: 100%;
             border: 1px solid var(--border);
-            margin-top: 16px;
+            background: #fafafa;
+            border-radius: 14px;
+            padding: 13px;
+            outline: none;
+            margin-bottom: 14px;
         }
 
-        .admin-panel h3 {
-            font-size: 15px;
-            margin-bottom: 12px;
-            color: var(--secondary);
+        .input:focus,
+        .select:focus,
+        .textarea:focus {
+            border-color: var(--orange);
+            background: white;
         }
 
-        .admin-grid {
+        .textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .type-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 9px;
         }
 
-        .admin-btn {
-            background: var(--bg);
+        .type-btn {
+            background: #fafafa;
             border: 1px solid var(--border);
-            border-radius: var(--radius-sm);
-            padding: 12px 8px;
-            font-size: 13px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.2s;
+            padding: 15px 5px;
+            border-radius: 15px;
+            font-size: 11px;
+        }
+
+        .type-btn.selected {
+            border-color: var(--orange);
+            background: var(--orange-light);
+            color: var(--orange-dark);
+            font-weight: 700;
+        }
+
+        .primary-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #ff8b21, var(--orange));
+            color: white;
+            padding: 15px;
+            border-radius: 15px;
+            font-weight: 800;
+            box-shadow: 0 10px 20px rgba(255,122,0,.2);
+        }
+
+        .secondary-btn {
+            width: 100%;
+            background: #f5f5f6;
+            color: var(--text);
+            padding: 14px;
+            border-radius: 15px;
+            font-weight: 700;
+            margin-top: 9px;
+        }
+
+        /* =========================================================
+           PROFILE
+        ========================================================= */
+
+        .profile-head {
+            background: white;
+            padding: 25px 18px;
             text-align: center;
         }
 
-        .admin-btn:hover {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
-        }
-
-        .admin-btn.danger:hover {
-            background: var(--danger);
-            border-color: var(--danger);
-        }
-
-        /* FORMS */
-        .form-group {
-            margin-bottom: 16px;
-        }
-
-        .form-group label {
-            display: block;
-            font-weight: 600;
-            font-size: 14px;
-            margin-bottom: 6px;
-            color: var(--secondary);
-        }
-
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
-            width: 100%;
-            padding: 12px 14px;
-            border: 1px solid var(--border);
-            border-radius: var(--radius-sm);
-            font-size: 14px;
-            transition: border 0.2s;
-            font-family: inherit;
-            background: var(--card-bg);
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus,
-        .form-group select:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.15);
-        }
-
-        .form-group textarea {
-            min-height: 80px;
-            resize: vertical;
-        }
-
-        .btn {
-            padding: 12px 24px;
-            border: none;
-            border-radius: var(--radius-sm);
-            font-weight: 600;
-            font-size: 14px;
-            cursor: pointer;
-            transition: all 0.2s;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            justify-content: center;
-        }
-
-        .btn-primary {
-            background: var(--primary);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background: var(--primary-dark);
-            transform: translateY(-1px);
-        }
-
-        .btn-success {
-            background: var(--success);
-            color: white;
-        }
-
-        .btn-success:hover {
-            background: #16a34a;
-        }
-
-        .btn-danger {
-            background: var(--danger);
-            color: white;
-        }
-
-        .btn-danger:hover {
-            background: #dc2626;
-        }
-
-        .btn-outline {
-            background: transparent;
-            border: 1px solid var(--border);
-            color: var(--text);
-        }
-
-        .btn-outline:hover {
-            border-color: var(--primary);
-            color: var(--primary);
-        }
-
-        .btn-sm {
-            padding: 8px 16px;
-            font-size: 13px;
-        }
-
-        .btn-full {
-            width: 100%;
-        }
-
-        .btn-group {
+        .avatar {
+            width: 78px;
+            height: 78px;
+            margin: auto;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ff9b3d, var(--orange));
             display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            font-size: 38px;
+            border: 4px solid white;
+            box-shadow: 0 8px 25px rgba(255,122,0,.25);
         }
 
-        .btn-group .btn {
-            flex: 1;
-            min-width: 100px;
+        .profile-head h2 {
+            margin-top: 10px;
+            font-size: 19px;
         }
 
-        /* LISTS */
-        .list-item {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-sm);
-            padding: 14px 16px;
-            margin-bottom: 10px;
-            transition: all 0.2s;
-            cursor: pointer;
-        }
-
-        .list-item:hover {
-            border-color: var(--primary);
-            box-shadow: var(--shadow);
-        }
-
-        .list-item .title {
-            font-weight: 600;
-            font-size: 15px;
-        }
-
-        .list-item .subtitle {
-            font-size: 13px;
-            color: var(--text-secondary);
+        .profile-head p {
+            color: var(--muted);
+            font-size: 12px;
             margin-top: 4px;
         }
 
-        .list-item .meta {
-            display: flex;
-            gap: 12px;
-            margin-top: 8px;
-            font-size: 12px;
-            color: var(--text-secondary);
-        }
-
-        .list-item .meta span {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-
-        .status-badge {
-            display: inline-block;
-            padding: 2px 10px;
-            border-radius: 12px;
-            font-size: 11px;
-            font-weight: 600;
-        }
-
-        .status-badge.active {
-            background: #dcfce7;
-            color: #16a34a;
-        }
-
-        .status-badge.pending {
-            background: #fef3c7;
-            color: #d97706;
-        }
-
-        .status-badge.closed {
-            background: #f1f5f9;
-            color: #64748b;
-        }
-
-        /* CARDS */
-        .card {
-            background: var(--card-bg);
-            border-radius: var(--radius-sm);
-            padding: 16px;
-            border: 1px solid var(--border);
-            margin-bottom: 12px;
-        }
-
-        .card h4 {
-            font-size: 14px;
-            margin-bottom: 8px;
-            color: var(--secondary);
-        }
-
-        .card .value {
-            font-size: 20px;
-            font-weight: 700;
-            color: var(--text);
-        }
-
-        /* STATS */
         .stats-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-columns: repeat(3, 1fr);
             gap: 10px;
-            margin-bottom: 16px;
+            padding: 18px;
         }
 
         .stat-card {
-            background: var(--card-bg);
-            border-radius: var(--radius-sm);
-            padding: 14px;
+            background: white;
+            border-radius: 18px;
+            padding: 15px 7px;
             text-align: center;
-            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
         }
 
-        .stat-card .number {
-            font-size: 22px;
-            font-weight: 700;
-            color: var(--primary);
+        .stat-card strong {
+            display: block;
+            font-size: 19px;
+            color: var(--orange-dark);
         }
 
-        .stat-card .label {
-            font-size: 12px;
-            color: var(--text-secondary);
-            margin-top: 4px;
+        .stat-card span {
+            color: var(--muted);
+            font-size: 10px;
         }
 
-        /* BACK BUTTON */
-        .back-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            color: var(--text-secondary);
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: 500;
-            margin-bottom: 16px;
-            padding: 6px 0;
-            transition: color 0.2s;
-            border: none;
-            background: none;
+        .menu-list {
+            margin: 0 18px;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
         }
 
-        .back-btn:hover {
-            color: var(--primary);
-        }
-
-        /* SECTION TITLE */
-        .section-title {
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 16px;
+        .menu-item {
+            width: 100%;
+            padding: 16px;
+            background: white;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 13px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
         }
 
-        .section-title i {
-            color: var(--primary);
+        .menu-item:last-child {
+            border-bottom: none;
         }
 
-        .section-subtitle {
-            font-size: 14px;
-            color: var(--text-secondary);
-            margin-bottom: 16px;
+        .menu-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 12px;
+            background: var(--orange-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        /* SCROLLBAR */
-        .main-content::-webkit-scrollbar {
-            width: 4px;
+        .menu-item strong {
+            font-size: 13px;
         }
 
-        .main-content::-webkit-scrollbar-track {
-            background: transparent;
+        .menu-item small {
+            display: block;
+            color: var(--muted);
+            margin-top: 3px;
         }
 
-        .main-content::-webkit-scrollbar-thumb {
-            background: var(--border);
-            border-radius: 4px;
-        }
+        /* =========================================================
+           CONTEST
+        ========================================================= */
 
-        /* RESPONSIVE */
-        @media (max-width: 480px) {
-            .app-container {
-                border-radius: 0;
-                min-height: 100vh;
-            }
-            .header {
-                padding: 16px;
-            }
-            .main-content {
-                padding: 16px;
-            }
-            .menu-grid {
-                gap: 8px;
-            }
-            .menu-btn {
-                padding: 14px 10px;
-                font-size: 13px;
-            }
-            .stats-grid {
-                grid-template-columns: 1fr 1fr 1fr;
-                gap: 6px;
-            }
-            .stat-card {
-                padding: 10px;
-            }
-            .stat-card .number {
-                font-size: 18px;
-            }
-        }
-
-        /* TOAST */
-        .toast {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--secondary);
+        .contest-card {
+            margin: 18px;
+            background: linear-gradient(135deg, #ff8b21, #ed5b00);
             color: white;
-            padding: 12px 24px;
-            border-radius: var(--radius-sm);
-            font-weight: 500;
-            font-size: 14px;
-            z-index: 1000;
-            animation: slideUp 0.3s ease;
-            max-width: 90%;
-            text-align: center;
+            padding: 25px;
+            border-radius: 26px;
+            box-shadow: 0 15px 35px rgba(255,102,0,.22);
         }
 
-        .toast.success {
-            background: var(--success);
+        .contest-card .emoji {
+            font-size: 50px;
         }
 
-        .toast.error {
-            background: var(--danger);
+        .contest-card h2 {
+            margin-top: 10px;
+        }
+
+        .contest-card p {
+            margin-top: 10px;
+            line-height: 1.5;
+            font-size: 13px;
+        }
+
+        .referral-box {
+            margin: 18px;
+            background: white;
+            padding: 18px;
+            border-radius: 22px;
+            box-shadow: var(--shadow);
+        }
+
+        .referral-link {
+            background: #f6f6f7;
+            padding: 12px;
+            border-radius: 12px;
+            margin: 10px 0;
+            font-size: 11px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        /* =========================================================
+           ADMIN
+        ========================================================= */
+
+        .admin-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            padding: 18px;
+        }
+
+        .admin-card {
+            background: white;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        .admin-card span {
+            font-size: 12px;
+            color: var(--muted);
+        }
+
+        .admin-card strong {
+            display: block;
+            font-size: 25px;
+            margin-top: 7px;
+            color: var(--orange-dark);
+        }
+
+        /* =========================================================
+           MODAL
+        ========================================================= */
+
+        .modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,.45);
+            z-index: 200;
+            display: none;
+            align-items: flex-end;
+            justify-content: center;
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        .modal-content {
+            width: 100%;
+            max-width: 560px;
+            max-height: 90vh;
+            overflow-y: auto;
+            background: white;
+            border-radius: 28px 28px 0 0;
+            padding: 20px;
+            animation: slideUp .25s ease;
         }
 
         @keyframes slideUp {
-            from { opacity: 0; transform: translateX(-50%) translateY(20px); }
-            to { opacity: 1; transform: translateX(-50%) translateY(0); }
+            from {
+                transform: translateY(100%);
+            }
+
+            to {
+                transform: translateY(0);
+            }
         }
 
-        /* MODAL */
-        .modal-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(4px);
-            z-index: 999;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-
-        .modal-overlay.active {
-            display: flex;
-        }
-
-        .modal {
-            background: var(--card-bg);
-            border-radius: var(--radius);
-            max-width: 440px;
-            width: 100%;
-            padding: 24px;
-            max-height: 80vh;
-            overflow-y: auto;
-            animation: fadeIn 0.3s ease;
-        }
-
-        .modal-header {
+        .modal-head {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 16px;
+            margin-bottom: 18px;
         }
 
-        .modal-header h3 {
-            font-size: 18px;
-        }
-
-        .modal-close {
-            background: none;
-            border: none;
-            font-size: 24px;
-            cursor: pointer;
-            color: var(--text-secondary);
-            padding: 4px 8px;
-        }
-
-        .modal-close:hover {
-            color: var(--text);
-        }
-
-        /* PREVIEW */
-        .preview-box {
-            background: var(--bg);
-            border-radius: var(--radius-sm);
-            padding: 16px;
-            border: 1px solid var(--border);
-            margin: 12px 0;
-        }
-
-        .preview-box .label {
-            font-size: 12px;
-            color: var(--text-secondary);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .preview-box .value {
-            margin-top: 4px;
-        }
-
-        .divider {
-            border: none;
-            border-top: 1px solid var(--border);
-            margin: 16px 0;
-        }
-
-        .tag {
-            display: inline-block;
-            padding: 2px 10px;
+        .close-btn {
+            width: 36px;
+            height: 36px;
             border-radius: 12px;
-            font-size: 12px;
-            font-weight: 600;
+            background: #f5f5f6;
         }
 
-        .tag-orange {
-            background: #fef3c7;
-            color: #d97706;
+        /* =========================================================
+           TOAST
+        ========================================================= */
+
+        .toast-container {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 30px);
+            max-width: 520px;
+            z-index: 999;
         }
 
-        .tag-green {
-            background: #dcfce7;
-            color: #16a34a;
+        .toast {
+            background: #202020;
+            color: white;
+            padding: 14px 16px;
+            border-radius: 15px;
+            margin-bottom: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,.2);
+            animation: toastIn .25s ease;
+            font-size: 13px;
         }
 
-        .tag-blue {
-            background: #dbeafe;
-            color: #2563eb;
+        .toast.success {
+            border-left: 4px solid var(--green);
         }
 
-        .tag-red {
-            background: #fee2e2;
-            color: #dc2626;
+        .toast.error {
+            border-left: 4px solid var(--red);
         }
 
-        .flex {
-            display: flex;
+        @keyframes toastIn {
+            from {
+                opacity: 0;
+                transform: translateY(-15px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* =========================================================
+           EMPTY
+        ========================================================= */
+
+        .empty {
+            background: white;
+            padding: 35px 20px;
+            border-radius: 22px;
+            text-align: center;
+            color: var(--muted);
+        }
+
+        .empty-icon {
+            font-size: 50px;
+            margin-bottom: 10px;
+        }
+
+        .empty h3 {
+            color: var(--text);
+            margin-bottom: 7px;
+        }
+
+        /* =========================================================
+           MEDIA
+        ========================================================= */
+
+        .media-upload {
+            border: 2px dashed #ffd2ad;
+            background: var(--orange-light);
+            padding: 25px;
+            border-radius: 18px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .media-upload input {
+            display: none;
+        }
+
+        .media-preview {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
             gap: 8px;
-            flex-wrap: wrap;
+            margin-top: 12px;
         }
 
-        .flex-center {
-            display: flex;
-            align-items: center;
-            gap: 8px;
+        .media-preview img,
+        .media-preview video {
+            width: 100%;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 12px;
         }
 
-        .mt-8 { margin-top: 8px; }
-        .mt-12 { margin-top: 12px; }
-        .mt-16 { margin-top: 16px; }
-        .mb-8 { margin-bottom: 8px; }
-        .mb-12 { margin-bottom: 12px; }
-        .mb-16 { margin-bottom: 16px; }
+        /* =========================================================
+           RESPONSIVE
+        ========================================================= */
 
-        .text-center { text-align: center; }
-        .text-secondary { color: var(--text-secondary); }
-        .text-sm { font-size: 13px; }
-        .text-xs { font-size: 12px; }
-        .font-bold { font-weight: 700; }
+        @media (max-width: 380px) {
 
-        .gap-8 { gap: 8px; }
-        .gap-12 { gap: 12px; }
-        .gap-16 { gap: 16px; }
+            .quick-grid {
+                gap: 6px;
+            }
+
+            .ads-grid {
+                gap: 8px;
+            }
+
+            .ad-image {
+                height: 135px;
+            }
+
+            .hero h2 {
+                font-size: 23px;
+            }
+        }
     </style>
 </head>
+
 <body>
 
-<div class="app-container" id="app">
+<div class="app">
 
-    <!-- HEADER -->
-    <header class="header">
-        <div class="header-top">
-            <h1><i class="fas fa-cat"></i> Uzbek Cats</h1>
-            <span class="header-badge">🐱 Beta</span>
-        </div>
-        <div class="user-info" id="userInfo">
-            <span class="number" id="userNumber">#0</span>
-            <span class="score" id="userScore">🏆 0 ball</span>
-            <span class="referrals" id="userReferrals">👥 0</span>
-        </div>
-    </header>
+    <!-- =========================================================
+         HOME
+    ========================================================= -->
 
-    <!-- MAIN CONTENT -->
-    <div class="main-content" id="mainContent">
+    <section id="page-home" class="page active">
 
-        <!-- PAGE: MAIN MENU -->
-        <div class="page active" id="page-main">
-            <div class="menu-grid">
-                <button class="menu-btn primary full" onclick="navigateTo('reklama')">
-                    <i class="fas fa-bullhorn"></i>
-                    Kanalga reklama bermoqchiman
+        <header class="topbar">
+
+            <div class="topbar-row">
+
+                <div class="brand">
+
+                    <div class="brand-logo">🐱</div>
+
+                    <div>
+                        <h1>Uzbek Cats</h1>
+                        <p>Mushuklar olamiga xush kelibsiz</p>
+                    </div>
+
+                </div>
+
+                <div class="header-actions">
+
+                    <button class="icon-btn" onclick="showNotifications()">
+                        🔔
+                    </button>
+
+                </div>
+
+            </div>
+
+            <div class="search-box">
+
+                <span class="search-icon">🔍</span>
+
+                <input
+                    id="searchInput"
+                    type="text"
+                    placeholder="Mushuk qidiring..."
+                    oninput="searchAds(this.value)"
+                >
+
+                <button class="filter-btn" onclick="openFilter()">
+                    ⚙️
                 </button>
-                <button class="menu-btn" onclick="navigateTo('konkurs')">
-                    <i class="fas fa-trophy"></i>
-                    Konkursda ishtirok etmoqchiman
+
+            </div>
+
+        </header>
+
+
+        <div class="hero">
+
+            <h2>O‘zingizga ideal mushukni toping 🐱</h2>
+
+            <p>
+                O‘zbekistondagi mushuklar uchun zamonaviy
+                e’lonlar platformasi.
+            </p>
+
+            <button onclick="navigate('create')">
+                + E’lon berish
+            </button>
+
+        </div>
+
+
+        <div class="section">
+
+            <div class="section-title">
+                <h3>Tezkor xizmatlar</h3>
+            </div>
+
+            <div class="quick-grid">
+
+                <button class="quick-card" onclick="openCreateType('sotish')">
+                    <div class="quick-icon">💰</div>
+                    <strong>Sotish</strong>
+                    <small>Mushuk sotish</small>
                 </button>
-                <button class="menu-btn" onclick="navigateTo('about')">
-                    <i class="fas fa-info-circle"></i>
-                    Bot haqida
+
+                <button class="quick-card" onclick="openCreateType('hadiya')">
+                    <div class="quick-icon">🎁</div>
+                    <strong>Hadiya</strong>
+                    <small>Tekinga berish</small>
                 </button>
-                <button class="menu-btn" onclick="navigateTo('admin')">
-                    <i class="fas fa-headset"></i>
-                    Admin bilan bog'lanish
+
+                <button class="quick-card" onclick="openCreateType('vyazka')">
+                    <div class="quick-icon">❤️</div>
+                    <strong>Vyazka</strong>
+                    <small>Juft topish</small>
                 </button>
-                <button class="menu-btn full" onclick="navigateTo('my-ads')">
-                    <i class="fas fa-list"></i>
-                    Mening e'lonlarim
-                    <span class="badge" id="adsCountBadge">0</span>
+
+            </div>
+
+        </div>
+
+
+        <div class="section">
+
+            <div class="section-title">
+                <h3>Kategoriyalar</h3>
+            </div>
+
+            <div class="category-scroll">
+
+                <button class="category active"
+                        onclick="filterCategory('all', this)">
+                    Barchasi
                 </button>
+
+                <button class="category"
+                        onclick="filterCategory('sotish', this)">
+                    💰 Sotish
+                </button>
+
+                <button class="category"
+                        onclick="filterCategory('hadiya', this)">
+                    🎁 Hadiya
+                </button>
+
+                <button class="category"
+                        onclick="filterCategory('vyazka', this)">
+                    ❤️ Vyazka
+                </button>
+
             </div>
 
-            <!-- Admin panel (faqat adminlar uchun) -->
-            <div class="admin-panel" id="adminPanel" style="display:none;">
-                <h3><i class="fas fa-shield-alt"></i> Admin paneli</h3>
-                <div class="admin-grid">
-                    <button class="admin-btn" onclick="navigateTo('admin-stats')">📊 Statistika</button>
-                    <button class="admin-btn" onclick="navigateTo('admin-bot-control')">⚙️ Bot ustroystiva</button>
-                    <button class="admin-btn" onclick="navigateTo('admin-konkurs')">🏆 Konkurs shart</button>
-                    <button class="admin-btn" onclick="navigateTo('admin-mukofot')">🎁 Mukofot</button>
-                    <button class="admin-btn" onclick="navigateTo('admin-rating')">🏆 Reyting boshqarish</button>
-                    <button class="admin-btn" onclick="navigateTo('admin-add-score')">➕ Ball qo'shish</button>
-                    <button class="admin-btn danger" onclick="adminBanUser()">⛔ Bloklash</button>
-                    <button class="admin-btn" onclick="navigateTo('tech-panel')">👨‍💻 Texnik admin</button>
-                </div>
-            </div>
         </div>
 
-        <!-- PAGE: REKLAMA -->
-        <div class="page" id="page-reklama">
-            <button class="back-btn" onclick="navigateTo('main')"><i class="fas fa-arrow-left"></i> Orqaga</button>
-            <div class="section-title"><i class="fas fa-bullhorn"></i> Reklama joylash</div>
 
-            <div class="card">
-                <h4>🎯 Reklama turini tanlang</h4>
-                <div class="btn-group mt-8">
-                    <button class="btn btn-primary btn-sm" onclick="selectAdType('sotish')">💰 Sotish</button>
-                    <button class="btn btn-primary btn-sm" onclick="selectAdType('hadiya')">🎁 Hadiya</button>
-                    <button class="btn btn-primary btn-sm" onclick="selectAdType('vyazka')">💝 Vyazka</button>
-                </div>
+        <div class="section">
+
+            <div class="section-title">
+
+                <h3>Yangi e’lonlar</h3>
+
+                <span onclick="navigate('ads')">
+                    Barchasini ko‘rish
+                </span>
+
             </div>
 
-            <div id="adForm" style="display:none;">
-                <div class="card">
-                    <h4>📸 Media turi</h4>
-                    <div class="btn-group mt-8">
-                        <button class="btn btn-outline btn-sm" onclick="setMediaType('photo')">🖼️ Rasm</button>
-                        <button class="btn btn-outline btn-sm" onclick="setMediaType('video')">🎥 Video</button>
-                    </div>
-                </div>
+            <div id="homeAds" class="ads-grid"></div>
 
-                <div id="mushukSoniSection" style="display:none;">
-                    <div class="card">
-                        <h4>🐱 Mushuklar soni</h4>
-                        <div class="flex gap-8 mt-8 flex-wrap">
-                            <button class="btn btn-outline btn-sm" onclick="setMushukSoni(1)">1</button>
-                            <button class="btn btn-outline btn-sm" onclick="setMushukSoni(2)">2</button>
-                            <button class="btn btn-outline btn-sm" onclick="setMushukSoni(3)">3</button>
-                            <button class="btn btn-outline btn-sm" onclick="setMushukSoni(4)">4</button>
-                            <button class="btn btn-outline btn-sm" onclick="setMushukSoni(5)">5</button>
-                            <button class="btn btn-outline btn-sm" onclick="setMushukSoni(6)">+5</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="breedSection" style="display:none;">
-                    <div class="card">
-                        <h4>🐱 Zotni tanlang</h4>
-                        <div id="breedList" class="flex gap-8 mt-8 flex-wrap"></div>
-                        <button class="btn btn-outline btn-sm mt-8" onclick="showCustomBreed()">✏️ O'zim yozaman</button>
-                        <div id="customBreedInput" style="display:none; margin-top:10px;">
-                            <input type="text" id="customBreed" placeholder="Zotni yozing..." class="form-group">
-                            <button class="btn btn-primary btn-sm mt-8" onclick="setCustomBreed()">Tasdiqlash</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="ageSection" style="display:none;">
-                    <div class="card">
-                        <h4>🎂 Yosh</h4>
-                        <div id="ageList" class="flex gap-8 mt-8 flex-wrap"></div>
-                    </div>
-                </div>
-
-                <div id="healthSection" style="display:none;">
-                    <div class="card">
-                        <h4>❤️ Sog'lig'i</h4>
-                        <div class="btn-group mt-8">
-                            <button class="btn btn-outline btn-sm" onclick="setHealth('Sog\'lom')">Sog'lom</button>
-                            <button class="btn btn-outline btn-sm" onclick="setHealth('Kasal')">Kasal</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="genderSection" style="display:none;">
-                    <div class="card">
-                        <h4>👤 Jins</h4>
-                        <div class="btn-group mt-8">
-                            <button class="btn btn-outline btn-sm" onclick="setGender('Qiz bola')">♀️ Qiz bola</button>
-                            <button class="btn btn-outline btn-sm" onclick="setGender('O\'g\'il bola')">♂️ O'g'il bola</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="sterilizationSection" style="display:none;">
-                    <div class="card">
-                        <h4>🧬 Nasl olish</h4>
-                        <div class="btn-group mt-8">
-                            <button class="btn btn-outline btn-sm" onclick="setSterilization('Mumkin')">✅ Mumkin</button>
-                            <button class="btn btn-outline btn-sm" onclick="setSterilization('Mumkin emas')">❌ Mumkin emas</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="valyutaSection" style="display:none;">
-                    <div class="card">
-                        <h4>💰 Valyuta</h4>
-                        <div class="btn-group mt-8">
-                            <button class="btn btn-outline btn-sm" onclick="setValyuta('so\'m')">🇺🇿 So'm</button>
-                            <button class="btn btn-outline btn-sm" onclick="setValyuta('$')">💵 Dollar</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="priceSection" style="display:none;">
-                    <div class="card">
-                        <h4>💰 Narx</h4>
-                        <input type="text" id="priceInput" placeholder="Narxni kiriting..." class="form-group">
-                        <button class="btn btn-primary btn-sm" onclick="setPrice()">Tasdiqlash</button>
-                    </div>
-                </div>
-
-                <div id="manzilSection" style="display:none;">
-                    <div class="card">
-                        <h4>📍 Manzil</h4>
-                        <div id="viloyatList" class="flex gap-8 mt-8 flex-wrap"></div>
-                    </div>
-                </div>
-
-                <div id="phoneSection" style="display:none;">
-                    <div class="card">
-                        <h4>📞 Telefon raqam</h4>
-                        <input type="text" id="phoneInput" placeholder="+998 90 123 45 67" class="form-group">
-                        <button class="btn btn-primary btn-sm" onclick="setPhone()">Tasdiqlash</button>
-                    </div>
-                </div>
-
-                <div id="mediaUploadSection" style="display:none;">
-                    <div class="card">
-                        <h4>📸 Media yuklash</h4>
-                        <input type="file" id="mediaInput" accept="image/*,video/*" multiple class="form-group">
-                        <div id="mediaPreview" class="flex gap-8 mt-8 flex-wrap"></div>
-                        <button class="btn btn-primary btn-sm mt-8" onclick="uploadMedia()">Yuklash</button>
-                    </div>
-                </div>
-
-                <div id="previewSection" style="display:none;">
-                    <div class="card">
-                        <h4>📋 E'lon ko'rinishi</h4>
-                        <div id="previewContent" class="preview-box"></div>
-                        <div class="btn-group mt-8">
-                            <button class="btn btn-success" onclick="confirmAd()">✅ Tasdiqlash</button>
-                            <button class="btn btn-outline" onclick="resetAdForm()">↩️ Qayta boshlash</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
 
-        <!-- PAGE: KONKURS -->
-        <div class="page" id="page-konkurs">
-            <button class="back-btn" onclick="navigateTo('main')"><i class="fas fa-arrow-left"></i> Orqaga</button>
-            <div class="section-title"><i class="fas fa-trophy"></i> Konkurs</div>
+    </section>
 
-            <div class="card">
-                <div id="konkursContent">
-                    <p class="text-secondary">🎁 Scottish fold black</p>
-                    <p>Siz toplagan ovoz ochib ketmaydi toki 🏆 g'olib bo'lgungizgacha 💯</p>
-                </div>
-                <div class="flex gap-8 mt-12">
-                    <button class="btn btn-primary btn-sm" onclick="shareReferral()"><i class="fas fa-share-alt"></i> Videoni junatish</button>
-                    <button class="btn btn-outline btn-sm" onclick="showMukofot()"><i class="fas fa-gift"></i> Mukofot</button>
-                    <button class="btn btn-outline btn-sm" onclick="showRating()"><i class="fas fa-ranking-star"></i> Reting</button>
-                </div>
-            </div>
 
-            <div class="card" id="referralCard">
-                <h4>🔗 Sizning referral linkingiz</h4>
-                <div class="preview-box">
-                    <code id="referralLink">https://t.me/UzbekCatsBot?start=REF123</code>
-                </div>
-                <button class="btn btn-primary btn-sm" onclick="copyReferral()"><i class="fas fa-copy"></i> Nusxa olish</button>
-            </div>
+    <!-- =========================================================
+         ADS PAGE
+    ========================================================= -->
 
-            <div class="card" id="ratingCard" style="display:none;">
-                <h4>🏆 TOP 10</h4>
-                <div id="ratingList"></div>
-            </div>
+    <section id="page-ads" class="page">
+
+        <div class="page-header">
+
+            <button class="back-btn" onclick="navigate('home')">
+                ←
+            </button>
+
+            <h2>Barcha e’lonlar</h2>
+
         </div>
 
-        <!-- PAGE: ABOUT -->
-        <div class="page" id="page-about">
-            <button class="back-btn" onclick="navigateTo('main')"><i class="fas fa-arrow-left"></i> Orqaga</button>
-            <div class="section-title"><i class="fas fa-info-circle"></i> Bot haqida</div>
-            <div class="card">
-                <p>Ushbu bot orqali siz mushuklar haqida e'lon berishingiz mumkin.</p>
-                <hr class="divider">
-                <button class="btn btn-primary btn-sm full" onclick="sendFeedback()"><i class="fas fa-pen"></i> Shikoyat/Taklif yuborish</button>
-                <div id="feedbackInput" style="display:none; margin-top:12px;">
-                    <textarea id="feedbackText" placeholder="Fikringizni yozing..." class="form-group"></textarea>
-                    <button class="btn btn-success btn-sm" onclick="submitFeedback()">Yuborish</button>
-                </div>
-            </div>
-            <div class="card">
-                <h4>📱 Admin bilan bog'lanish</h4>
-                <div class="btn-group mt-8">
-                    <button class="btn btn-outline btn-sm" onclick="contactChannelAdmin()">📢 Kanal egasi</button>
-                    <button class="btn btn-outline btn-sm" onclick="contactTechAdmin()">👨‍💻 Texnik admin</button>
-                </div>
-            </div>
+        <div class="section">
+
+            <div id="allAds" class="ads-grid"></div>
+
         </div>
 
-        <!-- PAGE: ADMIN -->
-        <div class="page" id="page-admin">
-            <button class="back-btn" onclick="navigateTo('main')"><i class="fas fa-arrow-left"></i> Orqaga</button>
-            <div class="section-title"><i class="fas fa-headset"></i> Admin bilan bog'lanish</div>
-            <div class="card">
-                <h4>📢 Kanal egasi va Bot admini</h4>
-                <p class="text-secondary">Telegram: @zayd_catlover</p>
-                <p class="text-secondary">📞 +998934938181</p>
-            </div>
-            <div class="card">
-                <h4>👨‍💻 Texnik Admin</h4>
-                <p class="text-secondary">Telegram: @It_project_2026</p>
-            </div>
+    </section>
+
+
+    <!-- =========================================================
+         CREATE AD
+    ========================================================= -->
+
+    <section id="page-create" class="page">
+
+        <div class="page-header">
+
+            <button class="back-btn" onclick="navigate('home')">
+                ←
+            </button>
+
+            <h2>Yangi e’lon</h2>
+
         </div>
 
-        <!-- PAGE: MY ADS -->
-        <div class="page" id="page-my-ads">
-            <button class="back-btn" onclick="navigateTo('main')"><i class="fas fa-arrow-left"></i> Orqaga</button>
-            <div class="section-title"><i class="fas fa-list"></i> Mening e'lonlarim</div>
+
+        <div class="form-container">
+
+            <div class="form-card">
+
+                <h3>1. E’lon turini tanlang</h3>
+
+                <div class="type-grid">
+
+                    <button
+                        class="type-btn"
+                        data-type="sotish"
+                        onclick="selectType('sotish', this)">
+                        💰<br>Sotish
+                    </button>
+
+                    <button
+                        class="type-btn"
+                        data-type="hadiya"
+                        onclick="selectType('hadiya', this)">
+                        🎁<br>Hadiya
+                    </button>
+
+                    <button
+                        class="type-btn"
+                        data-type="vyazka"
+                        onclick="selectType('vyazka', this)">
+                        ❤️<br>Vyazka
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-card">
+
+                <h3>2. Mushuk ma’lumotlari</h3>
+
+                <label class="label">Mushuk nomi</label>
+
+                <input
+                    id="catName"
+                    class="input"
+                    placeholder="Masalan: Simba"
+                >
+
+
+                <label class="label">Zoti</label>
+
+                <select id="catBreed" class="select">
+
+                    <option value="">
+                        Zotni tanlang
+                    </option>
+
+                    <option>Scottish Fold</option>
+                    <option>British Shorthair</option>
+                    <option>Bengal</option>
+                    <option>Persian</option>
+                    <option>Siamese</option>
+                    <option>Maine Coon</option>
+                    <option>Ragdoll</option>
+                    <option>Sphynx</option>
+                    <option>Oddiy zot</option>
+                    <option>Boshqa</option>
+
+                </select>
+
+
+                <label class="label">Yoshi</label>
+
+                <input
+                    id="catAge"
+                    class="input"
+                    placeholder="Masalan: 1 yosh"
+                >
+
+
+                <label class="label">Jinsi</label>
+
+                <select id="catGender" class="select">
+
+                    <option value="">
+                        Jinsini tanlang
+                    </option>
+
+                    <option>Erkak</option>
+                    <option>Urg‘ochi</option>
+
+                </select>
+
+
+                <label class="label">Sog‘lig‘i</label>
+
+                <select id="catHealth" class="select">
+
+                    <option>Sog‘lom</option>
+                    <option>Veterinar ko‘rigidan o‘tgan</option>
+                    <option>Davolanishda</option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-card">
+
+                <h3>3. Joylashuv</h3>
+
+                <label class="label">Viloyat / Shahar</label>
+
+                <input
+                    id="catLocation"
+                    class="input"
+                    placeholder="Masalan: Toshkent shahri"
+                >
+
+
+                <label class="label">Telefon raqam</label>
+
+                <input
+                    id="catPhone"
+                    class="input"
+                    type="tel"
+                    placeholder="+998 90 123 45 67"
+                >
+
+            </div>
+
+
+            <div id="priceCard" class="form-card">
+
+                <h3>4. Narx</h3>
+
+                <input
+                    id="catPrice"
+                    class="input"
+                    type="number"
+                    placeholder="Narx"
+                >
+
+                <select id="catCurrency" class="select">
+
+                    <option>UZS</option>
+                    <option>USD</option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-card">
+
+                <h3>5. Rasmlar va video</h3>
+
+                <label class="media-upload">
+
+                    <input
+                        id="mediaInput"
+                        type="file"
+                        accept="image/*,video/*"
+                        multiple
+                        onchange="previewMedia(event)"
+                    >
+
+                    <div style="font-size:35px">
+                        📸
+                    </div>
+
+                    <strong>
+                        Rasm yoki video yuklash
+                    </strong>
+
+                    <p style="font-size:11px;color:#888;margin-top:5px">
+                        Bir nechta fayl tanlash mumkin
+                    </p>
+
+                </label>
+
+                <div id="mediaPreview"
+                     class="media-preview">
+                </div>
+
+            </div>
+
+
+            <div class="form-card">
+
+                <h3>6. Qo‘shimcha ma’lumot</h3>
+
+                <textarea
+                    id="catDescription"
+                    class="textarea"
+                    placeholder="Mushuk haqida qo‘shimcha ma’lumot..."
+                ></textarea>
+
+            </div>
+
+
+            <button
+                class="primary-btn"
+                onclick="submitAd()">
+
+                📢 E’lonni joylashtirish
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         CONTEST
+    ========================================================= -->
+
+    <section id="page-contest" class="page">
+
+        <div class="page-header">
+
+            <h2>🏆 Konkurs</h2>
+
+        </div>
+
+
+        <div class="contest-card">
+
+            <div class="emoji">
+                🐱
+            </div>
+
+            <h2>Scottish Fold yutib oling!</h2>
+
+            <p>
+                Do‘stlaringizni taklif qiling,
+                ball to‘plang va g‘olib bo‘lish imkoniyatiga ega bo‘ling.
+            </p>
+
+            <button
+                style="margin-top:18px;padding:13px 18px;border-radius:14px;font-weight:700"
+                onclick="showPrize()">
+
+                🎁 Mukofotni ko‘rish
+
+            </button>
+
+        </div>
+
+
+        <div class="referral-box">
+
+            <h3>🔗 Sizning referral linkingiz</h3>
+
+            <p style="font-size:12px;color:#888;margin-top:7px">
+                Do‘stlaringizni taklif qiling.
+            </p>
+
+            <div
+                id="referralLink"
+                class="referral-link">
+            </div>
+
+            <button
+                class="primary-btn"
+                onclick="copyReferral()">
+
+                📋 Linkni nusxalash
+
+            </button>
+
+        </div>
+
+
+        <div class="section">
+
+            <div class="section-title">
+
+                <h3>🏆 Reyting</h3>
+
+            </div>
+
+            <div id="ratingList"></div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         PROFILE
+    ========================================================= -->
+
+    <section id="page-profile" class="page">
+
+        <div class="profile-head">
+
+            <div class="avatar">
+                🐱
+            </div>
+
+            <h2 id="profileName">
+                Uzbek Cats foydalanuvchisi
+            </h2>
+
+            <p id="profileNumber">
+                Foydalanuvchi #1
+            </p>
+
+        </div>
+
+
+        <div class="stats-grid">
+
+            <div class="stat-card">
+
+                <strong id="profileScore">
+                    0
+                </strong>
+
+                <span>Ball</span>
+
+            </div>
+
+            <div class="stat-card">
+
+                <strong id="profileAds">
+                    0
+                </strong>
+
+                <span>E’lonlar</span>
+
+            </div>
+
+            <div class="stat-card">
+
+                <strong id="profileRefs">
+                    0
+                </strong>
+
+                <span>Referral</span>
+
+            </div>
+
+        </div>
+
+
+        <div class="menu-list">
+
+            <button class="menu-item"
+                    onclick="navigate('myads')">
+
+                <div class="menu-icon">
+                    📋
+                </div>
+
+                <div>
+                    <strong>Mening e’lonlarim</strong>
+                    <small>Joylashtirgan e’lonlaringiz</small>
+                </div>
+
+            </button>
+
+
+            <button class="menu-item"
+                    onclick="navigate('contest')">
+
+                <div class="menu-icon">
+                    🏆
+                </div>
+
+                <div>
+                    <strong>Konkurs va referral</strong>
+                    <small>Ballaringiz va takliflaringiz</small>
+                </div>
+
+            </button>
+
+
+            <button class="menu-item"
+                    onclick="showSettings()">
+
+                <div class="menu-icon">
+                    ⚙️
+                </div>
+
+                <div>
+                    <strong>Sozlamalar</strong>
+                    <small>Ilova sozlamalari</small>
+                </div>
+
+            </button>
+
+
+            <button class="menu-item"
+                    onclick="showAbout()">
+
+                <div class="menu-icon">
+                    ℹ️
+                </div>
+
+                <div>
+                    <strong>Biz haqimizda</strong>
+                    <small>Uzbek Cats</small>
+                </div>
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         MY ADS
+    ========================================================= -->
+
+    <section id="page-myads" class="page">
+
+        <div class="page-header">
+
+            <button
+                class="back-btn"
+                onclick="navigate('profile')">
+                ←
+            </button>
+
+            <h2>Mening e’lonlarim</h2>
+
+        </div>
+
+        <div class="section">
+
             <div id="myAdsList"></div>
+
         </div>
 
-        <!-- PAGE: ADMIN STATS -->
-        <div class="page" id="page-admin-stats">
-            <button class="back-btn" onclick="navigateTo('main')"><i class="fas fa-arrow-left"></i> Orqaga</button>
-            <div class="section-title"><i class="fas fa-chart-bar"></i> Statistika</div>
-            <div class="stats-grid">
-                <div class="stat-card"><div class="number" id="statTotalUsers">0</div><div class="label">Foydalanuvchilar</div></div>
-                <div class="stat-card"><div class="number" id="statTotalAds">0</div><div class="label">Reklamalar</div></div>
-                <div class="stat-card"><div class="number" id="statBanned">0</div><div class="label">Bloklangan</div></div>
-            </div>
-            <div class="card">
-                <h4>📊 Reklama turlari</h4>
-                <div id="statTypes"></div>
-            </div>
-            <button class="btn btn-outline btn-sm full mt-8" onclick="navigateTo('main')">↩️ Orqaga</button>
+    </section>
+
+
+    <!-- =========================================================
+         ADMIN
+    ========================================================= -->
+
+    <section id="page-admin" class="page">
+
+        <div class="page-header">
+
+            <h2>🛠️ Admin Panel</h2>
+
         </div>
 
-        <!-- PAGE: ADMIN BOT CONTROL -->
-        <div class="page" id="page-admin-bot-control">
-            <button class="back-btn" onclick="navigateTo('main')"><i class="fas fa-arrow-left"></i> Orqaga</button>
-            <div class="section-title"><i class="fas fa-gear"></i> Bot ustroystiva</div>
-            <div class="card">
-                <div class="flex-center">
-                    <span class="tag tag-green" id="botStatusTag">✅ Yoqilgan</span>
-                    <button class="btn btn-danger btn-sm" onclick="toggleBot()" id="toggleBotBtn">🔴 O'chirish</button>
-                </div>
+
+        <div class="admin-grid">
+
+            <div class="admin-card">
+
+                <span>Jami foydalanuvchilar</span>
+
+                <strong id="adminUsers">
+                    1
+                </strong>
+
             </div>
-            <button class="btn btn-outline btn-sm full mt-8" onclick="navigateTo('main')">↩️ Orqaga</button>
+
+
+            <div class="admin-card">
+
+                <span>Jami e’lonlar</span>
+
+                <strong id="adminAds">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="admin-card">
+
+                <span>Sotish</span>
+
+                <strong id="adminSell">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="admin-card">
+
+                <span>Hadiya</span>
+
+                <strong id="adminGift">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="admin-card">
+
+                <span>Vyazka</span>
+
+                <strong id="adminBreed">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="admin-card">
+
+                <span>Ban qilingan</span>
+
+                <strong id="adminBanned">
+                    0
+                </strong>
+
+            </div>
+
         </div>
 
-        <!-- PAGE: ADMIN KONKURS -->
-        <div class="page" id="page-admin-konkurs">
-            <button class="back-btn" onclick="navigateTo('main')"><i class="fas fa-arrow-left"></i> Orqaga</button>
-            <div class="section-title"><i class="fas fa-trophy"></i> Konkurs shart</div>
-            <div class="card">
-                <h4>Hozirgi media</h4>
-                <p id="currentKonkursMedia" class="text-secondary">🖼️ Rasm</p>
-                <div class="btn-group mt-8">
-                    <button class="btn btn-outline btn-sm" onclick="setKonkursMedia('video')">🎥 Video</button>
-                    <button class="btn btn-outline btn-sm" onclick="setKonkursMedia('photo')">🖼️ Rasm</button>
-                </div>
-            </div>
-            <div class="card">
-                <h4>📝 Konkurs matni</h4>
-                <textarea id="konkursTextInput" class="form-group">🎁 Scottish fold black
 
-Siz toplagan ovoz ochib ketmaydi toki 🏆 g'olib bo'lgungizgacha 💯</textarea>
-                <button class="btn btn-primary btn-sm" onclick="updateKonkursText()">Yangilash</button>
+        <div class="section">
+
+            <div class="form-card">
+
+                <h3>🤖 Bot boshqaruvi</h3>
+
+                <button
+                    id="botToggle"
+                    class="primary-btn"
+                    onclick="toggleBot()">
+
+                    🟢 Bot yoqilgan
+
+                </button>
+
             </div>
-            <button class="btn btn-outline btn-sm full mt-8" onclick="navigateTo('main')">↩️ Orqaga</button>
+
         </div>
 
-        <!-- PAGE: ADMIN MUKOFOT -->
-        <div class="page" id="page-admin-mukofot">
-            <button class="back-btn" onclick="navigateTo('main')"><i class="fas fa-arrow-left"></i> Orqaga</button>
-            <div class="section-title"><i class="fas fa-gift"></i> Mukofot</div>
-            <div class="card">
-                <h4>Hozirgi media</h4>
-                <p id="currentMukofotMedia" class="text-secondary">🖼️ Rasm</p>
-                <div class="btn-group mt-8">
-                    <button class="btn btn-outline btn-sm" onclick="setMukofotMedia('video')">🎥 Video</button>
-                    <button class="btn btn-outline btn-sm" onclick="setMukofotMedia('photo')">🖼️ Rasm</button>
-                </div>
-            </div>
-            <div class="card">
-                <h4>📝 Mukofot matni</h4>
-                <textarea id="mukofotTextInput" class="form-group">🎁 MUKOFOT!</textarea>
-                <button class="btn btn-primary btn-sm" onclick="updateMukofotText()">Yangilash</button>
-            </div>
-            <button class="btn btn-outline btn-sm full mt-8" onclick="navigateTo('main')">↩️ Orqaga</button>
-        </div>
+    </section>
 
-        <!-- PAGE: ADMIN RATING -->
-        <div class="page" id="page-admin-rating">
-            <button class="back-btn" onclick="navigateTo('main')"><i class="fas fa-arrow-left"></i> Orqaga</button>
-            <div class="section-title"><i class="fas fa-ranking-star"></i> Reyting boshqarish</div>
-            <div id="adminRatingList"></div>
-            <button class="btn btn-danger btn-sm full mt-8" onclick="resetAllRatings()">🔄 Barcha ballarni 0 qilish</button>
-        </div>
 
-        <!-- PAGE: ADMIN ADD SCORE -->
-        <div class="page" id="page-admin-add-score">
-            <button class="back-btn" onclick="navigateTo('main')"><i class="fas fa-arrow-left"></i> Orqaga</button>
-            <div class="section-title"><i class="fas fa-plus-circle"></i> Ball qo'shish</div>
-            <div class="card">
-                <h4>📊 Format</h4>
-                <p class="text-sm text-secondary">+998900512621 - 17 ball</p>
-                <p class="text-sm text-secondary">Bir nechta: +998900512621 - 17 ball, +998909996677 - 18 ball</p>
-            </div>
-            <div class="card">
-                <textarea id="scoreBatchInput" class="form-group" placeholder="+998900512621 - 17 ball, +998909996677 - 18 ball"></textarea>
-                <button class="btn btn-primary btn-sm" onclick="addScoreBatch()">➕ Qo'shish</button>
-            </div>
-            <div id="scoreBatchResult" class="card" style="display:none;"></div>
-            <button class="btn btn-outline btn-sm full mt-8" onclick="navigateTo('main')">↩️ Orqaga</button>
-        </div>
+    <!-- =========================================================
+         BOTTOM NAV
+    ========================================================= -->
 
-        <!-- PAGE: TECH PANEL -->
-        <div class="page" id="page-tech-panel">
-            <button class="back-btn" onclick="navigateTo('main')"><i class="fas fa-arrow-left"></i> Orqaga</button>
-            <div class="section-title"><i class="fas fa-code"></i> Texnik admin</div>
-            <div class="admin-grid">
-                <button class="admin-btn" onclick="showTechUserManagement()">👤 Foydalanuvchi boshqarish</button>
-                <button class="admin-btn" onclick="showTechParticipants()">🏆 Ishtirokchilar</button>
-                <button class="admin-btn" onclick="showTechKonkurs()">🏆 Konkurs takliflar</button>
-                <button class="admin-btn" onclick="showTechAdPanel()">📢 Reklama</button>
-                <button class="admin-btn" onclick="showTechStats()">📊 Detal statistika</button>
-            </div>
-            <button class="btn btn-outline btn-sm full mt-8" onclick="navigateTo('main')">↩️ Orqaga</button>
-        </div>
+    <nav class="bottom-nav">
 
-        <!-- PAGE: TECH USER MANAGEMENT -->
-        <div class="page" id="page-tech-user">
-            <button class="back-btn" onclick="navigateTo('tech-panel')"><i class="fas fa-arrow-left"></i> Orqaga</button>
-            <div class="section-title"><i class="fas fa-users"></i> Foydalanuvchi boshqarish</div>
-            <div class="btn-group">
-                <button class="btn btn-danger btn-sm" onclick="techBlockUser()">⛔ Bloklash</button>
-                <button class="btn btn-success btn-sm" onclick="techUnblockUser()">✅ Blokdan chiqarish</button>
-                <button class="btn btn-primary btn-sm" onclick="techSearchUser()">🔍 Izlash</button>
-            </div>
-            <div id="techUserResult" class="mt-12"></div>
-        </div>
+        <button
+            class="nav-item active"
+            data-page="home"
+            onclick="navigate('home')">
 
-    </div>
+            <span>🏠</span>
+            <span>Bosh sahifa</span>
+
+        </button>
+
+
+        <button
+            class="nav-item"
+            data-page="ads"
+            onclick="navigate('ads')">
+
+            <span>🐱</span>
+            <span>E’lonlar</span>
+
+        </button>
+
+
+        <button
+            class="nav-item"
+            data-page="create"
+            onclick="navigate('create')">
+
+            <span>➕</span>
+            <span>E’lon berish</span>
+
+        </button>
+
+
+        <button
+            class="nav-item"
+            data-page="contest"
+            onclick="navigate('contest')">
+
+            <span>🏆</span>
+            <span>Konkurs</span>
+
+        </button>
+
+
+        <button
+            class="nav-item"
+            data-page="profile"
+            onclick="navigate('profile')">
+
+            <span>👤</span>
+            <span>Profil</span>
+
+        </button>
+
+    </nav>
+
 </div>
 
-<!-- TOAST -->
-<div id="toast" class="toast" style="display:none;"></div>
 
-<!-- MODAL -->
-<div class="modal-overlay" id="modalOverlay">
-    <div class="modal">
-        <div class="modal-header">
-            <h3 id="modalTitle">Modal</h3>
-            <button class="modal-close" onclick="closeModal()">&times;</button>
+<!-- =========================================================
+     MODAL
+========================================================= -->
+
+<div id="modal"
+     class="modal"
+     onclick="closeModal(event)">
+
+    <div class="modal-content"
+         onclick="event.stopPropagation()">
+
+        <div class="modal-head">
+
+            <h3 id="modalTitle">
+                Ma’lumot
+            </h3>
+
+            <button
+                class="close-btn"
+                onclick="hideModal()">
+
+                ✕
+
+            </button>
+
         </div>
+
         <div id="modalBody"></div>
+
     </div>
+
 </div>
+
+
+<!-- =========================================================
+     TOAST
+========================================================= -->
+
+<div id="toastContainer"
+     class="toast-container">
+</div>
+
 
 <script>
-    // ============================================================
-    // STATE
-    // ============================================================
-    const state = {
-        user: {
-            id: 673018191,
-            number: 1,
-            score: 0,
-            referrals: 0,
-            isAdmin: true,
-            isTechAdmin: true,
-            username: '@zayd_catlover',
-            phone: '+998934938181',
-            fullName: 'Admin'
-        },
-        ads: [],
-        pendingAd: {
-            type: null,
-            mediaType: 'photo',
-            mushukSoni: 1,
-            breed: null,
-            age: null,
-            health: null,
-            gender: null,
-            sterilization: null,
-            valyuta: 'so\'m',
-            price: null,
-            manzil: null,
-            phone: null,
-            media: [],
-            status: 'draft'
-        },
-        bannedUsers: [],
-        botEnabled: true,
-        statistics: {
-            hadiya: 0,
-            sotish: 0,
-            vyazka: 0,
-            totalUsers: 1,
-            totalAds: 0
-        },
-        konkurs: {
-            text: '🎁 Scottish fold black\n\nSiz toplagan ovoz ochib ketmaydi toki 🏆 g\'olib bo\'lgungizgacha 💯',
-            mediaType: 'photo',
-            imageUrl: null,
-            videoUrl: null
-        },
-        mukofot: {
-            text: '🎁 MUKOFOT!',
-            mediaType: 'photo',
-            imageUrl: null,
-            videoUrl: null
-        },
-        scores: {},
-        referrals: {},
-        referralCodes: {},
-        codeToUser: {},
-        userScores: {},
-        userNumberMap: {},
-        userUsernameMap: {},
-        userPhones: {},
-        userFullNameMap: {},
-        userAdsMap: {},
-        pendingScoresByPhone: {},
-        lastAdTime: null,
-        userHasPendingAd: false
-    };
 
-    // ============================================================
-    // INIT
-    // ============================================================
-    document.addEventListener('DOMContentLoaded', () => {
-        loadState();
-        updateUI();
-        showToast('🐱 Uzbek Cats botiga xush kelibsiz!', 'success');
-    });
+/* =========================================================
+   STATE
+========================================================= */
 
-    // ============================================================
-    // NAVIGATION
-    // ============================================================
-    function navigateTo(page) {
-        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-        const target = document.getElementById('page-' + page);
-        if (target) {
-            target.classList.add('active');
-            document.getElementById('mainContent').scrollTop = 0;
-        }
+const STORAGE_KEY = "uzbek_cats_premium_v2";
 
-        if (page === 'my-ads') renderMyAds();
-        if (page === 'admin-stats') renderStats();
-        if (page === 'admin-rating') renderAdminRating();
-        if (page === 'konkurs') updateKonkursUI();
+let state = {
+
+    user: {
+        id: "user_" + Date.now(),
+        number: 1,
+        score: 0,
+        referrals: 0,
+        isAdmin: false
+    },
+
+    ads: [],
+
+    favorites: [],
+
+    bannedUsers: [],
+
+    botEnabled: true,
+
+    konkurs: {
+        text: "Scottish Fold mushukini yutib oling!",
+        prize: "Scottish Fold Black"
+    },
+
+    referralCode: "",
+
+    statistics: {
+        totalUsers: 1,
+        totalAds: 0,
+        hadiya: 0,
+        sotish: 0,
+        vyazka: 0
     }
 
-    // ============================================================
-    // UI UPDATE
-    // ============================================================
-    function updateUI() {
-        document.getElementById('userNumber').textContent = '#' + state.user.number;
-        document.getElementById('userScore').textContent = '🏆 ' + state.user.score + ' ball';
-        document.getElementById('userReferrals').textContent = '👥 ' + state.user.referrals;
+};
 
-        const badge = document.getElementById('adsCountBadge');
-        if (state.ads.length > 0) {
-            badge.textContent = state.ads.length;
-            badge.style.display = 'inline-block';
-        } else {
-            badge.style.display = 'none';
-        }
 
-        if (state.user.isAdmin || state.user.isTechAdmin) {
-            document.getElementById('adminPanel').style.display = 'block';
-        }
+/* =========================================================
+   STORAGE
+========================================================= */
+
+function saveState() {
+
+    localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify(state)
+    );
+
+}
+
+
+function loadState() {
+
+    const saved =
+        localStorage.getItem(STORAGE_KEY);
+
+    if (!saved) {
+
+        state.referralCode =
+            "REF" +
+            Math.random()
+                .toString(36)
+                .substring(2, 9)
+                .toUpperCase();
+
+        saveState();
+
+        return;
+
     }
 
-    // ============================================================
-    // REKLAMA
-    // ============================================================
-    function selectAdType(type) {
-        if (state.userHasPendingAd) {
-            showToast('⏳ Hozirda tasdiqlanmagan reklamangiz mavjud!', 'error');
-            return;
-        }
+    try {
 
-        state.pendingAd.type = type;
-        state.pendingAd.status = 'draft';
-        document.getElementById('adForm').style.display = 'block';
+        const data =
+            JSON.parse(saved);
 
-        // Reset form
-        document.getElementById('mushukSoniSection').style.display = 'none';
-        document.getElementById('breedSection').style.display = 'none';
-        document.getElementById('ageSection').style.display = 'none';
-        document.getElementById('healthSection').style.display = 'none';
-        document.getElementById('genderSection').style.display = 'none';
-        document.getElementById('sterilizationSection').style.display = 'none';
-        document.getElementById('valyutaSection').style.display = 'none';
-        document.getElementById('priceSection').style.display = 'none';
-        document.getElementById('manzilSection').style.display = 'none';
-        document.getElementById('phoneSection').style.display = 'none';
-        document.getElementById('mediaUploadSection').style.display = 'none';
-        document.getElementById('previewSection').style.display = 'none';
-
-        if (type === 'sotish') {
-            document.getElementById('mushukSoniSection').style.display = 'block';
-        } else if (type === 'hadiya') {
-            document.getElementById('mediaUploadSection').style.display = 'block';
-            document.getElementById('manzilSection').style.display = 'block';
-        } else if (type === 'vyazka') {
-            document.getElementById('mediaUploadSection').style.display = 'block';
-            document.getElementById('breedSection').style.display = 'block';
-            document.getElementById('ageSection').style.display = 'block';
-            document.getElementById('genderSection').style.display = 'block';
-            document.getElementById('sterilizationSection').style.display = 'block';
-            document.getElementById('manzilSection').style.display = 'block';
-        }
-
-        showToast('✅ ' + type.charAt(0).toUpperCase() + type.slice(1) + ' tanlandi!', 'success');
-    }
-
-    function setMediaType(type) {
-        state.pendingAd.mediaType = type;
-        showToast('📸 ' + (type === 'photo' ? 'Rasm' : 'Video') + ' tanlandi', 'success');
-    }
-
-    function setMushukSoni(soni) {
-        state.pendingAd.mushukSoni = soni;
-        document.getElementById('breedSection').style.display = 'block';
-        renderBreeds();
-        showToast('🐱 ' + soni + ' ta mushuk', 'success');
-    }
-
-    function renderBreeds() {
-        const breeds = [
-            'Scottish fold', 'Scottish straight', 'British blue', 'British chinchilla',
-            'Bengal cat', 'Turkish angora', 'Gibrid', 'British Shorthair',
-            'Persian Cat', 'Maine Coon', 'Ragdoll', 'Siberian Cat', 'Russian blue',
-            'Abyssinian', 'Norwegian Forest Cat', 'Turkish Van', 'Burmilla',
-            'American Shorthair', 'American Curl', 'Egyptian Mau', 'Tonkinese',
-            'Balinese', 'Exotic Shorthair', 'Savannah Cat', 'Munchkin', 'Khao Manee',
-            'Uy mushuki', 'Mushuk'
-        ];
-        const container = document.getElementById('breedList');
-        container.innerHTML = '';
-        breeds.forEach(b => {
-            const btn = document.createElement('button');
-            btn.className = 'btn btn-outline btn-sm';
-            btn.textContent = b;
-            btn.onclick = () => { state.pendingAd.breed = b; showToast('🐱 ' + b, 'success'); document.getElementById('ageSection').style.display = 'block'; renderAges(); };
-            container.appendChild(btn);
-        });
-    }
-
-    function renderAges() {
-        const ages = [
-            '1 oylik', '2 oylik', '3 oylik', '4 oylik', '5 oylik',
-            '6 oylik', '7 oylik', '8 oylik', '9 oylik', '10 oylik',
-            '11 oylik', '1 yosh', '1,5 yosh', '2 yosh', '2,5 yosh',
-            '3 yosh', '3,5 yosh', '4 yosh', '4,5 yosh', '5 yosh'
-        ];
-        const container = document.getElementById('ageList');
-        container.innerHTML = '';
-        ages.forEach(a => {
-            const btn = document.createElement('button');
-            btn.className = 'btn btn-outline btn-sm';
-            btn.textContent = a;
-            btn.onclick = () => { state.pendingAd.age = a; showToast('🎂 ' + a, 'success'); if (state.pendingAd.type === 'sotish') { document.getElementById('healthSection').style.display = 'block'; } else { document.getElementById('genderSection').style.display = 'block'; } };
-            container.appendChild(btn);
-        });
-    }
-
-    function setHealth(health) {
-        state.pendingAd.health = health;
-        document.getElementById('genderSection').style.display = 'block';
-        showToast('❤️ ' + health, 'success');
-    }
-
-    function setGender(gender) {
-        state.pendingAd.gender = gender;
-        document.getElementById('sterilizationSection').style.display = 'block';
-        showToast('👤 ' + gender, 'success');
-    }
-
-    function setSterilization(ster) {
-        state.pendingAd.sterilization = ster;
-        document.getElementById('valyutaSection').style.display = 'block';
-        showToast('🧬 ' + ster, 'success');
-    }
-
-    function setValyuta(val) {
-        state.pendingAd.valyuta = val;
-        document.getElementById('priceSection').style.display = 'block';
-        showToast('💰 ' + val, 'success');
-    }
-
-    function setPrice() {
-        const val = document.getElementById('priceInput').value.trim();
-        if (!val) { showToast('❌ Narx kiriting!', 'error'); return; }
-        state.pendingAd.price = val;
-        document.getElementById('manzilSection').style.display = 'block';
-        renderViloyatlar();
-        showToast('💰 ' + val + ' ' + state.pendingAd.valyuta, 'success');
-    }
-
-    function renderViloyatlar() {
-        const viloyatlar = [
-            'Andijon', 'Buxoro', 'Farg\'ona', 'Jizzax', 'Xorazm',
-            'Namangan', 'Navoiy', 'Qashqadaryo', 'Samarqand',
-            'Sirdaryo', 'Surxondaryo', 'Toshkent', 'Toshkent shahar'
-        ];
-        const container = document.getElementById('viloyatList');
-        container.innerHTML = '';
-        viloyatlar.forEach(v => {
-            const btn = document.createElement('button');
-            btn.className = 'btn btn-outline btn-sm';
-            btn.textContent = v;
-            btn.onclick = () => { state.pendingAd.manzil = v; showToast('📍 ' + v, 'success'); if (state.pendingAd.type === 'hadiya') { document.getElementById('phoneSection').style.display = 'block'; } else { document.getElementById('phoneSection').style.display = 'block'; } };
-            container.appendChild(btn);
-        });
-    }
-
-    function setPhone() {
-        const val = document.getElementById('phoneInput').value.trim();
-        if (!val || !isValidPhone(val)) { showToast('❌ Telefon raqam noto\'g\'ri!', 'error'); return; }
-        state.pendingAd.phone = val;
-        if (state.pendingAd.type === 'hadiya') {
-            showPreview();
-        } else {
-            document.getElementById('mediaUploadSection').style.display = 'block';
-        }
-        showToast('📞 ' + val, 'success');
-    }
-
-    function isValidPhone(phone) {
-        const cleaned = phone.replace(/\s/g, '');
-        return cleaned.match(/^\+998\d{9}$/) || cleaned.match(/^998\d{9}$/);
-    }
-
-    function uploadMedia() {
-        const input = document.getElementById('mediaInput');
-        const files = input.files;
-        if (!files.length) { showToast('❌ Media tanlang!', 'error'); return; }
-
-        const container = document.getElementById('mediaPreview');
-        container.innerHTML = '';
-        state.pendingAd.media = [];
-
-        for (let f of files) {
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                const div = document.createElement('div');
-                if (f.type.startsWith('image/')) {
-                    const img = document.createElement('img');
-                    img.src = e.target.result;
-                    img.style.width = '60px';
-                    img.style.height = '60px';
-                    img.style.objectFit = 'cover';
-                    img.style.borderRadius = '8px';
-                    div.appendChild(img);
-                } else {
-                    const vid = document.createElement('video');
-                    vid.src = e.target.result;
-                    vid.style.width = '60px';
-                    vid.style.height = '60px';
-                    vid.style.objectFit = 'cover';
-                    vid.style.borderRadius = '8px';
-                    div.appendChild(vid);
-                }
-                container.appendChild(div);
-                state.pendingAd.media.push(e.target.result);
-            };
-            reader.readAsDataURL(f);
-        }
-
-        showToast('✅ ' + files.length + ' ta media yuklandi', 'success');
-        setTimeout(() => showPreview(), 500);
-    }
-
-    function showPreview() {
-        const ad = state.pendingAd;
-        const container = document.getElementById('previewContent');
-        let html = '';
-        html += '<div class="label">📋 E\'lon ma\'lumotlari</div>';
-        html += '<div class="value">';
-        html += '📌 Tur: ' + ad.type + '<br>';
-        if (ad.breed) html += '🐱 Zot: ' + ad.breed + '<br>';
-        if (ad.age) html += '🎂 Yosh: ' + ad.age + '<br>';
-        if (ad.gender) html += '👤 Jins: ' + ad.gender + '<br>';
-        if (ad.health) html += '❤️ Sog\'lig\'i: ' + ad.health + '<br>';
-        if (ad.sterilization) html += '🧬 Nasl olish: ' + ad.sterilization + '<br>';
-        if (ad.mushukSoni) html += '🐾 Mushuklar soni: ' + ad.mushukSoni + '<br>';
-        if (ad.price) html += '💰 Narx: ' + ad.price + ' ' + ad.valyuta + '<br>';
-        if (ad.manzil) html += '📍 Manzil: ' + ad.manzil + '<br>';
-        if (ad.phone) html += '📞 Telefon: ' + ad.phone + '<br>';
-        html += '</div>';
-
-        if (ad.media.length > 0) {
-            html += '<div class="label mt-8">📸 Media</div>';
-            html += '<div class="flex gap-8 mt-8 flex-wrap">';
-            ad.media.forEach(m => {
-                if (m.startsWith('data:image')) {
-                    html += '<img src="' + m + '" style="width:60px;height:60px;object-fit:cover;border-radius:8px;">';
-                } else {
-                    html += '<video src="' + m + '" style="width:60px;height:60px;object-fit:cover;border-radius:8px;"></video>';
-                }
-            });
-            html += '</div>';
-        }
-
-        container.innerHTML = html;
-        document.getElementById('previewSection').style.display = 'block';
-        document.getElementById('mediaUploadSection').style.display = 'none';
-    }
-
-    function confirmAd() {
-        const ad = state.pendingAd;
-        if (!ad.type) { showToast('❌ Reklama turini tanlang!', 'error'); return; }
-        if (ad.type === 'sotish' && !ad.breed) { showToast('❌ Zotni tanlang!', 'error'); return; }
-        if (!ad.manzil) { showToast('❌ Manzilni tanlang!', 'error'); return; }
-        if (!ad.phone) { showToast('❌ Telefon raqamni kiriting!', 'error'); return; }
-
-        // Save ad
-        const newAd = {
-            id: Date.now(),
-            type: ad.type,
-            mediaType: ad.mediaType,
-            mushukSoni: ad.mushukSoni || 1,
-            breed: ad.breed || '-',
-            age: ad.age || '-',
-            health: ad.health || '-',
-            gender: ad.gender || '-',
-            sterilization: ad.sterilization || '-',
-            valyuta: ad.valyuta || 'so\'m',
-            price: ad.price || '-',
-            manzil: ad.manzil,
-            phone: ad.phone,
-            media: ad.media,
-            status: 'pending',
-            createdAt: new Date().toISOString()
+        state = {
+            ...state,
+            ...data,
+            user: {
+                ...state.user,
+                ...(data.user || {})
+            },
+            statistics: {
+                ...state.statistics,
+                ...(data.statistics || {})
+            }
         };
 
-        state.ads.push(newAd);
-        state.userHasPendingAd = true;
-        state.lastAdTime = new Date();
+    } catch (error) {
 
-        // Update stats
-        state.statistics.totalAds++;
-        if (ad.type === 'hadiya') state.statistics.hadiya++;
-        else if (ad.type === 'sotish') state.statistics.sotish++;
-        else if (ad.type === 'vyazka') state.statistics.vyazka++;
+        console.log(error);
 
-        // Notify admin
-        showToast('✅ E\'loningiz yuborildi! Admin tekshiradi.', 'success');
-        notifyAdmin(newAd);
-
-        // Reset
-        resetAdForm();
-        updateUI();
-        navigateTo('main');
-
-        // Auto approve for demo
-        setTimeout(() => {
-            newAd.status = 'approved';
-            newAd.channelMessageId = Math.floor(Math.random() * 1000);
-            state.userHasPendingAd = false;
-            showToast('✅ E\'loningiz tasdiqlandi va kanalga joylandi!', 'success');
-            updateUI();
-            renderMyAds();
-        }, 3000);
     }
 
-    function resetAdForm() {
-        state.pendingAd = { type: null, mediaType: 'photo', mushukSoni: 1, media: [], status: 'draft' };
-        document.getElementById('adForm').style.display = 'none';
-        document.getElementById('previewSection').style.display = 'none';
-        document.getElementById('mediaUploadSection').style.display = 'none';
-        document.getElementById('phoneSection').style.display = 'none';
-        document.getElementById('manzilSection').style.display = 'none';
-        document.getElementById('priceSection').style.display = 'none';
-        document.getElementById('valyutaSection').style.display = 'none';
-        document.getElementById('sterilizationSection').style.display = 'none';
-        document.getElementById('genderSection').style.display = 'none';
-        document.getElementById('healthSection').style.display = 'none';
-        document.getElementById('ageSection').style.display = 'none';
-        document.getElementById('breedSection').style.display = 'none';
-        document.getElementById('mushukSoniSection').style.display = 'none';
-        document.getElementById('mediaPreview').innerHTML = '';
-        document.getElementById('priceInput').value = '';
-        document.getElementById('phoneInput').value = '';
-        document.getElementById('mediaInput').value = '';
-    }
+}
 
-    function showCustomBreed() {
-        document.getElementById('customBreedInput').style.display = 'block';
-    }
 
-    function setCustomBreed() {
-        const val = document.getElementById('customBreed').value.trim();
-        if (val) {
-            state.pendingAd.breed = val;
-            document.getElementById('ageSection').style.display = 'block';
-            renderAges();
-            showToast('🐱 ' + val, 'success');
-        }
-    }
+/* =========================================================
+   NAVIGATION
+========================================================= */
 
-    // ============================================================
-    // KONKURS
-    // ============================================================
-    function updateKonkursUI() {
-        document.getElementById('konkursContent').innerHTML = '<p>' + state.konkurs.text.replace(/\n/g, '<br>') + '</p>';
-        document.getElementById('referralLink').textContent = 'https://t.me/UzbekCatsBot?start=' + (state.referralCodes[state.user.id] || generateReferralCode());
-    }
+function navigate(page) {
 
-    function generateReferralCode() {
-        const code = 'REF' + state.user.id + '_' + Date.now();
-        state.referralCodes[state.user.id] = code;
-        state.codeToUser[code] = state.user.id;
-        return code;
-    }
+    document
+        .querySelectorAll(".page")
+        .forEach(item => {
 
-    function shareReferral() {
-        const link = document.getElementById('referralLink').textContent;
-        if (navigator.share) {
-            navigator.share({
-                title: 'Uzbek Cats Konkurs',
-                text: 'Mushuklar konkursiga qo\'shiling va tekinga mushuk yutib oling!',
-                url: link
-            });
-        } else {
-            copyReferral();
-        }
-    }
+            item.classList.remove("active");
 
-    function copyReferral() {
-        const link = document.getElementById('referralLink').textContent;
-        navigator.clipboard.writeText(link).then(() => {
-            showToast('✅ Referral link nusxalandi!', 'success');
         });
+
+
+    const target =
+        document.getElementById(
+            "page-" + page
+        );
+
+
+    if (!target) return;
+
+
+    target.classList.add("active");
+
+
+    document
+        .querySelectorAll(".nav-item")
+        .forEach(item => {
+
+            item.classList.remove("active");
+
+            if (
+                item.dataset.page === page
+            ) {
+
+                item.classList.add("active");
+
+            }
+
+        });
+
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+
+    if (page === "home") {
+
+        renderAds("homeAds", 4);
+
     }
 
-    function showMukofot() {
-        showToast('🎁 Mukofot: ' + state.mukofot.text, 'success');
+
+    if (page === "ads") {
+
+        renderAds("allAds");
+
     }
 
-    function showRating() {
-        const container = document.getElementById('ratingList');
-        const card = document.getElementById('ratingCard');
-        card.style.display = 'block';
 
-        // Generate demo rating
-        let html = '';
-        const names = ['Ali', 'Bobur', 'Javlon', 'Sardor', 'Dilshod', 'Nodir', 'Shoxrux', 'Jalol', 'Mirzo', 'Ozod'];
-        for (let i = 0; i < 10; i++) {
-            const score = Math.floor(Math.random() * 100) + 1;
-            const medal = i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : '👤';
-            html += `<div class="list-item">
-                <div class="title">${medal} ${i+1}. ${names[i]}</div>
-                <div class="subtitle">🏆 ${score} ball</div>
-            </div>`;
+    if (page === "myads") {
+
+        renderMyAds();
+
+    }
+
+
+    if (page === "profile") {
+
+        updateProfile();
+
+    }
+
+
+    if (page === "contest") {
+
+        updateContest();
+
+    }
+
+
+    if (page === "admin") {
+
+        updateAdmin();
+
+    }
+
+}
+
+
+/* =========================================================
+   QUICK TYPE
+========================================================= */
+
+function openCreateType(type) {
+
+    navigate("create");
+
+    setTimeout(() => {
+
+        const button =
+            document.querySelector(
+                `[data-type="${type}"]`
+            );
+
+        if (button) {
+
+            selectType(type, button);
+
         }
-        container.innerHTML = html;
+
+    }, 100);
+
+}
+
+
+/* =========================================================
+   AD TYPE
+========================================================= */
+
+let selectedType = "";
+
+
+function selectType(type, element) {
+
+    selectedType = type;
+
+
+    document
+        .querySelectorAll(".type-btn")
+        .forEach(btn => {
+
+            btn.classList.remove("selected");
+
+        });
+
+
+    element.classList.add("selected");
+
+
+    const priceCard =
+        document.getElementById(
+            "priceCard"
+        );
+
+
+    if (type === "sotish") {
+
+        priceCard.style.display =
+            "block";
+
+    } else {
+
+        priceCard.style.display =
+            "none";
+
     }
 
-    // ============================================================
-    // ADMIN FUNCTIONS
-    // ============================================================
-    function renderStats() {
-        document.getElementById('statTotalUsers').textContent = state.statistics.totalUsers;
-        document.getElementById('statTotalAds').textContent = state.statistics.totalAds;
-        document.getElementById('statBanned').textContent = state.bannedUsers.length;
+}
 
-        const types = document.getElementById('statTypes');
-        types.innerHTML = `
-            <p>🎁 Hadiya: ${state.statistics.hadiya}</p>
-            <p>💰 Sotish: ${state.statistics.sotish}</p>
-            <p>💝 Vyazka: ${state.statistics.vyazka}</p>
+
+/* =========================================================
+   MEDIA PREVIEW
+========================================================= */
+
+let uploadedMedia = [];
+
+
+function previewMedia(event) {
+
+    const files =
+        [...event.target.files];
+
+
+    uploadedMedia = [];
+
+
+    const preview =
+        document.getElementById(
+            "mediaPreview"
+        );
+
+
+    preview.innerHTML = "";
+
+
+    files.forEach(file => {
+
+        const url =
+            URL.createObjectURL(file);
+
+
+        uploadedMedia.push({
+            name: file.name,
+            type: file.type,
+            url: url
+        });
+
+
+        if (
+            file.type.startsWith("image/")
+        ) {
+
+            const img =
+                document.createElement("img");
+
+            img.src = url;
+
+            preview.appendChild(img);
+
+        }
+
+        else if (
+            file.type.startsWith("video/")
+        ) {
+
+            const video =
+                document.createElement("video");
+
+            video.src = url;
+
+            video.controls = true;
+
+            preview.appendChild(video);
+
+        }
+
+    });
+
+}
+
+
+/* =========================================================
+   SUBMIT AD
+========================================================= */
+
+function submitAd() {
+
+    if (!selectedType) {
+
+        showToast(
+            "E’lon turini tanlang",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    const name =
+        document
+            .getElementById("catName")
+            .value
+            .trim();
+
+
+    const breed =
+        document
+            .getElementById("catBreed")
+            .value;
+
+
+    const age =
+        document
+            .getElementById("catAge")
+            .value
+            .trim();
+
+
+    const gender =
+        document
+            .getElementById("catGender")
+            .value;
+
+
+    const location =
+        document
+            .getElementById("catLocation")
+            .value
+            .trim();
+
+
+    const phone =
+        document
+            .getElementById("catPhone")
+            .value
+            .trim();
+
+
+    if (
+        !name ||
+        !breed ||
+        !location ||
+        !phone
+    ) {
+
+        showToast(
+            "Majburiy maydonlarni to‘ldiring",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    const ad = {
+
+        id:
+            "AD_" +
+            Date.now(),
+
+        type:
+            selectedType,
+
+        name,
+
+        breed,
+
+        age,
+
+        gender,
+
+        health:
+            document
+                .getElementById(
+                    "catHealth"
+                )
+                .value,
+
+        location,
+
+        phone,
+
+        price:
+            document
+                .getElementById(
+                    "catPrice"
+                )
+                .value,
+
+        currency:
+            document
+                .getElementById(
+                    "catCurrency"
+                )
+                .value,
+
+        description:
+            document
+                .getElementById(
+                    "catDescription"
+                )
+                .value
+                .trim(),
+
+        media:
+            uploadedMedia.map(
+                item => item.url
+            ),
+
+        status:
+            "pending",
+
+        userId:
+            state.user.id,
+
+        createdAt:
+            new Date()
+                .toISOString()
+
+    };
+
+
+    state.ads.unshift(ad);
+
+
+    state.statistics.totalAds =
+        state.ads.length;
+
+
+    state.statistics[
+        selectedType
+    ]++;
+
+
+    saveState();
+
+
+    showToast(
+        "✅ E’loningiz admin tekshiruviga yuborildi",
+        "success"
+    );
+
+
+    resetForm();
+
+
+    setTimeout(() => {
+
+        navigate("myads");
+
+    }, 700);
+
+}
+
+
+/* =========================================================
+   RESET FORM
+========================================================= */
+
+function resetForm() {
+
+    document
+        .querySelectorAll(
+            "#page-create input, #page-create textarea"
+        )
+        .forEach(input => {
+
+            input.value = "";
+
+        });
+
+
+    document
+        .querySelectorAll(
+            "#page-create select"
+        )
+        .forEach(select => {
+
+            select.selectedIndex = 0;
+
+        });
+
+
+    document
+        .querySelectorAll(".type-btn")
+        .forEach(btn => {
+
+            btn.classList.remove(
+                "selected"
+            );
+
+        });
+
+
+    document.getElementById(
+        "mediaPreview"
+    ).innerHTML = "";
+
+
+    uploadedMedia = [];
+
+    selectedType = "";
+
+}
+
+
+/* =========================================================
+   RENDER ADS
+========================================================= */
+
+function renderAds(
+    containerId,
+    limit = null
+) {
+
+    const container =
+        document.getElementById(
+            containerId
+        );
+
+
+    if (!container) return;
+
+
+    let ads =
+        [...state.ads];
+
+
+    if (limit) {
+
+        ads =
+            ads.slice(0, limit);
+
+    }
+
+
+    if (!ads.length) {
+
+        container.innerHTML = `
+
+            <div class="empty"
+                 style="grid-column:1/-1">
+
+                <div class="empty-icon">
+                    🐱
+                </div>
+
+                <h3>Hozircha e’lon yo‘q</h3>
+
+                <p>
+                    Birinchi e’lonni siz joylashtiring!
+                </p>
+
+                <button
+                    class="primary-btn"
+                    style="margin-top:15px"
+                    onclick="navigate('create')">
+
+                    + E’lon berish
+
+                </button>
+
+            </div>
+
         `;
+
+        return;
+
     }
 
-    function toggleBot() {
-        state.botEnabled = !state.botEnabled;
-        const tag = document.getElementById('botStatusTag');
-        const btn = document.getElementById('toggleBotBtn');
-        if (state.botEnabled) {
-            tag.textContent = '✅ Yoqilgan';
-            tag.className = 'tag tag-green';
-            btn.textContent = '🔴 O\'chirish';
-            showToast('✅ Bot yoqildi!', 'success');
-        } else {
-            tag.textContent = '❌ O\'chirilgan';
-            tag.className = 'tag tag-red';
-            btn.textContent = '🟢 Yoqish';
-            showToast('🔴 Bot o\'chirildi!', 'error');
-        }
+
+    container.innerHTML =
+        ads.map(
+            ad => createAdCard(ad)
+        ).join("");
+
+}
+
+
+function createAdCard(ad) {
+
+    let icon =
+        ad.type === "sotish"
+            ? "💰"
+            : ad.type === "hadiya"
+                ? "🎁"
+                : "❤️";
+
+
+    let typeText =
+        ad.type === "sotish"
+            ? "SOTILADI"
+            : ad.type === "hadiya"
+                ? "HADIYA"
+                : "VYAZKA";
+
+
+    let image = "";
+
+
+    if (
+        ad.media &&
+        ad.media.length
+    ) {
+
+        image = `
+
+            <img
+                src="${ad.media[0]}"
+                alt="${ad.name}"
+            >
+
+        `;
+
+    } else {
+
+        image = `
+
+            <div class="ad-placeholder">
+                🐱
+            </div>
+
+        `;
+
     }
 
-    function adminBanUser() {
-        const id = prompt('⛔ Bloklash uchun foydalanuvchi raqamini kiriting:');
-        if (id) {
-            state.bannedUsers.push(parseInt(id));
-            showToast('✅ Foydalanuvchi bloklandi!', 'success');
-        }
-    }
 
-    function renderAdminRating() {
-        const container = document.getElementById('adminRatingList');
-        let html = '';
-        const users = [
-            { id: 1, score: 45 }, { id: 2, score: 30 }, { id: 3, score: 25 },
-            { id: 4, score: 20 }, { id: 5, score: 15 }
-        ];
-        users.forEach(u => {
-            html += `<div class="list-item">
-                <div class="title">#${u.id} - ${u.score} ball</div>
-                <button class="btn btn-danger btn-sm" onclick="resetUserRating(${u.id})">🔄 0 qilish</button>
-            </div>`;
-        });
-        container.innerHTML = html;
-    }
+    const isFavorite =
+        state.favorites.includes(
+            ad.id
+        );
 
-    function resetUserRating(id) {
-        showToast('🔄 #' + id + ' ballari 0 ga tushirildi!', 'success');
-    }
 
-    function resetAllRatings() {
-        if (confirm('⚠️ Barcha ballarni 0 ga tushirishni tasdiqlaysizmi?')) {
-            showToast('🔄 Barcha ballar 0 ga tushirildi!', 'success');
-        }
-    }
+    return `
 
-    function addScoreBatch() {
-        const input = document.getElementById('scoreBatchInput').value;
-        if (!input) { showToast('❌ Ma\'lumot kiriting!', 'error'); return; }
+        <div
+            class="ad-card"
+            onclick="openAd('${ad.id}')">
 
-        const entries = input.split(',').map(s => s.trim());
-        let result = '<div class="label">📊 Natijalar:</div>';
-        let success = 0;
+            <div class="ad-image">
 
-        entries.forEach(entry => {
-            const parts = entry.split('-').map(s => s.trim());
-            if (parts.length === 2) {
-                const phone = parts[0];
-                const score = parseInt(parts[1].replace(/[^0-9]/g, ''));
-                if (!isNaN(score)) {
-                    const userId = findUserByPhone(phone);
-                    if (userId) {
-                        state.userScores[userId] = (state.userScores[userId] || 0) + score;
-                        success++;
-                        result += `<div>✅ ${phone} → +${score} ball</div>`;
-                    } else {
-                        state.pendingScoresByPhone[phone] = (state.pendingScoresByPhone[phone] || 0) + score;
-                        success++;
-                        result += `<div>⏳ ${phone} → +${score} ball (kutilmoqda)</div>`;
+                ${image}
+
+                <div class="ad-badge">
+                    ${icon} ${typeText}
+                </div>
+
+                <button
+                    class="favorite"
+                    onclick="event.stopPropagation();toggleFavorite('${ad.id}')">
+
+                    ${isFavorite ? "❤️" : "♡"}
+
+                </button>
+
+            </div>
+
+
+            <div class="ad-body">
+
+                <h4>
+                    ${escapeHTML(ad.name)}
+                </h4>
+
+                <div class="ad-price">
+
+                    ${
+                        ad.type === "sotish"
+                            ? formatPrice(ad.price, ad.currency)
+                            : ad.type === "hadiya"
+                                ? "Tekin"
+                                : "Kelishiladi"
                     }
-                }
+
+                </div>
+
+                <div class="ad-location">
+
+                    📍
+                    ${escapeHTML(ad.location)}
+
+                </div>
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================================================
+   OPEN AD
+========================================================= */
+
+function openAd(id) {
+
+    const ad =
+        state.ads.find(
+            item => item.id === id
+        );
+
+
+    if (!ad) return;
+
+
+    showModal(
+
+        ad.name,
+
+        `
+
+        <div>
+
+            ${
+                ad.media &&
+                ad.media.length
+                    ? `
+                        <img
+                            src="${ad.media[0]}"
+                            style="
+                                width:100%;
+                                height:240px;
+                                object-fit:cover;
+                                border-radius:18px;
+                                margin-bottom:15px
+                            "
+                        >
+                    `
+                    : `
+                        <div
+                            style="
+                                height:200px;
+                                border-radius:18px;
+                                background:#fff1e5;
+                                display:flex;
+                                align-items:center;
+                                justify-content:center;
+                                font-size:80px;
+                                margin-bottom:15px
+                            "
+                        >
+                            🐱
+                        </div>
+                    `
             }
-        });
 
-        document.getElementById('scoreBatchResult').style.display = 'block';
-        document.getElementById('scoreBatchResult').innerHTML = result + `<div>✅ ${success} ta muvaffaqiyatli</div>`;
-        showToast('✅ ' + success + ' ta ball qo\'shildi!', 'success');
-    }
 
-    function findUserByPhone(phone) {
-        const clean = phone.replace(/\s/g, '');
-        for (const [id, p] of Object.entries(state.userPhones)) {
-            if (p.replace(/\s/g, '') === clean) return parseInt(id);
-        }
-        return null;
-    }
+            <h3>
+                ${escapeHTML(ad.name)}
+            </h3>
 
-    function setKonkursMedia(type) {
-        state.konkurs.mediaType = type;
-        document.getElementById('currentKonkursMedia').textContent = type === 'video' ? '🎥 Video' : '🖼️ Rasm';
-        showToast('✅ Konkurs media: ' + type, 'success');
-    }
 
-    function updateKonkursText() {
-        const val = document.getElementById('konkursTextInput').value;
-        state.konkurs.text = val;
-        showToast('✅ Konkurs matni yangilandi!', 'success');
-    }
+            <p style="margin-top:10px;color:#777">
+                🐱 Zot: ${escapeHTML(ad.breed)}
+            </p>
 
-    function setMukofotMedia(type) {
-        state.mukofot.mediaType = type;
-        document.getElementById('currentMukofotMedia').textContent = type === 'video' ? '🎥 Video' : '🖼️ Rasm';
-        showToast('✅ Mukofot media: ' + type, 'success');
-    }
 
-    function updateMukofotText() {
-        const val = document.getElementById('mukofotTextInput').value;
-        state.mukofot.text = val;
-        showToast('✅ Mukofot matni yangilandi!', 'success');
-    }
+            <p style="margin-top:7px;color:#777">
+                🎂 Yosh: ${escapeHTML(ad.age || "Ko‘rsatilmagan")}
+            </p>
 
-    // ============================================================
-    // TECH ADMIN
-    // ============================================================
-    function showTechUserManagement() {
-        navigateTo('tech-user');
-    }
 
-    function showTechParticipants() {
-        let html = '<h4>🏆 Ishtirokchilar (15+ ball)</h4>';
-        const users = [
-            { id: 1, score: 45, phone: '+998900512621' },
-            { id: 2, score: 30, phone: '+998909996677' }
-        ];
-        users.forEach(u => {
-            html += `<div class="list-item">
-                <div class="title">📱 ${u.phone} — ${u.score} ball (#${u.id})</div>
-            </div>`;
-        });
-        showModal('Ishtirokchilar', html);
-    }
+            <p style="margin-top:7px;color:#777">
+                ⚥ Jinsi: ${escapeHTML(ad.gender || "Ko‘rsatilmagan")}
+            </p>
 
-    function showTechKonkurs() {
-        let html = '<h4>🏆 Konkurs takliflar</h4>';
-        const users = [
-            { id: 1, score: 45, username: 'zayd_catlover', phone: '+998934938181' },
-            { id: 2, score: 30, username: 'it_project_2026', phone: '+998900512621' }
-        ];
-        users.forEach(u => {
-            html += `<div class="list-item">
-                <div class="title">#${u.id} @${u.username}</div>
-                <div class="subtitle">📱 ${u.phone} | 🏆 ${u.score} ball</div>
-                <button class="btn btn-danger btn-sm mt-8" onclick="showToast('🔄 Ballar 0 qilindi', 'success')">🔄 0 qilish</button>
-            </div>`;
-        });
-        showModal('Konkurs takliflar', html);
-    }
 
-    function showTechAdPanel() {
-        showModal('📢 Reklama panel', `
-            <div class="card">
-                <h4>Bot foydalanuvchilariga reklama</h4>
-                <textarea id="techAdText" class="form-group" placeholder="Reklama matni..."></textarea>
-                <button class="btn btn-primary btn-sm" onclick="sendTechAd()">📢 Yuborish</button>
-            </div>
-        `);
-    }
+            <p style="margin-top:7px;color:#777">
+                ❤️ Sog‘ligi: ${escapeHTML(ad.health)}
+            </p>
 
-    function sendTechAd() {
-        const text = document.getElementById('techAdText').value;
-        if (text) {
-            showToast('✅ Reklama yuborildi!', 'success');
-            closeModal();
-        }
-    }
 
-    function showTechStats() {
-        let html = `
-            <div class="stats-grid">
-                <div class="stat-card"><div class="number">${state.statistics.totalUsers}</div><div class="label">Foydalanuvchilar</div></div>
-                <div class="stat-card"><div class="number">${state.statistics.totalAds}</div><div class="label">Reklamalar</div></div>
-                <div class="stat-card"><div class="number">${Object.keys(state.userScores).length}</div><div class="label">Aktiv</div></div>
-            </div>
-            <div class="card">
-                <h4>📊 Detal statistika</h4>
-                <p>🏆 O\'rtacha ball: ${Object.values(state.userScores).reduce((a,b) => a+b, 0) / Math.max(1, Object.keys(state.userScores).length)}</p>
-                <p>👥 Jami takliflar: ${Object.keys(state.referrals).length}</p>
-            </div>
-        `;
-        showModal('Detal statistika', html);
-    }
+            <p style="margin-top:7px;color:#777">
+                📍 ${escapeHTML(ad.location)}
+            </p>
 
-    function techBlockUser() {
-        const id = prompt('⛔ Bloklash uchun foydalanuvchi raqamini kiriting:');
-        if (id) {
-            state.bannedUsers.push(parseInt(id));
-            showToast('✅ Foydalanuvchi bloklandi!', 'success');
-        }
-    }
 
-    function techUnblockUser() {
-        if (state.bannedUsers.length === 0) {
-            showToast('📭 Bloklangan foydalanuvchilar yo\'q', 'error');
-            return;
-        }
-        let html = '<h4>Bloklangan foydalanuvchilar</h4>';
-        state.bannedUsers.forEach((id, idx) => {
-            html += `<div class="list-item">
-                <div class="title">#${idx+1}. Foydalanuvchi ${id}</div>
-                <button class="btn btn-success btn-sm" onclick="unblockUser(${idx})">✅ Blokdan chiqarish</button>
-            </div>`;
-        });
-        showModal('Blokdan chiqarish', html);
-    }
-
-    function unblockUser(idx) {
-        state.bannedUsers.splice(idx, 1);
-        showToast('✅ Blokdan chiqarildi!', 'success');
-        closeModal();
-    }
-
-    function techSearchUser() {
-        const id = prompt('🔍 Foydalanuvchi raqamini kiriting:');
-        if (id) {
-            const user = { id: parseInt(id), name: 'Foydalanuvchi ' + id, phone: '+998900512621', score: 15, ads: 2 };
-            showModal('🔍 Foydalanuvchi ma\'lumotlari', `
-                <div class="card">
-                    <p><strong>#${user.id}</strong> ${user.name}</p>
-                    <p>📞 ${user.phone}</p>
-                    <p>🏆 ${user.score} ball</p>
-                    <p>📊 ${user.ads} ta reklama</p>
-                    <p>⛔ ${state.bannedUsers.includes(user.id) ? '✅ Bloklangan' : '❌ Yo\'q'}</p>
-                </div>
-            `);
-        }
-    }
-
-    // ============================================================
-    // MY ADS
-    // ============================================================
-    function renderMyAds() {
-        const container = document.getElementById('myAdsList');
-        if (state.ads.length === 0) {
-            container.innerHTML = '<p class="text-secondary text-center">📭 Sizda hali e\'lonlar mavjud emas.</p>';
-            return;
-        }
-
-        let html = '';
-        state.ads.forEach(ad => {
-            const statusClass = ad.status === 'approved' ? 'active' : ad.status === 'pending' ? 'pending' : 'closed';
-            const statusText = ad.status === 'approved' ? '✅ Faol' : ad.status === 'pending' ? '⏳ Kutilmoqda' : '❌ Nofaol';
-            const emoji = ad.type === 'sotish' ? '💰' : ad.type === 'hadiya' ? '🎁' : '💝';
-
-            html += `<div class="list-item" onclick="viewAd(${ad.id})">
-                <div class="title">${emoji} Reklama #${ad.id}</div>
-                <div class="subtitle">${ad.breed} | ${ad.manzil}</div>
-                <div class="meta">
-                    <span><span class="status-badge ${statusClass}">${statusText}</span></span>
-                    <span>📅 ${new Date(ad.createdAt).toLocaleDateString()}</span>
-                </div>
-            </div>`;
-        });
-        container.innerHTML = html;
-    }
-
-    function viewAd(id) {
-        const ad = state.ads.find(a => a.id === id);
-        if (!ad) return;
-
-        let html = `
-            <div class="card">
-                <h4>📋 E'lon #${ad.id}</h4>
-                <p>📌 Tur: ${ad.type}</p>
-                <p>🐱 Zot: ${ad.breed}</p>
-                <p>🎂 Yosh: ${ad.age}</p>
-                <p>👤 Jins: ${ad.gender}</p>
-                <p>📍 Manzil: ${ad.manzil}</p>
-                <p>📞 Telefon: ${ad.phone}</p>
-                <p>💰 Narx: ${ad.price} ${ad.valyuta}</p>
-                <p>📅 Joylangan: ${new Date(ad.createdAt).toLocaleDateString()}</p>
-                <hr class="divider">
-                <div class="btn-group">
-                    <button class="btn btn-success btn-sm" onclick="markAdCompleted(${ad.id})">✅ Berib bo'ldim</button>
-                    <button class="btn btn-outline btn-sm" onclick="closeModal()">↩️ Orqaga</button>
-                </div>
-            </div>
-        `;
-        showModal('E\'lon', html);
-    }
-
-    function markAdCompleted(id) {
-        const ad = state.ads.find(a => a.id === id);
-        if (ad) {
-            ad.status = 'closed';
-            ad.phone = 'Berib bo\'ldik';
-            showToast('✅ Reklama yakunlandi!', 'success');
-            renderMyAds();
-            closeModal();
-        }
-    }
-
-    // ============================================================
-    // NOTIFICATIONS
-    // ============================================================
-    function notifyAdmin(ad) {
-        console.log('📢 Admin xabari:', ad);
-    }
-
-    // ============================================================
-    // MODAL
-    // ============================================================
-    function showModal(title, body) {
-        document.getElementById('modalTitle').textContent = title;
-        document.getElementById('modalBody').innerHTML = body;
-        document.getElementById('modalOverlay').classList.add('active');
-    }
-
-    function closeModal() {
-        document.getElementById('modalOverlay').classList.remove('active');
-    }
-
-    // ============================================================
-    // TOAST
-    // ============================================================
-    function showToast(msg, type = 'info') {
-        const toast = document.getElementById('toast');
-        toast.textContent = msg;
-        toast.className = 'toast';
-        if (type === 'success') toast.classList.add('success');
-        if (type === 'error') toast.classList.add('error');
-        toast.style.display = 'block';
-        clearTimeout(toast._timeout);
-        toast._timeout = setTimeout(() => {
-            toast.style.display = 'none';
-        }, 3000);
-    }
-
-    // ============================================================
-    // ABOUT
-    // ============================================================
-    function sendFeedback() {
-        document.getElementById('feedbackInput').style.display = 'block';
-    }
-
-    function submitFeedback() {
-        const text = document.getElementById('feedbackText').value;
-        if (text) {
-            showToast('✅ Fikringiz yuborildi! Rahmat.', 'success');
-            document.getElementById('feedbackText').value = '';
-            document.getElementById('feedbackInput').style.display = 'none';
-        }
-    }
-
-    function contactChannelAdmin() {
-        showToast('📢 @zayd_catlover | +998934938181', 'info');
-    }
-
-    function contactTechAdmin() {
-        showToast('👨‍💻 @It_project_2026', 'info');
-    }
-
-    // ============================================================
-    // SAVE / LOAD STATE (localStorage)
-    // ============================================================
-    function saveState() {
-        try {
-            const data = {
-                ads: state.ads,
-                bannedUsers: state.bannedUsers,
-                statistics: state.statistics,
-                userScores: state.userScores,
-                userPhones: state.userPhones,
-                userNumberMap: state.userNumberMap,
-                userUsernameMap: state.userUsernameMap,
-                userFullNameMap: state.userFullNameMap,
-                referralCodes: state.referralCodes,
-                codeToUser: state.codeToUser,
-                pendingScoresByPhone: state.pendingScoresByPhone,
-                konkurs: state.konkurs,
-                mukofot: state.mukofot
-            };
-            localStorage.setItem('uzbek_cats_data', JSON.stringify(data));
-        } catch (e) {}
-    }
-
-    function loadState() {
-        try {
-            const raw = localStorage.getItem('uzbek_cats_data');
-            if (raw) {
-                const data = JSON.parse(raw);
-                state.ads = data.ads || [];
-                state.bannedUsers = data.bannedUsers || [];
-                state.statistics = data.statistics || { hadiya: 0, sotish: 0, vyazka: 0, totalUsers: 1, totalAds: 0 };
-                state.userScores = data.userScores || {};
-                state.userPhones = data.userPhones || {};
-                state.userNumberMap = data.userNumberMap || {};
-                state.userUsernameMap = data.userUsernameMap || {};
-                state.userFullNameMap = data.userFullNameMap || {};
-                state.referralCodes = data.referralCodes || {};
-                state.codeToUser = data.codeToUser || {};
-                state.pendingScoresByPhone = data.pendingScoresByPhone || {};
-                if (data.konkurs) state.konkurs = data.konkurs;
-                if (data.mukofot) state.mukofot = data.mukofot;
+            ${
+                ad.description
+                    ? `
+                        <div
+                            style="
+                                margin-top:15px;
+                                padding:14px;
+                                background:#f7f7f8;
+                                border-radius:14px;
+                                font-size:13px
+                            "
+                        >
+                            ${escapeHTML(ad.description)}
+                        </div>
+                    `
+                    : ""
             }
-        } catch (e) {}
 
-        // Set user
-        state.user.number = state.userNumberMap[state.user.id] || 1;
-        state.user.score = state.userScores[state.user.id] || 0;
-        state.user.referrals = Object.values(state.referralCodes).filter(v => v === state.user.id).length;
-        state.statistics.totalUsers = Object.keys(state.userNumberMap).length || 1;
-        state.statistics.totalAds = state.ads.length;
+
+            <button
+                class="primary-btn"
+                style="margin-top:18px"
+                onclick="contactSeller('${ad.phone}')">
+
+                📞 Sotuvchi bilan bog‘lanish
+
+            </button>
+
+        </div>
+
+        `
+
+    );
+
+}
+
+
+/* =========================================================
+   MY ADS
+========================================================= */
+
+function renderMyAds() {
+
+    const container =
+        document.getElementById(
+            "myAdsList"
+        );
+
+
+    const ads =
+        state.ads.filter(
+            ad =>
+                ad.userId ===
+                state.user.id
+        );
+
+
+    if (!ads.length) {
+
+        container.innerHTML = `
+
+            <div class="empty">
+
+                <div class="empty-icon">
+                    📋
+                </div>
+
+                <h3>E’lonlaringiz yo‘q</h3>
+
+                <p>
+                    Birinchi e’loningizni joylashtiring.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
     }
 
-    // Auto-save
-    setInterval(saveState, 5000);
 
-    // ============================================================
-    // INIT
-    // ============================================================
-    loadState();
-    updateUI();
-    renderMyAds();
+    container.innerHTML =
+        ads.map(
+            ad => `
 
-    console.log('🐱 Uzbek Cats Web App loaded!');
-    console.log('State:', state);
+                <div
+                    class="form-card"
+                    style="display:flex;gap:12px;align-items:center">
+
+                    <div
+                        style="
+                            width:70px;
+                            height:70px;
+                            border-radius:15px;
+                            background:#fff1e5;
+                            display:flex;
+                            align-items:center;
+                            justify-content:center;
+                            font-size:30px;
+                            overflow:hidden
+                        "
+                    >
+
+                        ${
+                            ad.media &&
+                            ad.media.length
+                                ? `
+                                    <img
+                                        src="${ad.media[0]}"
+                                        style="
+                                            width:100%;
+                                            height:100%;
+                                            object-fit:cover
+                                        "
+                                    >
+                                `
+                                : "🐱"
+                        }
+
+                    </div>
+
+
+                    <div style="flex:1">
+
+                        <strong>
+                            ${escapeHTML(ad.name)}
+                        </strong>
+
+                        <p
+                            style="
+                                font-size:11px;
+                                color:#888;
+                                margin-top:5px
+                            "
+                        >
+                            ${escapeHTML(ad.breed)}
+                        </p>
+
+                        <p
+                            style="
+                                font-size:11px;
+                                color:${
+                                    ad.status === "approved"
+                                        ? "#20b26b"
+                                        : "#ff7a00"
+                                };
+                                margin-top:4px
+                            "
+                        >
+                            ${
+                                ad.status === "approved"
+                                    ? "● Tasdiqlangan"
+                                    : "● Tekshiruvda"
+                            }
+                        </p>
+
+                    </div>
+
+                </div>
+
+            `
+        )
+        .join("");
+
+}
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+function searchAds(query) {
+
+    const text =
+        query
+            .toLowerCase()
+            .trim();
+
+
+    const filtered =
+        state.ads.filter(
+            ad =>
+                ad.name
+                    .toLowerCase()
+                    .includes(text) ||
+
+                ad.breed
+                    .toLowerCase()
+                    .includes(text) ||
+
+                ad.location
+                    .toLowerCase()
+                    .includes(text)
+        );
+
+
+    const container =
+        document.getElementById(
+            "homeAds"
+        );
+
+
+    container.innerHTML =
+        filtered
+            .slice(0, 10)
+            .map(
+                ad =>
+                    createAdCard(ad)
+            )
+            .join("");
+
+
+    if (!filtered.length) {
+
+        container.innerHTML = `
+
+            <div class="empty"
+                 style="grid-column:1/-1">
+
+                🔍
+                <br><br>
+
+                Mushuk topilmadi
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* =========================================================
+   CATEGORY FILTER
+========================================================= */
+
+function filterCategory(
+    type,
+    element
+) {
+
+    document
+        .querySelectorAll(".category")
+        .forEach(btn => {
+
+            btn.classList.remove(
+                "active"
+            );
+
+        });
+
+
+    element.classList.add(
+        "active"
+    );
+
+
+    let ads =
+        type === "all"
+            ? state.ads
+            : state.ads.filter(
+                ad =>
+                    ad.type === type
+            );
+
+
+    const container =
+        document.getElementById(
+            "homeAds"
+        );
+
+
+    container.innerHTML =
+        ads
+            .slice(0, 10)
+            .map(
+                ad =>
+                    createAdCard(ad)
+            )
+            .join("");
+
+
+    if (!ads.length) {
+
+        container.innerHTML = `
+
+            <div class="empty"
+                 style="grid-column:1/-1">
+
+                🐱
+
+                <br><br>
+
+                Bu kategoriyada e’lon yo‘q.
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* =========================================================
+   FAVORITES
+========================================================= */
+
+function toggleFavorite(id) {
+
+    if (
+        state.favorites.includes(id)
+    ) {
+
+        state.favorites =
+            state.favorites.filter(
+                item => item !== id
+            );
+
+        showToast(
+            "Sevimlilardan olib tashlandi"
+        );
+
+    } else {
+
+        state.favorites.push(id);
+
+        showToast(
+            "❤️ Sevimlilarga qo‘shildi",
+            "success"
+        );
+
+    }
+
+
+    saveState();
+
+    renderAds("homeAds", 4);
+
+}
+
+
+/* =========================================================
+   PROFILE
+========================================================= */
+
+function updateProfile() {
+
+    document.getElementById(
+        "profileNumber"
+    ).textContent =
+        "Foydalanuvchi #" +
+        state.user.number;
+
+
+    document.getElementById(
+        "profileScore"
+    ).textContent =
+        state.user.score;
+
+
+    document.getElementById(
+        "profileAds"
+    ).textContent =
+        state.ads.filter(
+            ad =>
+                ad.userId ===
+                state.user.id
+        ).length;
+
+
+    document.getElementById(
+        "profileRefs"
+    ).textContent =
+        state.user.referrals;
+
+}
+
+
+/* =========================================================
+   CONTEST
+========================================================= */
+
+function updateContest() {
+
+    document.getElementById(
+        "referralLink"
+    ).textContent =
+        "https://t.me/UzbekCatsBot?start=" +
+        state.referralCode;
+
+
+    const ranking =
+        [...state.ads]
+            .sort(
+                (a,b) =>
+                    new Date(b.createdAt) -
+                    new Date(a.createdAt)
+            )
+            .slice(0, 10);
+
+
+    const list =
+        document.getElementById(
+            "ratingList"
+        );
+
+
+    if (!ranking.length) {
+
+        list.innerHTML = `
+
+            <div class="empty">
+
+                🏆
+
+                <br><br>
+
+                Reyting hali shakllanmagan.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    list.innerHTML =
+        ranking
+            .map(
+                (ad, index) => `
+
+                    <div
+                        class="form-card"
+                        style="
+                            display:flex;
+                            align-items:center;
+                            gap:12px
+                        "
+                    >
+
+                        <strong
+                            style="
+                                font-size:20px;
+                                color:#ff7a00
+                            "
+                        >
+                            #${index + 1}
+                        </strong>
+
+                        <div style="flex:1">
+
+                            <strong>
+                                ${escapeHTML(ad.name)}
+                            </strong>
+
+                            <small
+                                style="
+                                    display:block;
+                                    color:#888;
+                                    margin-top:4px
+                                "
+                            >
+                                ${escapeHTML(ad.breed)}
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                `
+            )
+            .join("");
+
+}
+
+
+/* =========================================================
+   REFERRAL
+========================================================= */
+
+function copyReferral() {
+
+    const link =
+        "https://t.me/UzbekCatsBot?start=" +
+        state.referralCode;
+
+
+    navigator.clipboard
+        .writeText(link)
+        .then(() => {
+
+            showToast(
+                "✅ Referral link nusxalandi",
+                "success"
+            );
+
+        });
+
+}
+
+
+function showPrize() {
+
+    showModal(
+
+        "🎁 Mukofot",
+
+        `
+
+        <div style="text-align:center">
+
+            <div style="font-size:80px">
+                🐱
+            </div>
+
+            <h2>
+                ${state.konkurs.prize}
+            </h2>
+
+            <p
+                style="
+                    color:#888;
+                    margin-top:10px
+                "
+            >
+                Ko‘proq do‘st taklif qiling
+                va g‘olib bo‘lish imkoniyatingizni oshiring.
+            </p>
+
+        </div>
+
+        `
+
+    );
+
+}
+
+
+/* =========================================================
+   ADMIN
+========================================================= */
+
+function updateAdmin() {
+
+    document.getElementById(
+        "adminUsers"
+    ).textContent =
+        state.statistics.totalUsers;
+
+
+    document.getElementById(
+        "adminAds"
+    ).textContent =
+        state.ads.length;
+
+
+    document.getElementById(
+        "adminSell"
+    ).textContent =
+        state.statistics.sotish;
+
+
+    document.getElementById(
+        "adminGift"
+    ).textContent =
+        state.statistics.hadiya;
+
+
+    document.getElementById(
+        "adminBreed"
+    ).textContent =
+        state.statistics.vyazka;
+
+
+    document.getElementById(
+        "adminBanned"
+    ).textContent =
+        state.bannedUsers.length;
+
+}
+
+
+function toggleBot() {
+
+    state.botEnabled =
+        !state.botEnabled;
+
+
+    const button =
+        document.getElementById(
+            "botToggle"
+        );
+
+
+    button.textContent =
+        state.botEnabled
+            ? "🟢 Bot yoqilgan"
+            : "🔴 Bot o‘chirilgan";
+
+
+    saveState();
+
+
+    showToast(
+        state.botEnabled
+            ? "Bot yoqildi"
+            : "Bot o‘chirildi",
+        "success"
+    );
+
+}
+
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+function showModal(
+    title,
+    body
+) {
+
+    document.getElementById(
+        "modalTitle"
+    ).textContent =
+        title;
+
+
+    document.getElementById(
+        "modalBody"
+    ).innerHTML =
+        body;
+
+
+    document
+        .getElementById("modal")
+        .classList.add("show");
+
+}
+
+
+function hideModal() {
+
+    document
+        .getElementById("modal")
+        .classList.remove("show");
+
+}
+
+
+function closeModal(event) {
+
+    if (
+        event.target.id ===
+        "modal"
+    ) {
+
+        hideModal();
+
+    }
+
+}
+
+
+/* =========================================================
+   FILTER
+========================================================= */
+
+function openFilter() {
+
+    showModal(
+
+        "⚙️ Filter",
+
+        `
+
+        <label class="label">
+            Zot
+        </label>
+
+        <select
+            id="filterBreed"
+            class="select">
+
+            <option value="">
+                Barchasi
+            </option>
+
+            <option>
+                Scottish Fold
+            </option>
+
+            <option>
+                British Shorthair
+            </option>
+
+            <option>
+                Bengal
+            </option>
+
+            <option>
+                Persian
+            </option>
+
+        </select>
+
+
+        <button
+            class="primary-btn"
+            onclick="applyFilter()">
+
+            Filterni qo‘llash
+
+        </button>
+
+        `
+
+    );
+
+}
+
+
+function applyFilter() {
+
+    const breed =
+        document
+            .getElementById(
+                "filterBreed"
+            )
+            .value;
+
+
+    const ads =
+        breed
+            ? state.ads.filter(
+                ad =>
+                    ad.breed === breed
+            )
+            : state.ads;
+
+
+    const container =
+        document.getElementById(
+            "homeAds"
+        );
+
+
+    container.innerHTML =
+        ads
+            .slice(0, 10)
+            .map(
+                ad =>
+                    createAdCard(ad)
+            )
+            .join("");
+
+
+    hideModal();
+
+
+    showToast(
+        "✅ Filter qo‘llandi",
+        "success"
+    );
+
+}
+
+
+/* =========================================================
+   SETTINGS
+========================================================= */
+
+function showSettings() {
+
+    showModal(
+
+        "⚙️ Sozlamalar",
+
+        `
+
+        <button
+            class="menu-item"
+            onclick="toggleTheme()">
+
+            🌙
+            <strong>
+                Dark Mode
+            </strong>
+
+        </button>
+
+
+        <button
+            class="menu-item"
+            onclick="clearLocalData()">
+
+            🗑️
+            <strong>
+                Mahalliy ma’lumotlarni tozalash
+            </strong>
+
+        </button>
+
+        `
+
+    );
+
+}
+
+
+function toggleTheme() {
+
+    document.body.style.background =
+        document.body.style.background ===
+        "rgb(25, 25, 25)"
+            ? ""
+            : "#191919";
+
+
+    showToast(
+        "Dizayn rejimi o‘zgartirildi"
+    );
+
+}
+
+
+function clearLocalData() {
+
+    if (
+        confirm(
+            "Barcha lokal ma’lumotlarni o‘chirishni xohlaysizmi?"
+        )
+    ) {
+
+        localStorage.removeItem(
+            STORAGE_KEY
+        );
+
+        location.reload();
+
+    }
+
+}
+
+
+/* =========================================================
+   ABOUT
+========================================================= */
+
+function showAbout() {
+
+    showModal(
+
+        "🐱 Uzbek Cats",
+
+        `
+
+        <div style="text-align:center">
+
+            <div style="font-size:70px">
+                🐱
+            </div>
+
+            <h2>
+                Uzbek Cats
+            </h2>
+
+            <p
+                style="
+                    color:#888;
+                    margin-top:10px;
+                    line-height:1.6
+                "
+            >
+                O‘zbekistondagi mushuk
+                ixlosmandlarini birlashtiruvchi
+                zamonaviy platforma.
+            </p>
+
+            <p
+                style="
+                    margin-top:15px;
+                    color:#ff7a00;
+                    font-weight:700
+                "
+            >
+                Version 2.0
+            </p>
+
+        </div>
+
+        `
+
+    );
+
+}
+
+
+/* =========================================================
+   NOTIFICATIONS
+========================================================= */
+
+function showNotifications() {
+
+    showModal(
+
+        "🔔 Bildirishnomalar",
+
+        `
+
+        <div class="empty">
+
+            🔔
+
+            <br><br>
+
+            Hozircha yangi bildirishnoma yo‘q.
+
+        </div>
+
+        `
+
+    );
+
+}
+
+
+/* =========================================================
+   CONTACT
+========================================================= */
+
+function contactSeller(phone) {
+
+    if (!phone) {
+
+        showToast(
+            "Telefon raqam mavjud emas",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    window.location.href =
+        "tel:" + phone;
+
+}
+
+
+/* =========================================================
+   HELPERS
+========================================================= */
+
+function formatPrice(
+    price,
+    currency
+) {
+
+    if (!price) {
+
+        return "Narx kelishiladi";
+
+    }
+
+
+    const number =
+        Number(price);
+
+
+    if (
+        isNaN(number)
+    ) {
+
+        return price;
+
+    }
+
+
+    return (
+        new Intl.NumberFormat(
+            "uz-UZ"
+        ).format(number)
+        +
+        " "
+        +
+        currency
+    );
+
+}
+
+
+function escapeHTML(text) {
+
+    if (!text) return "";
+
+
+    return String(text)
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+        .replace(
+            /</g,
+            "&lt;"
+        )
+        .replace(
+            />/g,
+            "&gt;"
+        )
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+function showToast(
+    message,
+    type = ""
+) {
+
+    const container =
+        document.getElementById(
+            "toastContainer"
+        );
+
+
+    const toast =
+        document.createElement(
+            "div"
+        );
+
+
+    toast.className =
+        "toast " + type;
+
+
+    toast.textContent =
+        message;
+
+
+    container.appendChild(
+        toast
+    );
+
+
+    setTimeout(() => {
+
+        toast.remove();
+
+    }, 3000);
+
+}
+
+
+/* =========================================================
+   INIT
+========================================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
+
+        loadState();
+
+        renderAds(
+            "homeAds",
+            4
+        );
+
+        updateProfile();
+
+        updateContest();
+
+        updateAdmin();
+
+        showToast(
+            "🐱 Uzbek Cats'ga xush kelibsiz!",
+            "success"
+        );
+
+    }
+);
 
 </script>
+
 </body>
 </html>
