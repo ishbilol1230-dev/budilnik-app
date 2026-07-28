@@ -1,10 +1,11 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="uz">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🕌 Budilnik</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Uzbek Cats - Mushuklar platformasi</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <style>
         * {
             margin: 0;
@@ -12,534 +13,2082 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --primary: #f97316;
+            --primary-dark: #ea580c;
+            --primary-light: #fb923c;
+            --secondary: #1e293b;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text: #0f172a;
+            --text-secondary: #64748b;
+            --border: #e2e8f0;
+            --success: #22c55e;
+            --danger: #ef4444;
+            --shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+            --radius: 16px;
+            --radius-sm: 10px;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
             min-height: 100vh;
             display: flex;
             justify-content: center;
-            align-items: center;
             padding: 20px;
         }
 
-        .container {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 30px;
-            padding: 40px 30px;
-            max-width: 500px;
+        .app-container {
+            max-width: 480px;
             width: 100%;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(10px);
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            height: fit-content;
+            min-height: 90vh;
         }
 
+        /* HEADER */
         .header {
-            text-align: center;
-            margin-bottom: 30px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            padding: 24px 20px 16px;
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         .header h1 {
-            color: #333;
-            font-size: 28px;
-            font-weight: 700;
+            font-size: 20px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        .header .subtitle {
-            color: #666;
-            font-size: 14px;
-            margin-top: 5px;
+        .header h1 i {
+            font-size: 26px;
         }
 
-        .clock {
-            text-align: center;
-            margin: 30px 0;
-            padding: 20px;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        .header-badge {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 4px 12px;
             border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.3px;
         }
 
-        .clock .time {
-            font-size: 48px;
-            font-weight: 700;
-            color: #333;
-            letter-spacing: 2px;
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            font-size: 13px;
         }
 
-        .clock .date {
-            font-size: 16px;
-            color: #666;
-            margin-top: 5px;
+        .user-info .number {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-weight: 600;
         }
 
-        .alarm-section {
-            background: #f8f9fa;
-            border-radius: 15px;
+        .user-info .score {
+            background: rgba(255, 215, 0, 0.25);
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-weight: 600;
+        }
+
+        .user-info .referrals {
+            background: rgba(0, 255, 200, 0.2);
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-weight: 600;
+        }
+
+        /* MAIN CONTENT */
+        .main-content {
+            flex: 1;
             padding: 20px;
-            margin: 20px 0;
+            overflow-y: auto;
+            background: var(--bg);
         }
 
-        .alarm-section h3 {
-            color: #333;
-            margin-bottom: 15px;
-            font-size: 18px;
+        .page {
+            display: none;
+            animation: fadeIn 0.3s ease;
         }
 
-        .input-group {
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* MENU BUTTONS */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 4px;
+        }
+
+        .menu-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 18px 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 500;
+            font-size: 14px;
+            color: var(--text);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .menu-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+            border-color: var(--primary);
+        }
+
+        .menu-btn i {
+            font-size: 24px;
+            color: var(--primary);
+        }
+
+        .menu-btn.primary {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .menu-btn.primary i {
+            color: white;
+        }
+
+        .menu-btn.primary:hover {
+            background: var(--primary-dark);
+        }
+
+        .menu-btn.full {
+            grid-column: 1 / -1;
+        }
+
+        .menu-btn .badge {
+            font-size: 11px;
+            background: var(--danger);
+            color: white;
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-weight: 600;
+        }
+
+        /* ADMIN PANEL */
+        .admin-panel {
+            background: var(--card-bg);
+            border-radius: var(--radius-sm);
+            padding: 16px;
+            border: 1px solid var(--border);
+            margin-top: 16px;
+        }
+
+        .admin-panel h3 {
+            font-size: 15px;
+            margin-bottom: 12px;
+            color: var(--secondary);
+        }
+
+        .admin-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+
+        .admin-btn {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 12px 8px;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+        }
+
+        .admin-btn:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .admin-btn.danger:hover {
+            background: var(--danger);
+            border-color: var(--danger);
+        }
+
+        /* FORMS */
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 6px;
+            color: var(--secondary);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            font-size: 14px;
+            transition: border 0.2s;
+            font-family: inherit;
+            background: var(--card-bg);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.15);
+        }
+
+        .form-group textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            justify-content: center;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #16a34a;
+        }
+
+        .btn-danger {
+            background: var(--danger);
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #dc2626;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-sm {
+            padding: 8px 16px;
+            font-size: 13px;
+        }
+
+        .btn-full {
+            width: 100%;
+        }
+
+        .btn-group {
             display: flex;
             gap: 10px;
             flex-wrap: wrap;
         }
 
-        .input-group input {
+        .btn-group .btn {
             flex: 1;
-            padding: 12px 15px;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            font-size: 16px;
-            transition: all 0.3s;
-            min-width: 120px;
+            min-width: 100px;
         }
 
-        .input-group input:focus {
-            border-color: #667eea;
-            outline: none;
-        }
-
-        .btn {
-            padding: 12px 25px;
-            border: none;
-            border-radius: 10px;
-            font-size: 16px;
-            font-weight: 600;
+        /* LISTS */
+        .list-item {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 14px 16px;
+            margin-bottom: 10px;
+            transition: all 0.2s;
             cursor: pointer;
-            transition: all 0.3s;
+        }
+
+        .list-item:hover {
+            border-color: var(--primary);
+            box-shadow: var(--shadow);
+        }
+
+        .list-item .title {
+            font-weight: 600;
+            font-size: 15px;
+        }
+
+        .list-item .subtitle {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        .list-item .meta {
+            display: flex;
+            gap: 12px;
+            margin-top: 8px;
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .list-item .meta span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .status-badge.active {
+            background: #dcfce7;
+            color: #16a34a;
+        }
+
+        .status-badge.pending {
+            background: #fef3c7;
+            color: #d97706;
+        }
+
+        .status-badge.closed {
+            background: #f1f5f9;
+            color: #64748b;
+        }
+
+        /* CARDS */
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--radius-sm);
+            padding: 16px;
+            border: 1px solid var(--border);
+            margin-bottom: 12px;
+        }
+
+        .card h4 {
+            font-size: 14px;
+            margin-bottom: 8px;
+            color: var(--secondary);
+        }
+
+        .card .value {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        /* STATS */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            border-radius: var(--radius-sm);
+            padding: 14px;
+            text-align: center;
+            border: 1px solid var(--border);
+        }
+
+        .stat-card .number {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .stat-card .label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        /* BACK BUTTON */
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 16px;
+            padding: 6px 0;
+            transition: color 0.2s;
+            border: none;
+            background: none;
+        }
+
+        .back-btn:hover {
+            color: var(--primary);
+        }
+
+        /* SECTION TITLE */
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title i {
+            color: var(--primary);
+        }
+
+        .section-subtitle {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+
+        /* SCROLLBAR */
+        .main-content::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .main-content::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .main-content::-webkit-scrollbar-thumb {
+            background: var(--border);
+            border-radius: 4px;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 480px) {
+            .app-container {
+                border-radius: 0;
+                min-height: 100vh;
+            }
+            .header {
+                padding: 16px;
+            }
+            .main-content {
+                padding: 16px;
+            }
+            .menu-grid {
+                gap: 8px;
+            }
+            .menu-btn {
+                padding: 14px 10px;
+                font-size: 13px;
+            }
+            .stats-grid {
+                grid-template-columns: 1fr 1fr 1fr;
+                gap: 6px;
+            }
+            .stat-card {
+                padding: 10px;
+            }
+            .stat-card .number {
+                font-size: 18px;
+            }
+        }
+
+        /* TOAST */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--secondary);
             color: white;
+            padding: 12px 24px;
+            border-radius: var(--radius-sm);
+            font-weight: 500;
+            font-size: 14px;
+            z-index: 1000;
+            animation: slideUp 0.3s ease;
+            max-width: 90%;
+            text-align: center;
         }
 
-        .btn-primary {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        .toast.success {
+            background: var(--success);
         }
 
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        .toast.error {
+            background: var(--danger);
         }
 
-        .btn-danger {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateX(-50%) translateY(20px); }
+            to { opacity: 1; transform: translateX(-50%) translateY(0); }
         }
 
-        .btn-danger:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(245, 87, 108, 0.4);
+        /* MODAL */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+            z-index: 999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
         }
 
-        .btn-success {
-            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        .modal-overlay.active {
+            display: flex;
         }
 
-        .btn-success:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(79, 172, 254, 0.4);
+        .modal {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            max-width: 440px;
+            width: 100%;
+            padding: 24px;
+            max-height: 80vh;
+            overflow-y: auto;
+            animation: fadeIn 0.3s ease;
         }
 
-        .alarm-list {
-            margin-top: 20px;
-        }
-
-        .alarm-item {
+        .modal-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 12px 15px;
-            background: white;
-            border-radius: 10px;
-            margin-bottom: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            margin-bottom: 16px;
         }
 
-        .alarm-item .time-display {
+        .modal-header h3 {
             font-size: 18px;
-            font-weight: 600;
-            color: #333;
         }
 
-        .alarm-item .status {
-            padding: 4px 12px;
-            border-radius: 20px;
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--text-secondary);
+            padding: 4px 8px;
+        }
+
+        .modal-close:hover {
+            color: var(--text);
+        }
+
+        /* PREVIEW */
+        .preview-box {
+            background: var(--bg);
+            border-radius: var(--radius-sm);
+            padding: 16px;
+            border: 1px solid var(--border);
+            margin: 12px 0;
+        }
+
+        .preview-box .label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .preview-box .value {
+            margin-top: 4px;
+        }
+
+        .divider {
+            border: none;
+            border-top: 1px solid var(--border);
+            margin: 16px 0;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 12px;
             font-size: 12px;
             font-weight: 600;
         }
 
-        .status.active {
-            background: #d4edda;
-            color: #155724;
+        .tag-orange {
+            background: #fef3c7;
+            color: #d97706;
         }
 
-        .status.inactive {
-            background: #f8d7da;
-            color: #721c24;
+        .tag-green {
+            background: #dcfce7;
+            color: #16a34a;
         }
 
-        .alarm-item .actions {
+        .tag-blue {
+            background: #dbeafe;
+            color: #2563eb;
+        }
+
+        .tag-red {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+
+        .flex {
             display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .flex-center {
+            display: flex;
+            align-items: center;
             gap: 8px;
         }
 
-        .alarm-item .actions button {
-            padding: 5px 10px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 14px;
-        }
+        .mt-8 { margin-top: 8px; }
+        .mt-12 { margin-top: 12px; }
+        .mt-16 { margin-top: 16px; }
+        .mb-8 { margin-bottom: 8px; }
+        .mb-12 { margin-bottom: 12px; }
+        .mb-16 { margin-bottom: 16px; }
 
-        .toggle-btn {
-            background: #e0e0e0;
-            color: #333;
-        }
+        .text-center { text-align: center; }
+        .text-secondary { color: var(--text-secondary); }
+        .text-sm { font-size: 13px; }
+        .text-xs { font-size: 12px; }
+        .font-bold { font-weight: 700; }
 
-        .toggle-btn.active {
-            background: #28a745;
-            color: white;
-        }
-
-        .delete-btn {
-            background: #dc3545;
-            color: white;
-        }
-
-        .countdown {
-            text-align: center;
-            margin: 20px 0;
-            padding: 15px;
-            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
-            border-radius: 15px;
-            color: white;
-        }
-
-        .countdown .next-alarm {
-            font-size: 14px;
-            opacity: 0.9;
-        }
-
-        .countdown .countdown-time {
-            font-size: 24px;
-            font-weight: 700;
-        }
-
-        .empty-state {
-            text-align: center;
-            padding: 30px 20px;
-            color: #999;
-        }
-
-        .empty-state .icon {
-            font-size: 48px;
-            margin-bottom: 10px;
-        }
-
-        @media (max-width: 480px) {
-            .container {
-                padding: 20px 15px;
-            }
-
-            .clock .time {
-                font-size: 36px;
-            }
-
-            .input-group {
-                flex-direction: column;
-            }
-
-            .input-group input {
-                width: 100%;
-            }
-
-            .input-group .btn {
-                width: 100%;
-            }
-        }
+        .gap-8 { gap: 8px; }
+        .gap-12 { gap: 12px; }
+        .gap-16 { gap: 16px; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>🕌 Budilnik</h1>
-            <p class="subtitle">Vaqtni boshqaring va muvaffaqiyatli bo'ling</p>
-        </div>
 
-        <div class="clock">
-            <div class="time" id="currentTime">00:00:00</div>
-            <div class="date" id="currentDate">01.01.2024</div>
-        </div>
+<div class="app-container" id="app">
 
-        <div class="countdown" id="countdownDisplay" style="display: none;">
-            <div class="next-alarm">⏰ Keyingi budilnik</div>
-            <div class="countdown-time" id="countdownTime">00:00:00</div>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="header-top">
+            <h1><i class="fas fa-cat"></i> Uzbek Cats</h1>
+            <span class="header-badge">🐱 Beta</span>
         </div>
+        <div class="user-info" id="userInfo">
+            <span class="number" id="userNumber">#0</span>
+            <span class="score" id="userScore">🏆 0 ball</span>
+            <span class="referrals" id="userReferrals">👥 0</span>
+        </div>
+    </header>
 
-        <div class="alarm-section">
-            <h3>⏰ Yangi budilnik qo'shish</h3>
-            <div class="input-group">
-                <input type="time" id="alarmTime" value="08:00">
-                <button class="btn btn-primary" onclick="addAlarm()">➕ Qo'shish</button>
+    <!-- MAIN CONTENT -->
+    <div class="main-content" id="mainContent">
+
+        <!-- PAGE: MAIN MENU -->
+        <div class="page active" id="page-main">
+            <div class="menu-grid">
+                <button class="menu-btn primary full" onclick="navigateTo('reklama')">
+                    <i class="fas fa-bullhorn"></i>
+                    Kanalga reklama bermoqchiman
+                </button>
+                <button class="menu-btn" onclick="navigateTo('konkurs')">
+                    <i class="fas fa-trophy"></i>
+                    Konkursda ishtirok etmoqchiman
+                </button>
+                <button class="menu-btn" onclick="navigateTo('about')">
+                    <i class="fas fa-info-circle"></i>
+                    Bot haqida
+                </button>
+                <button class="menu-btn" onclick="navigateTo('admin')">
+                    <i class="fas fa-headset"></i>
+                    Admin bilan bog'lanish
+                </button>
+                <button class="menu-btn full" onclick="navigateTo('my-ads')">
+                    <i class="fas fa-list"></i>
+                    Mening e'lonlarim
+                    <span class="badge" id="adsCountBadge">0</span>
+                </button>
+            </div>
+
+            <!-- Admin panel (faqat adminlar uchun) -->
+            <div class="admin-panel" id="adminPanel" style="display:none;">
+                <h3><i class="fas fa-shield-alt"></i> Admin paneli</h3>
+                <div class="admin-grid">
+                    <button class="admin-btn" onclick="navigateTo('admin-stats')">📊 Statistika</button>
+                    <button class="admin-btn" onclick="navigateTo('admin-bot-control')">⚙️ Bot ustroystiva</button>
+                    <button class="admin-btn" onclick="navigateTo('admin-konkurs')">🏆 Konkurs shart</button>
+                    <button class="admin-btn" onclick="navigateTo('admin-mukofot')">🎁 Mukofot</button>
+                    <button class="admin-btn" onclick="navigateTo('admin-rating')">🏆 Reyting boshqarish</button>
+                    <button class="admin-btn" onclick="navigateTo('admin-add-score')">➕ Ball qo'shish</button>
+                    <button class="admin-btn danger" onclick="adminBanUser()">⛔ Bloklash</button>
+                    <button class="admin-btn" onclick="navigateTo('tech-panel')">👨‍💻 Texnik admin</button>
+                </div>
             </div>
         </div>
 
-        <div id="alarmList">
-            <div class="empty-state">
-                <div class="icon">⏰</div>
-                <p>Hali budilnik mavjud emas</p>
-                <p style="font-size: 12px; color: #bbb;">Yuqoridan vaqt tanlab qo'shing</p>
+        <!-- PAGE: REKLAMA -->
+        <div class="page" id="page-reklama">
+            <button class="back-btn" onclick="navigateTo('main')"><i class="fas fa-arrow-left"></i> Orqaga</button>
+            <div class="section-title"><i class="fas fa-bullhorn"></i> Reklama joylash</div>
+
+            <div class="card">
+                <h4>🎯 Reklama turini tanlang</h4>
+                <div class="btn-group mt-8">
+                    <button class="btn btn-primary btn-sm" onclick="selectAdType('sotish')">💰 Sotish</button>
+                    <button class="btn btn-primary btn-sm" onclick="selectAdType('hadiya')">🎁 Hadiya</button>
+                    <button class="btn btn-primary btn-sm" onclick="selectAdType('vyazka')">💝 Vyazka</button>
+                </div>
             </div>
-        </div>
 
-        <div style="text-align: center; margin-top: 20px;">
-            <button class="btn btn-danger" onclick="stopAllAlarms()">🔇 Barcha budilniklarni to'xtatish</button>
-        </div>
-    </div>
-
-    <script>
-        let alarms = [];
-        let alarmInterval = null;
-
-        // Vaqtni yangilash
-        function updateClock() {
-            const now = new Date();
-            const hours = String(now.getHours()).padStart(2, '0');
-            const minutes = String(now.getMinutes()).padStart(2, '0');
-            const seconds = String(now.getSeconds()).padStart(2, '0');
-            document.getElementById('currentTime').textContent = `${hours}:${minutes}:${seconds}`;
-
-            const date = now.toLocaleDateString('uz-UZ', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric',
-                weekday: 'long'
-            });
-            document.getElementById('currentDate').textContent = date;
-
-            checkAlarms(now);
-            updateCountdown(now);
-        }
-
-        // Budilniklarni tekshirish
-        function checkAlarms(now) {
-            const currentMinutes = now.getHours() * 60 + now.getMinutes();
-            const currentSeconds = now.getSeconds();
-
-            alarms.forEach((alarm, index) => {
-                if (alarm.active) {
-                    const [hours, minutes] = alarm.time.split(':').map(Number);
-                    const alarmMinutes = hours * 60 + minutes;
-
-                    if (currentMinutes === alarmMinutes && currentSeconds === 0) {
-                        alarm.triggered = true;
-                        triggerAlarm(index);
-                    }
-                }
-            });
-        }
-
-        // Budilnikni ishga tushirish
-        function triggerAlarm(index) {
-            const alarm = alarms[index];
-            if (!alarm.triggered) return;
-
-            // Ovoz chiqarish
-            try {
-                const audio = new Audio('data:audio/wav;base64,UklGRlwAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YVoAAACiQkKCQkKCQkKCQkKCQkKCQkKCQkKCQkKCQkKCQkKCQkKCQkKCQkKCQkKCQkKCQkKCQkKCQkKCQkKCQkKCQkK=');
-                audio.play();
-            } catch(e) {
-                console.log('Ovoz chiqarib bo\'lmadi');
-            }
-
-            // Vizual effekt
-            document.body.style.backgroundColor = '#ff6b6b';
-            setTimeout(() => {
-                document.body.style.backgroundColor = '';
-            }, 1000);
-
-            // Telegramda xabar yuborish (agar Telegram WebApp API mavjud bo'lsa)
-            if (window.Telegram && window.Telegram.WebApp) {
-                window.Telegram.WebApp.sendData(JSON.stringify({
-                    action: 'alarm',
-                    time: alarm.time,
-                    message: '⏰ Budilnik vaqti keldi!'
-                }));
-            }
-
-            // Alert
-            alert(`⏰ Budilnik! ${alarm.time} da belgilangan vaqt keldi!`);
-
-            alarm.triggered = false;
-            renderAlarms();
-        }
-
-        // Countdownni yangilash
-        function updateCountdown(now) {
-            const activeAlarms = alarms.filter(a => a.active);
-            if (activeAlarms.length === 0) {
-                document.getElementById('countdownDisplay').style.display = 'none';
-                return;
-            }
-
-            const currentMinutes = now.getHours() * 60 + now.getMinutes();
-            const currentSeconds = now.getSeconds();
-
-            let minDiff = Infinity;
-            let nextAlarm = null;
-
-            activeAlarms.forEach(alarm => {
-                const [hours, minutes] = alarm.time.split(':').map(Number);
-                let alarmMinutes = hours * 60 + minutes;
-                let diff = alarmMinutes - currentMinutes;
-
-                if (diff < 0 || (diff === 0 && currentSeconds > 0)) {
-                    diff += 24 * 60;
-                }
-
-                if (diff < minDiff) {
-                    minDiff = diff;
-                    nextAlarm = alarm;
-                }
-            });
-
-            if (nextAlarm) {
-                document.getElementById('countdownDisplay').style.display = 'block';
-                const totalSeconds = minDiff * 60 - currentSeconds;
-                const hours = Math.floor(totalSeconds / 3600);
-                const minutes = Math.floor((totalSeconds % 3600) / 60);
-                const seconds = Math.floor(totalSeconds % 60);
-                document.getElementById('countdownTime').textContent = 
-                    `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-            }
-        }
-
-        // Yangi budilnik qo'shish
-        function addAlarm() {
-            const timeInput = document.getElementById('alarmTime');
-            const time = timeInput.value;
-
-            if (!time) {
-                alert('Iltimos, vaqt tanlang!');
-                return;
-            }
-
-            // Budilnik allaqachon mavjudligini tekshirish
-            if (alarms.some(a => a.time === time && a.active)) {
-                alert('Bu vaqt uchun budilnik allaqachon mavjud!');
-                return;
-            }
-
-            alarms.push({
-                id: Date.now(),
-                time: time,
-                active: true,
-                triggered: false
-            });
-
-            renderAlarms();
-            timeInput.value = '08:00';
-        }
-
-        // Budilnikni o'chirish/yoqish
-        function toggleAlarm(id) {
-            const alarm = alarms.find(a => a.id === id);
-            if (alarm) {
-                alarm.active = !alarm.active;
-                alarm.triggered = false;
-                renderAlarms();
-            }
-        }
-
-        // Budilnikni o'chirish
-        function deleteAlarm(id) {
-            alarms = alarms.filter(a => a.id !== id);
-            renderAlarms();
-        }
-
-        // Barcha budilniklarni to'xtatish
-        function stopAllAlarms() {
-            alarms.forEach(alarm => {
-                alarm.active = false;
-                alarm.triggered = false;
-            });
-            renderAlarms();
-            document.getElementById('countdownDisplay').style.display = 'none';
-        }
-
-        // Budilniklarni render qilish
-        function renderAlarms() {
-            const container = document.getElementById('alarmList');
-
-            if (alarms.length === 0) {
-                container.innerHTML = `
-                    <div class="empty-state">
-                        <div class="icon">⏰</div>
-                        <p>Hali budilnik mavjud emas</p>
-                        <p style="font-size: 12px; color: #bbb;">Yuqoridan vaqt tanlab qo'shing</p>
-                    </div>
-                `;
-                return;
-            }
-
-            container.innerHTML = alarms.map(alarm => `
-                <div class="alarm-item">
-                    <div>
-                        <div class="time-display">${alarm.time}</div>
-                        <span class="status ${alarm.active ? 'active' : 'inactive'}">
-                            ${alarm.active ? '✅ Faol' : '❌ O\'chirilgan'}
-                        </span>
-                    </div>
-                    <div class="actions">
-                        <button class="toggle-btn ${alarm.active ? 'active' : ''}" 
-                                onclick="toggleAlarm(${alarm.id})">
-                            ${alarm.active ? '⏸' : '▶️'}
-                        </button>
-                        <button class="delete-btn" onclick="deleteAlarm(${alarm.id})">🗑</button>
+            <div id="adForm" style="display:none;">
+                <div class="card">
+                    <h4>📸 Media turi</h4>
+                    <div class="btn-group mt-8">
+                        <button class="btn btn-outline btn-sm" onclick="setMediaType('photo')">🖼️ Rasm</button>
+                        <button class="btn btn-outline btn-sm" onclick="setMediaType('video')">🎥 Video</button>
                     </div>
                 </div>
-            `).join('');
+
+                <div id="mushukSoniSection" style="display:none;">
+                    <div class="card">
+                        <h4>🐱 Mushuklar soni</h4>
+                        <div class="flex gap-8 mt-8 flex-wrap">
+                            <button class="btn btn-outline btn-sm" onclick="setMushukSoni(1)">1</button>
+                            <button class="btn btn-outline btn-sm" onclick="setMushukSoni(2)">2</button>
+                            <button class="btn btn-outline btn-sm" onclick="setMushukSoni(3)">3</button>
+                            <button class="btn btn-outline btn-sm" onclick="setMushukSoni(4)">4</button>
+                            <button class="btn btn-outline btn-sm" onclick="setMushukSoni(5)">5</button>
+                            <button class="btn btn-outline btn-sm" onclick="setMushukSoni(6)">+5</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="breedSection" style="display:none;">
+                    <div class="card">
+                        <h4>🐱 Zotni tanlang</h4>
+                        <div id="breedList" class="flex gap-8 mt-8 flex-wrap"></div>
+                        <button class="btn btn-outline btn-sm mt-8" onclick="showCustomBreed()">✏️ O'zim yozaman</button>
+                        <div id="customBreedInput" style="display:none; margin-top:10px;">
+                            <input type="text" id="customBreed" placeholder="Zotni yozing..." class="form-group">
+                            <button class="btn btn-primary btn-sm mt-8" onclick="setCustomBreed()">Tasdiqlash</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="ageSection" style="display:none;">
+                    <div class="card">
+                        <h4>🎂 Yosh</h4>
+                        <div id="ageList" class="flex gap-8 mt-8 flex-wrap"></div>
+                    </div>
+                </div>
+
+                <div id="healthSection" style="display:none;">
+                    <div class="card">
+                        <h4>❤️ Sog'lig'i</h4>
+                        <div class="btn-group mt-8">
+                            <button class="btn btn-outline btn-sm" onclick="setHealth('Sog\'lom')">Sog'lom</button>
+                            <button class="btn btn-outline btn-sm" onclick="setHealth('Kasal')">Kasal</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="genderSection" style="display:none;">
+                    <div class="card">
+                        <h4>👤 Jins</h4>
+                        <div class="btn-group mt-8">
+                            <button class="btn btn-outline btn-sm" onclick="setGender('Qiz bola')">♀️ Qiz bola</button>
+                            <button class="btn btn-outline btn-sm" onclick="setGender('O\'g\'il bola')">♂️ O'g'il bola</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="sterilizationSection" style="display:none;">
+                    <div class="card">
+                        <h4>🧬 Nasl olish</h4>
+                        <div class="btn-group mt-8">
+                            <button class="btn btn-outline btn-sm" onclick="setSterilization('Mumkin')">✅ Mumkin</button>
+                            <button class="btn btn-outline btn-sm" onclick="setSterilization('Mumkin emas')">❌ Mumkin emas</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="valyutaSection" style="display:none;">
+                    <div class="card">
+                        <h4>💰 Valyuta</h4>
+                        <div class="btn-group mt-8">
+                            <button class="btn btn-outline btn-sm" onclick="setValyuta('so\'m')">🇺🇿 So'm</button>
+                            <button class="btn btn-outline btn-sm" onclick="setValyuta('$')">💵 Dollar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="priceSection" style="display:none;">
+                    <div class="card">
+                        <h4>💰 Narx</h4>
+                        <input type="text" id="priceInput" placeholder="Narxni kiriting..." class="form-group">
+                        <button class="btn btn-primary btn-sm" onclick="setPrice()">Tasdiqlash</button>
+                    </div>
+                </div>
+
+                <div id="manzilSection" style="display:none;">
+                    <div class="card">
+                        <h4>📍 Manzil</h4>
+                        <div id="viloyatList" class="flex gap-8 mt-8 flex-wrap"></div>
+                    </div>
+                </div>
+
+                <div id="phoneSection" style="display:none;">
+                    <div class="card">
+                        <h4>📞 Telefon raqam</h4>
+                        <input type="text" id="phoneInput" placeholder="+998 90 123 45 67" class="form-group">
+                        <button class="btn btn-primary btn-sm" onclick="setPhone()">Tasdiqlash</button>
+                    </div>
+                </div>
+
+                <div id="mediaUploadSection" style="display:none;">
+                    <div class="card">
+                        <h4>📸 Media yuklash</h4>
+                        <input type="file" id="mediaInput" accept="image/*,video/*" multiple class="form-group">
+                        <div id="mediaPreview" class="flex gap-8 mt-8 flex-wrap"></div>
+                        <button class="btn btn-primary btn-sm mt-8" onclick="uploadMedia()">Yuklash</button>
+                    </div>
+                </div>
+
+                <div id="previewSection" style="display:none;">
+                    <div class="card">
+                        <h4>📋 E'lon ko'rinishi</h4>
+                        <div id="previewContent" class="preview-box"></div>
+                        <div class="btn-group mt-8">
+                            <button class="btn btn-success" onclick="confirmAd()">✅ Tasdiqlash</button>
+                            <button class="btn btn-outline" onclick="resetAdForm()">↩️ Qayta boshlash</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAGE: KONKURS -->
+        <div class="page" id="page-konkurs">
+            <button class="back-btn" onclick="navigateTo('main')"><i class="fas fa-arrow-left"></i> Orqaga</button>
+            <div class="section-title"><i class="fas fa-trophy"></i> Konkurs</div>
+
+            <div class="card">
+                <div id="konkursContent">
+                    <p class="text-secondary">🎁 Scottish fold black</p>
+                    <p>Siz toplagan ovoz ochib ketmaydi toki 🏆 g'olib bo'lgungizgacha 💯</p>
+                </div>
+                <div class="flex gap-8 mt-12">
+                    <button class="btn btn-primary btn-sm" onclick="shareReferral()"><i class="fas fa-share-alt"></i> Videoni junatish</button>
+                    <button class="btn btn-outline btn-sm" onclick="showMukofot()"><i class="fas fa-gift"></i> Mukofot</button>
+                    <button class="btn btn-outline btn-sm" onclick="showRating()"><i class="fas fa-ranking-star"></i> Reting</button>
+                </div>
+            </div>
+
+            <div class="card" id="referralCard">
+                <h4>🔗 Sizning referral linkingiz</h4>
+                <div class="preview-box">
+                    <code id="referralLink">https://t.me/UzbekCatsBot?start=REF123</code>
+                </div>
+                <button class="btn btn-primary btn-sm" onclick="copyReferral()"><i class="fas fa-copy"></i> Nusxa olish</button>
+            </div>
+
+            <div class="card" id="ratingCard" style="display:none;">
+                <h4>🏆 TOP 10</h4>
+                <div id="ratingList"></div>
+            </div>
+        </div>
+
+        <!-- PAGE: ABOUT -->
+        <div class="page" id="page-about">
+            <button class="back-btn" onclick="navigateTo('main')"><i class="fas fa-arrow-left"></i> Orqaga</button>
+            <div class="section-title"><i class="fas fa-info-circle"></i> Bot haqida</div>
+            <div class="card">
+                <p>Ushbu bot orqali siz mushuklar haqida e'lon berishingiz mumkin.</p>
+                <hr class="divider">
+                <button class="btn btn-primary btn-sm full" onclick="sendFeedback()"><i class="fas fa-pen"></i> Shikoyat/Taklif yuborish</button>
+                <div id="feedbackInput" style="display:none; margin-top:12px;">
+                    <textarea id="feedbackText" placeholder="Fikringizni yozing..." class="form-group"></textarea>
+                    <button class="btn btn-success btn-sm" onclick="submitFeedback()">Yuborish</button>
+                </div>
+            </div>
+            <div class="card">
+                <h4>📱 Admin bilan bog'lanish</h4>
+                <div class="btn-group mt-8">
+                    <button class="btn btn-outline btn-sm" onclick="contactChannelAdmin()">📢 Kanal egasi</button>
+                    <button class="btn btn-outline btn-sm" onclick="contactTechAdmin()">👨‍💻 Texnik admin</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAGE: ADMIN -->
+        <div class="page" id="page-admin">
+            <button class="back-btn" onclick="navigateTo('main')"><i class="fas fa-arrow-left"></i> Orqaga</button>
+            <div class="section-title"><i class="fas fa-headset"></i> Admin bilan bog'lanish</div>
+            <div class="card">
+                <h4>📢 Kanal egasi va Bot admini</h4>
+                <p class="text-secondary">Telegram: @zayd_catlover</p>
+                <p class="text-secondary">📞 +998934938181</p>
+            </div>
+            <div class="card">
+                <h4>👨‍💻 Texnik Admin</h4>
+                <p class="text-secondary">Telegram: @It_project_2026</p>
+            </div>
+        </div>
+
+        <!-- PAGE: MY ADS -->
+        <div class="page" id="page-my-ads">
+            <button class="back-btn" onclick="navigateTo('main')"><i class="fas fa-arrow-left"></i> Orqaga</button>
+            <div class="section-title"><i class="fas fa-list"></i> Mening e'lonlarim</div>
+            <div id="myAdsList"></div>
+        </div>
+
+        <!-- PAGE: ADMIN STATS -->
+        <div class="page" id="page-admin-stats">
+            <button class="back-btn" onclick="navigateTo('main')"><i class="fas fa-arrow-left"></i> Orqaga</button>
+            <div class="section-title"><i class="fas fa-chart-bar"></i> Statistika</div>
+            <div class="stats-grid">
+                <div class="stat-card"><div class="number" id="statTotalUsers">0</div><div class="label">Foydalanuvchilar</div></div>
+                <div class="stat-card"><div class="number" id="statTotalAds">0</div><div class="label">Reklamalar</div></div>
+                <div class="stat-card"><div class="number" id="statBanned">0</div><div class="label">Bloklangan</div></div>
+            </div>
+            <div class="card">
+                <h4>📊 Reklama turlari</h4>
+                <div id="statTypes"></div>
+            </div>
+            <button class="btn btn-outline btn-sm full mt-8" onclick="navigateTo('main')">↩️ Orqaga</button>
+        </div>
+
+        <!-- PAGE: ADMIN BOT CONTROL -->
+        <div class="page" id="page-admin-bot-control">
+            <button class="back-btn" onclick="navigateTo('main')"><i class="fas fa-arrow-left"></i> Orqaga</button>
+            <div class="section-title"><i class="fas fa-gear"></i> Bot ustroystiva</div>
+            <div class="card">
+                <div class="flex-center">
+                    <span class="tag tag-green" id="botStatusTag">✅ Yoqilgan</span>
+                    <button class="btn btn-danger btn-sm" onclick="toggleBot()" id="toggleBotBtn">🔴 O'chirish</button>
+                </div>
+            </div>
+            <button class="btn btn-outline btn-sm full mt-8" onclick="navigateTo('main')">↩️ Orqaga</button>
+        </div>
+
+        <!-- PAGE: ADMIN KONKURS -->
+        <div class="page" id="page-admin-konkurs">
+            <button class="back-btn" onclick="navigateTo('main')"><i class="fas fa-arrow-left"></i> Orqaga</button>
+            <div class="section-title"><i class="fas fa-trophy"></i> Konkurs shart</div>
+            <div class="card">
+                <h4>Hozirgi media</h4>
+                <p id="currentKonkursMedia" class="text-secondary">🖼️ Rasm</p>
+                <div class="btn-group mt-8">
+                    <button class="btn btn-outline btn-sm" onclick="setKonkursMedia('video')">🎥 Video</button>
+                    <button class="btn btn-outline btn-sm" onclick="setKonkursMedia('photo')">🖼️ Rasm</button>
+                </div>
+            </div>
+            <div class="card">
+                <h4>📝 Konkurs matni</h4>
+                <textarea id="konkursTextInput" class="form-group">🎁 Scottish fold black
+
+Siz toplagan ovoz ochib ketmaydi toki 🏆 g'olib bo'lgungizgacha 💯</textarea>
+                <button class="btn btn-primary btn-sm" onclick="updateKonkursText()">Yangilash</button>
+            </div>
+            <button class="btn btn-outline btn-sm full mt-8" onclick="navigateTo('main')">↩️ Orqaga</button>
+        </div>
+
+        <!-- PAGE: ADMIN MUKOFOT -->
+        <div class="page" id="page-admin-mukofot">
+            <button class="back-btn" onclick="navigateTo('main')"><i class="fas fa-arrow-left"></i> Orqaga</button>
+            <div class="section-title"><i class="fas fa-gift"></i> Mukofot</div>
+            <div class="card">
+                <h4>Hozirgi media</h4>
+                <p id="currentMukofotMedia" class="text-secondary">🖼️ Rasm</p>
+                <div class="btn-group mt-8">
+                    <button class="btn btn-outline btn-sm" onclick="setMukofotMedia('video')">🎥 Video</button>
+                    <button class="btn btn-outline btn-sm" onclick="setMukofotMedia('photo')">🖼️ Rasm</button>
+                </div>
+            </div>
+            <div class="card">
+                <h4>📝 Mukofot matni</h4>
+                <textarea id="mukofotTextInput" class="form-group">🎁 MUKOFOT!</textarea>
+                <button class="btn btn-primary btn-sm" onclick="updateMukofotText()">Yangilash</button>
+            </div>
+            <button class="btn btn-outline btn-sm full mt-8" onclick="navigateTo('main')">↩️ Orqaga</button>
+        </div>
+
+        <!-- PAGE: ADMIN RATING -->
+        <div class="page" id="page-admin-rating">
+            <button class="back-btn" onclick="navigateTo('main')"><i class="fas fa-arrow-left"></i> Orqaga</button>
+            <div class="section-title"><i class="fas fa-ranking-star"></i> Reyting boshqarish</div>
+            <div id="adminRatingList"></div>
+            <button class="btn btn-danger btn-sm full mt-8" onclick="resetAllRatings()">🔄 Barcha ballarni 0 qilish</button>
+        </div>
+
+        <!-- PAGE: ADMIN ADD SCORE -->
+        <div class="page" id="page-admin-add-score">
+            <button class="back-btn" onclick="navigateTo('main')"><i class="fas fa-arrow-left"></i> Orqaga</button>
+            <div class="section-title"><i class="fas fa-plus-circle"></i> Ball qo'shish</div>
+            <div class="card">
+                <h4>📊 Format</h4>
+                <p class="text-sm text-secondary">+998900512621 - 17 ball</p>
+                <p class="text-sm text-secondary">Bir nechta: +998900512621 - 17 ball, +998909996677 - 18 ball</p>
+            </div>
+            <div class="card">
+                <textarea id="scoreBatchInput" class="form-group" placeholder="+998900512621 - 17 ball, +998909996677 - 18 ball"></textarea>
+                <button class="btn btn-primary btn-sm" onclick="addScoreBatch()">➕ Qo'shish</button>
+            </div>
+            <div id="scoreBatchResult" class="card" style="display:none;"></div>
+            <button class="btn btn-outline btn-sm full mt-8" onclick="navigateTo('main')">↩️ Orqaga</button>
+        </div>
+
+        <!-- PAGE: TECH PANEL -->
+        <div class="page" id="page-tech-panel">
+            <button class="back-btn" onclick="navigateTo('main')"><i class="fas fa-arrow-left"></i> Orqaga</button>
+            <div class="section-title"><i class="fas fa-code"></i> Texnik admin</div>
+            <div class="admin-grid">
+                <button class="admin-btn" onclick="showTechUserManagement()">👤 Foydalanuvchi boshqarish</button>
+                <button class="admin-btn" onclick="showTechParticipants()">🏆 Ishtirokchilar</button>
+                <button class="admin-btn" onclick="showTechKonkurs()">🏆 Konkurs takliflar</button>
+                <button class="admin-btn" onclick="showTechAdPanel()">📢 Reklama</button>
+                <button class="admin-btn" onclick="showTechStats()">📊 Detal statistika</button>
+            </div>
+            <button class="btn btn-outline btn-sm full mt-8" onclick="navigateTo('main')">↩️ Orqaga</button>
+        </div>
+
+        <!-- PAGE: TECH USER MANAGEMENT -->
+        <div class="page" id="page-tech-user">
+            <button class="back-btn" onclick="navigateTo('tech-panel')"><i class="fas fa-arrow-left"></i> Orqaga</button>
+            <div class="section-title"><i class="fas fa-users"></i> Foydalanuvchi boshqarish</div>
+            <div class="btn-group">
+                <button class="btn btn-danger btn-sm" onclick="techBlockUser()">⛔ Bloklash</button>
+                <button class="btn btn-success btn-sm" onclick="techUnblockUser()">✅ Blokdan chiqarish</button>
+                <button class="btn btn-primary btn-sm" onclick="techSearchUser()">🔍 Izlash</button>
+            </div>
+            <div id="techUserResult" class="mt-12"></div>
+        </div>
+
+    </div>
+</div>
+
+<!-- TOAST -->
+<div id="toast" class="toast" style="display:none;"></div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+        <div class="modal-header">
+            <h3 id="modalTitle">Modal</h3>
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+        </div>
+        <div id="modalBody"></div>
+    </div>
+</div>
+
+<script>
+    // ============================================================
+    // STATE
+    // ============================================================
+    const state = {
+        user: {
+            id: 673018191,
+            number: 1,
+            score: 0,
+            referrals: 0,
+            isAdmin: true,
+            isTechAdmin: true,
+            username: '@zayd_catlover',
+            phone: '+998934938181',
+            fullName: 'Admin'
+        },
+        ads: [],
+        pendingAd: {
+            type: null,
+            mediaType: 'photo',
+            mushukSoni: 1,
+            breed: null,
+            age: null,
+            health: null,
+            gender: null,
+            sterilization: null,
+            valyuta: 'so\'m',
+            price: null,
+            manzil: null,
+            phone: null,
+            media: [],
+            status: 'draft'
+        },
+        bannedUsers: [],
+        botEnabled: true,
+        statistics: {
+            hadiya: 0,
+            sotish: 0,
+            vyazka: 0,
+            totalUsers: 1,
+            totalAds: 0
+        },
+        konkurs: {
+            text: '🎁 Scottish fold black\n\nSiz toplagan ovoz ochib ketmaydi toki 🏆 g\'olib bo\'lgungizgacha 💯',
+            mediaType: 'photo',
+            imageUrl: null,
+            videoUrl: null
+        },
+        mukofot: {
+            text: '🎁 MUKOFOT!',
+            mediaType: 'photo',
+            imageUrl: null,
+            videoUrl: null
+        },
+        scores: {},
+        referrals: {},
+        referralCodes: {},
+        codeToUser: {},
+        userScores: {},
+        userNumberMap: {},
+        userUsernameMap: {},
+        userPhones: {},
+        userFullNameMap: {},
+        userAdsMap: {},
+        pendingScoresByPhone: {},
+        lastAdTime: null,
+        userHasPendingAd: false
+    };
+
+    // ============================================================
+    // INIT
+    // ============================================================
+    document.addEventListener('DOMContentLoaded', () => {
+        loadState();
+        updateUI();
+        showToast('🐱 Uzbek Cats botiga xush kelibsiz!', 'success');
+    });
+
+    // ============================================================
+    // NAVIGATION
+    // ============================================================
+    function navigateTo(page) {
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        const target = document.getElementById('page-' + page);
+        if (target) {
+            target.classList.add('active');
+            document.getElementById('mainContent').scrollTop = 0;
         }
 
-        // Telegram WebApp bilan bog'lanish
-        function initTelegram() {
-            if (window.Telegram && window.Telegram.WebApp) {
-                const webApp = window.Telegram.WebApp;
-                webApp.ready();
-                webApp.expand();
+        if (page === 'my-ads') renderMyAds();
+        if (page === 'admin-stats') renderStats();
+        if (page === 'admin-rating') renderAdminRating();
+        if (page === 'konkurs') updateKonkursUI();
+    }
 
-                // Telegram'dan ma'lumot olish
-                console.log('Telegram WebApp ishga tushdi');
+    // ============================================================
+    // UI UPDATE
+    // ============================================================
+    function updateUI() {
+        document.getElementById('userNumber').textContent = '#' + state.user.number;
+        document.getElementById('userScore').textContent = '🏆 ' + state.user.score + ' ball';
+        document.getElementById('userReferrals').textContent = '👥 ' + state.user.referrals;
+
+        const badge = document.getElementById('adsCountBadge');
+        if (state.ads.length > 0) {
+            badge.textContent = state.ads.length;
+            badge.style.display = 'inline-block';
+        } else {
+            badge.style.display = 'none';
+        }
+
+        if (state.user.isAdmin || state.user.isTechAdmin) {
+            document.getElementById('adminPanel').style.display = 'block';
+        }
+    }
+
+    // ============================================================
+    // REKLAMA
+    // ============================================================
+    function selectAdType(type) {
+        if (state.userHasPendingAd) {
+            showToast('⏳ Hozirda tasdiqlanmagan reklamangiz mavjud!', 'error');
+            return;
+        }
+
+        state.pendingAd.type = type;
+        state.pendingAd.status = 'draft';
+        document.getElementById('adForm').style.display = 'block';
+
+        // Reset form
+        document.getElementById('mushukSoniSection').style.display = 'none';
+        document.getElementById('breedSection').style.display = 'none';
+        document.getElementById('ageSection').style.display = 'none';
+        document.getElementById('healthSection').style.display = 'none';
+        document.getElementById('genderSection').style.display = 'none';
+        document.getElementById('sterilizationSection').style.display = 'none';
+        document.getElementById('valyutaSection').style.display = 'none';
+        document.getElementById('priceSection').style.display = 'none';
+        document.getElementById('manzilSection').style.display = 'none';
+        document.getElementById('phoneSection').style.display = 'none';
+        document.getElementById('mediaUploadSection').style.display = 'none';
+        document.getElementById('previewSection').style.display = 'none';
+
+        if (type === 'sotish') {
+            document.getElementById('mushukSoniSection').style.display = 'block';
+        } else if (type === 'hadiya') {
+            document.getElementById('mediaUploadSection').style.display = 'block';
+            document.getElementById('manzilSection').style.display = 'block';
+        } else if (type === 'vyazka') {
+            document.getElementById('mediaUploadSection').style.display = 'block';
+            document.getElementById('breedSection').style.display = 'block';
+            document.getElementById('ageSection').style.display = 'block';
+            document.getElementById('genderSection').style.display = 'block';
+            document.getElementById('sterilizationSection').style.display = 'block';
+            document.getElementById('manzilSection').style.display = 'block';
+        }
+
+        showToast('✅ ' + type.charAt(0).toUpperCase() + type.slice(1) + ' tanlandi!', 'success');
+    }
+
+    function setMediaType(type) {
+        state.pendingAd.mediaType = type;
+        showToast('📸 ' + (type === 'photo' ? 'Rasm' : 'Video') + ' tanlandi', 'success');
+    }
+
+    function setMushukSoni(soni) {
+        state.pendingAd.mushukSoni = soni;
+        document.getElementById('breedSection').style.display = 'block';
+        renderBreeds();
+        showToast('🐱 ' + soni + ' ta mushuk', 'success');
+    }
+
+    function renderBreeds() {
+        const breeds = [
+            'Scottish fold', 'Scottish straight', 'British blue', 'British chinchilla',
+            'Bengal cat', 'Turkish angora', 'Gibrid', 'British Shorthair',
+            'Persian Cat', 'Maine Coon', 'Ragdoll', 'Siberian Cat', 'Russian blue',
+            'Abyssinian', 'Norwegian Forest Cat', 'Turkish Van', 'Burmilla',
+            'American Shorthair', 'American Curl', 'Egyptian Mau', 'Tonkinese',
+            'Balinese', 'Exotic Shorthair', 'Savannah Cat', 'Munchkin', 'Khao Manee',
+            'Uy mushuki', 'Mushuk'
+        ];
+        const container = document.getElementById('breedList');
+        container.innerHTML = '';
+        breeds.forEach(b => {
+            const btn = document.createElement('button');
+            btn.className = 'btn btn-outline btn-sm';
+            btn.textContent = b;
+            btn.onclick = () => { state.pendingAd.breed = b; showToast('🐱 ' + b, 'success'); document.getElementById('ageSection').style.display = 'block'; renderAges(); };
+            container.appendChild(btn);
+        });
+    }
+
+    function renderAges() {
+        const ages = [
+            '1 oylik', '2 oylik', '3 oylik', '4 oylik', '5 oylik',
+            '6 oylik', '7 oylik', '8 oylik', '9 oylik', '10 oylik',
+            '11 oylik', '1 yosh', '1,5 yosh', '2 yosh', '2,5 yosh',
+            '3 yosh', '3,5 yosh', '4 yosh', '4,5 yosh', '5 yosh'
+        ];
+        const container = document.getElementById('ageList');
+        container.innerHTML = '';
+        ages.forEach(a => {
+            const btn = document.createElement('button');
+            btn.className = 'btn btn-outline btn-sm';
+            btn.textContent = a;
+            btn.onclick = () => { state.pendingAd.age = a; showToast('🎂 ' + a, 'success'); if (state.pendingAd.type === 'sotish') { document.getElementById('healthSection').style.display = 'block'; } else { document.getElementById('genderSection').style.display = 'block'; } };
+            container.appendChild(btn);
+        });
+    }
+
+    function setHealth(health) {
+        state.pendingAd.health = health;
+        document.getElementById('genderSection').style.display = 'block';
+        showToast('❤️ ' + health, 'success');
+    }
+
+    function setGender(gender) {
+        state.pendingAd.gender = gender;
+        document.getElementById('sterilizationSection').style.display = 'block';
+        showToast('👤 ' + gender, 'success');
+    }
+
+    function setSterilization(ster) {
+        state.pendingAd.sterilization = ster;
+        document.getElementById('valyutaSection').style.display = 'block';
+        showToast('🧬 ' + ster, 'success');
+    }
+
+    function setValyuta(val) {
+        state.pendingAd.valyuta = val;
+        document.getElementById('priceSection').style.display = 'block';
+        showToast('💰 ' + val, 'success');
+    }
+
+    function setPrice() {
+        const val = document.getElementById('priceInput').value.trim();
+        if (!val) { showToast('❌ Narx kiriting!', 'error'); return; }
+        state.pendingAd.price = val;
+        document.getElementById('manzilSection').style.display = 'block';
+        renderViloyatlar();
+        showToast('💰 ' + val + ' ' + state.pendingAd.valyuta, 'success');
+    }
+
+    function renderViloyatlar() {
+        const viloyatlar = [
+            'Andijon', 'Buxoro', 'Farg\'ona', 'Jizzax', 'Xorazm',
+            'Namangan', 'Navoiy', 'Qashqadaryo', 'Samarqand',
+            'Sirdaryo', 'Surxondaryo', 'Toshkent', 'Toshkent shahar'
+        ];
+        const container = document.getElementById('viloyatList');
+        container.innerHTML = '';
+        viloyatlar.forEach(v => {
+            const btn = document.createElement('button');
+            btn.className = 'btn btn-outline btn-sm';
+            btn.textContent = v;
+            btn.onclick = () => { state.pendingAd.manzil = v; showToast('📍 ' + v, 'success'); if (state.pendingAd.type === 'hadiya') { document.getElementById('phoneSection').style.display = 'block'; } else { document.getElementById('phoneSection').style.display = 'block'; } };
+            container.appendChild(btn);
+        });
+    }
+
+    function setPhone() {
+        const val = document.getElementById('phoneInput').value.trim();
+        if (!val || !isValidPhone(val)) { showToast('❌ Telefon raqam noto\'g\'ri!', 'error'); return; }
+        state.pendingAd.phone = val;
+        if (state.pendingAd.type === 'hadiya') {
+            showPreview();
+        } else {
+            document.getElementById('mediaUploadSection').style.display = 'block';
+        }
+        showToast('📞 ' + val, 'success');
+    }
+
+    function isValidPhone(phone) {
+        const cleaned = phone.replace(/\s/g, '');
+        return cleaned.match(/^\+998\d{9}$/) || cleaned.match(/^998\d{9}$/);
+    }
+
+    function uploadMedia() {
+        const input = document.getElementById('mediaInput');
+        const files = input.files;
+        if (!files.length) { showToast('❌ Media tanlang!', 'error'); return; }
+
+        const container = document.getElementById('mediaPreview');
+        container.innerHTML = '';
+        state.pendingAd.media = [];
+
+        for (let f of files) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const div = document.createElement('div');
+                if (f.type.startsWith('image/')) {
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    img.style.width = '60px';
+                    img.style.height = '60px';
+                    img.style.objectFit = 'cover';
+                    img.style.borderRadius = '8px';
+                    div.appendChild(img);
+                } else {
+                    const vid = document.createElement('video');
+                    vid.src = e.target.result;
+                    vid.style.width = '60px';
+                    vid.style.height = '60px';
+                    vid.style.objectFit = 'cover';
+                    vid.style.borderRadius = '8px';
+                    div.appendChild(vid);
+                }
+                container.appendChild(div);
+                state.pendingAd.media.push(e.target.result);
+            };
+            reader.readAsDataURL(f);
+        }
+
+        showToast('✅ ' + files.length + ' ta media yuklandi', 'success');
+        setTimeout(() => showPreview(), 500);
+    }
+
+    function showPreview() {
+        const ad = state.pendingAd;
+        const container = document.getElementById('previewContent');
+        let html = '';
+        html += '<div class="label">📋 E\'lon ma\'lumotlari</div>';
+        html += '<div class="value">';
+        html += '📌 Tur: ' + ad.type + '<br>';
+        if (ad.breed) html += '🐱 Zot: ' + ad.breed + '<br>';
+        if (ad.age) html += '🎂 Yosh: ' + ad.age + '<br>';
+        if (ad.gender) html += '👤 Jins: ' + ad.gender + '<br>';
+        if (ad.health) html += '❤️ Sog\'lig\'i: ' + ad.health + '<br>';
+        if (ad.sterilization) html += '🧬 Nasl olish: ' + ad.sterilization + '<br>';
+        if (ad.mushukSoni) html += '🐾 Mushuklar soni: ' + ad.mushukSoni + '<br>';
+        if (ad.price) html += '💰 Narx: ' + ad.price + ' ' + ad.valyuta + '<br>';
+        if (ad.manzil) html += '📍 Manzil: ' + ad.manzil + '<br>';
+        if (ad.phone) html += '📞 Telefon: ' + ad.phone + '<br>';
+        html += '</div>';
+
+        if (ad.media.length > 0) {
+            html += '<div class="label mt-8">📸 Media</div>';
+            html += '<div class="flex gap-8 mt-8 flex-wrap">';
+            ad.media.forEach(m => {
+                if (m.startsWith('data:image')) {
+                    html += '<img src="' + m + '" style="width:60px;height:60px;object-fit:cover;border-radius:8px;">';
+                } else {
+                    html += '<video src="' + m + '" style="width:60px;height:60px;object-fit:cover;border-radius:8px;"></video>';
+                }
+            });
+            html += '</div>';
+        }
+
+        container.innerHTML = html;
+        document.getElementById('previewSection').style.display = 'block';
+        document.getElementById('mediaUploadSection').style.display = 'none';
+    }
+
+    function confirmAd() {
+        const ad = state.pendingAd;
+        if (!ad.type) { showToast('❌ Reklama turini tanlang!', 'error'); return; }
+        if (ad.type === 'sotish' && !ad.breed) { showToast('❌ Zotni tanlang!', 'error'); return; }
+        if (!ad.manzil) { showToast('❌ Manzilni tanlang!', 'error'); return; }
+        if (!ad.phone) { showToast('❌ Telefon raqamni kiriting!', 'error'); return; }
+
+        // Save ad
+        const newAd = {
+            id: Date.now(),
+            type: ad.type,
+            mediaType: ad.mediaType,
+            mushukSoni: ad.mushukSoni || 1,
+            breed: ad.breed || '-',
+            age: ad.age || '-',
+            health: ad.health || '-',
+            gender: ad.gender || '-',
+            sterilization: ad.sterilization || '-',
+            valyuta: ad.valyuta || 'so\'m',
+            price: ad.price || '-',
+            manzil: ad.manzil,
+            phone: ad.phone,
+            media: ad.media,
+            status: 'pending',
+            createdAt: new Date().toISOString()
+        };
+
+        state.ads.push(newAd);
+        state.userHasPendingAd = true;
+        state.lastAdTime = new Date();
+
+        // Update stats
+        state.statistics.totalAds++;
+        if (ad.type === 'hadiya') state.statistics.hadiya++;
+        else if (ad.type === 'sotish') state.statistics.sotish++;
+        else if (ad.type === 'vyazka') state.statistics.vyazka++;
+
+        // Notify admin
+        showToast('✅ E\'loningiz yuborildi! Admin tekshiradi.', 'success');
+        notifyAdmin(newAd);
+
+        // Reset
+        resetAdForm();
+        updateUI();
+        navigateTo('main');
+
+        // Auto approve for demo
+        setTimeout(() => {
+            newAd.status = 'approved';
+            newAd.channelMessageId = Math.floor(Math.random() * 1000);
+            state.userHasPendingAd = false;
+            showToast('✅ E\'loningiz tasdiqlandi va kanalga joylandi!', 'success');
+            updateUI();
+            renderMyAds();
+        }, 3000);
+    }
+
+    function resetAdForm() {
+        state.pendingAd = { type: null, mediaType: 'photo', mushukSoni: 1, media: [], status: 'draft' };
+        document.getElementById('adForm').style.display = 'none';
+        document.getElementById('previewSection').style.display = 'none';
+        document.getElementById('mediaUploadSection').style.display = 'none';
+        document.getElementById('phoneSection').style.display = 'none';
+        document.getElementById('manzilSection').style.display = 'none';
+        document.getElementById('priceSection').style.display = 'none';
+        document.getElementById('valyutaSection').style.display = 'none';
+        document.getElementById('sterilizationSection').style.display = 'none';
+        document.getElementById('genderSection').style.display = 'none';
+        document.getElementById('healthSection').style.display = 'none';
+        document.getElementById('ageSection').style.display = 'none';
+        document.getElementById('breedSection').style.display = 'none';
+        document.getElementById('mushukSoniSection').style.display = 'none';
+        document.getElementById('mediaPreview').innerHTML = '';
+        document.getElementById('priceInput').value = '';
+        document.getElementById('phoneInput').value = '';
+        document.getElementById('mediaInput').value = '';
+    }
+
+    function showCustomBreed() {
+        document.getElementById('customBreedInput').style.display = 'block';
+    }
+
+    function setCustomBreed() {
+        const val = document.getElementById('customBreed').value.trim();
+        if (val) {
+            state.pendingAd.breed = val;
+            document.getElementById('ageSection').style.display = 'block';
+            renderAges();
+            showToast('🐱 ' + val, 'success');
+        }
+    }
+
+    // ============================================================
+    // KONKURS
+    // ============================================================
+    function updateKonkursUI() {
+        document.getElementById('konkursContent').innerHTML = '<p>' + state.konkurs.text.replace(/\n/g, '<br>') + '</p>';
+        document.getElementById('referralLink').textContent = 'https://t.me/UzbekCatsBot?start=' + (state.referralCodes[state.user.id] || generateReferralCode());
+    }
+
+    function generateReferralCode() {
+        const code = 'REF' + state.user.id + '_' + Date.now();
+        state.referralCodes[state.user.id] = code;
+        state.codeToUser[code] = state.user.id;
+        return code;
+    }
+
+    function shareReferral() {
+        const link = document.getElementById('referralLink').textContent;
+        if (navigator.share) {
+            navigator.share({
+                title: 'Uzbek Cats Konkurs',
+                text: 'Mushuklar konkursiga qo\'shiling va tekinga mushuk yutib oling!',
+                url: link
+            });
+        } else {
+            copyReferral();
+        }
+    }
+
+    function copyReferral() {
+        const link = document.getElementById('referralLink').textContent;
+        navigator.clipboard.writeText(link).then(() => {
+            showToast('✅ Referral link nusxalandi!', 'success');
+        });
+    }
+
+    function showMukofot() {
+        showToast('🎁 Mukofot: ' + state.mukofot.text, 'success');
+    }
+
+    function showRating() {
+        const container = document.getElementById('ratingList');
+        const card = document.getElementById('ratingCard');
+        card.style.display = 'block';
+
+        // Generate demo rating
+        let html = '';
+        const names = ['Ali', 'Bobur', 'Javlon', 'Sardor', 'Dilshod', 'Nodir', 'Shoxrux', 'Jalol', 'Mirzo', 'Ozod'];
+        for (let i = 0; i < 10; i++) {
+            const score = Math.floor(Math.random() * 100) + 1;
+            const medal = i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : '👤';
+            html += `<div class="list-item">
+                <div class="title">${medal} ${i+1}. ${names[i]}</div>
+                <div class="subtitle">🏆 ${score} ball</div>
+            </div>`;
+        }
+        container.innerHTML = html;
+    }
+
+    // ============================================================
+    // ADMIN FUNCTIONS
+    // ============================================================
+    function renderStats() {
+        document.getElementById('statTotalUsers').textContent = state.statistics.totalUsers;
+        document.getElementById('statTotalAds').textContent = state.statistics.totalAds;
+        document.getElementById('statBanned').textContent = state.bannedUsers.length;
+
+        const types = document.getElementById('statTypes');
+        types.innerHTML = `
+            <p>🎁 Hadiya: ${state.statistics.hadiya}</p>
+            <p>💰 Sotish: ${state.statistics.sotish}</p>
+            <p>💝 Vyazka: ${state.statistics.vyazka}</p>
+        `;
+    }
+
+    function toggleBot() {
+        state.botEnabled = !state.botEnabled;
+        const tag = document.getElementById('botStatusTag');
+        const btn = document.getElementById('toggleBotBtn');
+        if (state.botEnabled) {
+            tag.textContent = '✅ Yoqilgan';
+            tag.className = 'tag tag-green';
+            btn.textContent = '🔴 O\'chirish';
+            showToast('✅ Bot yoqildi!', 'success');
+        } else {
+            tag.textContent = '❌ O\'chirilgan';
+            tag.className = 'tag tag-red';
+            btn.textContent = '🟢 Yoqish';
+            showToast('🔴 Bot o\'chirildi!', 'error');
+        }
+    }
+
+    function adminBanUser() {
+        const id = prompt('⛔ Bloklash uchun foydalanuvchi raqamini kiriting:');
+        if (id) {
+            state.bannedUsers.push(parseInt(id));
+            showToast('✅ Foydalanuvchi bloklandi!', 'success');
+        }
+    }
+
+    function renderAdminRating() {
+        const container = document.getElementById('adminRatingList');
+        let html = '';
+        const users = [
+            { id: 1, score: 45 }, { id: 2, score: 30 }, { id: 3, score: 25 },
+            { id: 4, score: 20 }, { id: 5, score: 15 }
+        ];
+        users.forEach(u => {
+            html += `<div class="list-item">
+                <div class="title">#${u.id} - ${u.score} ball</div>
+                <button class="btn btn-danger btn-sm" onclick="resetUserRating(${u.id})">🔄 0 qilish</button>
+            </div>`;
+        });
+        container.innerHTML = html;
+    }
+
+    function resetUserRating(id) {
+        showToast('🔄 #' + id + ' ballari 0 ga tushirildi!', 'success');
+    }
+
+    function resetAllRatings() {
+        if (confirm('⚠️ Barcha ballarni 0 ga tushirishni tasdiqlaysizmi?')) {
+            showToast('🔄 Barcha ballar 0 ga tushirildi!', 'success');
+        }
+    }
+
+    function addScoreBatch() {
+        const input = document.getElementById('scoreBatchInput').value;
+        if (!input) { showToast('❌ Ma\'lumot kiriting!', 'error'); return; }
+
+        const entries = input.split(',').map(s => s.trim());
+        let result = '<div class="label">📊 Natijalar:</div>';
+        let success = 0;
+
+        entries.forEach(entry => {
+            const parts = entry.split('-').map(s => s.trim());
+            if (parts.length === 2) {
+                const phone = parts[0];
+                const score = parseInt(parts[1].replace(/[^0-9]/g, ''));
+                if (!isNaN(score)) {
+                    const userId = findUserByPhone(phone);
+                    if (userId) {
+                        state.userScores[userId] = (state.userScores[userId] || 0) + score;
+                        success++;
+                        result += `<div>✅ ${phone} → +${score} ball</div>`;
+                    } else {
+                        state.pendingScoresByPhone[phone] = (state.pendingScoresByPhone[phone] || 0) + score;
+                        success++;
+                        result += `<div>⏳ ${phone} → +${score} ball (kutilmoqda)</div>`;
+                    }
+                }
             }
+        });
+
+        document.getElementById('scoreBatchResult').style.display = 'block';
+        document.getElementById('scoreBatchResult').innerHTML = result + `<div>✅ ${success} ta muvaffaqiyatli</div>`;
+        showToast('✅ ' + success + ' ta ball qo\'shildi!', 'success');
+    }
+
+    function findUserByPhone(phone) {
+        const clean = phone.replace(/\s/g, '');
+        for (const [id, p] of Object.entries(state.userPhones)) {
+            if (p.replace(/\s/g, '') === clean) return parseInt(id);
+        }
+        return null;
+    }
+
+    function setKonkursMedia(type) {
+        state.konkurs.mediaType = type;
+        document.getElementById('currentKonkursMedia').textContent = type === 'video' ? '🎥 Video' : '🖼️ Rasm';
+        showToast('✅ Konkurs media: ' + type, 'success');
+    }
+
+    function updateKonkursText() {
+        const val = document.getElementById('konkursTextInput').value;
+        state.konkurs.text = val;
+        showToast('✅ Konkurs matni yangilandi!', 'success');
+    }
+
+    function setMukofotMedia(type) {
+        state.mukofot.mediaType = type;
+        document.getElementById('currentMukofotMedia').textContent = type === 'video' ? '🎥 Video' : '🖼️ Rasm';
+        showToast('✅ Mukofot media: ' + type, 'success');
+    }
+
+    function updateMukofotText() {
+        const val = document.getElementById('mukofotTextInput').value;
+        state.mukofot.text = val;
+        showToast('✅ Mukofot matni yangilandi!', 'success');
+    }
+
+    // ============================================================
+    // TECH ADMIN
+    // ============================================================
+    function showTechUserManagement() {
+        navigateTo('tech-user');
+    }
+
+    function showTechParticipants() {
+        let html = '<h4>🏆 Ishtirokchilar (15+ ball)</h4>';
+        const users = [
+            { id: 1, score: 45, phone: '+998900512621' },
+            { id: 2, score: 30, phone: '+998909996677' }
+        ];
+        users.forEach(u => {
+            html += `<div class="list-item">
+                <div class="title">📱 ${u.phone} — ${u.score} ball (#${u.id})</div>
+            </div>`;
+        });
+        showModal('Ishtirokchilar', html);
+    }
+
+    function showTechKonkurs() {
+        let html = '<h4>🏆 Konkurs takliflar</h4>';
+        const users = [
+            { id: 1, score: 45, username: 'zayd_catlover', phone: '+998934938181' },
+            { id: 2, score: 30, username: 'it_project_2026', phone: '+998900512621' }
+        ];
+        users.forEach(u => {
+            html += `<div class="list-item">
+                <div class="title">#${u.id} @${u.username}</div>
+                <div class="subtitle">📱 ${u.phone} | 🏆 ${u.score} ball</div>
+                <button class="btn btn-danger btn-sm mt-8" onclick="showToast('🔄 Ballar 0 qilindi', 'success')">🔄 0 qilish</button>
+            </div>`;
+        });
+        showModal('Konkurs takliflar', html);
+    }
+
+    function showTechAdPanel() {
+        showModal('📢 Reklama panel', `
+            <div class="card">
+                <h4>Bot foydalanuvchilariga reklama</h4>
+                <textarea id="techAdText" class="form-group" placeholder="Reklama matni..."></textarea>
+                <button class="btn btn-primary btn-sm" onclick="sendTechAd()">📢 Yuborish</button>
+            </div>
+        `);
+    }
+
+    function sendTechAd() {
+        const text = document.getElementById('techAdText').value;
+        if (text) {
+            showToast('✅ Reklama yuborildi!', 'success');
+            closeModal();
+        }
+    }
+
+    function showTechStats() {
+        let html = `
+            <div class="stats-grid">
+                <div class="stat-card"><div class="number">${state.statistics.totalUsers}</div><div class="label">Foydalanuvchilar</div></div>
+                <div class="stat-card"><div class="number">${state.statistics.totalAds}</div><div class="label">Reklamalar</div></div>
+                <div class="stat-card"><div class="number">${Object.keys(state.userScores).length}</div><div class="label">Aktiv</div></div>
+            </div>
+            <div class="card">
+                <h4>📊 Detal statistika</h4>
+                <p>🏆 O\'rtacha ball: ${Object.values(state.userScores).reduce((a,b) => a+b, 0) / Math.max(1, Object.keys(state.userScores).length)}</p>
+                <p>👥 Jami takliflar: ${Object.keys(state.referrals).length}</p>
+            </div>
+        `;
+        showModal('Detal statistika', html);
+    }
+
+    function techBlockUser() {
+        const id = prompt('⛔ Bloklash uchun foydalanuvchi raqamini kiriting:');
+        if (id) {
+            state.bannedUsers.push(parseInt(id));
+            showToast('✅ Foydalanuvchi bloklandi!', 'success');
+        }
+    }
+
+    function techUnblockUser() {
+        if (state.bannedUsers.length === 0) {
+            showToast('📭 Bloklangan foydalanuvchilar yo\'q', 'error');
+            return;
+        }
+        let html = '<h4>Bloklangan foydalanuvchilar</h4>';
+        state.bannedUsers.forEach((id, idx) => {
+            html += `<div class="list-item">
+                <div class="title">#${idx+1}. Foydalanuvchi ${id}</div>
+                <button class="btn btn-success btn-sm" onclick="unblockUser(${idx})">✅ Blokdan chiqarish</button>
+            </div>`;
+        });
+        showModal('Blokdan chiqarish', html);
+    }
+
+    function unblockUser(idx) {
+        state.bannedUsers.splice(idx, 1);
+        showToast('✅ Blokdan chiqarildi!', 'success');
+        closeModal();
+    }
+
+    function techSearchUser() {
+        const id = prompt('🔍 Foydalanuvchi raqamini kiriting:');
+        if (id) {
+            const user = { id: parseInt(id), name: 'Foydalanuvchi ' + id, phone: '+998900512621', score: 15, ads: 2 };
+            showModal('🔍 Foydalanuvchi ma\'lumotlari', `
+                <div class="card">
+                    <p><strong>#${user.id}</strong> ${user.name}</p>
+                    <p>📞 ${user.phone}</p>
+                    <p>🏆 ${user.score} ball</p>
+                    <p>📊 ${user.ads} ta reklama</p>
+                    <p>⛔ ${state.bannedUsers.includes(user.id) ? '✅ Bloklangan' : '❌ Yo\'q'}</p>
+                </div>
+            `);
+        }
+    }
+
+    // ============================================================
+    // MY ADS
+    // ============================================================
+    function renderMyAds() {
+        const container = document.getElementById('myAdsList');
+        if (state.ads.length === 0) {
+            container.innerHTML = '<p class="text-secondary text-center">📭 Sizda hali e\'lonlar mavjud emas.</p>';
+            return;
         }
 
-        // Boshlash
-        updateClock();
-        setInterval(updateClock, 1000);
-        renderAlarms();
-        initTelegram();
+        let html = '';
+        state.ads.forEach(ad => {
+            const statusClass = ad.status === 'approved' ? 'active' : ad.status === 'pending' ? 'pending' : 'closed';
+            const statusText = ad.status === 'approved' ? '✅ Faol' : ad.status === 'pending' ? '⏳ Kutilmoqda' : '❌ Nofaol';
+            const emoji = ad.type === 'sotish' ? '💰' : ad.type === 'hadiya' ? '🎁' : '💝';
 
-        // LocalStorage'ga saqlash
-        function saveAlarms() {
-            localStorage.setItem('alarms', JSON.stringify(alarms));
+            html += `<div class="list-item" onclick="viewAd(${ad.id})">
+                <div class="title">${emoji} Reklama #${ad.id}</div>
+                <div class="subtitle">${ad.breed} | ${ad.manzil}</div>
+                <div class="meta">
+                    <span><span class="status-badge ${statusClass}">${statusText}</span></span>
+                    <span>📅 ${new Date(ad.createdAt).toLocaleDateString()}</span>
+                </div>
+            </div>`;
+        });
+        container.innerHTML = html;
+    }
+
+    function viewAd(id) {
+        const ad = state.ads.find(a => a.id === id);
+        if (!ad) return;
+
+        let html = `
+            <div class="card">
+                <h4>📋 E'lon #${ad.id}</h4>
+                <p>📌 Tur: ${ad.type}</p>
+                <p>🐱 Zot: ${ad.breed}</p>
+                <p>🎂 Yosh: ${ad.age}</p>
+                <p>👤 Jins: ${ad.gender}</p>
+                <p>📍 Manzil: ${ad.manzil}</p>
+                <p>📞 Telefon: ${ad.phone}</p>
+                <p>💰 Narx: ${ad.price} ${ad.valyuta}</p>
+                <p>📅 Joylangan: ${new Date(ad.createdAt).toLocaleDateString()}</p>
+                <hr class="divider">
+                <div class="btn-group">
+                    <button class="btn btn-success btn-sm" onclick="markAdCompleted(${ad.id})">✅ Berib bo'ldim</button>
+                    <button class="btn btn-outline btn-sm" onclick="closeModal()">↩️ Orqaga</button>
+                </div>
+            </div>
+        `;
+        showModal('E\'lon', html);
+    }
+
+    function markAdCompleted(id) {
+        const ad = state.ads.find(a => a.id === id);
+        if (ad) {
+            ad.status = 'closed';
+            ad.phone = 'Berib bo\'ldik';
+            showToast('✅ Reklama yakunlandi!', 'success');
+            renderMyAds();
+            closeModal();
         }
+    }
 
-        function loadAlarms() {
-            const saved = localStorage.getItem('alarms');
-            if (saved) {
-                alarms = JSON.parse(saved);
-                renderAlarms();
+    // ============================================================
+    // NOTIFICATIONS
+    // ============================================================
+    function notifyAdmin(ad) {
+        console.log('📢 Admin xabari:', ad);
+    }
+
+    // ============================================================
+    // MODAL
+    // ============================================================
+    function showModal(title, body) {
+        document.getElementById('modalTitle').textContent = title;
+        document.getElementById('modalBody').innerHTML = body;
+        document.getElementById('modalOverlay').classList.add('active');
+    }
+
+    function closeModal() {
+        document.getElementById('modalOverlay').classList.remove('active');
+    }
+
+    // ============================================================
+    // TOAST
+    // ============================================================
+    function showToast(msg, type = 'info') {
+        const toast = document.getElementById('toast');
+        toast.textContent = msg;
+        toast.className = 'toast';
+        if (type === 'success') toast.classList.add('success');
+        if (type === 'error') toast.classList.add('error');
+        toast.style.display = 'block';
+        clearTimeout(toast._timeout);
+        toast._timeout = setTimeout(() => {
+            toast.style.display = 'none';
+        }, 3000);
+    }
+
+    // ============================================================
+    // ABOUT
+    // ============================================================
+    function sendFeedback() {
+        document.getElementById('feedbackInput').style.display = 'block';
+    }
+
+    function submitFeedback() {
+        const text = document.getElementById('feedbackText').value;
+        if (text) {
+            showToast('✅ Fikringiz yuborildi! Rahmat.', 'success');
+            document.getElementById('feedbackText').value = '';
+            document.getElementById('feedbackInput').style.display = 'none';
+        }
+    }
+
+    function contactChannelAdmin() {
+        showToast('📢 @zayd_catlover | +998934938181', 'info');
+    }
+
+    function contactTechAdmin() {
+        showToast('👨‍💻 @It_project_2026', 'info');
+    }
+
+    // ============================================================
+    // SAVE / LOAD STATE (localStorage)
+    // ============================================================
+    function saveState() {
+        try {
+            const data = {
+                ads: state.ads,
+                bannedUsers: state.bannedUsers,
+                statistics: state.statistics,
+                userScores: state.userScores,
+                userPhones: state.userPhones,
+                userNumberMap: state.userNumberMap,
+                userUsernameMap: state.userUsernameMap,
+                userFullNameMap: state.userFullNameMap,
+                referralCodes: state.referralCodes,
+                codeToUser: state.codeToUser,
+                pendingScoresByPhone: state.pendingScoresByPhone,
+                konkurs: state.konkurs,
+                mukofot: state.mukofot
+            };
+            localStorage.setItem('uzbek_cats_data', JSON.stringify(data));
+        } catch (e) {}
+    }
+
+    function loadState() {
+        try {
+            const raw = localStorage.getItem('uzbek_cats_data');
+            if (raw) {
+                const data = JSON.parse(raw);
+                state.ads = data.ads || [];
+                state.bannedUsers = data.bannedUsers || [];
+                state.statistics = data.statistics || { hadiya: 0, sotish: 0, vyazka: 0, totalUsers: 1, totalAds: 0 };
+                state.userScores = data.userScores || {};
+                state.userPhones = data.userPhones || {};
+                state.userNumberMap = data.userNumberMap || {};
+                state.userUsernameMap = data.userUsernameMap || {};
+                state.userFullNameMap = data.userFullNameMap || {};
+                state.referralCodes = data.referralCodes || {};
+                state.codeToUser = data.codeToUser || {};
+                state.pendingScoresByPhone = data.pendingScoresByPhone || {};
+                if (data.konkurs) state.konkurs = data.konkurs;
+                if (data.mukofot) state.mukofot = data.mukofot;
             }
-        }
+        } catch (e) {}
 
-        // Har qanday o'zgarishda saqlash
-        setInterval(saveAlarms, 10000);
-        loadAlarms();
+        // Set user
+        state.user.number = state.userNumberMap[state.user.id] || 1;
+        state.user.score = state.userScores[state.user.id] || 0;
+        state.user.referrals = Object.values(state.referralCodes).filter(v => v === state.user.id).length;
+        state.statistics.totalUsers = Object.keys(state.userNumberMap).length || 1;
+        state.statistics.totalAds = state.ads.length;
+    }
 
-        // Konsole uchun
-        console.log('🕌 Budilnik ilovasi ishga tushdi!');
-    </script>
+    // Auto-save
+    setInterval(saveState, 5000);
+
+    // ============================================================
+    // INIT
+    // ============================================================
+    loadState();
+    updateUI();
+    renderMyAds();
+
+    console.log('🐱 Uzbek Cats Web App loaded!');
+    console.log('State:', state);
+
+</script>
 </body>
 </html>
