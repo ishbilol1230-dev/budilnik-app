@@ -2,16 +2,12 @@
 <html lang="uz">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Uzbek Cats</title>
-
     <style>
-        /* =========================================================
-           RESET
-        ========================================================= */
-
+        /* ============================================================
+           RESET & ROOT
+           ============================================================ */
         * {
             margin: 0;
             padding: 0;
@@ -32,32 +28,26 @@
             --red: #ef4444;
             --shadow: 0 8px 30px rgba(0,0,0,.06);
             --radius: 22px;
+            --safe-bottom: env(safe-area-inset-bottom, 0px);
         }
 
         body {
-            font-family:
-                -apple-system,
-                BlinkMacSystemFont,
-                "Segoe UI",
-                Roboto,
-                Arial,
-                sans-serif;
-
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
             background: var(--bg);
             color: var(--text);
             min-height: 100vh;
+            overflow-x: hidden;
         }
 
-        button,
-        input,
-        select,
-        textarea {
+        button, input, select, textarea {
             font: inherit;
+            border: none;
+            outline: none;
         }
 
         button {
-            border: none;
             cursor: pointer;
+            background: none;
         }
 
         img {
@@ -65,10 +55,9 @@
             display: block;
         }
 
-        /* =========================================================
-           APP
-        ========================================================= */
-
+        /* ============================================================
+           APP CONTAINER
+           ============================================================ */
         .app {
             max-width: 560px;
             min-height: 100vh;
@@ -78,11 +67,14 @@
             overflow-x: hidden;
         }
 
+        /* ============================================================
+           PAGES
+           ============================================================ */
         .page {
             display: none;
             min-height: 100vh;
-            padding-bottom: 100px;
-            animation: fadeIn .25s ease;
+            padding-bottom: calc(90px + var(--safe-bottom));
+            animation: fadeIn .3s ease;
         }
 
         .page.active {
@@ -90,23 +82,15 @@
         }
 
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(6px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        /* =========================================================
-           TOP HEADER
-        ========================================================= */
-
+        /* ============================================================
+           TOPBAR
+           ============================================================ */
         .topbar {
-            padding: 18px 18px 12px;
+            padding: 16px 18px 12px;
             background: var(--white);
             position: sticky;
             top: 0;
@@ -137,6 +121,7 @@
             justify-content: center;
             font-size: 25px;
             box-shadow: 0 7px 18px rgba(255,122,0,.25);
+            flex-shrink: 0;
         }
 
         .brand h1 {
@@ -145,7 +130,7 @@
         }
 
         .brand p {
-            font-size: 12px;
+            font-size: 11px;
             color: var(--muted);
             margin-top: 2px;
         }
@@ -164,14 +149,18 @@
             align-items: center;
             justify-content: center;
             font-size: 19px;
+            transition: .2s;
         }
 
-        /* =========================================================
-           SEARCH
-        ========================================================= */
+        .icon-btn:active {
+            transform: scale(.92);
+        }
 
+        /* ============================================================
+           SEARCH
+           ============================================================ */
         .search-box {
-            margin-top: 15px;
+            margin-top: 14px;
             position: relative;
         }
 
@@ -184,6 +173,12 @@
             border-radius: 16px;
             padding: 0 48px 0 45px;
             font-size: 14px;
+            transition: .2s;
+        }
+
+        .search-box input:focus {
+            background: var(--white);
+            box-shadow: 0 0 0 2px var(--orange);
         }
 
         .search-icon {
@@ -191,6 +186,7 @@
             left: 16px;
             top: 14px;
             color: var(--muted);
+            pointer-events: none;
         }
 
         .filter-btn {
@@ -201,20 +197,23 @@
             height: 34px;
             background: var(--white);
             border-radius: 11px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,.06);
         }
 
-        /* =========================================================
-           HOME HERO
-        ========================================================= */
-
+        /* ============================================================
+           HERO
+           ============================================================ */
         .hero {
             margin: 18px;
             padding: 24px;
             min-height: 180px;
             border-radius: 28px;
-            background:
-                radial-gradient(circle at 90% 10%, rgba(255,255,255,.25), transparent 30%),
-                linear-gradient(135deg, #ff8b21, #f25d00);
+            background: radial-gradient(circle at 90% 10%, rgba(255,255,255,.25), transparent 30%),
+                        linear-gradient(135deg, #ff8b21, #f25d00);
             color: white;
             position: relative;
             overflow: hidden;
@@ -227,8 +226,9 @@
             right: -5px;
             bottom: -25px;
             font-size: 130px;
-            opacity: .2;
+            opacity: .15;
             transform: rotate(-10deg);
+            pointer-events: none;
         }
 
         .hero h2 {
@@ -249,15 +249,20 @@
             margin-top: 17px;
             background: white;
             color: var(--orange-dark);
-            padding: 11px 17px;
+            padding: 11px 20px;
             border-radius: 13px;
             font-weight: 700;
+            font-size: 14px;
+            transition: .2s;
         }
 
-        /* =========================================================
-           QUICK ACTIONS
-        ========================================================= */
+        .hero button:active {
+            transform: scale(.96);
+        }
 
+        /* ============================================================
+           SECTIONS
+           ============================================================ */
         .section {
             padding: 0 18px;
             margin-top: 22px;
@@ -278,8 +283,12 @@
             font-size: 12px;
             color: var(--orange);
             font-weight: 700;
+            cursor: pointer;
         }
 
+        /* ============================================================
+           QUICK ACTIONS
+           ============================================================ */
         .quick-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -296,7 +305,7 @@
         }
 
         .quick-card:active {
-            transform: scale(.96);
+            transform: scale(.94);
         }
 
         .quick-icon {
@@ -316,10 +325,9 @@
             font-size: 10px;
         }
 
-        /* =========================================================
-           CATEGORY
-        ========================================================= */
-
+        /* ============================================================
+           CATEGORY SCROLL
+           ============================================================ */
         .category-scroll {
             display: flex;
             gap: 9px;
@@ -336,10 +344,16 @@
             flex: 0 0 auto;
             background: white;
             border: 1px solid var(--border);
-            padding: 10px 14px;
+            padding: 10px 16px;
             border-radius: 14px;
             font-size: 12px;
             font-weight: 600;
+            transition: .2s;
+            white-space: nowrap;
+        }
+
+        .category:active {
+            transform: scale(.94);
         }
 
         .category.active {
@@ -348,10 +362,9 @@
             border-color: var(--orange);
         }
 
-        /* =========================================================
-           ADS
-        ========================================================= */
-
+        /* ============================================================
+           ADS GRID
+           ============================================================ */
         .ads-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -363,12 +376,12 @@
             border-radius: 20px;
             overflow: hidden;
             box-shadow: var(--shadow);
-            position: relative;
             transition: .2s;
+            cursor: pointer;
         }
 
         .ad-card:active {
-            transform: scale(.98);
+            transform: scale(.97);
         }
 
         .ad-image {
@@ -400,20 +413,31 @@
             left: 9px;
             background: rgba(255,255,255,.92);
             color: var(--orange-dark);
-            padding: 5px 8px;
+            padding: 4px 10px;
             border-radius: 9px;
             font-size: 9px;
             font-weight: 800;
+            backdrop-filter: blur(4px);
         }
 
-        .favorite {
+        .favorite-btn {
             position: absolute;
             right: 9px;
             top: 9px;
-            width: 30px;
-            height: 30px;
+            width: 32px;
+            height: 32px;
             border-radius: 50%;
             background: rgba(255,255,255,.9);
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            transition: .2s;
+        }
+
+        .favorite-btn:active {
+            transform: scale(.85);
         }
 
         .ad-body {
@@ -422,7 +446,10 @@
 
         .ad-body h4 {
             font-size: 14px;
-            margin-bottom: 5px;
+            margin-bottom: 4px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
         }
 
         .ad-price {
@@ -435,12 +462,14 @@
             color: var(--muted);
             font-size: 10px;
             margin-top: 6px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
         }
 
-        /* =========================================================
+        /* ============================================================
            BOTTOM NAV
-        ========================================================= */
-
+           ============================================================ */
         .bottom-nav {
             position: fixed;
             bottom: 0;
@@ -455,7 +484,7 @@
             display: grid;
             grid-template-columns: repeat(5, 1fr);
             z-index: 100;
-            padding-bottom: env(safe-area-inset-bottom);
+            padding-bottom: var(--safe-bottom);
         }
 
         .nav-item {
@@ -465,8 +494,13 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 4px;
-            font-size: 10px;
+            gap: 3px;
+            font-size: 9px;
+            transition: .2s;
+        }
+
+        .nav-item:active {
+            transform: scale(.92);
         }
 
         .nav-item span:first-child {
@@ -478,17 +512,19 @@
             font-weight: 700;
         }
 
-        /* =========================================================
+        /* ============================================================
            PAGE HEADER
-        ========================================================= */
-
+           ============================================================ */
         .page-header {
             background: white;
-            padding: 20px 18px;
+            padding: 18px 18px;
             display: flex;
             align-items: center;
             gap: 13px;
             border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 10;
         }
 
         .back-btn {
@@ -496,16 +532,25 @@
             height: 40px;
             border-radius: 13px;
             background: #f5f5f6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            transition: .2s;
+            flex-shrink: 0;
+        }
+
+        .back-btn:active {
+            transform: scale(.92);
         }
 
         .page-header h2 {
             font-size: 19px;
         }
 
-        /* =========================================================
+        /* ============================================================
            FORM
-        ========================================================= */
-
+           ============================================================ */
         .form-container {
             padding: 18px;
         }
@@ -527,26 +572,24 @@
             display: block;
             font-size: 12px;
             font-weight: 700;
-            margin-bottom: 7px;
+            margin-bottom: 6px;
         }
 
-        .input,
-        .select,
-        .textarea {
+        .input, .select, .textarea {
             width: 100%;
             border: 1px solid var(--border);
             background: #fafafa;
             border-radius: 14px;
             padding: 13px;
-            outline: none;
             margin-bottom: 14px;
+            transition: .2s;
+            font-size: 14px;
         }
 
-        .input:focus,
-        .select:focus,
-        .textarea:focus {
+        .input:focus, .select:focus, .textarea:focus {
             border-color: var(--orange);
             background: white;
+            box-shadow: 0 0 0 3px rgba(255,122,0,.1);
         }
 
         .textarea {
@@ -562,17 +605,22 @@
 
         .type-btn {
             background: #fafafa;
-            border: 1px solid var(--border);
+            border: 2px solid var(--border);
             padding: 15px 5px;
             border-radius: 15px;
             font-size: 11px;
+            font-weight: 600;
+            transition: .2s;
+        }
+
+        .type-btn:active {
+            transform: scale(.94);
         }
 
         .type-btn.selected {
             border-color: var(--orange);
             background: var(--orange-light);
             color: var(--orange-dark);
-            font-weight: 700;
         }
 
         .primary-btn {
@@ -582,7 +630,18 @@
             padding: 15px;
             border-radius: 15px;
             font-weight: 800;
+            font-size: 15px;
             box-shadow: 0 10px 20px rgba(255,122,0,.2);
+            transition: .2s;
+        }
+
+        .primary-btn:active {
+            transform: scale(.97);
+        }
+
+        .primary-btn:disabled {
+            opacity: .6;
+            transform: none;
         }
 
         .secondary-btn {
@@ -593,16 +652,21 @@
             border-radius: 15px;
             font-weight: 700;
             margin-top: 9px;
+            transition: .2s;
         }
 
-        /* =========================================================
-           PROFILE
-        ========================================================= */
+        .secondary-btn:active {
+            transform: scale(.97);
+        }
 
+        /* ============================================================
+           PROFILE
+           ============================================================ */
         .profile-head {
             background: white;
-            padding: 25px 18px;
+            padding: 30px 18px 25px;
             text-align: center;
+            border-bottom: 1px solid var(--border);
         }
 
         .avatar {
@@ -620,7 +684,7 @@
         }
 
         .profile-head h2 {
-            margin-top: 10px;
+            margin-top: 12px;
             font-size: 19px;
         }
 
@@ -647,20 +711,23 @@
 
         .stat-card strong {
             display: block;
-            font-size: 19px;
+            font-size: 22px;
             color: var(--orange-dark);
         }
 
         .stat-card span {
             color: var(--muted);
             font-size: 10px;
+            margin-top: 4px;
+            display: block;
         }
 
         .menu-list {
-            margin: 0 18px;
+            margin: 0 18px 18px;
             background: white;
             border-radius: 20px;
             overflow: hidden;
+            box-shadow: var(--shadow);
         }
 
         .menu-item {
@@ -672,10 +739,15 @@
             gap: 13px;
             text-align: left;
             border-bottom: 1px solid var(--border);
+            transition: .2s;
         }
 
         .menu-item:last-child {
             border-bottom: none;
+        }
+
+        .menu-item:active {
+            background: #f7f7f8;
         }
 
         .menu-icon {
@@ -686,6 +758,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
         }
 
         .menu-item strong {
@@ -695,13 +769,13 @@
         .menu-item small {
             display: block;
             color: var(--muted);
-            margin-top: 3px;
+            margin-top: 2px;
+            font-size: 11px;
         }
 
-        /* =========================================================
+        /* ============================================================
            CONTEST
-        ========================================================= */
-
+           ============================================================ */
         .contest-card {
             margin: 18px;
             background: linear-gradient(135deg, #ff8b21, #ed5b00);
@@ -717,12 +791,23 @@
 
         .contest-card h2 {
             margin-top: 10px;
+            font-size: 22px;
         }
 
         .contest-card p {
             margin-top: 10px;
-            line-height: 1.5;
+            line-height: 1.6;
             font-size: 13px;
+            opacity: .9;
+        }
+
+        .contest-card .primary-btn {
+            background: white;
+            color: var(--orange-dark);
+            box-shadow: none;
+            margin-top: 18px;
+            width: auto;
+            padding: 13px 24px;
         }
 
         .referral-box {
@@ -733,21 +818,31 @@
             box-shadow: var(--shadow);
         }
 
+        .referral-box h3 {
+            font-size: 16px;
+        }
+
+        .referral-box p {
+            font-size: 12px;
+            color: #888;
+            margin-top: 7px;
+        }
+
         .referral-link {
             background: #f6f6f7;
-            padding: 12px;
+            padding: 12px 14px;
             border-radius: 12px;
-            margin: 10px 0;
-            font-size: 11px;
+            margin: 12px 0;
+            font-size: 12px;
             overflow: hidden;
             white-space: nowrap;
             text-overflow: ellipsis;
+            font-family: monospace;
         }
 
-        /* =========================================================
+        /* ============================================================
            ADMIN
-        ========================================================= */
-
+           ============================================================ */
         .admin-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -760,6 +855,7 @@
             padding: 20px;
             border-radius: 20px;
             box-shadow: var(--shadow);
+            text-align: center;
         }
 
         .admin-card span {
@@ -769,23 +865,23 @@
 
         .admin-card strong {
             display: block;
-            font-size: 25px;
+            font-size: 28px;
             margin-top: 7px;
             color: var(--orange-dark);
         }
 
-        /* =========================================================
+        /* ============================================================
            MODAL
-        ========================================================= */
-
+           ============================================================ */
         .modal {
             position: fixed;
             inset: 0;
-            background: rgba(0,0,0,.45);
+            background: rgba(0,0,0,.5);
             z-index: 200;
             display: none;
             align-items: flex-end;
             justify-content: center;
+            backdrop-filter: blur(4px);
         }
 
         .modal.show {
@@ -795,22 +891,17 @@
         .modal-content {
             width: 100%;
             max-width: 560px;
-            max-height: 90vh;
+            max-height: 88vh;
             overflow-y: auto;
             background: white;
             border-radius: 28px 28px 0 0;
-            padding: 20px;
-            animation: slideUp .25s ease;
+            padding: 24px 20px 30px;
+            animation: slideUp .3s ease;
         }
 
         @keyframes slideUp {
-            from {
-                transform: translateY(100%);
-            }
-
-            to {
-                transform: translateY(0);
-            }
+            from { transform: translateY(100%); }
+            to { transform: translateY(0); }
         }
 
         .modal-head {
@@ -820,17 +911,29 @@
             margin-bottom: 18px;
         }
 
+        .modal-head h3 {
+            font-size: 18px;
+        }
+
         .close-btn {
             width: 36px;
             height: 36px;
             border-radius: 12px;
             background: #f5f5f6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            transition: .2s;
         }
 
-        /* =========================================================
-           TOAST
-        ========================================================= */
+        .close-btn:active {
+            transform: scale(.92);
+        }
 
+        /* ============================================================
+           TOAST
+           ============================================================ */
         .toast-container {
             position: fixed;
             top: 20px;
@@ -839,17 +942,19 @@
             width: calc(100% - 30px);
             max-width: 520px;
             z-index: 999;
+            pointer-events: none;
         }
 
         .toast {
             background: #202020;
             color: white;
-            padding: 14px 16px;
+            padding: 14px 18px;
             border-radius: 15px;
             margin-bottom: 8px;
             box-shadow: 0 10px 30px rgba(0,0,0,.2);
-            animation: toastIn .25s ease;
+            animation: toastIn .3s ease;
             font-size: 13px;
+            pointer-events: auto;
         }
 
         .toast.success {
@@ -861,32 +966,25 @@
         }
 
         @keyframes toastIn {
-            from {
-                opacity: 0;
-                transform: translateY(-15px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        /* =========================================================
-           EMPTY
-        ========================================================= */
-
+        /* ============================================================
+           EMPTY STATE
+           ============================================================ */
         .empty {
             background: white;
-            padding: 35px 20px;
+            padding: 40px 20px;
             border-radius: 22px;
             text-align: center;
             color: var(--muted);
+            box-shadow: var(--shadow);
         }
 
         .empty-icon {
             font-size: 50px;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
 
         .empty h3 {
@@ -894,10 +992,13 @@
             margin-bottom: 7px;
         }
 
-        /* =========================================================
-           MEDIA
-        ========================================================= */
+        .empty p {
+            font-size: 13px;
+        }
 
+        /* ============================================================
+           MEDIA UPLOAD
+           ============================================================ */
         .media-upload {
             border: 2px dashed #ffd2ad;
             background: var(--orange-light);
@@ -905,6 +1006,11 @@
             border-radius: 18px;
             text-align: center;
             cursor: pointer;
+            transition: .2s;
+        }
+
+        .media-upload:active {
+            transform: scale(.98);
         }
 
         .media-upload input {
@@ -924,284 +1030,259 @@
             height: 100px;
             object-fit: cover;
             border-radius: 12px;
+            background: #eee;
         }
 
-        /* =========================================================
+        /* ============================================================
+           REGISTRATION OVERLAY
+           ============================================================ */
+        .register-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,.6);
+            backdrop-filter: blur(8px);
+            z-index: 300;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .register-overlay.show {
+            display: flex;
+        }
+
+        .register-box {
+            background: white;
+            border-radius: 28px;
+            padding: 32px 24px;
+            width: 100%;
+            max-width: 400px;
+            animation: slideUp .3s ease;
+        }
+
+        .register-box h2 {
+            text-align: center;
+            margin-bottom: 6px;
+            font-size: 22px;
+        }
+
+        .register-box p {
+            text-align: center;
+            color: var(--muted);
+            font-size: 13px;
+            margin-bottom: 20px;
+        }
+
+        .register-box .input {
+            margin-bottom: 14px;
+        }
+
+        /* ============================================================
+           LOADING SPINNER
+           ============================================================ */
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin .6s linear infinite;
+            vertical-align: middle;
+            margin-right: 8px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* ============================================================
            RESPONSIVE
-        ========================================================= */
-
+           ============================================================ */
         @media (max-width: 380px) {
+            .quick-grid { gap: 6px; }
+            .ads-grid { gap: 8px; }
+            .ad-image { height: 135px; }
+            .hero h2 { font-size: 23px; }
+            .brand h1 { font-size: 17px; }
+        }
 
-            .quick-grid {
-                gap: 6px;
+        @media (min-width: 561px) {
+            .app {
+                border-left: 1px solid var(--border);
+                border-right: 1px solid var(--border);
+                box-shadow: 0 0 40px rgba(0,0,0,.04);
             }
+        }
 
-            .ads-grid {
-                gap: 8px;
-            }
+        /* Scrollbar style */
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
 
-            .ad-image {
-                height: 135px;
-            }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
 
-            .hero h2 {
-                font-size: 23px;
-            }
+        ::-webkit-scrollbar-thumb {
+            background: #ddd;
+            border-radius: 4px;
         }
     </style>
 </head>
-
 <body>
 
 <div class="app">
 
-    <!-- =========================================================
-         HOME
-    ========================================================= -->
+    <!-- ============================================================
+         REGISTRATION OVERLAY
+         ============================================================ -->
+    <div id="registerOverlay" class="register-overlay show">
+        <div class="register-box">
+            <div style="text-align:center;font-size:50px;margin-bottom:10px;">🐱</div>
+            <h2>Uzbek Cats</h2>
+            <p>Iltimos, ro'yxatdan o'ting</p>
 
+            <label class="label">👤 Ism-familiya</label>
+            <input id="regFullName" class="input" placeholder="Ism-familiyangizni kiriting" required>
+
+            <label class="label">📞 Telefon raqam</label>
+            <input id="regPhone" class="input" type="tel" placeholder="+998 90 123 45 67" required>
+
+            <label class="label">👤 Telegram username (ixtiyoriy)</label>
+            <input id="regUsername" class="input" placeholder="@username">
+
+            <button class="primary-btn" onclick="registerUser()">
+                🚀 Ro'yxatdan o'tish
+            </button>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         TOPBAR
+         ============================================================ -->
+    <header class="topbar">
+        <div class="topbar-row">
+            <div class="brand">
+                <div class="brand-logo">🐱</div>
+                <div>
+                    <h1>Uzbek Cats</h1>
+                    <p id="userGreeting">Mushuklar olamiga xush kelibsiz</p>
+                </div>
+            </div>
+            <div class="header-actions">
+                <button class="icon-btn" onclick="showNotifications()">🔔</button>
+            </div>
+        </div>
+        <div class="search-box">
+            <span class="search-icon">🔍</span>
+            <input id="searchInput" type="text" placeholder="Mushuk qidiring..." oninput="searchAds(this.value)">
+            <button class="filter-btn" onclick="openFilter()">⚙️</button>
+        </div>
+    </header>
+
+    <!-- ============================================================
+         PAGE: HOME (Dashboard)
+         ============================================================ -->
     <section id="page-home" class="page active">
 
-        <header class="topbar">
-
-            <div class="topbar-row">
-
-                <div class="brand">
-
-                    <div class="brand-logo">🐱</div>
-
-                    <div>
-                        <h1>Uzbek Cats</h1>
-                        <p>Mushuklar olamiga xush kelibsiz</p>
-                    </div>
-
-                </div>
-
-                <div class="header-actions">
-
-                    <button class="icon-btn" onclick="showNotifications()">
-                        🔔
-                    </button>
-
-                </div>
-
-            </div>
-
-            <div class="search-box">
-
-                <span class="search-icon">🔍</span>
-
-                <input
-                    id="searchInput"
-                    type="text"
-                    placeholder="Mushuk qidiring..."
-                    oninput="searchAds(this.value)"
-                >
-
-                <button class="filter-btn" onclick="openFilter()">
-                    ⚙️
-                </button>
-
-            </div>
-
-        </header>
-
-
         <div class="hero">
-
             <h2>O‘zingizga ideal mushukni toping 🐱</h2>
-
-            <p>
-                O‘zbekistondagi mushuklar uchun zamonaviy
-                e’lonlar platformasi.
-            </p>
-
-            <button onclick="navigate('create')">
-                + E’lon berish
-            </button>
-
+            <p>O‘zbekistondagi mushuklar uchun zamonaviy e’lonlar platformasi.</p>
+            <button onclick="navigate('create')">+ E’lon berish</button>
         </div>
 
-
         <div class="section">
-
             <div class="section-title">
                 <h3>Tezkor xizmatlar</h3>
             </div>
-
             <div class="quick-grid">
-
                 <button class="quick-card" onclick="openCreateType('sotish')">
                     <div class="quick-icon">💰</div>
                     <strong>Sotish</strong>
                     <small>Mushuk sotish</small>
                 </button>
-
                 <button class="quick-card" onclick="openCreateType('hadiya')">
                     <div class="quick-icon">🎁</div>
                     <strong>Hadiya</strong>
                     <small>Tekinga berish</small>
                 </button>
-
                 <button class="quick-card" onclick="openCreateType('vyazka')">
                     <div class="quick-icon">❤️</div>
                     <strong>Vyazka</strong>
                     <small>Juft topish</small>
                 </button>
-
             </div>
-
         </div>
 
-
         <div class="section">
-
             <div class="section-title">
                 <h3>Kategoriyalar</h3>
             </div>
-
             <div class="category-scroll">
-
-                <button class="category active"
-                        onclick="filterCategory('all', this)">
-                    Barchasi
-                </button>
-
-                <button class="category"
-                        onclick="filterCategory('sotish', this)">
-                    💰 Sotish
-                </button>
-
-                <button class="category"
-                        onclick="filterCategory('hadiya', this)">
-                    🎁 Hadiya
-                </button>
-
-                <button class="category"
-                        onclick="filterCategory('vyazka', this)">
-                    ❤️ Vyazka
-                </button>
-
+                <button class="category active" onclick="filterCategory('all', this)">Barchasi</button>
+                <button class="category" onclick="filterCategory('sotish', this)">💰 Sotish</button>
+                <button class="category" onclick="filterCategory('hadiya', this)">🎁 Hadiya</button>
+                <button class="category" onclick="filterCategory('vyazka', this)">❤️ Vyazka</button>
             </div>
-
         </div>
 
-
         <div class="section">
-
             <div class="section-title">
-
                 <h3>Yangi e’lonlar</h3>
-
-                <span onclick="navigate('ads')">
-                    Barchasini ko‘rish
-                </span>
-
+                <span onclick="navigate('ads')">Barchasini ko‘rish</span>
             </div>
-
             <div id="homeAds" class="ads-grid"></div>
-
         </div>
-
     </section>
 
-
-    <!-- =========================================================
-         ADS PAGE
-    ========================================================= -->
-
+    <!-- ============================================================
+         PAGE: ADS (E'lonlar)
+         ============================================================ -->
     <section id="page-ads" class="page">
-
         <div class="page-header">
-
-            <button class="back-btn" onclick="navigate('home')">
-                ←
-            </button>
-
+            <button class="back-btn" onclick="navigate('home')">←</button>
             <h2>Barcha e’lonlar</h2>
-
         </div>
-
         <div class="section">
-
             <div id="allAds" class="ads-grid"></div>
-
         </div>
-
     </section>
 
-
-    <!-- =========================================================
-         CREATE AD
-    ========================================================= -->
-
+    <!-- ============================================================
+         PAGE: CREATE (E'lon berish)
+         ============================================================ -->
     <section id="page-create" class="page">
-
         <div class="page-header">
-
-            <button class="back-btn" onclick="navigate('home')">
-                ←
-            </button>
-
+            <button class="back-btn" onclick="navigate('home')">←</button>
             <h2>Yangi e’lon</h2>
-
         </div>
-
 
         <div class="form-container">
-
             <div class="form-card">
-
                 <h3>1. E’lon turini tanlang</h3>
-
                 <div class="type-grid">
-
-                    <button
-                        class="type-btn"
-                        data-type="sotish"
-                        onclick="selectType('sotish', this)">
+                    <button class="type-btn" data-type="sotish" onclick="selectType('sotish', this)">
                         💰<br>Sotish
                     </button>
-
-                    <button
-                        class="type-btn"
-                        data-type="hadiya"
-                        onclick="selectType('hadiya', this)">
+                    <button class="type-btn" data-type="hadiya" onclick="selectType('hadiya', this)">
                         🎁<br>Hadiya
                     </button>
-
-                    <button
-                        class="type-btn"
-                        data-type="vyazka"
-                        onclick="selectType('vyazka', this)">
+                    <button class="type-btn" data-type="vyazka" onclick="selectType('vyazka', this)">
                         ❤️<br>Vyazka
                     </button>
-
                 </div>
-
             </div>
 
-
             <div class="form-card">
-
                 <h3>2. Mushuk ma’lumotlari</h3>
+                <label class="label">Mushuk nomi *</label>
+                <input id="catName" class="input" placeholder="Masalan: Simba">
 
-                <label class="label">Mushuk nomi</label>
-
-                <input
-                    id="catName"
-                    class="input"
-                    placeholder="Masalan: Simba"
-                >
-
-
-                <label class="label">Zoti</label>
-
+                <label class="label">Zoti *</label>
                 <select id="catBreed" class="select">
-
-                    <option value="">
-                        Zotni tanlang
-                    </option>
-
+                    <option value="">Zotni tanlang</option>
                     <option>Scottish Fold</option>
                     <option>British Shorthair</option>
                     <option>Bengal</option>
@@ -1212,2534 +1293,1291 @@
                     <option>Sphynx</option>
                     <option>Oddiy zot</option>
                     <option>Boshqa</option>
-
                 </select>
-
 
                 <label class="label">Yoshi</label>
-
-                <input
-                    id="catAge"
-                    class="input"
-                    placeholder="Masalan: 1 yosh"
-                >
-
+                <input id="catAge" class="input" placeholder="Masalan: 1 yosh">
 
                 <label class="label">Jinsi</label>
-
                 <select id="catGender" class="select">
-
-                    <option value="">
-                        Jinsini tanlang
-                    </option>
-
+                    <option value="">Jinsini tanlang</option>
                     <option>Erkak</option>
                     <option>Urg‘ochi</option>
-
                 </select>
 
-
                 <label class="label">Sog‘lig‘i</label>
-
                 <select id="catHealth" class="select">
-
                     <option>Sog‘lom</option>
                     <option>Veterinar ko‘rigidan o‘tgan</option>
                     <option>Davolanishda</option>
-
                 </select>
-
             </div>
-
 
             <div class="form-card">
+                <h3>3. Joylashuv va aloqa</h3>
+                <label class="label">Viloyat / Shahar *</label>
+                <input id="catLocation" class="input" placeholder="Masalan: Toshkent shahri">
 
-                <h3>3. Joylashuv</h3>
-
-                <label class="label">Viloyat / Shahar</label>
-
-                <input
-                    id="catLocation"
-                    class="input"
-                    placeholder="Masalan: Toshkent shahri"
-                >
-
-
-                <label class="label">Telefon raqam</label>
-
-                <input
-                    id="catPhone"
-                    class="input"
-                    type="tel"
-                    placeholder="+998 90 123 45 67"
-                >
-
+                <label class="label">Telefon raqam *</label>
+                <input id="catPhone" class="input" type="tel" placeholder="+998 90 123 45 67">
             </div>
 
-
-            <div id="priceCard" class="form-card">
-
+            <div id="priceCard" class="form-card" style="display:none;">
                 <h3>4. Narx</h3>
-
-                <input
-                    id="catPrice"
-                    class="input"
-                    type="number"
-                    placeholder="Narx"
-                >
-
+                <input id="catPrice" class="input" type="number" placeholder="Narx">
                 <select id="catCurrency" class="select">
-
                     <option>UZS</option>
                     <option>USD</option>
-
                 </select>
-
             </div>
 
-
             <div class="form-card">
-
                 <h3>5. Rasmlar va video</h3>
-
                 <label class="media-upload">
-
-                    <input
-                        id="mediaInput"
-                        type="file"
-                        accept="image/*,video/*"
-                        multiple
-                        onchange="previewMedia(event)"
-                    >
-
-                    <div style="font-size:35px">
-                        📸
-                    </div>
-
-                    <strong>
-                        Rasm yoki video yuklash
-                    </strong>
-
-                    <p style="font-size:11px;color:#888;margin-top:5px">
-                        Bir nechta fayl tanlash mumkin
-                    </p>
-
+                    <input id="mediaInput" type="file" accept="image/*,video/*" multiple onchange="previewMedia(event)">
+                    <div style="font-size:35px;">📸</div>
+                    <strong>Rasm yoki video yuklash</strong>
+                    <p style="font-size:11px;color:#888;margin-top:5px;">Bir nechta fayl tanlash mumkin</p>
                 </label>
-
-                <div id="mediaPreview"
-                     class="media-preview">
-                </div>
-
+                <div id="mediaPreview" class="media-preview"></div>
             </div>
-
 
             <div class="form-card">
-
                 <h3>6. Qo‘shimcha ma’lumot</h3>
-
-                <textarea
-                    id="catDescription"
-                    class="textarea"
-                    placeholder="Mushuk haqida qo‘shimcha ma’lumot..."
-                ></textarea>
-
+                <textarea id="catDescription" class="textarea" placeholder="Mushuk haqida qo‘shimcha ma’lumot..."></textarea>
             </div>
 
-
-            <button
-                class="primary-btn"
-                onclick="submitAd()">
-
+            <button class="primary-btn" onclick="submitAd()">
                 📢 E’lonni joylashtirish
-
             </button>
-
         </div>
-
     </section>
 
-
-    <!-- =========================================================
-         CONTEST
-    ========================================================= -->
-
+    <!-- ============================================================
+         PAGE: CONTEST (Konkurs)
+         ============================================================ -->
     <section id="page-contest" class="page">
-
         <div class="page-header">
-
             <h2>🏆 Konkurs</h2>
-
         </div>
-
 
         <div class="contest-card">
-
-            <div class="emoji">
-                🐱
-            </div>
-
+            <div class="emoji">🐱</div>
             <h2>Scottish Fold yutib oling!</h2>
-
-            <p>
-                Do‘stlaringizni taklif qiling,
-                ball to‘plang va g‘olib bo‘lish imkoniyatiga ega bo‘ling.
-            </p>
-
-            <button
-                style="margin-top:18px;padding:13px 18px;border-radius:14px;font-weight:700"
-                onclick="showPrize()">
-
-                🎁 Mukofotni ko‘rish
-
-            </button>
-
+            <p>Do‘stlaringizni taklif qiling, ball to‘plang va g‘olib bo‘lish imkoniyatiga ega bo‘ling.</p>
+            <button class="primary-btn" onclick="showPrize()">🎁 Mukofotni ko‘rish</button>
         </div>
-
 
         <div class="referral-box">
-
             <h3>🔗 Sizning referral linkingiz</h3>
-
-            <p style="font-size:12px;color:#888;margin-top:7px">
-                Do‘stlaringizni taklif qiling.
-            </p>
-
-            <div
-                id="referralLink"
-                class="referral-link">
-            </div>
-
-            <button
-                class="primary-btn"
-                onclick="copyReferral()">
-
-                📋 Linkni nusxalash
-
-            </button>
-
+            <p>Do‘stlaringizni taklif qiling va ball yig‘ing.</p>
+            <div id="referralLink" class="referral-link">Yuklanmoqda...</div>
+            <button class="primary-btn" onclick="copyReferral()">📋 Linkni nusxalash</button>
         </div>
-
 
         <div class="section">
-
             <div class="section-title">
-
                 <h3>🏆 Reyting</h3>
-
             </div>
-
             <div id="ratingList"></div>
-
         </div>
-
     </section>
 
-
-    <!-- =========================================================
-         PROFILE
-    ========================================================= -->
-
+    <!-- ============================================================
+         PAGE: PROFILE (Profil)
+         ============================================================ -->
     <section id="page-profile" class="page">
-
         <div class="profile-head">
-
-            <div class="avatar">
-                🐱
-            </div>
-
-            <h2 id="profileName">
-                Uzbek Cats foydalanuvchisi
-            </h2>
-
-            <p id="profileNumber">
-                Foydalanuvchi #1
-            </p>
-
+            <div class="avatar">🐱</div>
+            <h2 id="profileName">Foydalanuvchi</h2>
+            <p id="profileId">ID: -</p>
         </div>
-
 
         <div class="stats-grid">
-
             <div class="stat-card">
-
-                <strong id="profileScore">
-                    0
-                </strong>
-
+                <strong id="profileScore">0</strong>
                 <span>Ball</span>
-
             </div>
-
             <div class="stat-card">
-
-                <strong id="profileAds">
-                    0
-                </strong>
-
+                <strong id="profileAds">0</strong>
                 <span>E’lonlar</span>
-
             </div>
-
             <div class="stat-card">
-
-                <strong id="profileRefs">
-                    0
-                </strong>
-
+                <strong id="profileRefs">0</strong>
                 <span>Referral</span>
-
             </div>
-
         </div>
 
-
         <div class="menu-list">
-
-            <button class="menu-item"
-                    onclick="navigate('myads')">
-
-                <div class="menu-icon">
-                    📋
-                </div>
-
+            <button class="menu-item" onclick="navigate('myads')">
+                <div class="menu-icon">📋</div>
                 <div>
                     <strong>Mening e’lonlarim</strong>
                     <small>Joylashtirgan e’lonlaringiz</small>
                 </div>
-
             </button>
-
-
-            <button class="menu-item"
-                    onclick="navigate('contest')">
-
-                <div class="menu-icon">
-                    🏆
-                </div>
-
+            <button class="menu-item" onclick="navigate('contest')">
+                <div class="menu-icon">🏆</div>
                 <div>
                     <strong>Konkurs va referral</strong>
                     <small>Ballaringiz va takliflaringiz</small>
                 </div>
-
             </button>
-
-
-            <button class="menu-item"
-                    onclick="showSettings()">
-
-                <div class="menu-icon">
-                    ⚙️
-                </div>
-
+            <button class="menu-item" onclick="showSettings()">
+                <div class="menu-icon">⚙️</div>
                 <div>
                     <strong>Sozlamalar</strong>
                     <small>Ilova sozlamalari</small>
                 </div>
-
             </button>
-
-
-            <button class="menu-item"
-                    onclick="showAbout()">
-
-                <div class="menu-icon">
-                    ℹ️
-                </div>
-
+            <button class="menu-item" onclick="showAbout()">
+                <div class="menu-icon">ℹ️</div>
                 <div>
                     <strong>Biz haqimizda</strong>
                     <small>Uzbek Cats</small>
                 </div>
-
             </button>
-
         </div>
-
     </section>
 
-
-    <!-- =========================================================
-         MY ADS
-    ========================================================= -->
-
+    <!-- ============================================================
+         PAGE: MY ADS (Mening e'lonlarim)
+         ============================================================ -->
     <section id="page-myads" class="page">
-
         <div class="page-header">
-
-            <button
-                class="back-btn"
-                onclick="navigate('profile')">
-                ←
-            </button>
-
+            <button class="back-btn" onclick="navigate('profile')">←</button>
             <h2>Mening e’lonlarim</h2>
-
         </div>
-
         <div class="section">
-
             <div id="myAdsList"></div>
-
         </div>
-
     </section>
 
-
-    <!-- =========================================================
-         ADMIN
-    ========================================================= -->
-
+    <!-- ============================================================
+         PAGE: ADMIN
+         ============================================================ -->
     <section id="page-admin" class="page">
-
         <div class="page-header">
-
             <h2>🛠️ Admin Panel</h2>
-
         </div>
-
 
         <div class="admin-grid">
-
             <div class="admin-card">
-
                 <span>Jami foydalanuvchilar</span>
-
-                <strong id="adminUsers">
-                    1
-                </strong>
-
+                <strong id="adminUsers">0</strong>
             </div>
-
-
             <div class="admin-card">
-
                 <span>Jami e’lonlar</span>
-
-                <strong id="adminAds">
-                    0
-                </strong>
-
+                <strong id="adminAds">0</strong>
             </div>
-
-
             <div class="admin-card">
-
                 <span>Sotish</span>
-
-                <strong id="adminSell">
-                    0
-                </strong>
-
+                <strong id="adminSell">0</strong>
             </div>
-
-
             <div class="admin-card">
-
                 <span>Hadiya</span>
-
-                <strong id="adminGift">
-                    0
-                </strong>
-
+                <strong id="adminGift">0</strong>
             </div>
-
-
             <div class="admin-card">
-
                 <span>Vyazka</span>
-
-                <strong id="adminBreed">
-                    0
-                </strong>
-
+                <strong id="adminBreed">0</strong>
             </div>
-
-
             <div class="admin-card">
-
                 <span>Ban qilingan</span>
-
-                <strong id="adminBanned">
-                    0
-                </strong>
-
+                <strong id="adminBanned">0</strong>
             </div>
-
         </div>
-
 
         <div class="section">
-
             <div class="form-card">
-
                 <h3>🤖 Bot boshqaruvi</h3>
-
-                <button
-                    id="botToggle"
-                    class="primary-btn"
-                    onclick="toggleBot()">
-
+                <button id="botToggle" class="primary-btn" onclick="toggleBot()">
                     🟢 Bot yoqilgan
-
                 </button>
-
             </div>
-
         </div>
-
     </section>
 
-
-    <!-- =========================================================
+    <!-- ============================================================
          BOTTOM NAV
-    ========================================================= -->
-
+         ============================================================ -->
     <nav class="bottom-nav">
-
-        <button
-            class="nav-item active"
-            data-page="home"
-            onclick="navigate('home')">
-
+        <button class="nav-item active" data-page="home" onclick="navigate('home')">
             <span>🏠</span>
             <span>Bosh sahifa</span>
-
         </button>
-
-
-        <button
-            class="nav-item"
-            data-page="ads"
-            onclick="navigate('ads')">
-
+        <button class="nav-item" data-page="ads" onclick="navigate('ads')">
             <span>🐱</span>
             <span>E’lonlar</span>
-
         </button>
-
-
-        <button
-            class="nav-item"
-            data-page="create"
-            onclick="navigate('create')">
-
+        <button class="nav-item" data-page="create" onclick="navigate('create')">
             <span>➕</span>
             <span>E’lon berish</span>
-
         </button>
-
-
-        <button
-            class="nav-item"
-            data-page="contest"
-            onclick="navigate('contest')">
-
+        <button class="nav-item" data-page="contest" onclick="navigate('contest')">
             <span>🏆</span>
             <span>Konkurs</span>
-
         </button>
-
-
-        <button
-            class="nav-item"
-            data-page="profile"
-            onclick="navigate('profile')">
-
+        <button class="nav-item" data-page="profile" onclick="navigate('profile')">
             <span>👤</span>
             <span>Profil</span>
-
         </button>
-
     </nav>
 
 </div>
 
-
-<!-- =========================================================
+<!-- ============================================================
      MODAL
-========================================================= -->
-
-<div id="modal"
-     class="modal"
-     onclick="closeModal(event)">
-
-    <div class="modal-content"
-         onclick="event.stopPropagation()">
-
+     ============================================================ -->
+<div id="modal" class="modal" onclick="closeModal(event)">
+    <div class="modal-content" onclick="event.stopPropagation()">
         <div class="modal-head">
-
-            <h3 id="modalTitle">
-                Ma’lumot
-            </h3>
-
-            <button
-                class="close-btn"
-                onclick="hideModal()">
-
-                ✕
-
-            </button>
-
+            <h3 id="modalTitle">Ma’lumot</h3>
+            <button class="close-btn" onclick="hideModal()">✕</button>
         </div>
-
         <div id="modalBody"></div>
-
     </div>
-
 </div>
 
-
-<!-- =========================================================
+<!-- ============================================================
      TOAST
-========================================================= -->
-
-<div id="toastContainer"
-     class="toast-container">
-</div>
+     ============================================================ -->
+<div id="toastContainer" class="toast-container"></div>
 
 
+<!-- ============================================================
+     JAVASCRIPT
+     ============================================================ -->
 <script>
+// ============================================================
+// CONFIGURATION
+// ============================================================
+const API_BASE = 'http://localhost:8080/api';
 
-/* =========================================================
-   STATE
-========================================================= */
-
-const STORAGE_KEY = "uzbek_cats_premium_v2";
+// ============================================================
+// STATE
+// ============================================================
+const STORAGE_KEY = 'uzbek_cats_data';
 
 let state = {
-
-    user: {
-        id: "user_" + Date.now(),
-        number: 1,
-        score: 0,
-        referrals: 0,
-        isAdmin: false
-    },
-
-    ads: [],
-
+    user: null,
+    users: [],           // Barcha foydalanuvchilar
+    ads: [],             // E'lonlar (foydalanuvchilar ro'yxati)
     favorites: [],
-
-    bannedUsers: [],
-
     botEnabled: true,
-
-    konkurs: {
-        text: "Scottish Fold mushukini yutib oling!",
-        prize: "Scottish Fold Black"
-    },
-
-    referralCode: "",
-
-    statistics: {
-        totalUsers: 1,
-        totalAds: 0,
-        hadiya: 0,
-        sotish: 0,
-        vyazka: 0
-    }
-
+    referralCode: '',
+    isAdmin: false,
+    isLoading: false
 };
 
+// ============================================================
+// TELEGRAM WEB APP INTEGRATION
+// ============================================================
+let tg = null;
+let tgUser = null;
 
-/* =========================================================
-   STORAGE
-========================================================= */
-
-function saveState() {
-
-    localStorage.setItem(
-        STORAGE_KEY,
-        JSON.stringify(state)
-    );
-
+try {
+    if (window.Telegram && window.Telegram.WebApp) {
+        tg = window.Telegram.WebApp;
+        tg.expand();
+        
+        if (tg.initDataUnsafe && tg.initDataUnsafe.user) {
+            tgUser = tg.initDataUnsafe.user;
+            console.log('Telegram user:', tgUser);
+        }
+    }
+} catch (e) {
+    console.log('Telegram WebApp not available');
 }
 
+function getTelegramData() {
+    if (tgUser) {
+        return {
+            telegramId: String(tgUser.id),
+            telegramUsername: tgUser.username || '',
+            fullName: `${tgUser.first_name || ''} ${tgUser.last_name || ''}`.trim() || 'Foydalanuvchi'
+        };
+    }
+    return null;
+}
+
+// ============================================================
+// STORAGE
+// ============================================================
+function saveState() {
+    try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    } catch (e) {
+        console.error('Save error:', e);
+    }
+}
 
 function loadState() {
+    try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved) {
+            const data = JSON.parse(saved);
+            state = { ...state, ...data };
+            return true;
+        }
+    } catch (e) {
+        console.error('Load error:', e);
+    }
+    return false;
+}
 
-    const saved =
-        localStorage.getItem(STORAGE_KEY);
+// ============================================================
+// API HELPERS - BARCHA API'LAR UCHUN
+// ============================================================
+async function apiRequest(endpoint, method = 'GET', body = null) {
+    const url = `${API_BASE}${endpoint}`;
+    const options = {
+        method,
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        }
+    };
 
-    if (!saved) {
-
-        state.referralCode =
-            "REF" +
-            Math.random()
-                .toString(36)
-                .substring(2, 9)
-                .toUpperCase();
-
-        saveState();
-
-        return;
-
+    if (body) {
+        options.body = JSON.stringify(body);
     }
 
     try {
-
-        const data =
-            JSON.parse(saved);
-
-        state = {
-            ...state,
-            ...data,
-            user: {
-                ...state.user,
-                ...(data.user || {})
-            },
-            statistics: {
-                ...state.statistics,
-                ...(data.statistics || {})
-            }
-        };
-
+        const response = await fetch(url, options);
+        let data;
+        const contentType = response.headers.get('content-type');
+        if (contentType && contentType.includes('application/json')) {
+            data = await response.json();
+        } else {
+            data = await response.text();
+        }
+        return { success: response.ok, data, status: response.status };
     } catch (error) {
-
-        console.log(error);
-
+        console.error('API Error:', error);
+        return { success: false, error: error.message };
     }
-
 }
 
-
-/* =========================================================
-   NAVIGATION
-========================================================= */
-
-function navigate(page) {
-
-    document
-        .querySelectorAll(".page")
-        .forEach(item => {
-
-            item.classList.remove("active");
-
-        });
-
-
-    const target =
-        document.getElementById(
-            "page-" + page
-        );
-
-
-    if (!target) return;
-
-
-    target.classList.add("active");
-
-
-    document
-        .querySelectorAll(".nav-item")
-        .forEach(item => {
-
-            item.classList.remove("active");
-
-            if (
-                item.dataset.page === page
-            ) {
-
-                item.classList.add("active");
-
-            }
-
-        });
-
-
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
-
-
-    if (page === "home") {
-
-        renderAds("homeAds", 4);
-
-    }
-
-
-    if (page === "ads") {
-
-        renderAds("allAds");
-
-    }
-
-
-    if (page === "myads") {
-
-        renderMyAds();
-
-    }
-
-
-    if (page === "profile") {
-
-        updateProfile();
-
-    }
-
-
-    if (page === "contest") {
-
-        updateContest();
-
-    }
-
-
-    if (page === "admin") {
-
-        updateAdmin();
-
-    }
-
-}
-
-
-/* =========================================================
-   QUICK TYPE
-========================================================= */
-
-function openCreateType(type) {
-
-    navigate("create");
-
-    setTimeout(() => {
-
-        const button =
-            document.querySelector(
-                `[data-type="${type}"]`
-            );
-
-        if (button) {
-
-            selectType(type, button);
-
-        }
-
-    }, 100);
-
-}
-
-
-/* =========================================================
-   AD TYPE
-========================================================= */
-
-let selectedType = "";
-
-
-function selectType(type, element) {
-
-    selectedType = type;
-
-
-    document
-        .querySelectorAll(".type-btn")
-        .forEach(btn => {
-
-            btn.classList.remove("selected");
-
-        });
-
-
-    element.classList.add("selected");
-
-
-    const priceCard =
-        document.getElementById(
-            "priceCard"
-        );
-
-
-    if (type === "sotish") {
-
-        priceCard.style.display =
-            "block";
-
-    } else {
-
-        priceCard.style.display =
-            "none";
-
-    }
-
-}
-
-
-/* =========================================================
-   MEDIA PREVIEW
-========================================================= */
-
-let uploadedMedia = [];
-
-
-function previewMedia(event) {
-
-    const files =
-        [...event.target.files];
-
-
-    uploadedMedia = [];
-
-
-    const preview =
-        document.getElementById(
-            "mediaPreview"
-        );
-
-
-    preview.innerHTML = "";
-
-
-    files.forEach(file => {
-
-        const url =
-            URL.createObjectURL(file);
-
-
-        uploadedMedia.push({
-            name: file.name,
-            type: file.type,
-            url: url
-        });
-
-
-        if (
-            file.type.startsWith("image/")
-        ) {
-
-            const img =
-                document.createElement("img");
-
-            img.src = url;
-
-            preview.appendChild(img);
-
-        }
-
-        else if (
-            file.type.startsWith("video/")
-        ) {
-
-            const video =
-                document.createElement("video");
-
-            video.src = url;
-
-            video.controls = true;
-
-            preview.appendChild(video);
-
-        }
-
-    });
-
-}
-
-
-/* =========================================================
-   SUBMIT AD
-========================================================= */
-
-function submitAd() {
-
-    if (!selectedType) {
-
-        showToast(
-            "E’lon turini tanlang",
-            "error"
-        );
-
+// ============================================================
+// 1. REGISTER USER - POST /api/telegram/users/register
+// ============================================================
+async function registerUser() {
+    const fullName = document.getElementById('regFullName').value.trim();
+    const phone = document.getElementById('regPhone').value.trim();
+    const username = document.getElementById('regUsername').value.trim().replace('@', '');
+
+    if (!fullName) {
+        showToast('Ism-familiyani kiriting', 'error');
         return;
-
     }
-
-
-    const name =
-        document
-            .getElementById("catName")
-            .value
-            .trim();
-
-
-    const breed =
-        document
-            .getElementById("catBreed")
-            .value;
-
-
-    const age =
-        document
-            .getElementById("catAge")
-            .value
-            .trim();
-
-
-    const gender =
-        document
-            .getElementById("catGender")
-            .value;
-
-
-    const location =
-        document
-            .getElementById("catLocation")
-            .value
-            .trim();
-
-
-    const phone =
-        document
-            .getElementById("catPhone")
-            .value
-            .trim();
-
-
-    if (
-        !name ||
-        !breed ||
-        !location ||
-        !phone
-    ) {
-
-        showToast(
-            "Majburiy maydonlarni to‘ldiring",
-            "error"
-        );
-
+    if (!phone) {
+        showToast('Telefon raqamni kiriting', 'error');
         return;
-
     }
 
+    const tgData = getTelegramData();
 
-    const ad = {
-
-        id:
-            "AD_" +
-            Date.now(),
-
-        type:
-            selectedType,
-
-        name,
-
-        breed,
-
-        age,
-
-        gender,
-
-        health:
-            document
-                .getElementById(
-                    "catHealth"
-                )
-                .value,
-
-        location,
-
-        phone,
-
-        price:
-            document
-                .getElementById(
-                    "catPrice"
-                )
-                .value,
-
-        currency:
-            document
-                .getElementById(
-                    "catCurrency"
-                )
-                .value,
-
-        description:
-            document
-                .getElementById(
-                    "catDescription"
-                )
-                .value
-                .trim(),
-
-        media:
-            uploadedMedia.map(
-                item => item.url
-            ),
-
-        status:
-            "pending",
-
-        userId:
-            state.user.id,
-
-        createdAt:
-            new Date()
-                .toISOString()
-
+    const userData = {
+        fullName: fullName,
+        telegramId: tgData ? tgData.telegramId : 'telegram_' + Date.now(),
+        telegramUsername: username || (tgData ? tgData.telegramUsername : ''),
+        phoneNumber: phone,
+        initialScore: 10,
+        role: 'USER',
+        referralId: ''
     };
 
+    showToast('Ro\'yxatdan o\'tish...', 'success');
 
-    state.ads.unshift(ad);
+    try {
+        const result = await apiRequest('/telegram/users/register', 'POST', userData);
 
+        if (result.success) {
+            state.user = result.data;
+            state.referralCode = 'REF' + Math.random().toString(36).substring(2, 9).toUpperCase();
+            saveState();
 
-    state.statistics.totalAds =
-        state.ads.length;
+            document.getElementById('registerOverlay').classList.remove('show');
+            document.getElementById('userGreeting').textContent = `Salom, ${fullName}!`;
 
+            // Telegram WebApp ga ma'lumot yuborish
+            if (tg) {
+                tg.sendData(JSON.stringify({
+                    success: true,
+                    user: state.user
+                }));
+            }
 
-    state.statistics[
-        selectedType
-    ]++;
-
-
-    saveState();
-
-
-    showToast(
-        "✅ E’loningiz admin tekshiruviga yuborildi",
-        "success"
-    );
-
-
-    resetForm();
-
-
-    setTimeout(() => {
-
-        navigate("myads");
-
-    }, 700);
-
+            showToast('✅ Muvaffaqiyatli ro\'yxatdan o\'tdingiz!', 'success');
+            loadAllData();
+        } else {
+            showToast('Xatolik: ' + (result.data?.message || 'Qayta urinib ko\'ring'), 'error');
+        }
+    } catch (error) {
+        showToast('Server bilan bog\'lanib bo\'lmadi', 'error');
+    }
 }
 
+// ============================================================
+// 2. CHECK USER - GET /api/telegram/users/telegram/{telegramId}
+// ============================================================
+async function checkUser() {
+    const tgData = getTelegramData();
+    
+    if (!tgData) {
+        document.getElementById('registerOverlay').classList.add('show');
+        return;
+    }
 
-/* =========================================================
-   RESET FORM
-========================================================= */
+    try {
+        const result = await apiRequest(`/telegram/users/telegram/${tgData.telegramId}`, 'GET');
 
-function resetForm() {
-
-    document
-        .querySelectorAll(
-            "#page-create input, #page-create textarea"
-        )
-        .forEach(input => {
-
-            input.value = "";
-
-        });
-
-
-    document
-        .querySelectorAll(
-            "#page-create select"
-        )
-        .forEach(select => {
-
-            select.selectedIndex = 0;
-
-        });
-
-
-    document
-        .querySelectorAll(".type-btn")
-        .forEach(btn => {
-
-            btn.classList.remove(
-                "selected"
-            );
-
-        });
-
-
-    document.getElementById(
-        "mediaPreview"
-    ).innerHTML = "";
-
-
-    uploadedMedia = [];
-
-    selectedType = "";
-
+        if (result.success && result.data) {
+            state.user = result.data;
+            saveState();
+            document.getElementById('registerOverlay').classList.remove('show');
+            document.getElementById('userGreeting').textContent = `Salom, ${state.user.fullName}!`;
+            
+            if (tg) {
+                tg.sendData(JSON.stringify({
+                    success: true,
+                    user: state.user,
+                    isNew: false
+                }));
+            }
+            
+            loadAllData();
+        } else {
+            document.getElementById('registerOverlay').classList.add('show');
+            document.getElementById('regFullName').value = tgData.fullName;
+            document.getElementById('regUsername').value = tgData.telegramUsername ? '@' + tgData.telegramUsername : '';
+        }
+    } catch (error) {
+        document.getElementById('registerOverlay').classList.add('show');
+        document.getElementById('regFullName').value = tgData.fullName;
+        document.getElementById('regUsername').value = tgData.telegramUsername ? '@' + tgData.telegramUsername : '';
+    }
 }
 
+// ============================================================
+// 3. GET ALL USERS - GET /api/telegram/users/all
+// ============================================================
+async function loadAllUsers() {
+    try {
+        const result = await apiRequest('/telegram/users/all', 'GET');
+        if (result.success && Array.isArray(result.data)) {
+            state.users = result.data;
+            // E'lonlar sifatida foydalanuvchilarni ko'rsatamiz
+            state.ads = result.data.map(user => ({
+                id: user.id,
+                type: 'user',
+                name: user.fullName,
+                breed: user.telegramUsername || 'Noma\'lum',
+                location: user.phoneNumber || 'Noma\'lum',
+                phone: user.phoneNumber || '',
+                price: user.initialScore || 0,
+                currency: 'Ball',
+                media: [],
+                userId: user.telegramId,
+                createdAt: user.registeredDate || new Date().toISOString(),
+                description: `Ball: ${user.initialScore || 0}, Role: ${user.role || 'USER'}`
+            }));
+            saveState();
+            renderAds('homeAds', 6);
+        }
+    } catch (error) {
+        console.error('Load users error:', error);
+    }
+}
 
-/* =========================================================
-   RENDER ADS
-========================================================= */
+// ============================================================
+// 4. GET USER BY ID - GET /api/telegram/users/{id}
+// ============================================================
+async function getUserById(id) {
+    try {
+        const result = await apiRequest(`/telegram/users/${id}`, 'GET');
+        if (result.success) {
+            return result.data;
+        }
+    } catch (error) {
+        console.error('Get user error:', error);
+    }
+    return null;
+}
 
-function renderAds(
-    containerId,
-    limit = null
-) {
+// ============================================================
+// 5. UPDATE USER - PUT /api/telegram/users/{id}
+// ============================================================
+async function updateUser(id, userData) {
+    try {
+        const result = await apiRequest(`/telegram/users/${id}`, 'PUT', userData);
+        if (result.success) {
+            state.user = result.data;
+            saveState();
+            showToast('✅ Profil yangilandi!', 'success');
+            updateProfile();
+            return result.data;
+        } else {
+            showToast('Xatolik: ' + (result.data?.message || 'Qayta urinib ko\'ring'), 'error');
+        }
+    } catch (error) {
+        showToast('Server bilan bog\'lanib bo\'lmadi', 'error');
+    }
+    return null;
+}
 
-    const container =
-        document.getElementById(
-            containerId
-        );
+// ============================================================
+// 6. DELETE USER - DELETE /api/telegram/users/{id}
+// ============================================================
+async function deleteUser(id) {
+    if (!confirm('Foydalanuvchini o\'chirishni xohlaysizmi?')) return;
 
+    try {
+        const result = await apiRequest(`/telegram/users/${id}`, 'DELETE');
+        if (result.success) {
+            showToast('✅ Foydalanuvchi o\'chirildi', 'success');
+            loadAllUsers();
+            return true;
+        } else {
+            showToast('Xatolik: ' + (result.data?.message || 'Qayta urinib ko\'ring'), 'error');
+        }
+    } catch (error) {
+        showToast('Server bilan bog\'lanib bo\'lmadi', 'error');
+    }
+    return false;
+}
 
+// ============================================================
+// 7. UPDATE SCORE - PUT /api/telegram/users/score/{telegramId}
+// ============================================================
+async function updateScore(telegramId, newScore) {
+    try {
+        const result = await apiRequest(`/telegram/users/score/${telegramId}?newScore=${newScore}`, 'PUT');
+        if (result.success) {
+            state.user = result.data;
+            saveState();
+            showToast('✅ Ball yangilandi!', 'success');
+            updateProfile();
+            return result.data;
+        } else {
+            showToast('Xatolik: ' + (result.data?.message || 'Qayta urinib ko\'ring'), 'error');
+        }
+    } catch (error) {
+        showToast('Server bilan bog\'lanib bo\'lmadi', 'error');
+    }
+    return null;
+}
+
+// ============================================================
+// 8. CHECK USER EXISTS - GET /api/telegram/users/check/{telegramId}
+// ============================================================
+async function checkUserExists(telegramId) {
+    try {
+        const result = await apiRequest(`/telegram/users/check/${telegramId}`, 'GET');
+        return result.success && result.data?.exists === true;
+    } catch (error) {
+        console.error('Check user error:', error);
+        return false;
+    }
+}
+
+// ============================================================
+// 9. WEBAPP REGISTER - POST /api/webapp/register
+// ============================================================
+async function webappRegister(userData) {
+    try {
+        const result = await apiRequest('/webapp/register', 'POST', userData);
+        return result;
+    } catch (error) {
+        console.error('WebApp register error:', error);
+        return { success: false, error: error.message };
+    }
+}
+
+// ============================================================
+// 10. WEBAPP GET USER - GET /api/webapp/user/{telegramId}
+// ============================================================
+async function webappGetUser(telegramId) {
+    try {
+        const result = await apiRequest(`/webapp/user/${telegramId}`, 'GET');
+        return result;
+    } catch (error) {
+        console.error('WebApp get user error:', error);
+        return { success: false, error: error.message };
+    }
+}
+
+// ============================================================
+// 11. WEBAPP UPDATE SCORE - PUT /api/webapp/user/score
+// ============================================================
+async function webappUpdateScore(telegramId, newScore) {
+    try {
+        const result = await apiRequest(`/webapp/user/score?telegramId=${telegramId}&newScore=${newScore}`, 'PUT');
+        return result;
+    } catch (error) {
+        console.error('WebApp update score error:', error);
+        return { success: false, error: error.message };
+    }
+}
+
+// ============================================================
+// NAVIGATION
+// ============================================================
+function navigate(page) {
+    document.querySelectorAll('.page').forEach(el => el.classList.remove('active'));
+
+    const target = document.getElementById('page-' + page);
+    if (target) target.classList.add('active');
+
+    document.querySelectorAll('.nav-item').forEach(el => {
+        el.classList.toggle('active', el.dataset.page === page);
+    });
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    switch(page) {
+        case 'home':
+            renderAds('homeAds', 6);
+            break;
+        case 'ads':
+            renderAds('allAds');
+            break;
+        case 'myads':
+            renderMyAds();
+            break;
+        case 'profile':
+            updateProfile();
+            break;
+        case 'contest':
+            updateContest();
+            break;
+        case 'admin':
+            updateAdmin();
+            break;
+    }
+}
+
+// ============================================================
+// LOAD ALL DATA
+// ============================================================
+async function loadAllData() {
+    await loadAllUsers();
+    renderAds('homeAds', 6);
+    updateProfile();
+    updateContest();
+    updateAdmin();
+}
+
+// ============================================================
+// RENDER ADS (Foydalanuvchilar ro'yxati)
+// ============================================================
+function renderAds(containerId, limit = null) {
+    const container = document.getElementById(containerId);
     if (!container) return;
 
-
-    let ads =
-        [...state.ads];
-
-
-    if (limit) {
-
-        ads =
-            ads.slice(0, limit);
-
-    }
-
+    let ads = [...state.ads];
+    if (limit) ads = ads.slice(0, limit);
 
     if (!ads.length) {
-
         container.innerHTML = `
-
-            <div class="empty"
-                 style="grid-column:1/-1">
-
-                <div class="empty-icon">
-                    🐱
-                </div>
-
-                <h3>Hozircha e’lon yo‘q</h3>
-
-                <p>
-                    Birinchi e’lonni siz joylashtiring!
-                </p>
-
-                <button
-                    class="primary-btn"
-                    style="margin-top:15px"
-                    onclick="navigate('create')">
-
-                    + E’lon berish
-
-                </button>
-
+            <div class="empty" style="grid-column:1/-1">
+                <div class="empty-icon">🐱</div>
+                <h3>Hozircha foydalanuvchilar yo‘q</h3>
+                <p>Birinchi bo‘lib ro'yxatdan o'ting!</p>
             </div>
-
         `;
-
         return;
-
     }
 
-
-    container.innerHTML =
-        ads.map(
-            ad => createAdCard(ad)
-        ).join("");
-
+    container.innerHTML = ads.map(ad => createUserCard(ad)).join('');
 }
 
-
-function createAdCard(ad) {
-
-    let icon =
-        ad.type === "sotish"
-            ? "💰"
-            : ad.type === "hadiya"
-                ? "🎁"
-                : "❤️";
-
-
-    let typeText =
-        ad.type === "sotish"
-            ? "SOTILADI"
-            : ad.type === "hadiya"
-                ? "HADIYA"
-                : "VYAZKA";
-
-
-    let image = "";
-
-
-    if (
-        ad.media &&
-        ad.media.length
-    ) {
-
-        image = `
-
-            <img
-                src="${ad.media[0]}"
-                alt="${ad.name}"
-            >
-
-        `;
-
-    } else {
-
-        image = `
-
-            <div class="ad-placeholder">
-                🐱
-            </div>
-
-        `;
-
-    }
-
-
-    const isFavorite =
-        state.favorites.includes(
-            ad.id
-        );
-
+function createUserCard(user) {
+    const isFavorite = state.favorites.includes(user.id);
 
     return `
-
-        <div
-            class="ad-card"
-            onclick="openAd('${ad.id}')">
-
+        <div class="ad-card" onclick="openUserProfile('${user.id}')">
             <div class="ad-image">
-
-                ${image}
-
-                <div class="ad-badge">
-                    ${icon} ${typeText}
-                </div>
-
-                <button
-                    class="favorite"
-                    onclick="event.stopPropagation();toggleFavorite('${ad.id}')">
-
-                    ${isFavorite ? "❤️" : "♡"}
-
+                <div class="ad-placeholder">🐱</div>
+                <div class="ad-badge">👤 ${user.role || 'USER'}</div>
+                <button class="favorite-btn" onclick="event.stopPropagation();toggleFavorite('${user.id}')">
+                    ${isFavorite ? '❤️' : '♡'}
                 </button>
-
             </div>
-
-
             <div class="ad-body">
-
-                <h4>
-                    ${escapeHTML(ad.name)}
-                </h4>
-
-                <div class="ad-price">
-
-                    ${
-                        ad.type === "sotish"
-                            ? formatPrice(ad.price, ad.currency)
-                            : ad.type === "hadiya"
-                                ? "Tekin"
-                                : "Kelishiladi"
-                    }
-
-                </div>
-
-                <div class="ad-location">
-
-                    📍
-                    ${escapeHTML(ad.location)}
-
-                </div>
-
+                <h4>${escapeHTML(user.name || 'Noma\'lum')}</h4>
+                <div class="ad-price">🏆 ${user.price || 0} ball</div>
+                <div class="ad-location">📱 ${escapeHTML(user.location || 'Noma\'lum')}</div>
             </div>
-
         </div>
-
     `;
-
 }
 
+// ============================================================
+// OPEN USER PROFILE
+// ============================================================
+function openUserProfile(id) {
+    const user = state.users.find(u => u.id === id);
+    if (!user) {
+        showToast('Foydalanuvchi topilmadi', 'error');
+        return;
+    }
 
-/* =========================================================
-   OPEN AD
-========================================================= */
-
-function openAd(id) {
-
-    const ad =
-        state.ads.find(
-            item => item.id === id
-        );
-
-
-    if (!ad) return;
-
-
-    showModal(
-
-        ad.name,
-
-        `
-
-        <div>
-
-            ${
-                ad.media &&
-                ad.media.length
-                    ? `
-                        <img
-                            src="${ad.media[0]}"
-                            style="
-                                width:100%;
-                                height:240px;
-                                object-fit:cover;
-                                border-radius:18px;
-                                margin-bottom:15px
-                            "
-                        >
-                    `
-                    : `
-                        <div
-                            style="
-                                height:200px;
-                                border-radius:18px;
-                                background:#fff1e5;
-                                display:flex;
-                                align-items:center;
-                                justify-content:center;
-                                font-size:80px;
-                                margin-bottom:15px
-                            "
-                        >
-                            🐱
-                        </div>
-                    `
-            }
-
-
-            <h3>
-                ${escapeHTML(ad.name)}
-            </h3>
-
-
-            <p style="margin-top:10px;color:#777">
-                🐱 Zot: ${escapeHTML(ad.breed)}
+    showModal(`👤 ${user.fullName}`, `
+        <div style="text-align:center;">
+            <div style="font-size:60px;margin-bottom:15px;">🐱</div>
+            <h3>${escapeHTML(user.fullName)}</h3>
+            <p style="color:#888;margin-top:5px;">@${escapeHTML(user.telegramUsername || 'Noma\'lum')}</p>
+            <p style="color:#888;">📞 ${escapeHTML(user.phoneNumber || 'Noma\'lum')}</p>
+            <p style="color:#888;">🆔 ${escapeHTML(user.telegramId)}</p>
+            <p style="color:var(--orange);font-weight:800;font-size:20px;margin-top:10px;">
+                🏆 ${user.initialScore || 0} ball
             </p>
-
-
-            <p style="margin-top:7px;color:#777">
-                🎂 Yosh: ${escapeHTML(ad.age || "Ko‘rsatilmagan")}
+            <p style="color:#888;font-size:12px;margin-top:5px;">
+                📅 ${user.registeredDate ? new Date(user.registeredDate).toLocaleDateString() : 'Noma\'lum'}
             </p>
-
-
-            <p style="margin-top:7px;color:#777">
-                ⚥ Jinsi: ${escapeHTML(ad.gender || "Ko‘rsatilmagan")}
-            </p>
-
-
-            <p style="margin-top:7px;color:#777">
-                ❤️ Sog‘ligi: ${escapeHTML(ad.health)}
-            </p>
-
-
-            <p style="margin-top:7px;color:#777">
-                📍 ${escapeHTML(ad.location)}
-            </p>
-
-
-            ${
-                ad.description
-                    ? `
-                        <div
-                            style="
-                                margin-top:15px;
-                                padding:14px;
-                                background:#f7f7f8;
-                                border-radius:14px;
-                                font-size:13px
-                            "
-                        >
-                            ${escapeHTML(ad.description)}
-                        </div>
-                    `
-                    : ""
-            }
-
-
-            <button
-                class="primary-btn"
-                style="margin-top:18px"
-                onclick="contactSeller('${ad.phone}')">
-
-                📞 Sotuvchi bilan bog‘lanish
-
-            </button>
-
+            <div style="display:flex;gap:10px;margin-top:15px;flex-wrap:wrap;justify-content:center;">
+                <button class="primary-btn" style="width:auto;padding:10px 20px;" onclick="updateScore('${user.telegramId}', ${(user.initialScore || 0) + 10})">
+                    +10 ball
+                </button>
+                <button class="secondary-btn" style="width:auto;padding:10px 20px;margin:0;" onclick="updateScore('${user.telegramId}', ${(user.initialScore || 0) - 5})">
+                    -5 ball
+                </button>
+            </div>
+            ${state.user?.role === 'ADMIN' || state.user?.role === 'SUPER_ADMIN' ? `
+                <button class="secondary-btn" style="margin-top:10px;color:var(--red);" onclick="deleteUser('${user.id}')">
+                    🗑️ Foydalanuvchini o'chirish
+                </button>
+            ` : ''}
         </div>
-
-        `
-
-    );
-
+    `);
 }
 
-
-/* =========================================================
-   MY ADS
-========================================================= */
-
+// ============================================================
+// MY ADS (Foydalanuvchining e'lonlari)
+// ============================================================
 function renderMyAds() {
+    const container = document.getElementById('myAdsList');
+    const myAds = state.users.filter(user => user.telegramId === state.user?.telegramId);
 
-    const container =
-        document.getElementById(
-            "myAdsList"
-        );
-
-
-    const ads =
-        state.ads.filter(
-            ad =>
-                ad.userId ===
-                state.user.id
-        );
-
-
-    if (!ads.length) {
-
+    if (!myAds.length) {
         container.innerHTML = `
-
             <div class="empty">
-
-                <div class="empty-icon">
-                    📋
-                </div>
-
-                <h3>E’lonlaringiz yo‘q</h3>
-
-                <p>
-                    Birinchi e’loningizni joylashtiring.
-                </p>
-
+                <div class="empty-icon">📋</div>
+                <h3>Ma'lumotlaringiz yo'q</h3>
+                <p>Profilingizni to'ldiring.</p>
+                <button class="primary-btn" style="margin-top:15px;width:auto;padding:12px 24px;" onclick="editProfile()">
+                    ✏️ Profilni tahrirlash
+                </button>
             </div>
-
         `;
-
         return;
-
     }
 
-
-    container.innerHTML =
-        ads.map(
-            ad => `
-
-                <div
-                    class="form-card"
-                    style="display:flex;gap:12px;align-items:center">
-
-                    <div
-                        style="
-                            width:70px;
-                            height:70px;
-                            border-radius:15px;
-                            background:#fff1e5;
-                            display:flex;
-                            align-items:center;
-                            justify-content:center;
-                            font-size:30px;
-                            overflow:hidden
-                        "
-                    >
-
-                        ${
-                            ad.media &&
-                            ad.media.length
-                                ? `
-                                    <img
-                                        src="${ad.media[0]}"
-                                        style="
-                                            width:100%;
-                                            height:100%;
-                                            object-fit:cover
-                                        "
-                                    >
-                                `
-                                : "🐱"
-                        }
-
-                    </div>
-
-
-                    <div style="flex:1">
-
-                        <strong>
-                            ${escapeHTML(ad.name)}
-                        </strong>
-
-                        <p
-                            style="
-                                font-size:11px;
-                                color:#888;
-                                margin-top:5px
-                            "
-                        >
-                            ${escapeHTML(ad.breed)}
-                        </p>
-
-                        <p
-                            style="
-                                font-size:11px;
-                                color:${
-                                    ad.status === "approved"
-                                        ? "#20b26b"
-                                        : "#ff7a00"
-                                };
-                                margin-top:4px
-                            "
-                        >
-                            ${
-                                ad.status === "approved"
-                                    ? "● Tasdiqlangan"
-                                    : "● Tekshiruvda"
-                            }
-                        </p>
-
-                    </div>
-
+    container.innerHTML = myAds.map(user => `
+        <div class="form-card" style="cursor:pointer;" onclick="openUserProfile('${user.id}')">
+            <div style="display:flex;gap:12px;align-items:center;">
+                <div style="width:60px;height:60px;border-radius:50%;background:var(--orange-light);display:flex;align-items:center;justify-content:center;font-size:30px;flex-shrink:0;">
+                    🐱
                 </div>
-
-            `
-        )
-        .join("");
-
-}
-
-
-/* =========================================================
-   SEARCH
-========================================================= */
-
-function searchAds(query) {
-
-    const text =
-        query
-            .toLowerCase()
-            .trim();
-
-
-    const filtered =
-        state.ads.filter(
-            ad =>
-                ad.name
-                    .toLowerCase()
-                    .includes(text) ||
-
-                ad.breed
-                    .toLowerCase()
-                    .includes(text) ||
-
-                ad.location
-                    .toLowerCase()
-                    .includes(text)
-        );
-
-
-    const container =
-        document.getElementById(
-            "homeAds"
-        );
-
-
-    container.innerHTML =
-        filtered
-            .slice(0, 10)
-            .map(
-                ad =>
-                    createAdCard(ad)
-            )
-            .join("");
-
-
-    if (!filtered.length) {
-
-        container.innerHTML = `
-
-            <div class="empty"
-                 style="grid-column:1/-1">
-
-                🔍
-                <br><br>
-
-                Mushuk topilmadi
-
+                <div style="flex:1;">
+                    <strong>${escapeHTML(user.fullName)}</strong>
+                    <p style="font-size:12px;color:#888;margin-top:3px;">@${escapeHTML(user.telegramUsername || 'Noma\'lum')}</p>
+                    <p style="font-size:12px;color:var(--orange);margin-top:3px;">🏆 ${user.initialScore || 0} ball</p>
+                </div>
             </div>
+        </div>
+    `).join('');
 
-        `;
-
-    }
-
+    // Tahrirlash tugmasi
+    container.innerHTML += `
+        <button class="primary-btn" onclick="editProfile()" style="margin-top:10px;">
+            ✏️ Profilni tahrirlash
+        </button>
+    `;
 }
 
+// ============================================================
+// EDIT PROFILE
+// ============================================================
+function editProfile() {
+    if (!state.user) return;
 
-/* =========================================================
-   CATEGORY FILTER
-========================================================= */
+    showModal('✏️ Profilni tahrirlash', `
+        <label class="label">👤 Ism-familiya</label>
+        <input id="editFullName" class="input" value="${escapeHTML(state.user.fullName)}">
 
-function filterCategory(
-    type,
-    element
-) {
+        <label class="label">📞 Telefon raqam</label>
+        <input id="editPhone" class="input" value="${escapeHTML(state.user.phoneNumber)}">
 
-    document
-        .querySelectorAll(".category")
-        .forEach(btn => {
+        <label class="label">👤 Username</label>
+        <input id="editUsername" class="input" value="${escapeHTML(state.user.telegramUsername || '')}">
 
-            btn.classList.remove(
-                "active"
-            );
-
-        });
-
-
-    element.classList.add(
-        "active"
-    );
-
-
-    let ads =
-        type === "all"
-            ? state.ads
-            : state.ads.filter(
-                ad =>
-                    ad.type === type
-            );
-
-
-    const container =
-        document.getElementById(
-            "homeAds"
-        );
-
-
-    container.innerHTML =
-        ads
-            .slice(0, 10)
-            .map(
-                ad =>
-                    createAdCard(ad)
-            )
-            .join("");
-
-
-    if (!ads.length) {
-
-        container.innerHTML = `
-
-            <div class="empty"
-                 style="grid-column:1/-1">
-
-                🐱
-
-                <br><br>
-
-                Bu kategoriyada e’lon yo‘q.
-
-            </div>
-
-        `;
-
-    }
-
+        <div style="display:flex;gap:10px;">
+            <button class="primary-btn" onclick="saveProfile()">💾 Saqlash</button>
+            <button class="secondary-btn" onclick="hideModal()">Bekor qilish</button>
+        </div>
+    `);
 }
 
+async function saveProfile() {
+    const fullName = document.getElementById('editFullName').value.trim();
+    const phone = document.getElementById('editPhone').value.trim();
+    const username = document.getElementById('editUsername').value.trim().replace('@', '');
 
-/* =========================================================
-   FAVORITES
-========================================================= */
-
-function toggleFavorite(id) {
-
-    if (
-        state.favorites.includes(id)
-    ) {
-
-        state.favorites =
-            state.favorites.filter(
-                item => item !== id
-            );
-
-        showToast(
-            "Sevimlilardan olib tashlandi"
-        );
-
-    } else {
-
-        state.favorites.push(id);
-
-        showToast(
-            "❤️ Sevimlilarga qo‘shildi",
-            "success"
-        );
-
+    if (!fullName || !phone) {
+        showToast('Majburiy maydonlarni to'ldiring', 'error');
+        return;
     }
 
+    const userData = {
+        fullName: fullName,
+        phoneNumber: phone,
+        telegramUsername: username,
+        initialScore: state.user.initialScore,
+        role: state.user.role
+    };
 
-    saveState();
-
-    renderAds("homeAds", 4);
-
+    await updateUser(state.user.id, userData);
+    hideModal();
 }
 
-
-/* =========================================================
-   PROFILE
-========================================================= */
-
+// ============================================================
+// PROFILE
+// ============================================================
 function updateProfile() {
+    if (!state.user) return;
 
-    document.getElementById(
-        "profileNumber"
-    ).textContent =
-        "Foydalanuvchi #" +
-        state.user.number;
-
-
-    document.getElementById(
-        "profileScore"
-    ).textContent =
-        state.user.score;
-
-
-    document.getElementById(
-        "profileAds"
-    ).textContent =
-        state.ads.filter(
-            ad =>
-                ad.userId ===
-                state.user.id
-        ).length;
-
-
-    document.getElementById(
-        "profileRefs"
-    ).textContent =
-        state.user.referrals;
-
+    document.getElementById('profileName').textContent = state.user.fullName || 'Foydalanuvchi';
+    document.getElementById('profileId').textContent = `ID: ${state.user.telegramId || state.user.id || '-'}`;
+    document.getElementById('profileScore').textContent = state.user.initialScore || 0;
+    document.getElementById('profileAds').textContent = state.users.filter(u => u.telegramId === state.user.telegramId).length;
+    document.getElementById('profileRefs').textContent = state.user.referrals || 0;
 }
 
-
-/* =========================================================
-   CONTEST
-========================================================= */
-
+// ============================================================
+// CONTEST
+// ============================================================
 function updateContest() {
+    const link = `https://t.me/UzbekCatsBot?start=${state.referralCode || 'REF' + Date.now()}`;
+    document.getElementById('referralLink').textContent = link;
 
-    document.getElementById(
-        "referralLink"
-    ).textContent =
-        "https://t.me/UzbekCatsBot?start=" +
-        state.referralCode;
+    const sorted = [...state.users].sort((a, b) => 
+        (b.initialScore || 0) - (a.initialScore || 0)
+    ).slice(0, 10);
 
+    const list = document.getElementById('ratingList');
 
-    const ranking =
-        [...state.ads]
-            .sort(
-                (a,b) =>
-                    new Date(b.createdAt) -
-                    new Date(a.createdAt)
-            )
-            .slice(0, 10);
-
-
-    const list =
-        document.getElementById(
-            "ratingList"
-        );
-
-
-    if (!ranking.length) {
-
+    if (!sorted.length) {
         list.innerHTML = `
-
             <div class="empty">
-
-                🏆
-
-                <br><br>
-
-                Reyting hali shakllanmagan.
-
+                <div class="empty-icon">🏆</div>
+                <h3>Reyting hali shakllanmagan</h3>
+                <p>Birinchi bo'lib ro'yxatdan o'ting!</p>
             </div>
-
         `;
-
         return;
-
     }
 
-
-    list.innerHTML =
-        ranking
-            .map(
-                (ad, index) => `
-
-                    <div
-                        class="form-card"
-                        style="
-                            display:flex;
-                            align-items:center;
-                            gap:12px
-                        "
-                    >
-
-                        <strong
-                            style="
-                                font-size:20px;
-                                color:#ff7a00
-                            "
-                        >
-                            #${index + 1}
-                        </strong>
-
-                        <div style="flex:1">
-
-                            <strong>
-                                ${escapeHTML(ad.name)}
-                            </strong>
-
-                            <small
-                                style="
-                                    display:block;
-                                    color:#888;
-                                    margin-top:4px
-                                "
-                            >
-                                ${escapeHTML(ad.breed)}
-                            </small>
-
-                        </div>
-
-                    </div>
-
-                `
-            )
-            .join("");
-
+    list.innerHTML = sorted.map((user, i) => `
+        <div class="form-card" style="display:flex;align-items:center;gap:12px;cursor:pointer;" onclick="openUserProfile('${user.id}')">
+            <strong style="font-size:20px;color:var(--orange);">#${i + 1}</strong>
+            <div style="flex:1;">
+                <strong>${escapeHTML(user.fullName)}</strong>
+                <small style="display:block;color:#888;margin-top:3px;">@${escapeHTML(user.telegramUsername || 'Noma\'lum')}</small>
+            </div>
+            <span style="font-weight:700;color:var(--orange);">🏆 ${user.initialScore || 0}</span>
+        </div>
+    `).join('');
 }
-
-
-/* =========================================================
-   REFERRAL
-========================================================= */
 
 function copyReferral() {
-
-    const link =
-        "https://t.me/UzbekCatsBot?start=" +
-        state.referralCode;
-
-
-    navigator.clipboard
-        .writeText(link)
-        .then(() => {
-
-            showToast(
-                "✅ Referral link nusxalandi",
-                "success"
-            );
-
-        });
-
+    const link = document.getElementById('referralLink').textContent;
+    navigator.clipboard.writeText(link).then(() => {
+        showToast('✅ Referral link nusxalandi', 'success');
+    }).catch(() => {
+        showToast('Link: ' + link, 'success');
+    });
 }
-
 
 function showPrize() {
-
-    showModal(
-
-        "🎁 Mukofot",
-
-        `
-
-        <div style="text-align:center">
-
-            <div style="font-size:80px">
-                🐱
-            </div>
-
-            <h2>
-                ${state.konkurs.prize}
-            </h2>
-
-            <p
-                style="
-                    color:#888;
-                    margin-top:10px
-                "
-            >
-                Ko‘proq do‘st taklif qiling
+    showModal('🎁 Mukofot', `
+        <div style="text-align:center;">
+            <div style="font-size:80px;">🐱</div>
+            <h2>Scottish Fold Black</h2>
+            <p style="color:#888;margin-top:10px;line-height:1.6;">
+                Ko‘proq do‘st taklif qiling<br>
                 va g‘olib bo‘lish imkoniyatingizni oshiring.
             </p>
-
+            <p style="margin-top:15px;color:var(--orange);font-weight:700;">
+                Hozirgi reyting: ${state.users.length} foydalanuvchi
+            </p>
         </div>
-
-        `
-
-    );
-
+    `);
 }
 
-
-/* =========================================================
-   ADMIN
-========================================================= */
-
+// ============================================================
+// ADMIN
+// ============================================================
 function updateAdmin() {
-
-    document.getElementById(
-        "adminUsers"
-    ).textContent =
-        state.statistics.totalUsers;
-
-
-    document.getElementById(
-        "adminAds"
-    ).textContent =
-        state.ads.length;
-
-
-    document.getElementById(
-        "adminSell"
-    ).textContent =
-        state.statistics.sotish;
-
-
-    document.getElementById(
-        "adminGift"
-    ).textContent =
-        state.statistics.hadiya;
-
-
-    document.getElementById(
-        "adminBreed"
-    ).textContent =
-        state.statistics.vyazka;
-
-
-    document.getElementById(
-        "adminBanned"
-    ).textContent =
-        state.bannedUsers.length;
-
+    document.getElementById('adminUsers').textContent = state.users.length || 0;
+    document.getElementById('adminAds').textContent = state.users.length || 0;
+    document.getElementById('adminSell').textContent = state.users.filter(u => u.role === 'USER').length || 0;
+    document.getElementById('adminGift').textContent = state.users.filter(u => u.role === 'ADMIN').length || 0;
+    document.getElementById('adminBreed').textContent = state.users.filter(u => u.role === 'SUPER_ADMIN').length || 0;
+    document.getElementById('adminBanned').textContent = '0';
 }
-
 
 function toggleBot() {
-
-    state.botEnabled =
-        !state.botEnabled;
-
-
-    const button =
-        document.getElementById(
-            "botToggle"
-        );
-
-
-    button.textContent =
-        state.botEnabled
-            ? "🟢 Bot yoqilgan"
-            : "🔴 Bot o‘chirilgan";
-
-
+    state.botEnabled = !state.botEnabled;
+    const btn = document.getElementById('botToggle');
+    btn.textContent = state.botEnabled ? '🟢 Bot yoqilgan' : '🔴 Bot o‘chirilgan';
     saveState();
+    showToast(state.botEnabled ? 'Bot yoqildi' : 'Bot o‘chirildi', 'success');
+}
 
-
-    showToast(
-        state.botEnabled
-            ? "Bot yoqildi"
-            : "Bot o‘chirildi",
-        "success"
+// ============================================================
+// SEARCH & FILTER
+// ============================================================
+function searchAds(query) {
+    const text = query.toLowerCase().trim();
+    const filtered = state.users.filter(user =>
+        (user.fullName && user.fullName.toLowerCase().includes(text)) ||
+        (user.telegramUsername && user.telegramUsername.toLowerCase().includes(text)) ||
+        (user.phoneNumber && user.phoneNumber.includes(text))
     );
 
+    const container = document.getElementById('homeAds');
+    if (!filtered.length) {
+        container.innerHTML = `
+            <div class="empty" style="grid-column:1/-1;">
+                <div class="empty-icon">🔍</div>
+                <h3>Foydalanuvchi topilmadi</h3>
+                <p>Qidiruv so‘zini o‘zgartiring</p>
+            </div>
+        `;
+        return;
+    }
+    container.innerHTML = filtered.slice(0, 10).map(user => createUserCard(user)).join('');
 }
 
+function filterCategory(type, element) {
+    document.querySelectorAll('.category').forEach(btn => btn.classList.remove('active'));
+    element.classList.add('active');
 
-/* =========================================================
-   MODAL
-========================================================= */
+    let filtered = [];
+    if (type === 'all') {
+        filtered = state.users;
+    } else {
+        filtered = state.users.filter(user => user.role?.toLowerCase() === type);
+    }
 
-function showModal(
-    title,
-    body
-) {
-
-    document.getElementById(
-        "modalTitle"
-    ).textContent =
-        title;
-
-
-    document.getElementById(
-        "modalBody"
-    ).innerHTML =
-        body;
-
-
-    document
-        .getElementById("modal")
-        .classList.add("show");
-
+    const container = document.getElementById('homeAds');
+    if (!filtered.length) {
+        container.innerHTML = `
+            <div class="empty" style="grid-column:1/-1;">
+                <div class="empty-icon">🐱</div>
+                <h3>Bu kategoriyada foydalanuvchi yo‘q</h3>
+            </div>
+        `;
+        return;
+    }
+    container.innerHTML = filtered.slice(0, 10).map(user => createUserCard(user)).join('');
 }
 
+// ============================================================
+// FAVORITES
+// ============================================================
+function toggleFavorite(id) {
+    const index = state.favorites.indexOf(id);
+    if (index > -1) {
+        state.favorites.splice(index, 1);
+        showToast('Sevimlilardan olib tashlandi');
+    } else {
+        state.favorites.push(id);
+        showToast('❤️ Sevimlilarga qo‘shildi', 'success');
+    }
+    saveState();
+    renderAds('homeAds', 6);
+}
+
+// ============================================================
+// MODAL
+// ============================================================
+function showModal(title, body) {
+    document.getElementById('modalTitle').textContent = title;
+    document.getElementById('modalBody').innerHTML = body;
+    document.getElementById('modal').classList.add('show');
+    document.body.style.overflow = 'hidden';
+}
 
 function hideModal() {
-
-    document
-        .getElementById("modal")
-        .classList.remove("show");
-
+    document.getElementById('modal').classList.remove('show');
+    document.body.style.overflow = '';
 }
-
 
 function closeModal(event) {
-
-    if (
-        event.target.id ===
-        "modal"
-    ) {
-
-        hideModal();
-
-    }
-
+    if (event.target.id === 'modal') hideModal();
 }
 
-
-/* =========================================================
-   FILTER
-========================================================= */
-
-function openFilter() {
-
-    showModal(
-
-        "⚙️ Filter",
-
-        `
-
-        <label class="label">
-            Zot
-        </label>
-
-        <select
-            id="filterBreed"
-            class="select">
-
-            <option value="">
-                Barchasi
-            </option>
-
-            <option>
-                Scottish Fold
-            </option>
-
-            <option>
-                British Shorthair
-            </option>
-
-            <option>
-                Bengal
-            </option>
-
-            <option>
-                Persian
-            </option>
-
-        </select>
-
-
-        <button
-            class="primary-btn"
-            onclick="applyFilter()">
-
-            Filterni qo‘llash
-
-        </button>
-
-        `
-
-    );
-
-}
-
-
-function applyFilter() {
-
-    const breed =
-        document
-            .getElementById(
-                "filterBreed"
-            )
-            .value;
-
-
-    const ads =
-        breed
-            ? state.ads.filter(
-                ad =>
-                    ad.breed === breed
-            )
-            : state.ads;
-
-
-    const container =
-        document.getElementById(
-            "homeAds"
-        );
-
-
-    container.innerHTML =
-        ads
-            .slice(0, 10)
-            .map(
-                ad =>
-                    createAdCard(ad)
-            )
-            .join("");
-
-
-    hideModal();
-
-
-    showToast(
-        "✅ Filter qo‘llandi",
-        "success"
-    );
-
-}
-
-
-/* =========================================================
-   SETTINGS
-========================================================= */
-
+// ============================================================
+// SETTINGS & ABOUT
+// ============================================================
 function showSettings() {
-
-    showModal(
-
-        "⚙️ Sozlamalar",
-
-        `
-
-        <button
-            class="menu-item"
-            onclick="toggleTheme()">
-
-            🌙
-            <strong>
-                Dark Mode
-            </strong>
-
-        </button>
-
-
-        <button
-            class="menu-item"
-            onclick="clearLocalData()">
-
-            🗑️
-            <strong>
-                Mahalliy ma’lumotlarni tozalash
-            </strong>
-
-        </button>
-
-        `
-
-    );
-
+    showModal('⚙️ Sozlamalar', `
+        <button class="menu-item" onclick="toggleTheme()">🌙 Dark Mode</button>
+        <button class="menu-item" onclick="clearLocalData()">🗑️ Mahalliy ma’lumotlarni tozalash</button>
+        <button class="menu-item" onclick="hideModal();navigate('admin')">🛠️ Admin panel</button>
+        ${state.user ? `<button class="menu-item" onclick="editProfile()">✏️ Profilni tahrirlash</button>` : ''}
+        <button class="menu-item" onclick="exportData()">📤 Ma'lumotlarni eksport qilish</button>
+    `);
 }
 
+function exportData() {
+    const data = {
+        users: state.users,
+        favorites: state.favorites,
+        exportDate: new Date().toISOString()
+    };
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `uzbek_cats_export_${Date.now()}.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+    showToast('✅ Ma\'lumotlar eksport qilindi', 'success');
+}
 
 function toggleTheme() {
-
-    document.body.style.background =
-        document.body.style.background ===
-        "rgb(25, 25, 25)"
-            ? ""
-            : "#191919";
-
-
-    showToast(
-        "Dizayn rejimi o‘zgartirildi"
-    );
-
+    document.body.style.background = document.body.style.background === 'rgb(25, 25, 25)' ? '' : '#191919';
+    document.body.style.color = document.body.style.background === '#191919' ? '#fff' : '';
+    showToast('Dizayn rejimi o‘zgartirildi');
 }
-
 
 function clearLocalData() {
-
-    if (
-        confirm(
-            "Barcha lokal ma’lumotlarni o‘chirishni xohlaysizmi?"
-        )
-    ) {
-
-        localStorage.removeItem(
-            STORAGE_KEY
-        );
-
+    if (confirm('Barcha lokal ma’lumotlarni o‘chirishni xohlaysizmi?')) {
+        localStorage.removeItem(STORAGE_KEY);
         location.reload();
-
     }
-
 }
-
-
-/* =========================================================
-   ABOUT
-========================================================= */
 
 function showAbout() {
-
-    showModal(
-
-        "🐱 Uzbek Cats",
-
-        `
-
-        <div style="text-align:center">
-
-            <div style="font-size:70px">
-                🐱
-            </div>
-
-            <h2>
-                Uzbek Cats
-            </h2>
-
-            <p
-                style="
-                    color:#888;
-                    margin-top:10px;
-                    line-height:1.6
-                "
-            >
-                O‘zbekistondagi mushuk
-                ixlosmandlarini birlashtiruvchi
-                zamonaviy platforma.
+    showModal('🐱 Uzbek Cats', `
+        <div style="text-align:center;">
+            <div style="font-size:70px;">🐱</div>
+            <h2>Uzbek Cats</h2>
+            <p style="color:#888;margin-top:10px;line-height:1.6;">
+                O‘zbekistondagi mushuk ixlosmandlarini<br>
+                birlashtiruvchi zamonaviy platforma.
             </p>
-
-            <p
-                style="
-                    margin-top:15px;
-                    color:#ff7a00;
-                    font-weight:700
-                "
-            >
-                Version 2.0
+            <p style="margin-top:15px;color:var(--orange);font-weight:700;">Version 2.0</p>
+            <p style="color:#888;font-size:12px;margin-top:5px;">
+                Jami foydalanuvchilar: ${state.users.length}
             </p>
-
         </div>
-
-        `
-
-    );
-
+    `);
 }
-
-
-/* =========================================================
-   NOTIFICATIONS
-========================================================= */
 
 function showNotifications() {
-
-    showModal(
-
-        "🔔 Bildirishnomalar",
-
-        `
-
+    showModal('🔔 Bildirishnomalar', `
         <div class="empty">
-
-            🔔
-
-            <br><br>
-
-            Hozircha yangi bildirishnoma yo‘q.
-
+            <div class="empty-icon">🔔</div>
+            <h3>Hozircha yangi bildirishnoma yo‘q</h3>
         </div>
-
-        `
-
-    );
-
+    `);
 }
 
+function openFilter() {
+    showModal('⚙️ Filter', `
+        <label class="label">Role bo'yicha filter</label>
+        <select id="filterRole" class="select">
+            <option value="">Barchasi</option>
+            <option value="USER">USER</option>
+            <option value="ADMIN">ADMIN</option>
+            <option value="SUPER_ADMIN">SUPER_ADMIN</option>
+        </select>
+        <button class="primary-btn" onclick="applyFilter()">Filterni qo‘llash</button>
+    `);
+}
 
-/* =========================================================
-   CONTACT
-========================================================= */
+function applyFilter() {
+    const role = document.getElementById('filterRole').value;
+    const filtered = role
+        ? state.users.filter(user => user.role === role)
+        : state.users;
 
-function contactSeller(phone) {
+    const container = document.getElementById('homeAds');
+    container.innerHTML = filtered.slice(0, 10).map(user => createUserCard(user)).join('');
+    hideModal();
+    showToast('✅ Filter qo‘llandi', 'success');
+}
 
-    if (!phone) {
+// ============================================================
+// QUICK CREATE TYPE (Foydalanuvchi uchun)
+// ============================================================
+function openCreateType(type) {
+    showToast(`📝 ${type} turi tanlandi`, 'success');
+    navigate('create');
+}
 
-        showToast(
-            "Telefon raqam mavjud emas",
-            "error"
-        );
+// ============================================================
+// SELECT TYPE (E'lon turi)
+// ============================================================
+let selectedType = '';
+let uploadedMedia = [];
 
+function selectType(type, element) {
+    selectedType = type;
+    document.querySelectorAll('.type-btn').forEach(btn => btn.classList.remove('selected'));
+    element.classList.add('selected');
+
+    const priceCard = document.getElementById('priceCard');
+    priceCard.style.display = type === 'sotish' ? 'block' : 'none';
+}
+
+function previewMedia(event) {
+    const files = [...event.target.files];
+    uploadedMedia = [];
+    const preview = document.getElementById('mediaPreview');
+    preview.innerHTML = '';
+
+    files.forEach(file => {
+        const url = URL.createObjectURL(file);
+        uploadedMedia.push({ name: file.name, type: file.type, url });
+
+        const el = file.type.startsWith('image/')
+            ? document.createElement('img')
+            : document.createElement('video');
+        el.src = url;
+        if (el.tagName === 'VIDEO') el.controls = true;
+        preview.appendChild(el);
+    });
+}
+
+// ============================================================
+// SUBMIT AD (Foydalanuvchi ma'lumotlarini yangilash)
+// ============================================================
+async function submitAd() {
+    if (!selectedType) {
+        showToast('E’lon turini tanlang', 'error');
         return;
-
     }
 
+    const name = document.getElementById('catName').value.trim();
+    const breed = document.getElementById('catBreed').value;
+    const location = document.getElementById('catLocation').value.trim();
+    const phone = document.getElementById('catPhone').value.trim();
 
-    window.location.href =
-        "tel:" + phone;
+    if (!name || !breed || !location || !phone) {
+        showToast('Majburiy maydonlarni to‘ldiring', 'error');
+        return;
+    }
 
+    if (!state.user) {
+        showToast('Iltimos, avval ro\'yxatdan o\'ting', 'error');
+        return;
+    }
+
+    // Foydalanuvchi ma'lumotlarini yangilash
+    const userData = {
+        fullName: name,
+        phoneNumber: phone,
+        telegramUsername: state.user.telegramUsername || '',
+        initialScore: (state.user.initialScore || 0) + 5, // E'lon uchun +5 ball
+        role: state.user.role || 'USER'
+    };
+
+    await updateUser(state.user.id, userData);
+
+    showToast('✅ Ma\'lumotlaringiz yangilandi! +5 ball', 'success');
+    resetForm();
+    renderAds('homeAds', 6);
+    updateProfile();
+
+    setTimeout(() => navigate('profile'), 500);
 }
 
-
-/* =========================================================
-   HELPERS
-========================================================= */
-
-function formatPrice(
-    price,
-    currency
-) {
-
-    if (!price) {
-
-        return "Narx kelishiladi";
-
-    }
-
-
-    const number =
-        Number(price);
-
-
-    if (
-        isNaN(number)
-    ) {
-
-        return price;
-
-    }
-
-
-    return (
-        new Intl.NumberFormat(
-            "uz-UZ"
-        ).format(number)
-        +
-        " "
-        +
-        currency
-    );
-
+function resetForm() {
+    document.querySelectorAll('#page-create input, #page-create textarea').forEach(el => el.value = '');
+    document.querySelectorAll('#page-create select').forEach(el => el.selectedIndex = 0);
+    document.querySelectorAll('.type-btn').forEach(el => el.classList.remove('selected'));
+    document.getElementById('mediaPreview').innerHTML = '';
+    uploadedMedia = [];
+    selectedType = '';
+    document.getElementById('priceCard').style.display = 'none';
 }
 
+// ============================================================
+// CONTACT SELLER (Telefon raqam)
+// ============================================================
+function contactSeller(phone) {
+    if (!phone) {
+        showToast('Telefon raqam mavjud emas', 'error');
+        return;
+    }
+    window.location.href = 'tel:' + phone;
+}
+
+// ============================================================
+// HELPERS
+// ============================================================
+function formatPrice(price, currency) {
+    if (!price) return 'Kelishiladi';
+    const num = Number(price);
+    if (isNaN(num)) return price;
+    return new Intl.NumberFormat('uz-UZ').format(num) + ' ' + (currency || 'UZS');
+}
 
 function escapeHTML(text) {
-
-    if (!text) return "";
-
-
-    return String(text)
-        .replace(
-            /&/g,
-            "&amp;"
-        )
-        .replace(
-            /</g,
-            "&lt;"
-        )
-        .replace(
-            />/g,
-            "&gt;"
-        )
-        .replace(
-            /"/g,
-            "&quot;"
-        )
-        .replace(
-            /'/g,
-            "&#039;"
-        );
-
+    if (!text) return '';
+    const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
+    return String(text).replace(/[&<>"']/g, m => map[m]);
 }
 
-
-/* =========================================================
-   TOAST
-========================================================= */
-
-function showToast(
-    message,
-    type = ""
-) {
-
-    const container =
-        document.getElementById(
-            "toastContainer"
-        );
-
-
-    const toast =
-        document.createElement(
-            "div"
-        );
-
-
-    toast.className =
-        "toast " + type;
-
-
-    toast.textContent =
-        message;
-
-
-    container.appendChild(
-        toast
-    );
-
-
-    setTimeout(() => {
-
-        toast.remove();
-
-    }, 3000);
-
+function showToast(message, type = '') {
+    const container = document.getElementById('toastContainer');
+    const toast = document.createElement('div');
+    toast.className = 'toast ' + type;
+    toast.textContent = message;
+    container.appendChild(toast);
+    setTimeout(() => toast.remove(), 3000);
 }
 
+// ============================================================
+// INIT
+// ============================================================
+document.addEventListener('DOMContentLoaded', async () => {
+    loadState();
 
-/* =========================================================
-   INIT
-========================================================= */
+    // Check if user exists
+    await checkUser();
 
-document.addEventListener(
-    "DOMContentLoaded",
-    () => {
-
-        loadState();
-
-        renderAds(
-            "homeAds",
-            4
-        );
-
-        updateProfile();
-
-        updateContest();
-
-        updateAdmin();
-
-        showToast(
-            "🐱 Uzbek Cats'ga xush kelibsiz!",
-            "success"
-        );
-
+    if (state.user) {
+        document.getElementById('registerOverlay').classList.remove('show');
+        document.getElementById('userGreeting').textContent = `Salom, ${state.user.fullName || 'Foydalanuvchi'}!`;
+        await loadAllData();
+    } else {
+        document.getElementById('registerOverlay').classList.add('show');
     }
-);
 
+    if (state.user?.role === 'ADMIN' || state.user?.role === 'SUPER_ADMIN') {
+        state.isAdmin = true;
+    }
+
+    showToast('🐱 Uzbek Cats', 'success');
+});
+
+// Telegram WebApp yopilganda ma'lumot yuborish
+window.addEventListener('beforeunload', function() {
+    if (tg && state.user) {
+        tg.sendData(JSON.stringify({
+            action: 'close',
+            user: state.user
+        }));
+    }
+});
 </script>
 
 </body>
