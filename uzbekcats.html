@@ -2,2303 +2,732 @@
 <html lang="uz">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Qur'on Ustoz</title>
-
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0a0d12">
+<title>Cardinal Reklama Bot</title>
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
 :root{
-    --bg:#f6f8f7;
-    --card:#ffffff;
-    --text:#17221d;
-    --muted:#718078;
-    --primary:#087f5b;
-    --primary-dark:#056047;
-    --primary-light:#e1f3ed;
-    --border:#e6ebe8;
-    --gold:#d49a25;
-    --shadow:0 8px 30px rgba(0,0,0,.06);
-}
-
-body.dark{
-    --bg:#101614;
-    --card:#18201d;
-    --text:#f1f5f3;
-    --muted:#98a7a0;
-    --primary:#23b486;
-    --primary-dark:#15936d;
-    --primary-light:#173d32;
-    --border:#29342f;
-    --shadow:0 8px 30px rgba(0,0,0,.2);
-}
-
-body{
-    font-family:Inter,Arial,sans-serif;
-    background:var(--bg);
-    color:var(--text);
-    transition:.25s;
-}
-
-button,input,select{
-    font:inherit;
-}
-
-button{
-    border:none;
-    cursor:pointer;
-}
-
-.app{
-    max-width:1250px;
-    margin:auto;
-    min-height:100vh;
-    padding-bottom:100px;
-}
-
-/* HEADER */
-
-.header{
-    height:78px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:0 24px;
-    position:sticky;
-    top:0;
-    z-index:50;
-    background:color-mix(in srgb,var(--bg) 92%,transparent);
-    backdrop-filter:blur(14px);
-}
-
-.logo{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    font-weight:800;
-    font-size:21px;
-}
-
-.logo-icon{
-    width:42px;
-    height:42px;
-    border-radius:13px;
-    background:var(--primary);
-    color:white;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:22px;
-}
-
-.header-actions{
-    display:flex;
-    gap:10px;
-}
-
-.icon-btn{
-    width:42px;
-    height:42px;
-    border-radius:13px;
-    background:var(--card);
-    color:var(--text);
-    box-shadow:var(--shadow);
-}
-
-/* PAGES */
-
-.page{
-    display:none;
-    padding:20px 24px;
-}
-
-.page.active{
-    display:block;
-}
-
-.page-title{
-    font-size:30px;
-    font-weight:800;
-    margin-bottom:8px;
-}
-
-.page-subtitle{
-    color:var(--muted);
-    margin-bottom:25px;
-}
-
-/* HOME */
-
-.greeting{
-    margin:15px 0 22px;
-}
-
-.greeting h1{
-    font-size:30px;
-    margin-bottom:7px;
-}
-
-.greeting p{
-    color:var(--muted);
-}
-
-.hero{
-    background:linear-gradient(135deg,#087f5b,#0c9b70);
-    color:white;
-    border-radius:28px;
-    padding:28px;
-    position:relative;
-    overflow:hidden;
-    box-shadow:0 15px 35px rgba(8,127,91,.22);
-}
-
-.hero:after{
-    content:"☪";
-    position:absolute;
-    right:35px;
-    top:-20px;
-    font-size:180px;
-    opacity:.08;
-}
-
-.hero-label{
-    opacity:.8;
-    margin-bottom:8px;
-}
-
-.hero h2{
-    font-size:27px;
-    margin-bottom:20px;
-}
-
-.progress{
-    height:10px;
-    background:rgba(255,255,255,.2);
-    border-radius:20px;
-    overflow:hidden;
-}
-
-.progress-bar{
-    height:100%;
-    background:white;
-    border-radius:20px;
-    width:0%;
-    transition:.4s;
-}
-
-.progress-row{
-    display:flex;
-    justify-content:space-between;
-    margin-top:10px;
-    font-size:14px;
-    opacity:.9;
-}
-
-.primary-btn{
-    background:var(--primary);
-    color:white;
-    padding:13px 20px;
-    border-radius:13px;
-    font-weight:700;
-}
-
-.hero .primary-btn{
-    margin-top:20px;
-    background:white;
-    color:var(--primary);
-}
-
-/* QUICK */
-
-.quick-grid{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:15px;
-    margin:22px 0;
-}
-
-.quick-card{
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:20px;
-    padding:20px;
-    cursor:pointer;
-    transition:.2s;
-}
-
-.quick-card:hover{
-    transform:translateY(-3px);
-    box-shadow:var(--shadow);
-}
-
-.quick-icon{
-    font-size:25px;
-    margin-bottom:13px;
-}
-
-.quick-card h3{
-    font-size:16px;
-    margin-bottom:5px;
-}
-
-.quick-card p{
-    color:var(--muted);
-    font-size:13px;
-}
-
-/* STAT */
-
-.stat-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:15px;
-}
-
-.stat-card{
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:20px;
-    padding:20px;
-}
-
-.stat-number{
-    font-size:28px;
-    font-weight:800;
-    margin-bottom:5px;
-}
-
-.stat-label{
-    color:var(--muted);
-    font-size:14px;
-}
-
-/* SEARCH */
-
-.search-box{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    background:var(--card);
-    border:1px solid var(--border);
-    padding:0 15px;
-    border-radius:15px;
-    height:52px;
-    margin-bottom:20px;
-}
-
-.search-box input{
-    flex:1;
-    border:none;
-    outline:none;
-    background:transparent;
-    color:var(--text);
-}
-
-/* SURA */
-
-.surah-grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:14px;
-}
-
-.surah-card{
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:20px;
-    padding:18px;
-    display:flex;
-    align-items:center;
-    gap:15px;
-    cursor:pointer;
-    transition:.2s;
-}
-
-.surah-card:hover{
-    border-color:var(--primary);
-    transform:translateY(-2px);
-}
-
-.surah-number{
-    width:46px;
-    height:46px;
-    border-radius:14px;
-    background:var(--primary-light);
-    color:var(--primary);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-weight:800;
-}
-
-.surah-info{
-    flex:1;
-}
-
-.surah-info h3{
-    margin-bottom:5px;
-}
-
-.surah-info p{
-    color:var(--muted);
-    font-size:13px;
-}
-
-.surah-arabic{
-    font-family:serif;
-    font-size:24px;
-}
-
-/* AYAT */
-
-.back-btn{
-    background:var(--card);
-    color:var(--text);
-    border:1px solid var(--border);
-    padding:10px 15px;
-    border-radius:12px;
-    margin-bottom:20px;
-}
-
-.surah-header{
-    text-align:center;
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:25px;
-    padding:30px;
-    margin-bottom:20px;
-}
-
-.surah-header .arabic-title{
-    font-family:serif;
-    font-size:35px;
-    margin:10px;
-}
-
-.ayah{
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:22px;
-    padding:25px;
-    margin-bottom:15px;
-    transition:.2s;
-}
-
-.ayah.read{
-    border-color:var(--primary);
-    background:var(--primary-light);
-}
-
-.ayah-top{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    margin-bottom:18px;
-}
-
-.ayah-number{
-    width:38px;
-    height:38px;
-    border-radius:50%;
-    background:var(--primary-light);
-    color:var(--primary);
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-weight:bold;
-}
-
-.ayah-actions{
-    display:flex;
-    gap:7px;
-}
-
-.small-btn{
-    width:38px;
-    height:38px;
-    border-radius:11px;
-    background:var(--bg);
-    color:var(--text);
-}
-
-.small-btn.active{
-    color:var(--gold);
-}
-
-.arabic{
-    font-family:"Times New Roman",serif;
-    font-size:34px;
-    line-height:2;
-    text-align:right;
-    direction:rtl;
-    margin-bottom:18px;
-}
-
-.translation{
-    font-size:16px;
-    line-height:1.7;
-    color:var(--muted);
-}
-
-/* AUDIO */
-
-.audio-player{
-    position:fixed;
-    left:50%;
-    transform:translateX(-50%);
-    bottom:78px;
-    width:min(700px,calc(100% - 30px));
-    background:var(--card);
-    border:1px solid var(--border);
-    box-shadow:0 15px 40px rgba(0,0,0,.18);
-    border-radius:22px;
-    padding:15px 18px;
-    z-index:100;
-    display:none;
-}
-
-.audio-player.show{
-    display:block;
-}
-
-.audio-info{
-    display:flex;
-    justify-content:space-between;
-    margin-bottom:10px;
-}
-
-.audio-title{
-    font-weight:700;
-}
-
-.audio-time{
-    color:var(--muted);
-    font-size:13px;
-}
-
-.audio-progress{
-    width:100%;
-    height:5px;
-    background:var(--border);
-    border-radius:10px;
-    cursor:pointer;
-}
-
-.audio-progress-fill{
-    height:100%;
-    width:0;
-    background:var(--primary);
-    border-radius:10px;
-}
-
-.audio-controls{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    gap:20px;
-    margin-top:12px;
-}
-
-.play-btn{
-    width:46px;
-    height:46px;
-    border-radius:50%;
-    background:var(--primary);
-    color:white;
-    font-size:18px;
-}
-
-/* SAVED */
-
-.empty{
-    text-align:center;
-    padding:60px 20px;
-    color:var(--muted);
-}
-
-.empty-icon{
-    font-size:50px;
-    margin-bottom:15px;
-}
-
-/* GOALS */
-
-.goal-card{
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:24px;
-    padding:25px;
-    margin-bottom:18px;
-}
-
-.goal-options{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:10px;
-    margin-top:18px;
-}
-
-.goal-option{
-    padding:15px;
-    background:var(--bg);
-    border:1px solid var(--border);
-    border-radius:13px;
-    color:var(--text);
-}
-
-.goal-option.active{
-    background:var(--primary);
-    color:white;
-    border-color:var(--primary);
-}
-
-/* SETTINGS */
-
-.setting{
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:18px;
-    padding:18px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:12px;
-}
-
-.setting-info h3{
-    margin-bottom:5px;
-}
-
-.setting-info p{
-    color:var(--muted);
-    font-size:13px;
-}
-
-select{
-    background:var(--bg);
-    border:1px solid var(--border);
-    color:var(--text);
-    padding:10px;
-    border-radius:10px;
-}
-
-/* TOGGLE */
-
-.switch{
-    width:48px;
-    height:27px;
-    background:var(--border);
-    border-radius:20px;
-    position:relative;
-    cursor:pointer;
-}
-
-.switch:after{
-    content:"";
-    width:21px;
-    height:21px;
-    background:white;
-    border-radius:50%;
-    position:absolute;
-    top:3px;
-    left:4px;
-    transition:.2s;
-}
-
-.switch.on{
-    background:var(--primary);
-}
-
-.switch.on:after{
-    left:23px;
-}
-
-/* BOTTOM NAV */
-
-.bottom-nav{
-    position:fixed;
-    bottom:0;
-    left:50%;
-    transform:translateX(-50%);
-    width:min(700px,100%);
-    height:70px;
-    background:color-mix(in srgb,var(--card) 94%,transparent);
-    backdrop-filter:blur(16px);
-    border:1px solid var(--border);
-    display:flex;
-    justify-content:space-around;
-    align-items:center;
-    z-index:90;
-}
-
-.nav-item{
-    background:none;
-    color:var(--muted);
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:4px;
-    font-size:11px;
-}
-
-.nav-icon{
-    font-size:21px;
-}
-
-.nav-item.active{
-    color:var(--primary);
-    font-weight:700;
-}
-
-/* MODAL */
-
-.modal{
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.55);
-    z-index:200;
-    display:none;
-    align-items:center;
-    justify-content:center;
-    padding:20px;
-}
-
-.modal.show{
-    display:flex;
-}
-
-.modal-box{
-    width:min(500px,100%);
-    background:var(--card);
-    border-radius:25px;
-    padding:25px;
-}
-
-.modal-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:20px;
-}
-
-.close{
-    background:var(--bg);
-    color:var(--text);
-    width:38px;
-    height:38px;
-    border-radius:10px;
-}
-
-/* RESPONSIVE */
-
-@media(max-width:800px){
-    .quick-grid{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .stat-grid{
-        grid-template-columns:1fr;
-    }
-
-    .surah-grid{
-        grid-template-columns:1fr;
-    }
-
-    .goal-options{
-        grid-template-columns:repeat(2,1fr);
-    }
-}
-
-@media(max-width:500px){
-    .header{
-        padding:0 15px;
-    }
-
-    .page{
-        padding:15px;
-    }
-
-    .greeting h1{
-        font-size:25px;
-    }
-
-    .hero{
-        padding:22px;
-        border-radius:22px;
-    }
-
-    .hero h2{
-        font-size:22px;
-    }
-
-    .arabic{
-        font-size:28px;
-    }
-
-    .ayah{
-        padding:18px;
-    }
-
-    .quick-card{
-        padding:15px;
-    }
-
-    .logo{
-        font-size:17px;
-    }
-}
+  --bg:#07090d;--panel:#10141b;--panel2:#151a22;--card:#11161e;
+  --line:#26303e;--text:#f4f7fb;--muted:#8e9aaa;--blue:#3b82f6;
+  --cyan:#20d7c7;--green:#35d07f;--yellow:#ffbd2e;--red:#ff5d6c;
+  --purple:#9b7cff;--shadow:0 18px 50px rgba(0,0,0,.34);--r:20px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:#05070a;color:var(--text);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+button,input,textarea,select{font:inherit}
+button{border:0;cursor:pointer}
+body{display:flex;justify-content:center}
+.app{width:100%;max-width:520px;min-height:100vh;background:var(--bg);position:relative;overflow-x:hidden}
+.topbar{height:68px;background:#111923;border-bottom:1px solid #1d2733;display:flex;align-items:center;justify-content:space-between;padding:0 16px;position:sticky;top:0;z-index:30}
+.brand{font-size:20px;font-weight:900;letter-spacing:.2px}
+.top-actions{display:flex;align-items:center;gap:10px}
+.icon-btn{width:40px;height:40px;border-radius:50%;background:#171e28;color:#b8c2cf;border:1px solid #293444;font-size:19px}
+.balance-pill{display:flex;align-items:center;gap:7px;background:#171e28;border:1px solid #2a3545;border-radius:24px;padding:8px 12px;font-weight:800;font-size:13px}
+.wallet{color:#2be1ad}.plus{color:#59a5ff}
+.page{display:none;padding:18px 16px 105px;animation:fade .18s ease}
+.page.active{display:block}
+@keyframes fade{from{opacity:.3;transform:translateY(5px)}to{opacity:1;transform:none}}
+.hero{padding:8px 2px 18px}
+.eyebrow{color:#6f829a;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:1.4px}
+h1{font-size:29px;line-height:1.08;margin:8px 0 7px}
+h2{font-size:22px;margin:0 0 14px}
+h3{font-size:16px;margin:0 0 7px}
+.muted{color:var(--muted)}
+.small{font-size:12px}
+.card{background:linear-gradient(145deg,#12171e,#0e1218);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
+.section-card{padding:16px;margin-bottom:13px}
+.notice{padding:13px 14px;border-radius:16px;background:#101b2a;border:1px solid #223b59;color:#b9cce4;font-size:13px;line-height:1.5}
+.search{display:flex;align-items:center;gap:9px;background:#10151d;border:1px solid #25303d;border-radius:15px;padding:11px 13px;margin-bottom:14px}
+.search input{width:100%;background:none;border:0;outline:0;color:#fff}
+.ad-list{display:grid;gap:12px}
+.ad-card{overflow:hidden;transition:.18s}
+.ad-card:hover{transform:translateY(-2px);border-color:#344458}
+.ad-media{height:170px;background:#0a0d12;position:relative;overflow:hidden}
+.ad-media img,.ad-media video{width:100%;height:100%;object-fit:cover;display:block}
+.ad-placeholder{height:100%;display:grid;place-items:center;font-size:45px;background:radial-gradient(circle at 50% 10%,#1b2637,#090c11 65%)}
+.badge{position:absolute;left:11px;top:11px;background:rgba(0,0,0,.68);backdrop-filter:blur(10px);border:1px solid #354153;border-radius:999px;padding:6px 9px;font-size:11px;font-weight:900}
+.badge.green{color:#68efab}.badge.gold{color:#ffd36a}.badge.purple{color:#b9a7ff}
+.ad-body{padding:14px}
+.ad-title{font-size:17px;font-weight:900;margin-bottom:7px}
+.ad-meta{display:flex;gap:7px;flex-wrap:wrap;margin:9px 0}
+.chip{font-size:11px;color:#a9b8cb;background:#151c26;border:1px solid #293647;border-radius:999px;padding:5px 8px}
+.price{font-size:20px;font-weight:950;color:#ffc229}
+.ad-footer{display:flex;align-items:center;justify-content:space-between;margin-top:12px}
+.avatar{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(145deg,#263449,#111720);border:1px solid #39475a;font-weight:900}
+.user-mini{display:flex;align-items:center;gap:9px}
+.primary,.secondary,.danger{width:100%;padding:13px 15px;border-radius:14px;font-weight:900}
+.primary{background:linear-gradient(135deg,#3185ff,#2766d5);color:#fff;box-shadow:0 8px 25px rgba(39,102,213,.25)}
+.secondary{background:#1a2432;color:#dbe7f6;border:1px solid #304156}
+.danger{background:#3a1820;color:#ff9ba5;border:1px solid #6a2834}
+.btn-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.fab{position:fixed;right:max(18px,calc((100vw - 520px)/2 + 18px));bottom:86px;width:62px;height:62px;border-radius:50%;background:#0e151b;border:2px solid #00d5a3;color:#39e4c1;box-shadow:0 0 0 5px rgba(0,213,163,.08),0 12px 30px rgba(0,0,0,.45);font-size:27px;z-index:25}
+.bottom-nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(520px,100%);height:80px;background:rgba(14,18,24,.96);backdrop-filter:blur(16px);border-top:1px solid #242e3b;display:grid;grid-template-columns:1fr 1.1fr 1.1fr 1fr 1fr;z-index:24;padding-bottom:env(safe-area-inset-bottom)}
+.nav-item{background:none;color:#748195;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;font-size:10px;font-weight:800}
+.nav-item .ni{font-size:20px;line-height:1}
+.nav-item.active{color:#fff}
+.nav-add{position:relative}
+.nav-add .circle{width:48px;height:48px;margin-top:-24px;border-radius:17px;background:linear-gradient(145deg,#3c8cff,#2864d0);border:5px solid #0e1218;display:grid;place-items:center;font-size:28px;color:#fff;box-shadow:0 9px 25px rgba(48,119,236,.32)}
+.nav-add span:last-child{margin-top:3px}
+.balance-head{display:flex;justify-content:space-between;align-items:center;padding:16px;background:linear-gradient(145deg,#162132,#10151d);border:1px solid #2b3c50;border-radius:20px;margin-bottom:15px}
+.balance-number{font-size:27px;font-weight:950}
+.add-balance{background:#193a32;color:#58edb4;border:1px solid #21604e;padding:9px 13px;border-radius:12px;font-weight:900}
+.tariffs{display:grid;gap:12px}
+.tariff{position:relative;padding:17px;border-radius:20px;background:#10151c;border:1px solid #293545}
+.tariff.selected{border-color:#438fff;box-shadow:0 0 0 1px #438fff22}
+.tariff.vip{border-color:#765dd0;background:linear-gradient(145deg,#17132b,#10141b)}
+.tariff-top{display:flex;justify-content:space-between;gap:10px}
+.tariff-price{font-size:24px;font-weight:950;color:#ffca36}
+.tag{padding:5px 8px;border-radius:999px;background:#202938;color:#a9c8ff;font-size:10px;font-weight:900}
+.features{margin:13px 0 0;padding:0;list-style:none;color:#aeb9c8;font-size:13px;line-height:1.8}
+.features li:before{content:"✓";color:#43dda0;font-weight:900;margin-right:7px}
+.back-head{display:flex;align-items:center;gap:10px;margin-bottom:17px}
+.back{width:40px;height:40px;border-radius:50%;background:#171e28;color:#fff;border:1px solid #293444;font-size:22px}
+.step{display:none}.step.active{display:block}
+.stepper{display:flex;gap:7px;margin:0 0 18px}
+.step-dot{height:5px;flex:1;border-radius:99px;background:#252e3a}.step-dot.active{background:#3d8cff}
+.field{margin:12px 0}
+.field label{display:block;color:#aeb9c8;font-size:12px;font-weight:900;margin:0 0 7px}
+.input,.textarea,.select{width:100%;background:#0d1219;color:#f3f7fc;border:1px solid #2a3544;border-radius:13px;padding:13px;outline:none}
+.input:focus,.textarea:focus,.select:focus{border-color:#3e8cff;box-shadow:0 0 0 3px rgba(62,140,255,.08)}
+.textarea{min-height:100px;resize:vertical}
+.file-box{border:1px dashed #3a4a5e;background:#0c1118;border-radius:17px;padding:20px;text-align:center}
+.file-box input{display:none}
+.file-icon{font-size:34px;margin-bottom:7px}
+.preview{margin-top:12px;border-radius:14px;overflow:hidden;background:#05070a;display:none}
+.preview img,.preview video{width:100%;max-height:240px;object-fit:cover;display:block}
+.option-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.option{padding:12px;background:#0e131a;border:1px solid #2b3543;border-radius:13px;color:#aeb9c8;text-align:left}
+.option.active{border-color:#3f8cff;color:#fff;background:#132038}
+.option strong{display:block;color:#fff;margin-bottom:3px}
+.summary{display:grid;gap:9px}
+.summary-row{display:flex;justify-content:space-between;gap:14px;padding:11px 0;border-bottom:1px solid #202a36;font-size:13px}
+.summary-row:last-child{border-bottom:0}
+.summary-row b:last-child{text-align:right}
+.payment-card{padding:18px;background:linear-gradient(145deg,#281507,#170c06);border:1px solid #7b4705;border-radius:17px}
+.card-line{display:flex;justify-content:space-between;align-items:center}
+.card-number{font-size:21px;letter-spacing:2px;font-weight:900;margin:22px 0 12px}
+.copy{background:#493108;color:#ffe08c;border:1px solid #96630c;width:42px;height:42px;border-radius:12px}
+.timer{display:flex;justify-content:space-between;padding:13px;background:#0b1018;border:1px solid #1b2635;border-radius:13px;margin-top:14px}
+.timer b{color:#fff}
+.tabs{display:grid;grid-template-columns:repeat(3,1fr);background:#0d1219;border:1px solid #25303d;border-radius:14px;padding:4px;margin-bottom:13px}
+.tab{background:none;color:#758399;padding:10px 5px;border-radius:10px;font-size:11px;font-weight:900}.tab.active{background:#1b2533;color:#fff}
+.empty{padding:35px 18px;text-align:center;border:1px dashed #2a3542;border-radius:18px;color:#718096}
+.empty .big{font-size:42px;margin-bottom:8px}
+.profile-top{padding:20px;text-align:center;background:linear-gradient(145deg,#131b27,#0e1218);border-radius:22px;border:1px solid #293646}
+.profile-photo{width:82px;height:82px;border-radius:50%;margin:0 auto 10px;display:grid;place-items:center;background:#1b2634;border:2px solid #39506d;overflow:hidden;font-size:32px}
+.profile-photo img{width:100%;height:100%;object-fit:cover}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:16px}
+.stat{background:#0c1118;border:1px solid #263241;border-radius:13px;padding:10px 5px}.stat b{display:block;font-size:15px}.stat span{font-size:9px;color:#718096}
+.profile-menu{display:grid;gap:9px;margin-top:13px}
+.menu-btn{padding:14px;background:#11171f;border:1px solid #273342;border-radius:14px;color:#e7edf5;text-align:left;font-weight:850;display:flex;justify-content:space-between}
+.chat-list{display:grid;gap:9px}
+.chat-item{display:flex;gap:11px;align-items:center;padding:13px;background:#11171f;border:1px solid #26313e;border-radius:16px}
+.chat-item .avatar{flex:0 0 42px;width:42px;height:42px}
+.chat-main{min-width:0;flex:1}.chat-name{font-weight:900}.last{color:#7d8a9b;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:3px}
+.chat-page{padding-bottom:90px}
+.chat-head{display:flex;align-items:center;gap:10px;padding-bottom:13px;border-bottom:1px solid #222c38}
+.chat-head .avatar{width:43px;height:43px}
+.admin-card{padding:10px 12px;margin:10px 0;background:linear-gradient(145deg,#151d29,#10151c);border:1px solid #29394c;border-radius:13px;font-size:11px;color:#9aaabd}
+.admin-card b{color:#fff;display:block;margin-top:2px}
+.messages{display:flex;flex-direction:column;gap:8px;padding:12px 0 80px}
+.msg{max-width:84%;padding:9px 11px;border-radius:15px;background:#161d27;border:1px solid #263241;align-self:flex-start;position:relative}
+.msg.me{align-self:flex-end;background:#19365d;border-color:#28538a}
+.msg.admin{background:#1c2930;border-color:#28554d}
+.msg-name{font-size:10px;font-weight:900;color:#72d9ff;margin-bottom:3px}.msg.me .msg-name{color:#b9d6ff}
+.msg-text{font-size:13px;line-height:1.4;white-space:pre-wrap}
+.msg-time{font-size:9px;color:#7c8a9b;text-align:right;margin-top:4px}
+.composer{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(520px,100%);padding:9px 12px calc(9px + env(safe-area-inset-bottom));background:#0c1016;border-top:1px solid #202a35;display:none;gap:8px;z-index:28}
+.composer.show{display:flex}
+.composer input{flex:1;min-width:0;background:#141a22;border:1px solid #2a3542;color:#fff;border-radius:14px;padding:11px 12px;outline:0}
+.send{width:43px;height:43px;border-radius:13px;background:#2e7df0;color:#fff;font-size:18px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.68);backdrop-filter:blur(7px);display:none;align-items:flex-end;justify-content:center;z-index:60}
+.modal.show{display:flex}
+.sheet{width:min(520px,100%);max-height:88vh;overflow:auto;background:#11161e;border:1px solid #2a3543;border-radius:24px 24px 0 0;padding:18px}
+.sheet-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.close{width:35px;height:35px;border-radius:50%;background:#202832;color:#c6d0dc}
+.contact-buttons{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.contact-buttons a{text-decoration:none;text-align:center;padding:12px;border-radius:13px;font-weight:900;background:#182b45;color:#d7e7ff;border:1px solid #294c76}
+.toast{position:fixed;left:50%;top:78px;transform:translateX(-50%) translateY(-10px);background:#161e29;border:1px solid #344457;color:#fff;border-radius:13px;padding:11px 14px;z-index:100;opacity:0;pointer-events:none;transition:.2s;max-width:90%;font-size:13px;box-shadow:var(--shadow)}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.radio-line{display:flex;gap:8px;align-items:center;background:#0d131a;border:1px solid #273442;border-radius:13px;padding:12px}
+.switch{position:relative;width:46px;height:26px;background:#283342;border-radius:99px;display:inline-block}.switch input{display:none}.slider{position:absolute;inset:0;border-radius:99px}.slider:before{content:"";position:absolute;width:20px;height:20px;left:3px;top:3px;border-radius:50%;background:#fff;transition:.2s}.switch input:checked+.slider{background:#287ff0}.switch input:checked+.slider:before{transform:translateX(20px)}
+@media(min-width:700px){body{padding:0 0 30px}.app{box-shadow:0 0 70px rgba(0,0,0,.45)}}
 </style>
 </head>
-
 <body>
-
-<div class="app">
-
-<!-- HEADER -->
-
-<header class="header">
-
-    <div class="logo">
-        <div class="logo-icon">☪</div>
-        <span>Qur'on Ustoz</span>
+<div class="app" id="app">
+  <header class="topbar" id="topbar">
+    <div class="brand">CARDINAL <span style="color:#6e8198">REKLAMA</span></div>
+    <div class="top-actions">
+      <button class="icon-btn" id="themeBtn" title="Kun/Tun">☾</button>
+      <div class="balance-pill"><span class="wallet">▰</span><span id="balanceTop">0 so'm</span><button style="background:none;color:#54a5ff;font-weight:950;padding:0" id="quickPlus">+</button></div>
     </div>
+  </header>
 
-    <div class="header-actions">
-        <button class="icon-btn" onclick="toggleDark()" id="themeBtn">🌙</button>
-        <button class="icon-btn" onclick="openSettings()">⚙️</button>
-    </div>
+  <main id="main">
+    <section class="page active" id="homePage">
+      <div class="hero">
+        <div class="eyebrow">PUBG ACCOUNT MARKET</div>
+        <h1>Kerakli akkauntni toping.</h1>
+        <div class="muted">Tekshirilgan e'lonlar, qulay aloqa va tezkor savdo.</div>
+      </div>
+      <div class="search">⌕ <input id="searchInput" placeholder="Akkaunt, skin, lvl yoki narx bo'yicha qidirish..."></div>
+      <div class="notice" style="margin-bottom:14px">🔥 <b>Cardinal Reklama Bot</b> — PUBG akkauntlaringizni kanal va Mini App orqali xaridorlarga ko'rsating.</div>
+      <div id="homeAds" class="ad-list"></div>
+    </section>
 
-</header>
+    <section class="page" id="myAdsPage">
+      <div class="hero"><div class="eyebrow">MENING E'LONLARIM</div><h1>Reklamalarim</h1><div class="muted">Bergan akkauntlaringiz holatini shu yerdan boshqaring.</div></div>
+      <div class="tabs" id="myTabs">
+        <button class="tab active" data-status="active">Faol</button>
+        <button class="tab" data-status="pending">Tasdiqlanmoqda</button>
+        <button class="tab" data-status="ended">Tugagan</button>
+      </div>
+      <div id="myAdsList" class="ad-list"></div>
+    </section>
 
-
-<!-- HOME -->
-
-<section class="page active" id="home">
-
-    <div class="greeting">
-        <h1>Assalomu alaykum 👋</h1>
-        <p>Bugun Qur'on o'qishga tayyormisiz?</p>
-    </div>
-
-    <div class="hero">
-
-        <div class="hero-label">Bugungi maqsad</div>
-
-        <h2>
-            <span id="todayRead">0</span> /
-            <span id="todayGoal">10</span> oyat
-        </h2>
-
-        <div class="progress">
-            <div class="progress-bar" id="homeProgress"></div>
+    <section class="page" id="createPage">
+      <div class="back-head"><button class="back" data-back="homePage">‹</button><div><h2 style="margin:0">Reklama berish</h2><div class="muted small">Akkauntingizni professional tarzda joylashtiring.</div></div></div>
+      <div id="createStepTariff" class="step active">
+        <div class="notice">Tarifni tanlang. To'lov amalga oshirilgach, e'loningiz admin tasdig'iga yuboriladi.</div>
+        <div class="tariffs" style="margin-top:12px">
+          <div class="tariff" data-tariff="channel" data-price="19000">
+            <div class="tariff-top"><div><h3>1. Kanal tarifi</h3><div class="muted small">Faqat Telegram kanalida</div></div><span class="tag">19 000 so'm</span></div>
+            <ul class="features"><li>Reklamangiz kanalga joylanadi</li><li>Katta auditoriyaga chiqish</li><li>Kanalga o'tish tugmasi</li></ul>
+            <a href="https://t.me/Cardinal_Savdo" target="_blank" class="secondary" style="display:block;text-decoration:none;text-align:center;margin-top:12px">📢 Kanalimiz</a>
+          </div>
+          <div class="tariff" data-tariff="web" data-price="9000">
+            <div class="tariff-top"><div><h3>2. Mini App tarifi</h3><div class="muted small">Faqat Web App'da</div></div><span class="tag">9 000 so'm</span></div>
+            <ul class="features"><li>Asosiy menyuda e'loningiz chiqadi</li><li>Rasm/video va to'liq ma'lumot</li><li>Xaridor bilan to'g'ridan-to'g'ri aloqa</li></ul>
+          </div>
+          <div class="tariff" data-tariff="both" data-price="25000">
+            <div class="tariff-top"><div><h3>3. Kengaytirilgan</h3><div class="muted small">Web App + Kanal</div></div><span class="tag">25 000 so'm</span></div>
+            <ul class="features"><li>Mini App asosiy menyusida chiqadi</li><li>Telegram kanaliga ham joylanadi</li><li>Ikki platformada ko'proq ko'rinish</li></ul>
+          </div>
+          <div class="tariff vip" data-tariff="vip" data-price="29000">
+            <div class="tariff-top"><div><h3>4. VIP ⭐</h3><div class="muted small">Maksimal ko'rinish</div></div><span class="tag">29 000 so'm</span></div>
+            <ul class="features"><li>Web App + Telegram kanal</li><li>E'lon chiqish vaqtini o'zingiz tanlaysiz</li><li>Sotib olingan VIP e'lonlar ustida ko'rinadi</li></ul>
+          </div>
         </div>
+      </div>
 
-        <div class="progress-row">
-            <span>Davom eting</span>
-            <span id="homePercent">0%</span>
+      <div id="createStepForm" class="step">
+        <div class="stepper"><span class="step-dot active"></span><span class="step-dot active"></span><span class="step-dot"></span></div>
+        <div class="notice">1-qadam: avval akkauntning qisqa обзор videosini yuboring. Rasm ham yuborish mumkin.</div>
+        <div class="field">
+          <label>🎬 Akkaunt обзор videosi / rasmi</label>
+          <label class="file-box" for="mediaInput"><div class="file-icon">🎥</div><b>Video yoki rasm tanlang</b><div class="muted small">Demo: fayl qurilmangizda ko'rish uchun</div><input id="mediaInput" type="file" accept="image/*,video/*"></label>
+          <div class="preview" id="mediaPreview"></div>
         </div>
-
-        <button class="primary-btn" onclick="openSurah(1)">
-            📖 Davom etish
-        </button>
-
-    </div>
-
-
-    <div class="quick-grid">
-
-        <div class="quick-card" onclick="showPage('quran')">
-            <div class="quick-icon">📖</div>
-            <h3>Qur'on</h3>
-            <p>114 ta sura</p>
+        <div class="field"><label>📈 LVL — Akkaunt urvi</label><input class="input" id="fLvl" placeholder="Masalan: 78"></div>
+        <div class="field"><label>🛎 RP — Nechinchi sezondan boshlangan</label><input class="input" id="fRp" placeholder="Masalan: Season 12"></div>
+        <div class="field"><label>🦹‍♂️ Kiyimlar — Kiyim va mifiklar soni</label><input class="input" id="fClothes" placeholder="Masalan: 320 ta kiyim, 18 ta mifik"></div>
+        <div class="option-grid">
+          <div class="field"><label>🔫 Avtomatga Skin</label><input class="input" id="fAuto" placeholder="77"></div>
+          <div class="field"><label>🎈 Parashutga Skin</label><input class="input" id="fPara" placeholder="7"></div>
+          <div class="field"><label>🎒 Papkaga Skin</label><input class="input" id="fBag" placeholder="7"></div>
+          <div class="field"><label>🔱 Dostajeniya</label><input class="input" id="fAch" placeholder="777+"></div>
         </div>
-
-        <div class="quick-card" onclick="showPage('memorize')">
-            <div class="quick-icon">🧠</div>
-            <h3>Yodlash</h3>
-            <p>Hifz rejimi</p>
+        <div class="field"><label>⚜️ Titulari</label><input class="input" id="fTitles" placeholder="Masalan: Conqueror, Dominator..."></div>
+        <div class="field"><label>Redkiy skinlar 👇🏻</label><textarea class="textarea" id="fRare" placeholder="Lednik, Glacier, M416 skinlari va boshqalar..."></textarea></div>
+        <div class="field"><label>🔥 Qo'shimcha</label><textarea class="textarea" id="fExtra" placeholder="Lednik 7 lvl&#10;M24 4 lvl&#10;Va hokazo qurollar..."></textarea></div>
+        <div class="field"><label>🔐 Ulangan</label><select class="select" id="fLinked"><option value="">Tanlang</option><option>Facebook</option><option>Google</option><option>Twitter/X</option><option>Telefon raqam</option><option>Hech qaysi</option><option>Boshqa</option></select></div>
+        <div class="field" id="otherLinkedWrap" style="display:none"><label>Ulangan — boshqa</label><input class="input" id="fLinkedOther" placeholder="Masalan: Apple ID"></div>
+        <div class="field"><label>🤑 Narxi</label><input class="input" id="fPrice" inputmode="numeric" placeholder="Masalan: 1 500 000"></div>
+        <div class="field"><label>🏠 Manzil</label><select class="select" id="fLocation"></select></div>
+        <div class="field" id="otherLocationWrap" style="display:none"><label>Boshqa manzil</label><input class="input" id="fLocationOther" placeholder="Viloyat/shahar/tuman"></div>
+        <div class="field"><label>📲 Telegram murojaat</label><input class="input" id="fTg" placeholder="@username"></div>
+        <div class="field"><label>📞 Telefon raqam</label><input class="input" id="fPhone" value="+998 " inputmode="tel" maxlength="17" placeholder="+998 90 123 45 67"></div>
+        <div id="vipTimeWrap" style="display:none">
+          <div class="field"><label>⭐ VIP — E'lon chiqish vaqti</label><input class="input" id="fVipTime" type="datetime-local"></div>
         </div>
+        <button class="primary" id="toPreview">Davom etish →</button>
+      </div>
 
-        <div class="quick-card" onclick="showPage('saved')">
-            <div class="quick-icon">⭐</div>
-            <h3>Saqlangan</h3>
-            <p id="savedCount">0 ta oyat</p>
+      <div id="createStepPreview" class="step">
+        <div class="stepper"><span class="step-dot active"></span><span class="step-dot active"></span><span class="step-dot active"></span></div>
+        <div class="notice">Tasdiqlashdan oldin barcha ma'lumotlarni tekshiring. Xato bo'lsa, tahrirlash orqali qayting.</div>
+        <div class="card section-card" style="margin-top:12px" id="formSummary"></div>
+        <div class="btn-row">
+          <button class="secondary" id="editForm">← Tahrirlash</button>
+          <button class="primary" id="confirmAd">Tasdiqlash ✓</button>
         </div>
+      </div>
+    </section>
 
-        <div class="quick-card" onclick="showPage('stats')">
-            <div class="quick-icon">📊</div>
-            <h3>Statistika</h3>
-            <p>Natijalaringiz</p>
+    <section class="page" id="paymentPage">
+      <div class="back-head"><button class="back" data-back="createPage">‹</button><div><h2 style="margin:0">Balans to'ldirish</h2><div class="muted small">Demo rejim — backend ulanmagan.</div></div></div>
+      <div class="card section-card">
+        <div class="eyebrow">TO'LDIRILADIGAN SUMMA</div>
+        <div class="field"><input class="input" id="topupAmount" inputmode="numeric" placeholder="Masalan: 5000"></div>
+        <div class="muted small">Faqat raqam kiriting. Masalan: 5000</div>
+      </div>
+      <div class="payment-card">
+        <div class="card-line"><span style="color:#f0bb48">Avto karta</span><b style="background:#7d4f07;padding:6px 9px;border-radius:7px">HUMO</b></div>
+        <div class="card-number" id="adminCardNumber">9860 1001 2832 6251</div>
+        <div class="card-line"><span style="letter-spacing:1px">CARDINAL ADMIN</span><button class="copy" id="copyCard">▣</button></div>
+      </div>
+      <div class="card section-card">
+        <div style="color:#86a2c7;font-size:12px;font-weight:900">ANIQ SHU SUMMANI O'TKAZING</div>
+        <div id="paymentAmountBig" style="font-size:30px;font-weight:950;color:#ffc12b;margin:5px 0">0 so'm</div>
+        <div class="timer"><span>Qolgan vaqt</span><b id="paymentTimer">05:00</b></div>
+      </div>
+      <button class="primary" id="simulatePayment">To'lovni tasdiqlash</button>
+      <button class="secondary" style="margin-top:9px" data-back="homePage">Bekor qilish / Boshqa summa</button>
+    </section>
+
+    <section class="page" id="chatListPage">
+      <div class="hero"><div class="eyebrow">ALOQA</div><h1>Chatlar</h1><div class="muted">Siz bog'langan foydalanuvchilar bilan suhbatlar.</div></div>
+      <div id="chatList" class="chat-list"></div>
+    </section>
+
+    <section class="page chat-page" id="chatPage">
+      <div class="back-head"><button class="back" data-back="chatListPage">‹</button><div style="flex:1"><h2 style="margin:0" id="chatTitle">Chat</h2><div class="muted small" id="chatSubtitle"></div></div></div>
+      <div id="adminCardInChat" class="admin-card"><span>Admin karta raqami</span><b>9860 1001 2832 6251</b><span>Cardinal Admin</span></div>
+      <div id="messages" class="messages"></div>
+    </section>
+
+    <section class="page" id="profilePage">
+      <div class="hero"><div class="eyebrow">ACCOUNT</div><h1>Profil</h1></div>
+      <div class="profile-top">
+        <label class="profile-photo" for="avatarInput" id="avatarBox">👤<input id="avatarInput" type="file" accept="image/*" style="display:none"></label>
+        <h2 id="profileName" style="margin:0 0 3px">Azizbek Karimov</h2>
+        <div class="muted" id="profileUsername">@cardinal_user</div>
+        <div class="stats">
+          <div class="stat"><b id="statBalance">0</b><span>Balans</span></div>
+          <div class="stat"><b id="statTopup">0</b><span>To'ldirilgan</span></div>
+          <div class="stat"><b id="statSpent">0</b><span>Ishlangan</span></div>
         </div>
-
-    </div>
-
-
-    <h2 style="margin:25px 0 15px">Bugungi natijangiz</h2>
-
-    <div class="stat-grid">
-
-        <div class="stat-card">
-            <div class="stat-number" id="statRead">0</div>
-            <div class="stat-label">O'qilgan oyatlar</div>
-        </div>
-
-        <div class="stat-card">
-            <div class="stat-number">🔥 <span id="streak">1</span></div>
-            <div class="stat-label">Kunlik streak</div>
-        </div>
-
-        <div class="stat-card">
-            <div class="stat-number" id="statSaved">0</div>
-            <div class="stat-label">Saqlangan oyatlar</div>
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- QURAN -->
-
-<section class="page" id="quran">
-
-    <h1 class="page-title">Qur'on</h1>
-    <p class="page-subtitle">114 ta surani o'qing va tinglang</p>
-
-    <div class="search-box">
-        🔍
-        <input
-            type="text"
-            id="searchInput"
-            placeholder="Sura qidirish..."
-            oninput="searchSurahs()"
-        >
-    </div>
-
-    <div class="surah-grid" id="surahGrid"></div>
-
-</section>
-
-
-<!-- SURAH DETAIL -->
-
-<section class="page" id="surahDetail">
-
-    <button class="back-btn" onclick="showPage('quran')">
-        ← Suralarga qaytish
-    </button>
-
-    <div id="surahContent"></div>
-
-</section>
-
-
-<!-- MEMORIZE -->
-
-<section class="page" id="memorize">
-
-    <h1 class="page-title">🧠 Yodlash</h1>
-    <p class="page-subtitle">
-        Oyatlarni yodlash uchun maxsus rejim
-    </p>
-
-    <div class="goal-card">
-
-        <h2>Hifz Mode</h2>
-
-        <p style="color:var(--muted);margin-top:8px">
-            Arabcha oyatni o'qing va yoddan takrorlang.
-        </p>
-
-        <div
-            id="memorizeArabic"
-            class="arabic"
-            style="margin-top:25px"
-        >
-            بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
-        </div>
-
-        <button
-            class="primary-btn"
-            onclick="toggleMemory()"
-        >
-            👁️ Tarjimani yashirish
-        </button>
-
-        <p
-            id="memoryTranslation"
-            class="translation"
-            style="margin-top:20px"
-        >
-            Mehribon va rahmli Alloh nomi bilan.
-        </p>
-
-    </div>
-
-</section>
-
-
-<!-- SAVED -->
-
-<section class="page" id="saved">
-
-    <h1 class="page-title">⭐ Saqlanganlar</h1>
-    <p class="page-subtitle">
-        Siz saqlagan oyatlar
-    </p>
-
-    <div id="savedList"></div>
-
-</section>
-
-
-<!-- STATS -->
-
-<section class="page" id="stats">
-
-    <h1 class="page-title">📊 Statistika</h1>
-    <p class="page-subtitle">
-        Qur'on o'qishdagi natijalaringiz
-    </p>
-
-    <div class="stat-grid">
-
-        <div class="stat-card">
-            <div class="stat-number" id="bigRead">0</div>
-            <div class="stat-label">O'qilgan oyatlar</div>
-        </div>
-
-        <div class="stat-card">
-            <div class="stat-number">
-                🔥 <span id="bigStreak">1</span>
-            </div>
-            <div class="stat-label">Streak</div>
-        </div>
-
-        <div class="stat-card">
-            <div class="stat-number" id="bigSaved">0</div>
-            <div class="stat-label">Saqlangan oyatlar</div>
-        </div>
-
-    </div>
-
-    <div class="goal-card" style="margin-top:20px">
-
-        <h2>🎯 Bugungi maqsad</h2>
-
-        <div style="margin-top:20px">
-
-            <div class="progress" style="background:var(--border)">
-                <div
-                    class="progress-bar"
-                    id="statsProgress"
-                    style="background:var(--primary)"
-                ></div>
-            </div>
-
-            <div class="progress-row"
-                 style="color:var(--muted)">
-                <span id="statsReadText">0 / 10</span>
-                <span id="statsPercent">0%</span>
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <div class="goal-card">
-
-        <h2>🎯 Kunlik maqsadni tanlang</h2>
-
-        <div class="goal-options">
-
-            <button
-                class="goal-option"
-                onclick="setGoal(5)"
-            >
-                5 oyat
-            </button>
-
-            <button
-                class="goal-option active"
-                onclick="setGoal(10)"
-            >
-                10 oyat
-            </button>
-
-            <button
-                class="goal-option"
-                onclick="setGoal(20)"
-            >
-                20 oyat
-            </button>
-
-            <button
-                class="goal-option"
-                onclick="setGoal(50)"
-            >
-                50 oyat
-            </button>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- SETTINGS -->
-
-<section class="page" id="settings">
-
-    <h1 class="page-title">⚙️ Sozlamalar</h1>
-    <p class="page-subtitle">
-        Ilovani o'zingizga moslang
-    </p>
-
-    <div class="setting">
-
-        <div class="setting-info">
-            <h3>🌙 Dark Mode</h3>
-            <p>Qorong'i rejim</p>
-        </div>
-
-        <div
-            class="switch"
-            id="darkSwitch"
-            onclick="toggleDark()"
-        ></div>
-
-    </div>
-
-
-    <div class="setting">
-
-        <div class="setting-info">
-            <h3>🔔 Eslatmalar</h3>
-            <p>Qur'on o'qishni eslatish</p>
-        </div>
-
-        <div
-            class="switch"
-            id="notifySwitch"
-            onclick="toggleNotify()"
-        ></div>
-
-    </div>
-
-
-    <div class="setting">
-
-        <div class="setting-info">
-            <h3>🔤 Arabcha shrift</h3>
-            <p>Oyat hajmi</p>
-        </div>
-
-        <select onchange="changeArabicSize(this.value)">
-            <option value="28">Kichik</option>
-            <option value="34" selected>O'rta</option>
-            <option value="42">Katta</option>
-        </select>
-
-    </div>
-
-
-    <div class="setting">
-
-        <div class="setting-info">
-            <h3>🎯 Kunlik maqsad</h3>
-            <p>Har kuni o'qiladigan oyatlar</p>
-        </div>
-
-        <select onchange="setGoal(this.value)">
-            <option value="5">5 oyat</option>
-            <option value="10" selected>10 oyat</option>
-            <option value="20">20 oyat</option>
-            <option value="50">50 oyat</option>
-        </select>
-
-    </div>
-
-</section>
-
-
-<!-- AUDIO PLAYER -->
-
-<div class="audio-player" id="audioPlayer">
-
-    <div class="audio-info">
-
-        <span class="audio-title" id="audioTitle">
-            Al-Fotiha
-        </span>
-
-        <span class="audio-time" id="audioTime">
-            00:00
-        </span>
-
-    </div>
-
-    <div
-        class="audio-progress"
-        onclick="seekAudio(event)"
-    >
-        <div
-            class="audio-progress-fill"
-            id="audioProgress"
-        ></div>
-    </div>
-
-    <div class="audio-controls">
-
-        <button
-            class="small-btn"
-            onclick="previousAudio()"
-        >
-            ⏮
-        </button>
-
-        <button
-            class="play-btn"
-            onclick="toggleAudio()"
-            id="playButton"
-        >
-            ▶
-        </button>
-
-        <button
-            class="small-btn"
-            onclick="nextAudio()"
-        >
-            ⏭
-        </button>
-
-    </div>
-
+      </div>
+      <div class="profile-menu">
+        <button class="menu-btn" id="profileTopup">💳 Balansni to'ldirish <span>›</span></button>
+        <button class="menu-btn" id="personalBtn">👤 Shaxsiy ma'lumotlar <span>›</span></button>
+        <button class="menu-btn" id="myAdsBtn">📣 Reklamalarim <span>›</span></button>
+        <button class="menu-btn" id="chatBtn">💬 Chatlar <span>›</span></button>
+        <button class="menu-btn" id="themeMenu">🌙 Kun / Tun rejimi <span>↔</span></button>
+      </div>
+    </section>
+  </main>
+
+  <button class="fab" id="fabChat">☏</button>
+
+  <nav class="bottom-nav">
+    <button class="nav-item active" data-page="homePage"><span class="ni">⌂</span><span>Asosiy</span></button>
+    <button class="nav-item" data-page="myAdsPage"><span class="ni">▣</span><span>Reklamalarim</span></button>
+    <button class="nav-item nav-add" data-page="createPage"><span class="circle">+</span><span>Reklama berish</span></button>
+    <button class="nav-item" data-page="chatListPage"><span class="ni">◌</span><span>Chat</span></button>
+    <button class="nav-item" data-page="profilePage"><span class="ni">◉</span><span>Profil</span></button>
+  </nav>
 </div>
 
-
-<!-- BOTTOM NAV -->
-
-<nav class="bottom-nav">
-
-    <button
-        class="nav-item active"
-        onclick="showPage('home')"
-        data-page="home"
-    >
-        <span class="nav-icon">🏠</span>
-        Bosh sahifa
-    </button>
-
-    <button
-        class="nav-item"
-        onclick="showPage('quran')"
-        data-page="quran"
-    >
-        <span class="nav-icon">📖</span>
-        Qur'on
-    </button>
-
-    <button
-        class="nav-item"
-        onclick="showPage('memorize')"
-        data-page="memorize"
-    >
-        <span class="nav-icon">🧠</span>
-        Yodlash
-    </button>
-
-    <button
-        class="nav-item"
-        onclick="showPage('saved')"
-        data-page="saved"
-    >
-        <span class="nav-icon">⭐</span>
-        Saqlangan
-    </button>
-
-    <button
-        class="nav-item"
-        onclick="showPage('stats')"
-        data-page="stats"
-    >
-        <span class="nav-icon">📊</span>
-        Statistika
-    </button>
-
-</nav>
-
+<div class="composer" id="composer">
+  <input id="messageInput" placeholder="Xabar yozing...">
+  <button class="send" id="sendMessage">➤</button>
 </div>
 
+<div class="modal" id="detailModal">
+  <div class="sheet">
+    <div class="sheet-head"><h2 id="detailTitle">E'lon</h2><button class="close" data-close="detailModal">×</button></div>
+    <div id="detailBody"></div>
+  </div>
+</div>
+
+<div class="modal" id="personalModal">
+  <div class="sheet">
+    <div class="sheet-head"><h2>Shaxsiy ma'lumotlar</h2><button class="close" data-close="personalModal">×</button></div>
+    <div class="field"><label>Ism familiya</label><input class="input" id="pName"></div>
+    <div class="field"><label>Telegram username</label><input class="input" id="pTg"></div>
+    <div class="field"><label>Telefon raqam</label><input class="input" id="pPhone"></div>
+    <button class="primary" id="savePersonal">Saqlash</button>
+  </div>
+</div>
+
+<div class="modal" id="messageActionModal">
+  <div class="sheet">
+    <div class="sheet-head"><h2>Xabar</h2><button class="close" data-close="messageActionModal">×</button></div>
+    <button class="secondary" id="editMsgBtn">✏️ Tahrirlash</button>
+    <button class="danger" style="margin-top:9px" id="deleteMsgBtn">🗑 O'chirish</button>
+    <button class="danger" style="margin-top:9px;display:none" id="blockUserBtn">🚫 Foydalanuvchini bloklash</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
 
 <script>
+(() => {
+  "use strict";
 
-/* =========================
-   DATA
-========================= */
+  const REGIONS = [
+    "Toshkent shahri","Toshkent viloyati","Andijon viloyati","Buxoro viloyati",
+    "Farg'ona viloyati","Jizzax viloyati","Xorazm viloyati","Namangan viloyati",
+    "Navoiy viloyati","Qashqadaryo viloyati","Samarqand viloyati","Sirdaryo viloyati",
+    "Surxondaryo viloyati","Qoraqalpog'iston Respublikasi","Boshqa"
+  ];
 
-const surahs = [
+  const ADMIN = {name:"Cardinal Admin", card:"9860 1001 2832 6251"};
+  const tariffMap = {
+    channel:{name:"Kanal",price:19000,desc:"Faqat Telegram kanalida"},
+    web:{name:"Mini App",price:9000,desc:"Faqat Web App'da"},
+    both:{name:"Web App + Kanal",price:25000,desc:"Ikki platformada"},
+    vip:{name:"VIP",price:29000,desc:"Web App + Kanal + vaqt tanlash"}
+  };
 
-{
-    id:1,
-    name:"Al-Fotiha",
-    arabic:"الفاتحة",
-    meaning:"Ochuvchi",
-    verses:7,
-    place:"Makkiy",
-    ayahs:[
-        {
-            id:1,
-            arabic:"بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ",
-            translation:"Mehribon va rahmli Alloh nomi bilan."
-        },
-        {
-            id:2,
-            arabic:"الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ",
-            translation:"Hamd olamlarning Robbi Allohgadir."
-        },
-        {
-            id:3,
-            arabic:"الرَّحْمَٰنِ الرَّحِيمِ",
-            translation:"U Mehribondir, Rahmlidir."
-        },
-        {
-            id:4,
-            arabic:"مَالِكِ يَوْمِ الدِّينِ",
-            translation:"Jazo kunining Egasi."
-        },
-        {
-            id:5,
-            arabic:"إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ",
-            translation:"Faqat Sengagina ibodat qilamiz va faqat Sendangina yordam so'raymiz."
-        },
-        {
-            id:6,
-            arabic:"اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ",
-            translation:"Bizni to'g'ri yo'lga hidoyat qil."
-        },
-        {
-            id:7,
-            arabic:"صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ",
-            translation:"Ne'mat bergan zotlaring yo'liga."
-        }
+  const defaultAds = [
+    {id:"demo1",status:"active",tariff:"vip",title:"🔥 Glacier + M416 — kuchli PUBG akkaunt",name:"Jasur Aliyev",username:"@jasur_pubg",phone:"+998 90 123 45 67",location:"Toshkent shahri",price:1850000,lvl:"78",rp:"Season 8",clothes:"410 ta kiyim, 21 ta mifik",auto:"77",para:"7",bag:"9",ach:"777+",titles:"Conqueror, Dominator",rare:"Glacier 7 lvl\\nM416 Glacier\\nM24 4 lvl",extra:"Lednik 7 lvl\\nM24 4 lvl\\nAKM skinlari va boshqa rare skinlar",linked:"Facebook",tg:"@jasur_pubg",media:"",created:Date.now()},
+    {id:"demo2",status:"active",tariff:"web",title:"💎 65+ mifikli account",name:"Muhammad Yusuf",username:"@myusuf",phone:"+998 91 222 33 44",location:"Samarqand viloyati",price:950000,lvl:"72",rp:"Season 10",clothes:"300 ta kiyim, 15 ta mifik",auto:"61",para:"7",bag:"7",ach:"500+",titles:"Conqueror",rare:"M416 Glacier\\nKar98k skin",extra:"Ko'p legendary skinlar",linked:"Google",tg:"@myusuf",media:"",created:Date.now()-86400000*2},
+    {id:"demo3",status:"active",tariff:"both",title:"⚡ 80 LVL — full set account",name:"Bekzod Karimov",username:"@bek_pubg",phone:"+998 93 555 66 77",location:"Farg'ona viloyati",price:2400000,lvl:"80",rp:"Season 6",clothes:"500 ta kiyim, 30 ta mifik",auto:"91",para:"12",bag:"10",ach:"1000+",titles:"Conqueror, Ace Dominator",rare:"Glacier 7 lvl\\nM416 Fool\\nM24 4 lvl",extra:"Full outfit, rare emotes",linked:"Facebook",tg:"@bek_pubg",media:"",created:Date.now()-86400000*5}
+  ];
+
+  let state = JSON.parse(localStorage.getItem("cardinal_demo_state") || "null") || {
+    balance:0, topup:0, spent:0, theme:"dark",
+    profile:{name:"Azizbek Karimov",username:"@cardinal_user",phone:"+998 90 000 00 00",avatar:""},
+    ads:[], chats:[
+      {id:"sale-demo",type:"sale",title:"Admin Savdo",subtitle:"Jasur Aliyev ↔ Siz",other:"Jasur Aliyev",verified:true,
+        messages:[
+          {id:"m1",sender:"other",name:"Jasur Aliyev",text:"Salom, akkaunt hali sotilmadimi?",time:"18:01"},
+          {id:"m2",sender:"me",name:"Azizbek Karimov",text:"Yo'q, hali turibdi. Narxi 1 850 000 so'm.",time:"18:03"},
+          {id:"m3",sender:"admin",name:"Cardinal Admin",text:"Savdo bo'yicha barcha xabarlar admin tomonidan ko'rinadi.",time:"18:04"}
+        ]}
     ]
-},
+  };
 
-{
-    id:2,
-    name:"Al-Baqara",
-    arabic:"البقرة",
-    meaning:"Sigir",
-    verses:286,
-    place:"Madaniy",
-    ayahs:[
-        {
-            id:1,
-            arabic:"الم",
-            translation:"Alif, Lom, Mim."
-        },
-        {
-            id:2,
-            arabic:"ذَٰلِكَ الْكِتَابُ لَا رَيْبَ فِيهِ",
-            translation:"Bu Kitob — unda hech qanday shubha yo'q."
-        },
-        {
-            id:3,
-            arabic:"الَّذِينَ يُؤْمِنُونَ بِالْغَيْبِ",
-            translation:"Ular g'aybga iymon keltiradilar."
-        }
-    ]
-},
+  const $ = s => document.querySelector(s);
+  const $$ = s => [...document.querySelectorAll(s)];
+  const money = n => Number(n||0).toLocaleString("uz-UZ") + " so'm";
+  const save = () => localStorage.setItem("cardinal_demo_state", JSON.stringify(state));
+  const esc = s => String(s ?? "").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));
+  const toast = msg => { const t=$("#toast"); t.textContent=msg; t.classList.add("show"); clearTimeout(window.__toast); window.__toast=setTimeout(()=>t.classList.remove("show"),2400); };
 
-{
-    id:36,
-    name:"Yosin",
-    arabic:"يس",
-    meaning:"Yosin",
-    verses:83,
-    place:"Makkiy",
-    ayahs:[
-        {
-            id:1,
-            arabic:"يس",
-            translation:"Yosin."
-        },
-        {
-            id:2,
-            arabic:"وَالْقُرْآنِ الْحَكِيمِ",
-            translation:"Hikmatli Qur'on bilan qasam."
-        },
-        {
-            id:3,
-            arabic:"إِنَّكَ لَمِنَ الْمُرْسَلِينَ",
-            translation:"Albatta, sen payg'ambarlardansan."
-        }
-    ]
-},
+  function updateBalance(){
+    $("#balanceTop").textContent=money(state.balance);
+    $("#statBalance").textContent=money(state.balance);
+    $("#statTopup").textContent=money(state.topup);
+    $("#statSpent").textContent=money(state.spent);
+  }
 
-{
-    id:55,
-    name:"Ar-Rahmon",
-    arabic:"الرحمن",
-    meaning:"Mehribon",
-    verses:78,
-    place:"Madaniy",
-    ayahs:[
-        {
-            id:1,
-            arabic:"الرَّحْمَٰنُ",
-            translation:"Mehribon Zot."
-        },
-        {
-            id:2,
-            arabic:"عَلَّمَ الْقُرْآنَ",
-            translation:"Qur'onni o'rgatdi."
-        },
-        {
-            id:3,
-            arabic:"خَلَقَ الْإِنسَانَ",
-            translation:"Insonni yaratdi."
-        }
-    ]
-},
+  function applyTheme(){
+    const light = state.theme==="light";
+    document.documentElement.style.setProperty("--bg",light?"#eef2f7":"#07090d");
+    document.documentElement.style.setProperty("--panel",light?"#fff":"#10141b");
+    document.body.style.background=light?"#dfe5ec":"#05070a";
+    $("#themeBtn").textContent=light?"☀":"☾";
+  }
 
-{
-    id:112,
-    name:"Al-Ixlos",
-    arabic:"الإخلاص",
-    meaning:"Ixlos",
-    verses:4,
-    place:"Makkiy",
-    ayahs:[
-        {
-            id:1,
-            arabic:"قُلْ هُوَ اللَّهُ أَحَدٌ",
-            translation:"Ayting: U Alloh birdir."
-        },
-        {
-            id:2,
-            arabic:"اللَّهُ الصَّمَدُ",
-            translation:"Alloh behojat Zotdir."
-        },
-        {
-            id:3,
-            arabic:"لَمْ يَلِدْ وَلَمْ يُولَدْ",
-            translation:"U tug'magan va tug'ilmagan."
-        },
-        {
-            id:4,
-            arabic:"وَلَمْ يَكُن لَّهُ كُفُوًا أَحَدٌ",
-            translation:"Va Unga hech kim teng emas."
-        }
-    ]
-}
+  function showPage(id){
+    $$(".page").forEach(p=>p.classList.remove("active"));
+    $("#"+id)?.classList.add("active");
+    const navId = ["homePage","myAdsPage","createPage","chatListPage","profilePage"].includes(id)?id:null;
+    $$(".nav-item").forEach(n=>n.classList.toggle("active",n.dataset.page===navId));
+    $("#composer").classList.toggle("show",id==="chatPage");
+    if(id==="homePage") renderHome();
+    if(id==="myAdsPage") renderMyAds();
+    if(id==="chatListPage") renderChats();
+    if(id==="profilePage") renderProfile();
+    window.scrollTo({top:0,behavior:"smooth"});
+  }
 
-];
-
-
-/* =========================
-   STATE
-========================= */
-
-let state = JSON.parse(
-    localStorage.getItem("quranUstoz")
-) || {
-
-    read:[],
-    saved:[],
-    goal:10,
-    streak:1,
-    dark:false,
-    notifications:false
-
-};
-
-
-/* =========================
-   INIT
-========================= */
-
-document.addEventListener("DOMContentLoaded",()=>{
-
-    applyTheme();
-    renderSurahs();
-    updateUI();
-    renderSaved();
-
-});
-
-
-/* =========================
-   PAGE NAVIGATION
-========================= */
-
-function showPage(page){
-
-    document.querySelectorAll(".page")
-        .forEach(p=>p.classList.remove("active"));
-
-    const target=document.getElementById(page);
-
-    if(target){
-        target.classList.add("active");
+  function mediaHtml(ad,small=false){
+    if(ad.media){
+      if(ad.media.startsWith("data:image")) return `<img src="${ad.media}" alt="">`;
+      if(ad.media.startsWith("data:video")) return `<video src="${ad.media}" controls ${small?"":"autoplay muted loop"}></video>`;
     }
+    return `<div class="ad-placeholder">🎮</div>`;
+  }
 
-    document.querySelectorAll(".nav-item")
-        .forEach(n=>n.classList.remove("active"));
-
-    const nav=document.querySelector(
-        `.nav-item[data-page="${page}"]`
-    );
-
-    if(nav){
-        nav.classList.add("active");
-    }
-
-    window.scrollTo({
-        top:0,
-        behavior:"smooth"
+  function mergedAds(){
+    return [...state.ads,...defaultAds].sort((a,b)=>{
+      const vip=(x)=>x.tariff==="vip"?1:0;
+      return vip(b)-vip(a) || (b.created||0)-(a.created||0);
     });
+  }
 
-}
+  function renderHome(){
+    const q=($("#searchInput")?.value||"").toLowerCase().trim();
+    const ads=mergedAds().filter(a=>a.status==="active" && (!q || JSON.stringify(a).toLowerCase().includes(q)));
+    $("#homeAds").innerHTML=ads.length?ads.map(adCard).join():`<div class="empty"><div class="big">🔎</div>Bu qidiruv bo'yicha faol e'lon topilmadi.</div>`;
+  }
 
+  function adCard(ad){
+    const t=tariffMap[ad.tariff]||tariffMap.web;
+    return `<article class="card ad-card" data-ad="${esc(ad.id)}">
+      <div class="ad-media">${mediaHtml(ad,true)}<span class="badge ${ad.tariff==="vip"?"purple":ad.tariff==="channel"?"gold":"green"}">${esc(t.name)}</span></div>
+      <div class="ad-body">
+        <div class="ad-title">${esc(ad.title)}</div>
+        <div class="user-mini"><div class="avatar">${esc((ad.name||"?").slice(0,1))}</div><div><b>${esc(ad.name)}</b><div class="muted small">✓ Tasdiqlangan aloqa · ${esc(ad.location)}</div></div></div>
+        <div class="ad-meta"><span class="chip">LVL ${esc(ad.lvl)}</span><span class="chip">RP ${esc(ad.rp)}</span><span class="chip">🔫 ${esc(ad.auto)} skin</span></div>
+        <div class="ad-footer"><div class="price">${money(ad.price)}</div><button class="secondary" style="width:auto;padding:9px 12px" data-open-ad="${esc(ad.id)}">Ko'rish →</button></div>
+      </div>
+    </article>`;
+  }
 
-/* =========================
-   SURAH LIST
-========================= */
+  function findAd(id){ return [...state.ads,...defaultAds].find(a=>a.id===id); }
 
-function renderSurahs(list=surahs){
-
-    const grid=document.getElementById("surahGrid");
-
-    grid.innerHTML="";
-
-    list.forEach(surah=>{
-
-        const card=document.createElement("div");
-
-        card.className="surah-card";
-
-        card.onclick=()=>openSurah(surah.id);
-
-        card.innerHTML=`
-
-            <div class="surah-number">
-                ${surah.id}
-            </div>
-
-            <div class="surah-info">
-
-                <h3>${surah.name}</h3>
-
-                <p>
-                    ${surah.place} •
-                    ${surah.verses} oyat
-                </p>
-
-            </div>
-
-            <div class="surah-arabic">
-                ${surah.arabic}
-            </div>
-
-        `;
-
-        grid.appendChild(card);
-
-    });
-
-}
-
-
-/* =========================
-   SEARCH
-========================= */
-
-function searchSurahs(){
-
-    const q=
-        document
-        .getElementById("searchInput")
-        .value
-        .toLowerCase()
-        .trim();
-
-    const filtered=surahs.filter(s=>
-
-        s.name
-        .toLowerCase()
-        .includes(q)
-
-        ||
-
-        s.arabic
-        .includes(q)
-
-        ||
-
-        String(s.id)
-        .includes(q)
-
-    );
-
-    renderSurahs(filtered);
-
-}
-
-
-/* =========================
-   OPEN SURAH
-========================= */
-
-function openSurah(id){
-
-    const surah=surahs.find(
-        s=>s.id===id
-    );
-
-    if(!surah) return;
-
-    showPage("surahDetail");
-
-    const content=
-        document.getElementById("surahContent");
-
-    content.innerHTML=`
-
-        <div class="surah-header">
-
-            <div class="arabic-title">
-                ${surah.arabic}
-            </div>
-
-            <h1>${surah.name}</h1>
-
-            <p style="color:var(--muted)">
-                ${surah.place} •
-                ${surah.verses} oyat
-            </p>
-
-            <button
-                class="primary-btn"
-                style="margin-top:18px"
-                onclick="startAudio('${surah.name}')"
-            >
-                ▶️ Audio tinglash
-            </button>
-
-        </div>
-
-        <div id="ayahList"></div>
-
+  function openAd(id){
+    const ad=findAd(id); if(!ad)return;
+    const t=tariffMap[ad.tariff]||tariffMap.web;
+    $("#detailTitle").textContent="Akkaunt ma'lumotlari";
+    $("#detailBody").innerHTML=`
+      <div class="card" style="overflow:hidden;margin-bottom:12px"><div class="ad-media" style="height:230px">${mediaHtml(ad)}</div></div>
+      <h3 style="font-size:19px">${esc(ad.title)}</h3>
+      <div class="price" style="margin-bottom:12px">${money(ad.price)}</div>
+      <div class="summary">
+        ${row("👤 Sotuvchi",ad.name)}
+        ${row("📍 Manzil",ad.location)}
+        ${row("📈 LVL",ad.lvl)}
+        ${row("🛎 RP",ad.rp)}
+        ${row("🦹‍♂️ Kiyimlar",ad.clothes)}
+        ${row("🔫 Avtomat skin",ad.auto)}
+        ${row("🎈 Parashut skin",ad.para)}
+        ${row("🎒 Papka skin",ad.bag)}
+        ${row("🔱 Dostajeniya",ad.ach)}
+        ${row("⚜️ Titulari",ad.titles)}
+        ${row("🔐 Ulangan",ad.linked)}
+        ${row("Redkiy skinlar",ad.rare)}
+        ${row("🔥 Qo'shimcha",ad.extra)}
+      </div>
+      <div class="btn-row" style="margin-top:13px"><button class="primary" data-contact-phone="${esc(ad.phone)}">☎ Bog'lanish</button><button class="secondary" data-admin-sale="${esc(ad.id)}">🤝 Admin bilan savdo</button></div>
+      <div class="contact-buttons" style="margin-top:9px">
+        <a href="tel:${esc((ad.phone||"").replace(/\\s/g,""))}">📞 Telefon qilish</a>
+        <a href="https://t.me/${esc((ad.tg||"").replace("@",""))}" target="_blank">✈️ Telegram xabar</a>
+      </div>
     `;
+    $("#detailModal").classList.add("show");
+  }
 
-    const list=
-        document.getElementById("ayahList");
+  function row(a,b){return `<div class="summary-row"><b>${esc(a)}</b><b>${esc(b||"—")}</b></div>`}
 
-    surah.ayahs.forEach(ayah=>{
-
-        const key=`${surah.id}:${ayah.id}`;
-
-        const read=
-            state.read.includes(key);
-
-        const saved=
-            state.saved.includes(key);
-
-        const div=document.createElement("div");
-
-        div.className=
-            "ayah "+(read?"read":"");
-
-        div.id="ayah-"+key.replace(":","-");
-
-        div.innerHTML=`
-
-            <div class="ayah-top">
-
-                <div class="ayah-number">
-                    ${ayah.id}
-                </div>
-
-                <div class="ayah-actions">
-
-                    <button
-                        class="small-btn ${saved?"active":""}"
-                        onclick="toggleSave('${key}')"
-                    >
-                        ${saved?"★":"☆"}
-                    </button>
-
-                    <button
-                        class="small-btn"
-                        onclick="markRead('${key}')"
-                    >
-                        ✓
-                    </button>
-
-                    <button
-                        class="small-btn"
-                        onclick="playAyah(${surah.id},${ayah.id})"
-                    >
-                        🔊
-                    </button>
-
-                </div>
-
-            </div>
-
-            <div class="arabic">
-                ${ayah.arabic}
-            </div>
-
-            <div class="translation">
-                ${ayah.translation}
-            </div>
-
-        `;
-
-        list.appendChild(div);
-
+  function renderMyAds(){
+    const active=$(".tab.active")?.dataset.status||"active";
+    const ads=state.ads.filter(a=> {
+      let status=a.status;
+      if(status==="active" && Date.now()-a.created>7*86400000){status="ended";a.status="ended";}
+      return status===active;
     });
+    $("#myAdsList").innerHTML=ads.length?ads.map(ad=>{
+      const label=ad.status==="pending"?"Tasdiqlanmoqda":ad.status==="ended"?"Tugagan":"Faol";
+      return `<article class="card ad-card"><div class="ad-body">
+        <div style="display:flex;justify-content:space-between;gap:8px"><div><div class="ad-title">${esc(ad.title)}</div><div class="muted small">${esc(tariffMap[ad.tariff]?.name||"Tarif")}</div></div><span class="tag">${label}</span></div>
+        <div class="ad-meta"><span class="chip">💰 ${money(ad.price)}</span><span class="chip">📅 ${new Date(ad.created).toLocaleDateString("uz-UZ")}</span></div>
+        ${ad.status==="active"?`<button class="danger" data-sold="${esc(ad.id)}">✓ Akkauntimni sotib bo'ldim</button>`:""}
+      </div></article>`;
+    }).join():`<div class="empty"><div class="big">📣</div>${active==="pending"?"Tasdiqlanayotgan e'lonlaringiz yo'q.":active==="ended"?"Tugagan e'lonlaringiz yo'q.":"Hozircha faol e'loningiz yo'q."}</div>`;
+    save();
+  }
 
-}
+  function renderChats(){
+    $("#chatList").innerHTML=state.chats.length?state.chats.map(c=>`
+      <button class="chat-item" data-chat="${esc(c.id)}">
+        <div class="avatar">${c.type==="sale"?"A":"👤"}</div>
+        <div class="chat-main"><div class="chat-name">${esc(c.title)} ${c.verified?"✓":""}</div><div class="last">${esc(c.messages.at(-1)?.text||"Yangi chat")}</div></div>
+        <span style="color:#66758a">›</span>
+      </button>`).join(""):`<div class="empty"><div class="big">💬</div>Hali hech kim bilan chat boshlamagansiz.</div>`;
+  }
 
+  let currentChatId=null, selectedMessage=null;
 
-/* =========================
-   READ
-========================= */
+  function openChat(id){
+    const c=state.chats.find(x=>x.id===id); if(!c)return;
+    currentChatId=id;
+    $("#chatTitle").textContent=c.title;
+    $("#chatSubtitle").textContent=c.type==="sale"?"Admin Savdo · sotuvchi + xaridor + admin":"Shaxsiy chat";
+    $("#adminCardInChat").style.display=c.type==="sale"?"block":"none";
+    $("#messages").innerHTML=c.messages.map(m=>`
+      <div class="msg ${m.sender==="me"?"me":m.sender==="admin"?"admin":""}" data-msg="${esc(m.id)}">
+        <div class="msg-name">${esc(m.name)}</div><div class="msg-text">${esc(m.text)}</div><div class="msg-time">${esc(m.time)}</div>
+      </div>`).join("");
+    showPage("chatPage");
+    setTimeout(()=>{const box=$("#messages");box.scrollTop=box.scrollHeight},30);
+  }
 
-function markRead(key){
-
-    const index=
-        state.read.indexOf(key);
-
-    if(index===-1){
-
-        state.read.push(key);
-
-    }else{
-
-        state.read.splice(index,1);
-
+  function startAdminChat(adId){
+    const ad=findAd(adId);
+    let c=state.chats.find(x=>x.type==="sale" && x.adId===adId);
+    if(!c){
+      c={id:"sale-"+Date.now(),type:"sale",title:"Admin Savdo",subtitle:`${ad?.name||"Sotuvchi"} ↔ Siz`,other:ad?.name||"Sotuvchi",verified:true,adId,
+        messages:[{id:"m-"+Date.now(),sender:"admin",name:"Cardinal Admin",text:"Admin Savdo chatiga xush kelibsiz. Bu chatdagi yozishmalar sotuvchi, xaridor va admin uchun ko'rinadi.",time:new Date().toLocaleTimeString("uz-UZ",{hour:"2-digit",minute:"2-digit"})}]};
+      state.chats.unshift(c);save();
     }
-
-    saveState();
-    updateUI();
-
-    const element=
-        document.getElementById(
-            "ayah-"+key.replace(":","-")
-        );
-
-    if(element){
-        element.classList.toggle(
-            "read",
-            state.read.includes(key)
-        );
-    }
-
-}
-
-
-/* =========================
-   SAVE
-========================= */
-
-function toggleSave(key){
-
-    const index=
-        state.saved.indexOf(key);
-
-    if(index===-1){
-
-        state.saved.push(key);
-
-    }else{
-
-        state.saved.splice(index,1);
-
-    }
-
-    saveState();
-    updateUI();
-    renderSaved();
-
-    const [sid,aid]=key.split(":");
-
-    const surah=
-        surahs.find(s=>s.id==sid);
-
-    if(
-        document.getElementById("surahContent")
-        &&
-        surah
-    ){
-
-        openSurah(Number(sid));
-
-    }
-
-}
-
-
-/* =========================
-   SAVED LIST
-========================= */
-
-function renderSaved(){
-
-    const container=
-        document.getElementById("savedList");
-
-    if(!container) return;
-
-    if(state.saved.length===0){
-
-        container.innerHTML=`
-
-            <div class="empty">
-
-                <div class="empty-icon">⭐</div>
-
-                <h2>Hozircha saqlangan oyat yo'q</h2>
-
-                <p style="margin-top:8px">
-                    Oyat yonidagi ⭐ tugmasini bosing.
-                </p>
-
-            </div>
-
-        `;
-
-        return;
-
-    }
-
-    container.innerHTML="";
-
-    state.saved.forEach(key=>{
-
-        const [sid,aid]=key.split(":");
-
-        const surah=
-            surahs.find(s=>s.id==sid);
-
-        if(!surah) return;
-
-        const ayah=
-            surah.ayahs.find(a=>a.id==aid);
-
-        if(!ayah) return;
-
-        const div=
-            document.createElement("div");
-
-        div.className="ayah";
-
-        div.style.cursor="pointer";
-
-        div.onclick=()=>{
-            openSurah(surah.id);
-        };
-
-        div.innerHTML=`
-
-            <div class="ayah-top">
-
-                <div class="ayah-number">
-                    ${ayah.id}
-                </div>
-
-                <strong>
-                    ${surah.name}
-                </strong>
-
-                <button
-                    class="small-btn active"
-                    onclick="
-                        event.stopPropagation();
-                        toggleSave('${key}')
-                    "
-                >
-                    ★
-                </button>
-
-            </div>
-
-            <div class="arabic">
-                ${ayah.arabic}
-            </div>
-
-            <div class="translation">
-                ${ayah.translation}
-            </div>
-
-        `;
-
-        container.appendChild(div);
-
-    });
-
-}
-
-
-/* =========================
-   GOAL
-========================= */
-
-function setGoal(goal){
-
-    state.goal=Number(goal);
-
-    saveState();
-    updateUI();
-
-    document
-        .querySelectorAll(".goal-option")
-        .forEach(btn=>{
-
-            btn.classList.remove("active");
-
-            if(
-                btn.innerText.includes(
-                    String(goal)
-                )
-            ){
-                btn.classList.add("active");
-            }
-
-        });
-
-}
-
-
-/* =========================
-   UI UPDATE
-========================= */
-
-function updateUI(){
-
-    const todayRead=
-        state.read.length;
-
-    const percent=
-        Math.min(
-            100,
-            Math.round(
-                todayRead/state.goal*100
-            )
-        );
-
-    document.getElementById(
-        "todayRead"
-    ).innerText=todayRead;
-
-    document.getElementById(
-        "todayGoal"
-    ).innerText=state.goal;
-
-    document.getElementById(
-        "homePercent"
-    ).innerText=percent+"%";
-
-    document.getElementById(
-        "homeProgress"
-    ).style.width=percent+"%";
-
-    document.getElementById(
-        "statRead"
-    ).innerText=todayRead;
-
-    document.getElementById(
-        "statSaved"
-    ).innerText=state.saved.length;
-
-    document.getElementById(
-        "savedCount"
-    ).innerText=
-        state.saved.length+" ta oyat";
-
-    document.getElementById(
-        "streak"
-    ).innerText=state.streak;
-
-    document.getElementById(
-        "bigRead"
-    ).innerText=todayRead;
-
-    document.getElementById(
-        "bigSaved"
-    ).innerText=state.saved.length;
-
-    document.getElementById(
-        "bigStreak"
-    ).innerText=state.streak;
-
-    document.getElementById(
-        "statsProgress"
-    ).style.width=percent+"%";
-
-    document.getElementById(
-        "statsReadText"
-    ).innerText=
-        todayRead+" / "+state.goal;
-
-    document.getElementById(
-        "statsPercent"
-    ).innerText=
-        percent+"%";
-
-}
-
-
-/* =========================
-   DARK MODE
-========================= */
-
-function toggleDark(){
-
-    state.dark=!state.dark;
-
-    saveState();
-    applyTheme();
-
-}
-
-
-function applyTheme(){
-
-    document.body.classList.toggle(
-        "dark",
-        state.dark
-    );
-
-    const btn=
-        document.getElementById("themeBtn");
-
-    if(btn){
-        btn.innerText=
-            state.dark?"☀️":"🌙";
-    }
-
-    const sw=
-        document.getElementById("darkSwitch");
-
-    if(sw){
-        sw.classList.toggle(
-            "on",
-            state.dark
-        );
-    }
-
-}
-
-
-/* =========================
-   SETTINGS
-========================= */
-
-function openSettings(){
-
-    showPage("settings");
-
-}
-
-
-function toggleNotify(){
-
-    state.notifications=
-        !state.notifications;
-
-    saveState();
-
-    document
-        .getElementById("notifySwitch")
-        .classList.toggle(
-            "on",
-            state.notifications
-        );
-
-    if(
-        state.notifications &&
-        "Notification" in window
-    ){
-
-        Notification.requestPermission();
-
-    }
-
-}
-
-
-function changeArabicSize(size){
-
-    document
-        .querySelectorAll(".arabic")
-        .forEach(el=>{
-            el.style.fontSize=
-                size+"px";
-        });
-
-}
-
-
-/* =========================
-   MEMORIZATION
-========================= */
-
-let memoryHidden=false;
-
-function toggleMemory(){
-
-    memoryHidden=!memoryHidden;
-
-    const text=
-        document.getElementById(
-            "memoryTranslation"
-        );
-
-    text.style.display=
-        memoryHidden?"none":"block";
-
-}
-
-
-/* =========================
-   AUDIO
-========================= */
-
-/*
-   Demo audio player.
-   Real Qur'on audio URL'larini
-   keyinchalik API bilan ulash mumkin.
-*/
-
-let audio=
-    new Audio();
-
-let audioPlaying=false;
-
-function startAudio(name){
-
-    document
-        .getElementById("audioPlayer")
-        .classList.add("show");
-
-    document
-        .getElementById("audioTitle")
-        .innerText=name;
-
-    /*
-      Demo:
-      browser audio API.
-      Bu yerga real audio URL beriladi.
-    */
-
-    audio.src=
-        "https://cdn.islamic.network/quran/audio-surah/128/ar.alafasy/1.mp3";
-
-    audio.play()
-        .then(()=>{
-
-            audioPlaying=true;
-
-            document
-                .getElementById("playButton")
-                .innerText="⏸";
-
-        })
-        .catch(()=>{
-
-            audioPlaying=false;
-
-        });
-
-}
-
-
-function playAyah(surahId,ayahId){
-
-    const surah=
-        surahs.find(s=>s.id===surahId);
-
-    if(!surah) return;
-
-    document
-        .getElementById("audioPlayer")
-        .classList.add("show");
-
-    document
-        .getElementById("audioTitle")
-        .innerText=
-        surah.name+" — "+ayahId;
-
-    /*
-       Demo audio.
-    */
-
-    audio.src=
-        `https://cdn.islamic.network/quran/audio/128/ar.alafasy/${ayahId}.mp3`;
-
-    audio.play()
-        .then(()=>{
-
-            audioPlaying=true;
-
-            document
-                .getElementById("playButton")
-                .innerText="⏸";
-
-        })
-        .catch(()=>{});
-
-}
-
-
-function toggleAudio(){
-
-    if(!audio.src) return;
-
-    if(audio.paused){
-
-        audio.play();
-
-        audioPlaying=true;
-
-        document
-            .getElementById("playButton")
-            .innerText="⏸";
-
-    }else{
-
-        audio.pause();
-
-        audioPlaying=false;
-
-        document
-            .getElementById("playButton")
-            .innerText="▶";
-
-    }
-
-}
-
-
-function previousAudio(){
-
-    audio.currentTime=0;
-
-}
-
-
-function nextAudio(){
-
-    audio.currentTime=0;
-
-    audio.play();
-
-}
-
-
-audio.addEventListener(
-    "timeupdate",
-    ()=>{
-
-        if(!audio.duration) return;
-
-        const percent=
-            audio.currentTime/
-            audio.duration*100;
-
-        document
-            .getElementById(
-                "audioProgress"
-            )
-            .style.width=
-            percent+"%";
-
-        const seconds=
-            Math.floor(audio.currentTime);
-
-        const min=
-            Math.floor(seconds/60);
-
-        const sec=
-            seconds%60;
-
-        document
-            .getElementById(
-                "audioTime"
-            )
-            .innerText=
-            `${String(min).padStart(2,"0")}:${String(sec).padStart(2,"0")}`;
-
-    }
-);
-
-
-function seekAudio(event){
-
-    if(!audio.duration) return;
-
-    const rect=
-        event.currentTarget
-        .getBoundingClientRect();
-
-    const percent=
-        (event.clientX-rect.left)/
-        rect.width;
-
-    audio.currentTime=
-        percent*audio.duration;
-
-}
-
-
-/* =========================
-   STORAGE
-========================= */
-
-function saveState(){
-
-    localStorage.setItem(
-        "quranUstoz",
-        JSON.stringify(state)
-    );
-
-}
-
-
-/* =========================
-   KEYBOARD
-========================= */
-
-document.addEventListener(
-    "keydown",
-    e=>{
-
-        if(
-            e.key===" " &&
-            document.activeElement.tagName!=="INPUT"
-        ){
-
-            e.preventDefault();
-
-            toggleAudio();
-
-        }
-
-    }
-);
-
+    $("#detailModal").classList.remove("show");
+    openChat(c.id);
+  }
+
+  function renderProfile(){
+    $("#profileName").textContent=state.profile.name;
+    $("#profileUsername").textContent=state.profile.username;
+    updateBalance();
+    if(state.profile.avatar)$("#avatarBox").innerHTML=`<img src="${state.profile.avatar}" alt="">`;
+  }
+
+  function initLocations(){
+    $("#fLocation").innerHTML='<option value="">Tanlang</option>'+REGIONS.map(x=>`<option>${x}</option>`).join("");
+  }
+
+  let selectedTariff=null, draft=null, paymentReason="topup", paymentTimer=null;
+
+  function chooseTariff(el){
+    $$(".tariff").forEach(x=>x.classList.remove("selected"));el.classList.add("selected");
+    selectedTariff={id:el.dataset.tariff,price:+el.dataset.price};
+    $("#createStepTariff").classList.remove("active");$("#createStepForm").classList.add("active");
+    $("#vipTimeWrap").style.display=selectedTariff.id==="vip"?"block":"none";
+  }
+
+  function collectForm(){
+    const phone=$("#fPhone").value.trim();
+    const tg=$("#fTg").value.trim();
+    const price=$("#fPrice").value.replace(/[^\d]/g,"");
+    if(!$("#mediaInput").files[0] && !draft?.media) return toast("Avval akkaunt videosi yoki rasmini yuklang.");
+    const required=[
+      ["fLvl","LVL"],["fRp","RP"],["fClothes","Kiyimlar"],["fAuto","Avtomat skin"],["fPara","Parashut skin"],["fBag","Papka skin"],
+      ["fAch","Dostajeniya"],["fTitles","Titulari"],["fPrice","Narxi"],["fLocation","Manzil"],["fTg","Telegram"],["fPhone","Telefon"]
+    ];
+    for(const [id,label] of required){if(!$("#"+id).value.trim())return toast(label+" maydonini to'ldiring.");}
+    if(!/^\\+998\\s?\\d{2}\\s?\\d{3}\\s?\\d{2}\\s?\\d{2}$/.test(phone))return toast("Telefon raqam +998 90 123 45 67 formatida bo'lsin.");
+    if(!/^@?[A-Za-z0-9_]{5,32}$/.test(tg))return toast("Telegram username noto'g'ri.");
+    if(Number(price)<=0)return toast("Narxni to'g'ri kiriting.");
+    if(selectedTariff.id==="vip"&&!$("#fVipTime").value)return toast("VIP uchun chiqish vaqtini tanlang.");
+    return {
+      media:draft?.media||"",lvl:$("#fLvl").value,rp:$("#fRp").value,clothes:$("#fClothes").value,auto:$("#fAuto").value,
+      para:$("#fPara").value,bag:$("#fBag").value,ach:$("#fAch").value,titles:$("#fTitles").value,rare:$("#fRare").value,
+      extra:$("#fExtra").value,linked:$("#fLinked").value==="Boshqa"?$("#fLinkedOther").value:$("#fLinked").value,
+      price:Number(price),location:$("#fLocation").value==="Boshqa"?$("#fLocationOther").value:$("#fLocation").value,
+      tg:tg.startsWith("@")?tg:"@"+tg,phone, vipTime:$("#fVipTime").value||""
+    };
+  }
+
+  function renderFormSummary(){
+    $("#formSummary").innerHTML=`<h3>${esc(draft.title)}</h3><div class="price">${money(draft.price)}</div>
+      ${draft.media?`<div class="preview" style="display:block">${mediaHtml(draft)}</div>`:""}
+      <div class="summary" style="margin-top:10px">
+      ${row("Tarif",tariffMap[selectedTariff.id].name+" · "+money(selectedTariff.price))}
+      ${row("LVL",draft.lvl)}${row("RP",draft.rp)}${row("Kiyimlar",draft.clothes)}
+      ${row("🔫 Avtomat",draft.auto)}${row("🎈 Parashut",draft.para)}${row("🎒 Papka",draft.bag)}
+      ${row("🔱 Dostajeniya",draft.ach)}${row("⚜️ Titulari",draft.titles)}${row("🔐 Ulangan",draft.linked)}
+      ${row("🏠 Manzil",draft.location)}${row("📲 Telegram",draft.tg)}${row("📞 Telefon",draft.phone)}
+      ${draft.rare?row("Redkiy skinlar",draft.rare):""}${draft.extra?row("🔥 Qo'shimcha",draft.extra):""}
+      </div>`;
+  }
+
+  function resetCreate(){
+    selectedTariff=null;draft=null;
+    $("#createStepTariff").classList.add("active");$("#createStepForm").classList.remove("active");$("#createStepPreview").classList.remove("active");
+    $$(".tariff").forEach(x=>x.classList.remove("selected"));
+  }
+
+  function openTopup(reason="topup", amount=0){
+    paymentReason=reason;
+    $("#topupAmount").value=amount||"";
+    $("#paymentAmountBig").textContent=money(amount||0);
+    showPage("paymentPage");
+    startTimer();
+  }
+
+  function startTimer(){
+    clearInterval(paymentTimer);let sec=300;$("#paymentTimer").textContent="05:00";
+    paymentTimer=setInterval(()=>{sec--;$("#paymentTimer").textContent=`${String(Math.floor(sec/60)).padStart(2,"0")}:${String(sec%60).padStart(2,"0")}`;if(sec<=0)clearInterval(paymentTimer)},1000);
+  }
+
+  function confirmPayment(){
+    const amount=Number($("#topupAmount").value.replace(/[^\d]/g,""));
+    if(!amount||amount<1000)return toast("Kamida 1 000 so'm kiriting.");
+    state.balance+=amount;state.topup+=amount;save();updateBalance();
+    toast("Demo to'lov qabul qilindi. Balansingiz to'ldirildi.");
+    if(paymentReason==="ad"){
+      showPage("createPage");
+      $("#createStepTariff").classList.remove("active");$("#createStepForm").classList.remove("active");$("#createStepPreview").classList.add("active");
+      renderFormSummary();
+    }else showPage("homePage");
+  }
+
+  function confirmAd(){
+    if(!draft||!selectedTariff)return;
+    const cost=selectedTariff.price;
+    if(state.balance<cost){paymentReason="ad";return openTopup("ad",cost-state.balance);}
+    const ad={id:"ad-"+Date.now(),status:"pending",tariff:selectedTariff.id,title:`🎮 PUBG akkaunt · LVL ${draft.lvl}`,name:state.profile.name,username:state.profile.username,created:Date.now(),...draft};
+    state.balance-=cost;state.spent+=cost;state.ads.unshift(ad);save();updateBalance();
+    toast("E'lon admin tasdig'iga yuborildi.");
+    resetCreate();showPage("myAdsPage");
+  }
+
+  function markSold(id){
+    const ad=state.ads.find(x=>x.id===id);if(!ad)return;
+    ad.status="ended";save();renderMyAds();toast("E'lon yopildi va faol ro'yxatdan olib tashlandi.");
+  }
+
+  function sendMessage(){
+    const input=$("#messageInput"),text=input.value.trim();if(!text||!currentChatId)return;
+    const c=state.chats.find(x=>x.id===currentChatId);
+    c.messages.push({id:"m-"+Date.now(),sender:"me",name:state.profile.name,text,time:new Date().toLocaleTimeString("uz-UZ",{hour:"2-digit",minute:"2-digit"})});
+    if(c.type==="sale") c.messages.push({id:"m-"+(Date.now()+1),sender:"admin",name:"Cardinal Admin",text:"Xabaringiz qabul qilindi. Admin suhbatni kuzatmoqda.",time:new Date().toLocaleTimeString("uz-UZ",{hour:"2-digit",minute:"2-digit"})});
+    input.value="";save();openChat(currentChatId);
+  }
+
+  document.addEventListener("click",e=>{
+    const nav=e.target.closest(".nav-item");if(nav){if(nav.dataset.page==="createPage"){showPage("createPage");resetCreate()}else showPage(nav.dataset.page);return;}
+    const back=e.target.closest("[data-back]");if(back){showPage(back.dataset.back);return;}
+    const close=e.target.closest("[data-close]");if(close){$("#"+close.dataset.close).classList.remove("show");return;}
+    const tariff=e.target.closest(".tariff");if(tariff){chooseTariff(tariff);return;}
+    const open=e.target.closest("[data-open-ad]");if(open){openAd(open.dataset.openAd);return;}
+    const chat=e.target.closest("[data-chat]");if(chat){openChat(chat.dataset.chat);return;}
+    const sale=e.target.closest("[data-admin-sale]");if(sale){startAdminChat(sale.dataset.adminSale);return;}
+    const sold=e.target.closest("[data-sold]");if(sold){markSold(sold.dataset.sold);return;}
+    const msg=e.target.closest(".msg");if(msg){selectedMessage=msg.dataset.msg;const c=state.chats.find(x=>x.id===currentChatId);const m=c?.messages.find(x=>x.id===selectedMessage);if(m){$("#blockUserBtn").style.display=m.sender==="other"?"block":"none";$("#messageActionModal").classList.add("show")}return;}
+  });
+
+  $("#searchInput").addEventListener("input",renderHome);
+  $$("#myTabs .tab").forEach(t=>t.addEventListener("click",()=>{$$("#myTabs .tab").forEach(x=>x.classList.remove("active"));t.classList.add("active");renderMyAds()}));
+  $("#quickPlus").onclick=()=>openTopup();
+  $("#profileTopup").onclick=()=>openTopup();
+  $("#myAdsBtn").onclick=()=>showPage("myAdsPage");
+  $("#chatBtn").onclick=()=>showPage("chatListPage");
+  $("#fabChat").onclick=()=>showPage("chatListPage");
+  $("#themeBtn").onclick=$("#themeMenu").onclick=()=>{
+    state.theme=state.theme==="dark"?"light":"dark";save();applyTheme();
+  };
+  $("#personalBtn").onclick=()=>{
+    $("#pName").value=state.profile.name;$("#pTg").value=state.profile.username;$("#pPhone").value=state.profile.phone;$("#personalModal").classList.add("show");
+  };
+  $("#savePersonal").onclick=()=>{
+    if(!$("#pName").value.trim())return toast("Ism familiyani kiriting.");
+    state.profile.name=$("#pName").value.trim();state.profile.username=$("#pTg").value.trim()||"@cardinal_user";state.profile.phone=$("#pPhone").value.trim()||"+998 90 000 00 00";save();renderProfile();$("#personalModal").classList.remove("show");toast("Shaxsiy ma'lumotlar saqlandi.");
+  };
+  $("#avatarInput").onchange=e=>{
+    const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{state.profile.avatar=r.result;save();renderProfile()};r.readAsDataURL(f);
+  };
+  $("#mediaInput").onchange=e=>{
+    const f=e.target.files[0];if(!f)return;
+    const r=new FileReader();r.onload=()=>{draft=draft||{};draft.media=r.result;const isV=f.type.startsWith("video");$("#mediaPreview").style.display="block";$("#mediaPreview").innerHTML=isV?`<video src="${r.result}" controls></video>`:`<img src="${r.result}">`};r.readAsDataURL(f);
+  };
+  $("#fLinked").onchange=e=>$("#otherLinkedWrap").style.display=e.target.value==="Boshqa"?"block":"none";
+  $("#fLocation").onchange=e=>$("#otherLocationWrap").style.display=e.target.value==="Boshqa"?"block":"none";
+  $("#fPhone").oninput=e=>{let v=e.target.value.replace(/[^\d+]/g,"");if(!v.startsWith("+998"))v="+998 "+v.replace(/\+998/g,"").replace(/\D/g,"");let d=v.replace("+998","").replace(/\D/g,"").slice(0,9);let out="+998 ";if(d.length)out+=d.slice(0,2);if(d.length>2)out+=" "+d.slice(2,5);if(d.length>5)out+=" "+d.slice(5,7);if(d.length>7)out+=" "+d.slice(7,9);e.target.value=out;};
+  $("#fPrice").oninput=e=>{const n=e.target.value.replace(/\D/g,"");e.target.value=n?Number(n).toLocaleString("uz-UZ"):"";};
+  $("#toPreview").onclick=()=>{
+    const f=collectForm();if(!f)return;
+    draft={...f,title:`🎮 PUBG akkaunt · LVL ${f.lvl}`};
+    $("#createStepForm").classList.remove("active");$("#createStepPreview").classList.add("active");renderFormSummary();
+  };
+  $("#editForm").onclick=()=>{$("#createStepPreview").classList.remove("active");$("#createStepForm").classList.add("active")};
+  $("#confirmAd").onclick=confirmAd;
+  $("#topupAmount").oninput=e=>{e.target.value=e.target.value.replace(/\D/g,"");$("#paymentAmountBig").textContent=money(Number(e.target.value||0))};
+  $("#simulatePayment").onclick=confirmPayment;
+  $("#copyCard").onclick=async()=>{try{await navigator.clipboard.writeText(ADMIN.card);toast("Karta raqami nusxalandi.")}catch{toast(ADMIN.card)}};
+  $("#sendMessage").onclick=sendMessage;
+  $("#messageInput").addEventListener("keydown",e=>{if(e.key==="Enter")sendMessage()});
+  $("#editMsgBtn").onclick=()=>{
+    const c=state.chats.find(x=>x.id===currentChatId),m=c?.messages.find(x=>x.id===selectedMessage);if(!m)return;
+    const n=prompt("Xabarni tahrirlang:",m.text);if(n!==null&&n.trim()){m.text=n.trim();save();$("#messageActionModal").classList.remove("show");openChat(currentChatId)}
+  };
+  $("#deleteMsgBtn").onclick=()=>{
+    const c=state.chats.find(x=>x.id===currentChatId);if(!c)return;
+    c.messages=c.messages.filter(m=>m.id!==selectedMessage);save();$("#messageActionModal").classList.remove("show");openChat(currentChatId);
+  };
+  $("#blockUserBtn").onclick=()=>{state.blocked=true;save();$("#messageActionModal").classList.remove("show");toast("Foydalanuvchi demo rejimda bloklandi.");};
+
+  initLocations();applyTheme();updateBalance();renderHome();renderProfile();
+
+  // Demo: 7 kundan o'tgan faol e'lonlar avtomatik tugagan holatga o'tadi.
+  setInterval(()=>{let changed=false;state.ads.forEach(a=>{if(a.status==="active"&&Date.now()-a.created>7*86400000){a.status="ended";changed=true}});if(changed){save();renderMyAds()}},60000);
+})();
 </script>
-
 </body>
 </html>
