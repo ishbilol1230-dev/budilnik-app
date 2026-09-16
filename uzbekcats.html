@@ -57,28 +57,11 @@
             overflow-x: hidden;
         }
 
-        button, input, textarea, select {
-            font: inherit;
-        }
+        button, input, textarea, select { font: inherit; }
+        button { border: 0; cursor: pointer; background: none; }
+        input, textarea { outline: none; }
+        img { max-width: 100%; display: block; }
 
-        button {
-            border: 0;
-            cursor: pointer;
-            background: none;
-        }
-
-        input, textarea {
-            outline: none;
-        }
-
-        img {
-            max-width: 100%;
-            display: block;
-        }
-
-        /* =========================================================
-           APP LAYOUT
-           ========================================================= */
         .app {
             min-height: 100vh;
             padding-bottom: calc(var(--nav-height) + 15px);
@@ -90,19 +73,11 @@
             animation: pageIn 0.3s ease;
         }
 
-        .page.active {
-            display: block;
-        }
+        .page.active { display: block; }
 
         @keyframes pageIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .container {
@@ -111,9 +86,6 @@
             padding: 16px;
         }
 
-        /* =========================================================
-           TOP BAR / HEADER
-           ========================================================= */
         .top-bar {
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             padding: 16px;
@@ -130,11 +102,7 @@
             margin: 0 auto;
         }
 
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
+        .brand { display: flex; align-items: center; gap: 12px; }
 
         .brand-logo {
             width: 48px;
@@ -148,16 +116,8 @@
             font-size: 26px;
         }
 
-        .brand-name {
-            font-size: 20px;
-            font-weight: 900;
-            letter-spacing: -0.5px;
-        }
-
-        .brand-sub {
-            font-size: 11px;
-            opacity: 0.8;
-        }
+        .brand-name { font-size: 20px; font-weight: 900; letter-spacing: -0.5px; }
+        .brand-sub { font-size: 11px; opacity: 0.8; }
 
         .balance-display {
             display: flex;
@@ -177,23 +137,10 @@
             background: rgba(255, 255, 255, 0.25);
         }
 
-        .balance-icon {
-            font-size: 20px;
-        }
-
-        .balance-info {
-            text-align: right;
-        }
-
-        .balance-label {
-            font-size: 9px;
-            opacity: 0.8;
-        }
-
-        .balance-amount {
-            font-size: 15px;
-            font-weight: 900;
-        }
+        .balance-icon { font-size: 20px; }
+        .balance-info { text-align: right; }
+        .balance-label { font-size: 9px; opacity: 0.8; }
+        .balance-amount { font-size: 15px; font-weight: 900; }
 
         .balance-add {
             width: 28px;
@@ -207,9 +154,6 @@
             font-weight: 900;
         }
 
-        /* =========================================================
-           BOTTOM NAVIGATION
-           ========================================================= */
         .bottom-navigation {
             position: fixed;
             z-index: 100;
@@ -224,9 +168,7 @@
             justify-content: center;
         }
 
-        body.dark .bottom-navigation {
-            background: rgba(20, 20, 28, 0.96);
-        }
+        body.dark .bottom-navigation { background: rgba(20, 20, 28, 0.96); }
 
         .bottom-navigation-inner {
             width: min(650px, 100%);
@@ -259,15 +201,9 @@
             transition: all 0.2s;
         }
 
-        .nav-item.active {
-            color: var(--primary);
-        }
+        .nav-item.active { color: var(--primary); }
+        .nav-item.active .nav-icon { background: rgba(108, 92, 231, 0.12); }
 
-        .nav-item.active .nav-icon {
-            background: rgba(108, 92, 231, 0.12);
-        }
-
-        /* Special Create Button */
         .nav-item.create-btn .nav-icon {
             width: 52px;
             height: 52px;
@@ -286,20 +222,8 @@
             transform: scale(1.05);
         }
 
-        /* =========================================================
-           CARDS & COMPONENTS
-           ========================================================= */
-        .section-title {
-            font-size: 20px;
-            font-weight: 900;
-            letter-spacing: -0.3px;
-        }
-
-        .section-subtitle {
-            margin-top: 4px;
-            color: var(--muted);
-            font-size: 13px;
-        }
+        .section-title { font-size: 20px; font-weight: 900; letter-spacing: -0.3px; }
+        .section-subtitle { margin-top: 4px; color: var(--muted); font-size: 13px; }
 
         .btn {
             min-height: 48px;
@@ -314,9 +238,7 @@
             font-size: 14px;
         }
 
-        .btn:active {
-            transform: scale(0.97);
-        }
+        .btn:active { transform: scale(0.97); }
 
         .btn-primary {
             background: linear-gradient(135deg, var(--primary), var(--primary-dark));
@@ -336,13 +258,13 @@
             box-shadow: 0 4px 15px rgba(0, 184, 148, 0.3);
         }
 
-        .btn-danger {
-            background: var(--red);
-            color: white;
-        }
+        .btn-danger { background: var(--red); color: white; }
+        .btn-block { width: 100%; }
 
-        .btn-block {
-            width: 100%;
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
         }
 
         .icon-btn {
@@ -359,17 +281,9 @@
             transition: all 0.2s;
         }
 
-        .icon-btn:active {
-            transform: scale(0.95);
-        }
+        .icon-btn:active { transform: scale(0.95); }
 
-        /* =========================================================
-           SEARCH & FILTER
-           ========================================================= */
-        .search-box {
-            margin-top: 16px;
-            position: relative;
-        }
+        .search-box { margin-top: 16px; position: relative; }
 
         .search-box input {
             width: 100%;
@@ -403,9 +317,6 @@
             font-size: 18px;
         }
 
-        /* =========================================================
-           CATEGORY TABS
-           ========================================================= */
         .category-tabs {
             display: flex;
             gap: 8px;
@@ -414,9 +325,7 @@
             scrollbar-width: none;
         }
 
-        .category-tabs::-webkit-scrollbar {
-            display: none;
-        }
+        .category-tabs::-webkit-scrollbar { display: none; }
 
         .category-tab {
             flex-shrink: 0;
@@ -437,9 +346,6 @@
             box-shadow: 0 4px 15px rgba(108, 92, 231, 0.3);
         }
 
-        /* =========================================================
-           ADS GRID
-           ========================================================= */
         .ads-grid {
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -457,10 +363,7 @@
             transition: all 0.25s;
         }
 
-        .ad-card:active {
-            transform: scale(0.98);
-            box-shadow: var(--shadow-hover);
-        }
+        .ad-card:active { transform: scale(0.98); box-shadow: var(--shadow-hover); }
 
         .ad-image-wrap {
             height: 170px;
@@ -476,9 +379,7 @@
             transition: transform 0.3s;
         }
 
-        .ad-card:hover .ad-image {
-            transform: scale(1.05);
-        }
+        .ad-card:hover .ad-image { transform: scale(1.05); }
 
         .ad-type-badge {
             position: absolute;
@@ -497,9 +398,7 @@
             background: linear-gradient(135deg, var(--gold), #e67e22);
         }
 
-        .ad-content {
-            padding: 14px;
-        }
+        .ad-content { padding: 14px; }
 
         .ad-title {
             font-size: 14px;
@@ -525,9 +424,6 @@
             color: var(--primary);
         }
 
-        /* =========================================================
-           TARIF CARDS
-           ========================================================= */
         .tariff-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -573,11 +469,7 @@
             font-weight: 900;
         }
 
-        .tariff-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-        }
+        .tariff-header { display: flex; justify-content: space-between; align-items: flex-start; }
 
         .tariff-icon {
             width: 60px;
@@ -590,45 +482,16 @@
             background: linear-gradient(135deg, rgba(108, 92, 231, 0.1), rgba(108, 92, 231, 0.05));
         }
 
-        .tariff-price {
-            text-align: right;
-        }
+        .tariff-price { text-align: right; }
 
-        .tariff-price-value {
-            font-size: 26px;
-            font-weight: 900;
-            color: var(--primary);
-        }
+        .tariff-price-value { font-size: 26px; font-weight: 900; color: var(--primary); }
+        .tariff-price-label { font-size: 11px; color: var(--muted); }
+        .tariff-title { font-size: 18px; font-weight: 900; }
+        .tariff-desc { font-size: 12px; color: var(--muted); line-height: 1.5; }
 
-        .tariff-price-label {
-            font-size: 11px;
-            color: var(--muted);
-        }
+        .tariff-features { display: flex; flex-direction: column; gap: 10px; margin-top: 4px; }
 
-        .tariff-title {
-            font-size: 18px;
-            font-weight: 900;
-        }
-
-        .tariff-desc {
-            font-size: 12px;
-            color: var(--muted);
-            line-height: 1.5;
-        }
-
-        .tariff-features {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-top: 4px;
-        }
-
-        .tariff-feature {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 12px;
-        }
+        .tariff-feature { display: flex; align-items: center; gap: 10px; font-size: 12px; }
 
         .tariff-feature-icon {
             width: 22px;
@@ -649,17 +512,9 @@
             color: var(--red);
         }
 
-        .tariff-feature.disabled {
-            opacity: 0.5;
-            text-decoration: line-through;
-        }
+        .tariff-feature.disabled { opacity: 0.5; text-decoration: line-through; }
 
-        /* =========================================================
-           FORMS
-           ========================================================= */
-        .form-group {
-            margin-bottom: 18px;
-        }
+        .form-group { margin-bottom: 18px; }
 
         .form-label {
             display: block;
@@ -688,15 +543,8 @@
             box-shadow: 0 0 0 4px rgba(108, 92, 231, 0.1);
         }
 
-        .form-textarea {
-            min-height: 120px;
-            resize: vertical;
-            line-height: 1.6;
-        }
+        .form-textarea { min-height: 120px; resize: vertical; line-height: 1.6; }
 
-        /* =========================================================
-           MEDIA UPLOAD
-           ========================================================= */
         .media-upload {
             min-height: 200px;
             border: 2.5px dashed var(--border);
@@ -717,20 +565,9 @@
             background: rgba(108, 92, 231, 0.03);
         }
 
-        .media-upload-icon {
-            font-size: 52px;
-            margin-bottom: 12px;
-        }
-
-        .media-upload strong {
-            font-size: 15px;
-        }
-
-        .media-upload span {
-            color: var(--muted);
-            font-size: 12px;
-            margin-top: 8px;
-        }
+        .media-upload-icon { font-size: 52px; margin-bottom: 12px; }
+        .media-upload strong { font-size: 15px; }
+        .media-upload span { color: var(--muted); font-size: 12px; margin-top: 8px; }
 
         .media-preview-grid {
             display: grid;
@@ -769,9 +606,6 @@
             justify-content: center;
         }
 
-        /* =========================================================
-           ACCOUNT FORM
-           ========================================================= */
         .account-form-card {
             background: var(--card);
             border: 1.5px solid var(--border);
@@ -800,13 +634,7 @@
             font-size: 18px;
         }
 
-        /* =========================================================
-           CHAT
-           ========================================================= */
-        .chat-list {
-            display: grid;
-            gap: 10px;
-        }
+        .chat-list { display: grid; gap: 10px; }
 
         .chat-item {
             display: flex;
@@ -820,10 +648,7 @@
             cursor: pointer;
         }
 
-        .chat-item:active {
-            transform: scale(0.98);
-            border-color: var(--primary);
-        }
+        .chat-item:active { transform: scale(0.98); border-color: var(--primary); }
 
         .chat-avatar {
             width: 52px;
@@ -839,9 +664,7 @@
             position: relative;
         }
 
-        .chat-avatar.admin {
-            background: linear-gradient(135deg, var(--gold), #e67e22);
-        }
+        .chat-avatar.admin { background: linear-gradient(135deg, var(--gold), #e67e22); }
 
         .chat-online {
             position: absolute;
@@ -854,15 +677,8 @@
             border: 3px solid var(--card);
         }
 
-        .chat-info {
-            flex: 1;
-            min-width: 0;
-        }
-
-        .chat-name {
-            font-size: 14px;
-            font-weight: 800;
-        }
+        .chat-info { flex: 1; min-width: 0; }
+        .chat-name { font-size: 14px; font-weight: 800; }
 
         .chat-message {
             margin-top: 4px;
@@ -873,26 +689,8 @@
             text-overflow: ellipsis;
         }
 
-        .chat-time {
-            color: var(--muted);
-            font-size: 10px;
-            font-weight: 600;
-        }
+        .chat-time { color: var(--muted); font-size: 10px; font-weight: 600; }
 
-        .chat-badge {
-            background: var(--primary);
-            color: white;
-            font-size: 10px;
-            font-weight: 800;
-            padding: 3px 8px;
-            border-radius: 10px;
-            margin-top: 5px;
-            display: inline-block;
-        }
-
-        /* =========================================================
-           CHAT ROOM
-           ========================================================= */
         .chat-room {
             position: fixed;
             inset: 0;
@@ -902,9 +700,7 @@
             flex-direction: column;
         }
 
-        .chat-room.active {
-            display: flex;
-        }
+        .chat-room.active { display: flex; }
 
         .chat-room-header {
             background: linear-gradient(135deg, var(--primary), var(--primary-dark));
@@ -939,14 +735,8 @@
             font-size: 22px;
         }
 
-        .chat-room-info {
-            flex: 1;
-        }
-
-        .chat-room-name {
-            font-size: 15px;
-            font-weight: 800;
-        }
+        .chat-room-info { flex: 1; }
+        .chat-room-name { font-size: 15px; font-weight: 800; }
 
         .chat-room-status {
             font-size: 11px;
@@ -964,7 +754,6 @@
             background: #2ecc71;
         }
 
-        /* Admin Card in Chat */
         .chat-admin-card {
             background: linear-gradient(135deg, var(--gold), #e67e22);
             margin: 12px 16px;
@@ -988,14 +777,8 @@
             font-size: 22px;
         }
 
-        .chat-admin-card-info {
-            flex: 1;
-        }
-
-        .chat-admin-card-label {
-            font-size: 10px;
-            opacity: 0.85;
-        }
+        .chat-admin-card-info { flex: 1; }
+        .chat-admin-card-label { font-size: 10px; opacity: 0.85; }
 
         .chat-admin-card-value {
             font-size: 15px;
@@ -1003,13 +786,8 @@
             letter-spacing: 1px;
         }
 
-        .chat-admin-card-name {
-            font-size: 11px;
-            opacity: 0.9;
-            margin-top: 2px;
-        }
+        .chat-admin-card-name { font-size: 11px; opacity: 0.9; margin-top: 2px; }
 
-        /* Chat Messages */
         .chat-messages {
             flex: 1;
             overflow-y: auto;
@@ -1050,12 +828,7 @@
             border-bottom-left-radius: 6px;
         }
 
-        .message-sender {
-            font-size: 10px;
-            font-weight: 800;
-            margin-bottom: 4px;
-            opacity: 0.8;
-        }
+        .message-sender { font-size: 10px; font-weight: 800; margin-bottom: 4px; opacity: 0.8; }
 
         .message-time {
             font-size: 9px;
@@ -1072,18 +845,10 @@
             z-index: 10;
         }
 
-        .message.sent .message-actions {
-            left: -140px;
-        }
-
+        .message.sent .message-actions { left: -140px; }
         .message.received .message-actions,
-        .message.admin .message-actions {
-            right: -140px;
-        }
-
-        .message.show-actions .message-actions {
-            display: flex;
-        }
+        .message.admin .message-actions { right: -140px; }
+        .message.show-actions .message-actions { display: flex; }
 
         .message-action-btn {
             padding: 6px 10px;
@@ -1103,7 +868,6 @@
             border-color: var(--red);
         }
 
-        /* Chat Input */
         .chat-input-area {
             padding: 12px 16px;
             background: var(--card);
@@ -1138,9 +902,6 @@
             flex-shrink: 0;
         }
 
-        /* =========================================================
-           PROFILE
-           ========================================================= */
         .profile-card {
             background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: white;
@@ -1178,17 +939,8 @@
             position: relative;
         }
 
-        .profile-name {
-            margin-top: 14px;
-            font-size: 22px;
-            font-weight: 900;
-        }
-
-        .profile-username {
-            margin-top: 4px;
-            opacity: 0.8;
-            font-size: 13px;
-        }
+        .profile-name { margin-top: 14px; font-size: 22px; font-weight: 900; }
+        .profile-username { margin-top: 4px; opacity: 0.8; font-size: 13px; }
 
         .profile-stats {
             display: grid;
@@ -1204,21 +956,10 @@
             padding: 14px 10px;
         }
 
-        .profile-stat-value {
-            font-size: 18px;
-            font-weight: 900;
-        }
+        .profile-stat-value { font-size: 18px; font-weight: 900; }
+        .profile-stat-label { font-size: 10px; opacity: 0.8; margin-top: 3px; }
 
-        .profile-stat-label {
-            font-size: 10px;
-            opacity: 0.8;
-            margin-top: 3px;
-        }
-
-        .profile-menu {
-            display: grid;
-            gap: 10px;
-        }
+        .profile-menu { display: grid; gap: 10px; }
 
         .profile-menu-item {
             width: 100%;
@@ -1234,10 +975,7 @@
             transition: all 0.2s;
         }
 
-        .profile-menu-item:active {
-            transform: scale(0.98);
-            border-color: var(--primary);
-        }
+        .profile-menu-item:active { transform: scale(0.98); border-color: var(--primary); }
 
         .profile-menu-icon {
             width: 44px;
@@ -1250,14 +988,8 @@
             font-size: 20px;
         }
 
-        .profile-menu-text {
-            flex: 1;
-        }
-
-        .profile-menu-text strong {
-            display: block;
-            font-size: 14px;
-        }
+        .profile-menu-text { flex: 1; }
+        .profile-menu-text strong { display: block; font-size: 14px; }
 
         .profile-menu-text span {
             display: block;
@@ -1266,9 +998,6 @@
             font-size: 11px;
         }
 
-        /* =========================================================
-           BALANCE PAGE
-           ========================================================= */
         .balance-page-card {
             background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: white;
@@ -1279,26 +1008,11 @@
             box-shadow: 0 10px 40px rgba(108, 92, 231, 0.3);
         }
 
-        .balance-page-label {
-            font-size: 13px;
-            opacity: 0.8;
-        }
+        .balance-page-label { font-size: 13px; opacity: 0.8; }
+        .balance-page-value { font-size: 36px; font-weight: 900; margin-top: 8px; }
+        .balance-page-sub { font-size: 12px; opacity: 0.7; margin-top: 5px; }
 
-        .balance-page-value {
-            font-size: 36px;
-            font-weight: 900;
-            margin-top: 8px;
-        }
-
-        .balance-page-sub {
-            font-size: 12px;
-            opacity: 0.7;
-            margin-top: 5px;
-        }
-
-        .amount-input-wrap {
-            position: relative;
-        }
+        .amount-input-wrap { position: relative; }
 
         .amount-input-wrap input {
             width: 100%;
@@ -1346,9 +1060,6 @@
             color: white;
         }
 
-        /* =========================================================
-           MODALS
-           ========================================================= */
         .modal-overlay {
             position: fixed;
             inset: 0;
@@ -1360,9 +1071,7 @@
             justify-content: center;
         }
 
-        .modal-overlay.active {
-            display: flex;
-        }
+        .modal-overlay.active { display: flex; }
 
         .modal {
             width: min(700px, 100%);
@@ -1375,12 +1084,8 @@
         }
 
         @keyframes modalUp {
-            from {
-                transform: translateY(100%);
-            }
-            to {
-                transform: translateY(0);
-            }
+            from { transform: translateY(100%); }
+            to { transform: translateY(0); }
         }
 
         .modal-header {
@@ -1390,10 +1095,7 @@
             margin-bottom: 20px;
         }
 
-        .modal-title {
-            font-size: 20px;
-            font-weight: 900;
-        }
+        .modal-title { font-size: 20px; font-weight: 900; }
 
         .modal-close {
             width: 40px;
@@ -1407,9 +1109,6 @@
             justify-content: center;
         }
 
-        /* =========================================================
-           TOAST
-           ========================================================= */
         .toast-container {
             position: fixed;
             z-index: 1000;
@@ -1435,28 +1134,14 @@
             max-width: 100%;
         }
 
-        .toast.success {
-            background: linear-gradient(135deg, var(--green), var(--green-dark));
-        }
-
-        .toast.error {
-            background: linear-gradient(135deg, #e74c3c, #c0392b);
-        }
+        .toast.success { background: linear-gradient(135deg, var(--green), var(--green-dark)); }
+        .toast.error { background: linear-gradient(135deg, #e74c3c, #c0392b); }
 
         @keyframes toastIn {
-            from {
-                opacity: 0;
-                transform: translateY(-15px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(-15px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        /* =========================================================
-           STATUS BADGES
-           ========================================================= */
         .status {
             display: inline-flex;
             align-items: center;
@@ -1467,29 +1152,11 @@
             font-weight: 800;
         }
 
-        .status.active {
-            color: #00a381;
-            background: rgba(0, 184, 148, 0.12);
-        }
+        .status.active { color: #00a381; background: rgba(0, 184, 148, 0.12); }
+        .status.pending { color: #d68910; background: rgba(243, 156, 18, 0.12); }
+        .status.expired { color: #7f8c8d; background: rgba(127, 140, 141, 0.12); }
+        .status.rejected { color: #c0392b; background: rgba(231, 76, 60, 0.12); }
 
-        .status.pending {
-            color: #d68910;
-            background: rgba(243, 156, 18, 0.12);
-        }
-
-        .status.expired {
-            color: #7f8c8d;
-            background: rgba(127, 140, 141, 0.12);
-        }
-
-        .status.rejected {
-            color: #c0392b;
-            background: rgba(231, 76, 60, 0.12);
-        }
-
-        /* =========================================================
-           MY ADS
-           ========================================================= */
         .my-ad-item {
             background: var(--card);
             border: 1.5px solid var(--border);
@@ -1501,9 +1168,7 @@
             transition: all 0.2s;
         }
 
-        .my-ad-item:active {
-            transform: scale(0.99);
-        }
+        .my-ad-item:active { transform: scale(0.99); }
 
         .my-ad-image {
             width: 100px;
@@ -1512,23 +1177,9 @@
             object-fit: cover;
         }
 
-        .my-ad-info {
-            flex: 1;
-            min-width: 0;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .my-ad-title {
-            font-weight: 800;
-            font-size: 14px;
-        }
-
-        .my-ad-meta {
-            font-size: 11px;
-            color: var(--muted);
-            margin-top: 4px;
-        }
+        .my-ad-info { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+        .my-ad-title { font-weight: 800; font-size: 14px; }
+        .my-ad-meta { font-size: 11px; color: var(--muted); margin-top: 4px; }
 
         .my-ad-actions {
             display: flex;
@@ -1548,15 +1199,8 @@
             transition: all 0.2s;
         }
 
-        .small-btn:active {
-            transform: scale(0.95);
-        }
-
-        .small-btn.primary {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
-        }
+        .small-btn:active { transform: scale(0.95); }
+        .small-btn.primary { background: var(--primary); color: white; border-color: var(--primary); }
 
         .small-btn.danger {
             background: rgba(231, 76, 60, 0.1);
@@ -1570,9 +1214,6 @@
             border-color: rgba(0, 184, 148, 0.2);
         }
 
-        /* =========================================================
-           ADMIN PANEL
-           ========================================================= */
         .admin-badge {
             padding: 8px 14px;
             border-radius: 12px;
@@ -1596,21 +1237,9 @@
             padding: 18px;
         }
 
-        .admin-stat-icon {
-            font-size: 24px;
-        }
-
-        .admin-stat-number {
-            font-size: 26px;
-            font-weight: 900;
-            margin-top: 8px;
-        }
-
-        .admin-stat-label {
-            color: var(--muted);
-            font-size: 11px;
-            margin-top: 3px;
-        }
+        .admin-stat-icon { font-size: 24px; }
+        .admin-stat-number { font-size: 26px; font-weight: 900; margin-top: 8px; }
+        .admin-stat-label { color: var(--muted); font-size: 11px; margin-top: 3px; }
 
         .moderation-card {
             background: var(--card);
@@ -1620,10 +1249,7 @@
             margin-bottom: 14px;
         }
 
-        .moderation-layout {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-        }
+        .moderation-layout { display: grid; grid-template-columns: 1fr 1fr; }
 
         .moderation-photo,
         .receipt-photo {
@@ -1632,19 +1258,9 @@
             width: 100%;
         }
 
-        .moderation-info {
-            padding: 16px;
-        }
-
-        .moderation-info h3 {
-            font-size: 16px;
-        }
-
-        .moderation-meta {
-            color: var(--muted);
-            font-size: 11px;
-            margin-top: 6px;
-        }
+        .moderation-info { padding: 16px; }
+        .moderation-info h3 { font-size: 16px; }
+        .moderation-meta { color: var(--muted); font-size: 11px; margin-top: 6px; }
 
         .moderation-actions {
             display: grid;
@@ -1653,9 +1269,6 @@
             padding: 14px;
         }
 
-        /* =========================================================
-           PREVIEW CARD
-           ========================================================= */
         .preview-card {
             background: var(--card);
             border-radius: 24px;
@@ -1669,14 +1282,8 @@
             object-fit: cover;
         }
 
-        .preview-content {
-            padding: 20px;
-        }
-
-        .preview-title {
-            font-size: 24px;
-            font-weight: 900;
-        }
+        .preview-content { padding: 20px; }
+        .preview-title { font-size: 24px; font-weight: 900; }
 
         .preview-price {
             color: var(--primary);
@@ -1685,11 +1292,7 @@
             margin-top: 8px;
         }
 
-        .info-list {
-            margin-top: 20px;
-            display: grid;
-            gap: 12px;
-        }
+        .info-list { margin-top: 20px; display: grid; gap: 12px; }
 
         .info-row {
             display: flex;
@@ -1700,23 +1303,10 @@
             padding-bottom: 12px;
         }
 
-        .info-row span:first-child {
-            color: var(--muted);
-        }
+        .info-row span:first-child { color: var(--muted); }
+        .info-row span:last-child { font-weight: 700; text-align: right; }
 
-        .info-row span:last-child {
-            font-weight: 700;
-            text-align: right;
-        }
-
-        /* =========================================================
-           STEP INDICATOR
-           ========================================================= */
-        .step-indicator {
-            display: flex;
-            gap: 6px;
-            margin: 18px 0 24px;
-        }
+        .step-indicator { display: flex; gap: 6px; margin: 18px 0 24px; }
 
         .step-dot {
             height: 5px;
@@ -1730,69 +1320,55 @@
             background: linear-gradient(90deg, var(--primary), var(--primary-light));
         }
 
-        .create-step {
-            display: none;
-        }
+        .create-step { display: none; }
 
         .create-step.active {
             display: block;
             animation: pageIn 0.3s ease;
         }
 
-        .create-actions {
-            display: flex;
-            gap: 12px;
-            margin-top: 24px;
+        .create-actions { display: flex; gap: 12px; margin-top: 24px; }
+        .create-actions .btn { flex: 1; }
+
+        .empty { padding: 50px 20px; text-align: center; color: var(--muted); }
+        .empty-icon { font-size: 56px; margin-bottom: 14px; }
+        .hidden { display: none !important; }
+
+        .loading-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+            display: none;
+            align-items: center;
+            justify-content: center;
         }
 
-        .create-actions .btn {
-            flex: 1;
+        .loading-overlay.active { display: flex; }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
         }
 
-        /* =========================================================
-           EMPTY STATE
-           ========================================================= */
-        .empty {
-            padding: 50px 20px;
-            text-align: center;
-            color: var(--muted);
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
 
-        .empty-icon {
-            font-size: 56px;
-            margin-bottom: 14px;
-        }
-
-        .hidden {
-            display: none !important;
-        }
-
-        /* =========================================================
-           RESPONSIVE
-           ========================================================= */
         @media (min-width: 700px) {
-            .ads-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-
-            .tariff-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .container {
-                padding: 24px;
-            }
-
-            .admin-stat-grid {
-                grid-template-columns: repeat(4, 1fr);
-            }
+            .ads-grid { grid-template-columns: repeat(3, 1fr); }
+            .tariff-grid { grid-template-columns: repeat(2, 1fr); }
+            .container { padding: 24px; }
+            .admin-stat-grid { grid-template-columns: repeat(4, 1fr); }
         }
 
         @media (min-width: 1000px) {
-            .ads-grid {
-                grid-template-columns: repeat(4, 1fr);
-            }
-
+            .ads-grid { grid-template-columns: repeat(4, 1fr); }
             .bottom-navigation {
                 left: 50%;
                 right: auto;
@@ -1809,9 +1385,7 @@
 
 <div class="app">
 
-    <!-- =========================================================
-         TOP BAR (BALANCE)
-         ========================================================= -->
+    <!-- TOP BAR -->
     <div class="top-bar">
         <div class="top-bar-content">
             <div class="brand">
@@ -1822,7 +1396,7 @@
                 </div>
             </div>
             
-            <div class="balance-display" onclick="goToPage('balancePage')">
+            <div class="balance-display" onclick="startBalanceTopUp()">
                 <span class="balance-icon">💰</span>
                 <div class="balance-info">
                     <div class="balance-label">Balans</div>
@@ -1833,55 +1407,50 @@
         </div>
     </div>
 
-    <!-- =========================================================
-         DASHBOARD (ASOSIY MENYU)
-         ========================================================= -->
+    <!-- DASHBOARD -->
     <section class="page active" id="dashboardPage">
         <div class="container">
-            
-            <!-- Search -->
             <div class="search-box">
                 <span class="search-icon">🔎</span>
                 <input id="dashboardSearch" type="search" placeholder="Akkaunt, skin yoki narx qidiring...">
                 <button class="search-filter" onclick="openModal('filterModal')">⚙</button>
             </div>
 
-            <!-- Category Tabs -->
             <div class="category-tabs">
                 <button class="category-tab active" data-category="ALL">Hammasi</button>
                 <button class="category-tab" data-category="PREMIUM">⭐ Premium</button>
-                <button class="category-tab" data-category="CHEAP">💰 Arzon</button>
+                <button class="category-tab" data-category="STANDARD">💰 Arzon</button>
                 <button class="category-tab" data-category="RARE">🔥 Noyob</button>
             </div>
 
-            <!-- Section Title -->
             <div style="margin-top: 22px;">
                 <div class="section-title">So'nggi e'lonlar</div>
                 <div class="section-subtitle">Yangi joylashtirilgan akkauntlar</div>
             </div>
 
-            <!-- Ads Grid -->
             <div class="ads-grid" id="adsGrid"></div>
         </div>
     </section>
 
-    <!-- =========================================================
-         BALANCE PAGE (HISOB TO'LDIRISH)
-         ========================================================= -->
-    <section class="page" id="balancePage">
+    <!-- BALANCE TOP-UP PAGE 1 -->
+    <section class="page" id="balanceTopUpPage">
         <div class="container">
-            
+            <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 20px;">
+                <button class="icon-btn" onclick="goToPage('dashboardPage')">←</button>
+                <div>
+                    <div class="section-title">Hisobni to'ldirish</div>
+                    <div class="section-subtitle">1-qadam: Summani kiriting</div>
+                </div>
+            </div>
+
             <div class="balance-page-card">
                 <div class="balance-page-label">Joriy balansingiz</div>
-                <div class="balance-page-value" id="balancePageValue">0 so'm</div>
+                <div class="balance-page-value" id="balanceTopUpCurrent">0 so'm</div>
                 <div class="balance-page-sub">Hisobni to'ldiring va reklama bering</div>
             </div>
 
-            <div class="section-title">Hisobni to'ldirish</div>
-            <div class="section-subtitle">To'ldirmoqchi bo'lgan summani kiriting</div>
-
-            <!-- Amount Input -->
             <div class="form-group" style="margin-top: 20px;">
+                <label class="form-label">Qancha to'ldirmoqchisiz?</label>
                 <div class="amount-input-wrap">
                     <input type="text" id="topUpAmount" inputmode="numeric" placeholder="0">
                     <span class="currency">so'm</span>
@@ -1897,7 +1466,29 @@
                 </div>
             </div>
 
-            <!-- Card Info -->
+            <button class="btn btn-primary btn-block" id="goToPaymentButton" onclick="goToPaymentPage()" disabled>
+                💳 To'lovga o'tish
+            </button>
+        </div>
+    </section>
+
+    <!-- BALANCE TOP-UP PAGE 2 -->
+    <section class="page" id="balancePaymentPage">
+        <div class="container">
+            <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 20px;">
+                <button class="icon-btn" onclick="goToPage('balanceTopUpPage')">←</button>
+                <div>
+                    <div class="section-title">To'lov qilish</div>
+                    <div class="section-subtitle">2-qadam: Karta orqali to'lov</div>
+                </div>
+            </div>
+
+            <div class="balance-page-card" style="background: linear-gradient(135deg, #1a1a2e, #16213e);">
+                <div class="balance-page-label">To'ldirish summasi</div>
+                <div class="balance-page-value" id="paymentAmountDisplay">0 so'm</div>
+                <div class="balance-page-sub">Quyidagi kartaga o'tkazing</div>
+            </div>
+
             <div style="background: linear-gradient(135deg, #1a1a2e, #16213e); border-radius: 24px; padding: 24px; margin-top: 20px; color: white; position: relative; overflow: hidden;">
                 <div style="position: absolute; top: -50px; right: -50px; width: 150px; height: 150px; border-radius: 50%; background: rgba(108, 92, 231, 0.2);"></div>
                 <div style="position: absolute; bottom: -30px; left: -30px; width: 100px; height: 100px; border-radius: 50%; background: rgba(255, 101, 132, 0.15);"></div>
@@ -1929,30 +1520,26 @@
                 </div>
             </div>
 
-            <!-- Receipt Upload -->
-            <div class="form-group" style="margin-top: 20px;">
-                <label class="form-label">To'lov chekini yuklang</label>
-                <label class="media-upload" style="min-height: 150px;">
-                    <div class="media-upload-icon">🧾</div>
-                    <strong>Chek rasmini tanlang</strong>
-                    <span>JPG yoki PNG formatda</span>
-                    <input type="file" id="receiptInput" accept="image/*" hidden>
-                </label>
-                <div id="receiptPreview"></div>
+            <div style="background: rgba(243, 156, 18, 0.1); border: 1.5px solid rgba(243, 156, 18, 0.3); border-radius: 18px; padding: 16px; margin-top: 20px; display: flex; gap: 12px; align-items: flex-start;">
+                <div style="font-size: 22px;">⚠️</div>
+                <div>
+                    <div style="font-weight: 800; font-size: 13px; color: #d68910;">Diqqat!</div>
+                    <div style="font-size: 12px; color: var(--muted); margin-top: 4px; line-height: 1.5;">
+                        Iltimos, kiritilgan sumani to'ldiring. Undan ko'p ham kiritmang, kam ham kiritmang!
+                    </div>
+                </div>
             </div>
 
-            <button class="btn btn-primary btn-block" id="topUpButton" onclick="submitTopUp()" disabled>
-                ✓ To'ldirish
-            </button>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 24px;">
+                <button class="btn btn-secondary" onclick="cancelPayment()">✕ Bekor qilish</button>
+                <button class="btn btn-success" onclick="confirmPayment()">✓ Tekshirish</button>
+            </div>
         </div>
     </section>
 
-    <!-- =========================================================
-         CREATE AD (REKLAMA BERISH)
-         ========================================================= -->
+    <!-- CREATE AD -->
     <section class="page" id="createAdPage">
         <div class="container">
-            
             <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 20px;">
                 <button class="icon-btn" onclick="goToPage('dashboardPage')">←</button>
                 <div>
@@ -1963,13 +1550,11 @@
 
             <div class="step-indicator" id="stepIndicator"></div>
 
-            <!-- STEP 1: Tariff Selection -->
             <div class="create-step active" data-step="1">
                 <div class="section-title">Tarifni tanlang</div>
                 <div class="section-subtitle">Reklamangiz qayerda chiqishini tanlang</div>
 
                 <div class="tariff-grid" id="tariffGrid">
-                    <!-- Tariff 1 -->
                     <div class="tariff-card" data-tariff="1">
                         <div class="tariff-header">
                             <div class="tariff-icon">📢</div>
@@ -1989,17 +1574,9 @@
                                 <div class="tariff-feature-icon">✓</div>
                                 <span>24 soat davomida ko'rinadi</span>
                             </div>
-                            <div class="tariff-feature disabled">
-                                <div class="tariff-feature-icon">✕</div>
-                                <span>Web App'da chiqmaydi</span>
-                            </div>
                         </div>
-                        <button class="btn btn-secondary btn-block" onclick="event.stopPropagation(); window.open('https://t.me/Cardinal_Savdo', '_blank')">
-                            📢 Kanalimiz
-                        </button>
                     </div>
 
-                    <!-- Tariff 2 -->
                     <div class="tariff-card popular" data-tariff="2">
                         <div class="tariff-header">
                             <div class="tariff-icon">📱</div>
@@ -2019,14 +1596,9 @@
                                 <div class="tariff-feature-icon">✓</div>
                                 <span>3 kun davomida ko'rinadi</span>
                             </div>
-                            <div class="tariff-feature disabled">
-                                <div class="tariff-feature-icon">✕</div>
-                                <span>Kanalga chiqmaydi</span>
-                            </div>
                         </div>
                     </div>
 
-                    <!-- Tariff 3 -->
                     <div class="tariff-card" data-tariff="3">
                         <div class="tariff-header">
                             <div class="tariff-icon">🔥</div>
@@ -2053,7 +1625,6 @@
                         </div>
                     </div>
 
-                    <!-- Tariff 4 -->
                     <div class="tariff-card" data-tariff="4">
                         <div class="tariff-header">
                             <div class="tariff-icon">👑</div>
@@ -2082,7 +1653,6 @@
                 </div>
             </div>
 
-            <!-- STEP 2: Media Upload -->
             <div class="create-step" data-step="2">
                 <div class="section-title">Video yoki rasm yuklang</div>
                 <div class="section-subtitle">Akkaunt obzor videosini yuklang (rasm ham mumkin)</div>
@@ -2097,13 +1667,11 @@
                 <div class="media-preview-grid" id="mediaPreviewGrid"></div>
             </div>
 
-            <!-- STEP 3: Account Info -->
             <div class="create-step" data-step="3">
                 <div class="section-title">Akkaunt ma'lumotlari</div>
                 <div class="section-subtitle">Akkaunt haqida to'liq ma'lumot kiriting</div>
 
                 <div style="margin-top: 18px;">
-                    
                     <div class="account-form-card">
                         <div class="account-form-title">
                             <div class="account-form-title-icon">📈</div>
@@ -2224,7 +1792,6 @@
                 </div>
             </div>
 
-            <!-- STEP 4: Preview -->
             <div class="create-step" data-step="4">
                 <div class="section-title">E'lonni tekshiring</div>
                 <div class="section-subtitle">Ma'lumotlarni tekshirib, tasdiqlang</div>
@@ -2232,7 +1799,6 @@
                 <div id="adPreview" style="margin-top: 18px;"></div>
             </div>
 
-            <!-- Navigation -->
             <div class="create-actions">
                 <button class="btn btn-secondary" id="createBackButton">← Orqaga</button>
                 <button class="btn btn-primary" id="createNextButton">Davom etish →</button>
@@ -2240,12 +1806,9 @@
         </div>
     </section>
 
-    <!-- =========================================================
-         MY ADS (REKLAMALARIM)
-         ========================================================= -->
+    <!-- MY ADS -->
     <section class="page" id="myAdsPage">
         <div class="container">
-            
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
                 <div>
                     <div class="section-title">Reklamalarim</div>
@@ -2254,7 +1817,6 @@
                 <button class="icon-btn" onclick="startCreateAd()">＋</button>
             </div>
 
-            <!-- Tabs -->
             <div class="category-tabs">
                 <button class="category-tab active" data-myad="ALL">Hammasi</button>
                 <button class="category-tab" data-myad="ACTIVE">✅ Faol</button>
@@ -2266,12 +1828,9 @@
         </div>
     </section>
 
-    <!-- =========================================================
-         CHAT
-         ========================================================= -->
+    <!-- CHAT -->
     <section class="page" id="chatPage">
         <div class="container">
-            
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
                 <div>
                     <div class="section-title">Chat</div>
@@ -2284,12 +1843,9 @@
         </div>
     </section>
 
-    <!-- =========================================================
-         PROFILE
-         ========================================================= -->
+    <!-- PROFILE -->
     <section class="page" id="profilePage">
         <div class="container">
-            
             <div class="profile-card">
                 <div class="profile-avatar" id="profileAvatar">🐱</div>
                 <div class="profile-name" id="profileName">Foydalanuvchi</div>
@@ -2312,7 +1868,7 @@
             </div>
 
             <div class="profile-menu">
-                <button class="profile-menu-item" onclick="openModal('profileEditModal')">
+                <button class="profile-menu-item" onclick="openProfileEdit()">
                     <div class="profile-menu-icon">👤</div>
                     <div class="profile-menu-text">
                         <strong>Shaxsiy ma'lumotlar</strong>
@@ -2321,7 +1877,7 @@
                     <span>›</span>
                 </button>
 
-                <button class="profile-menu-item" onclick="goToPage('balancePage')">
+                <button class="profile-menu-item" onclick="startBalanceTopUp()">
                     <div class="profile-menu-icon">💰</div>
                     <div class="profile-menu-text">
                         <strong>Hisobni to'ldirish</strong>
@@ -2360,12 +1916,9 @@
         </div>
     </section>
 
-    <!-- =========================================================
-         ADMIN PANEL
-         ========================================================= -->
+    <!-- ADMIN PANEL -->
     <section class="page" id="adminPage">
         <div class="container">
-            
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
                 <div>
                     <div class="section-title">Admin panel</div>
@@ -2402,9 +1955,7 @@
         </div>
     </section>
 
-    <!-- =========================================================
-         CHAT ROOM (FULLSCREEN)
-         ========================================================= -->
+    <!-- CHAT ROOM -->
     <div class="chat-room" id="chatRoom">
         <div class="chat-room-header">
             <button class="chat-room-back" onclick="closeChatRoom()">←</button>
@@ -2415,7 +1966,6 @@
             </div>
         </div>
 
-        <!-- Admin Card -->
         <div class="chat-admin-card">
             <div class="chat-admin-card-icon">💳</div>
             <div class="chat-admin-card-info">
@@ -2433,9 +1983,7 @@
         </div>
     </div>
 
-    <!-- =========================================================
-         BOTTOM NAVIGATION
-         ========================================================= -->
+    <!-- BOTTOM NAVIGATION -->
     <nav class="bottom-navigation">
         <div class="bottom-navigation-inner">
             <button class="nav-item active" data-page="dashboardPage">
@@ -2466,11 +2014,7 @@
     </nav>
 </div>
 
-<!-- =============================================================
-     MODALS
-     ============================================================= -->
-
-<!-- Admin Login Modal -->
+<!-- MODALS -->
 <div class="modal-overlay" id="adminLoginModal">
     <div class="modal">
         <div class="modal-header">
@@ -2495,7 +2039,6 @@
     </div>
 </div>
 
-<!-- Profile Edit Modal -->
 <div class="modal-overlay" id="profileEditModal">
     <div class="modal">
         <div class="modal-header">
@@ -2514,10 +2057,10 @@
         </div>
 
         <div class="form-group">
-            <label class="form-label">Telefon</label>
-            <div style="display: flex; align-items: center; border: 1.5px solid var(--border); background: var(--card); border-radius: 15px; overflow: hidden;">
+            <label class="form-label">Telefon (o'zgartirilmaydi)</label>
+            <div style="display: flex; align-items: center; border: 1.5px solid var(--border); background: var(--bg); border-radius: 15px; overflow: hidden; opacity: 0.7;">
                 <span style="padding-left: 15px; font-weight: 800; color: var(--muted);">+998</span>
-                <input class="form-input" id="profilePhone" inputmode="numeric" maxlength="9" placeholder="901234567" style="border: 0; background: transparent;">
+                <input class="form-input" id="profilePhone" inputmode="numeric" maxlength="9" placeholder="901234567" style="border: 0; background: transparent;" readonly>
             </div>
         </div>
 
@@ -2525,7 +2068,6 @@
     </div>
 </div>
 
-<!-- Ad Detail Modal -->
 <div class="modal-overlay" id="adDetailModal">
     <div class="modal">
         <div class="modal-header">
@@ -2536,7 +2078,6 @@
     </div>
 </div>
 
-<!-- Filter Modal -->
 <div class="modal-overlay" id="filterModal">
     <div class="modal">
         <div class="modal-header">
@@ -2553,7 +2094,6 @@
     </div>
 </div>
 
-<!-- Message Edit Modal -->
 <div class="modal-overlay" id="messageEditModal">
     <div class="modal">
         <div class="modal-header">
@@ -2569,17 +2109,28 @@
     </div>
 </div>
 
-<!-- Toast Container -->
 <div class="toast-container" id="toastContainer"></div>
+
+<div class="loading-overlay" id="loadingOverlay">
+    <div class="loading-spinner"></div>
+</div>
 
 <!-- =============================================================
      JAVASCRIPT
      ============================================================= -->
 <script>
 /* =========================================================
+   ⚠️ MUHIM: NGROK URL'INGIZNI SHU YERGA YOZING!
+   ========================================================= */
+const API_URL = "https://SIZNING-NGROK-URL.ngrok-free.app";
+// Masalan: "https://abc123-45-67-89.ngrok-free.app"
+
+/* =========================================================
    TELEGRAM MINI APP
    ========================================================= */
 const tg = window.Telegram?.WebApp || null;
+let TELEGRAM_USER = null;
+
 if (tg) {
     tg.ready();
     tg.expand();
@@ -2587,6 +2138,11 @@ if (tg) {
         tg.setHeaderColor("#6c5ce7");
         tg.setBackgroundColor("#f0f2f8");
     } catch (e) {}
+    
+    // Telegram foydalanuvchi ma'lumotlari
+    TELEGRAM_USER = tg.initDataUnsafe?.user || null;
+    
+    console.log("📱 Telegram User:", TELEGRAM_USER);
 }
 
 /* =========================================================
@@ -2596,7 +2152,8 @@ const CONFIG = {
     ADMIN_PHONES: ["900512621", "934938181"],
     ADMIN_PASSWORD: "cardinal2407",
     ADMIN_CARD: "8600 1234 5678 9012",
-    ADMIN_NAME: "CARDINAL ADMIN"
+    ADMIN_NAME: "CARDINAL ADMIN",
+    TARIFF_PRICES: { "1": 19000, "2": 9000, "3": 25000, "4": 29000 }
 };
 
 /* =========================================================
@@ -2608,11 +2165,13 @@ let APP_DATA = {
     ads: [],
     myAds: [],
     pending: [],
-    users: 1248,
+    users: 0,
     chats: [],
     currentChat: null,
     tariff: null,
     createStep: 1,
+    pendingTopUpAmount: 0,
+    editingMessageId: null,
     createData: {
         media: null,
         mediaType: null,
@@ -2627,7 +2186,6 @@ let APP_DATA = {
     }
 };
 
-/* Demo Ads */
 const DEMO_ADS = [
     {
         id: "ad-001",
@@ -2646,78 +2204,272 @@ const DEMO_ADS = [
         createdAt: Date.now() - 86400000,
         expiresAt: Date.now() + 86400000 * 5,
         account: {
-            level: "75",
-            rp: "15-sezon",
+            level: "75", rp: "15-sezon",
             clothes: "150+ kiyim, 25 mifik",
-            gunSkin: "77",
-            parachuteSkin: "7",
-            bagSkin: "7",
-            achievement: "777+",
-            titles: "videoda",
+            gunSkin: "77", parachuteSkin: "7", bagSkin: "7",
+            achievement: "777+", titles: "videoda",
             extra: "Lednik 7 lvl, M24 4 lvl",
-            linked: "Telegram",
-            price: "2500000",
+            linked: "Telegram", price: "2500000",
             location: "Toshkent",
-            telegram: "@pubg_seller",
-            phone: "901234567"
-        }
-    },
-    {
-        id: "ad-002",
-        title: "PUBG Mobile - Mifik Akkaunt",
-        description: "Noyob skinlar va kiyimlar mavjud.",
-        image: "https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=800&q=80",
-        video: null,
-        type: "RARE",
-        price: 5000000,
-        location: "Samarqand",
-        phone: "+998935554433",
-        telegram: "@mifik_seller",
-        likes: 78,
-        views: 567,
-        status: "ACTIVE",
-        createdAt: Date.now() - 172800000,
-        expiresAt: Date.now() + 86400000 * 3,
-        account: {
-            level: "80",
-            rp: "20-sezon",
-            clothes: "200+ kiyim, 50 mifik",
-            gunSkin: "120",
-            parachuteSkin: "15",
-            bagSkin: "12",
-            achievement: "1000+",
-            titles: "videoda",
-            extra: "Ko'plab noyob skinlar",
-            linked: "Google",
-            price: "5000000",
-            location: "Samarqand",
-            telegram: "@mifik_seller",
-            phone: "935554433"
+            telegram: "@pubg_seller", phone: "901234567"
         }
     }
 ];
 
-APP_DATA.ads = [...DEMO_ADS];
+/* =========================================================
+   API FUNKSIYALAR
+   ========================================================= */
+
+async function apiCall(endpoint, method = "GET", body = null) {
+    try {
+        const options = {
+            method: method,
+            headers: { "Content-Type": "application/json" }
+        };
+        if (body) options.body = JSON.stringify(body);
+        
+        const res = await fetch(`${API_URL}${endpoint}`, options);
+        if (!res.ok) {
+            const err = await res.json().catch(() => ({}));
+            throw new Error(err.error || `HTTP ${res.status}`);
+        }
+        return await res.json();
+    } catch (e) {
+        console.error(`API ${endpoint} xatosi:`, e);
+        throw e;
+    }
+}
+
+async function loadProfileFromAPI() {
+    if (!TELEGRAM_USER) return;
+    try {
+        const user = await apiCall(`/api/user/${TELEGRAM_USER.id}`);
+        APP_DATA.profile = {
+            firstName: user.first_name || "Foydalanuvchi",
+            lastName: user.last_name || "",
+            phone: user.phone || "",
+            avatar: user.avatar || "🐱"
+        };
+        APP_DATA.balance = user.balance || 0;
+        APP_DATA.spent = user.spent || 0;
+        updateProfileDisplay();
+        updateBalanceDisplay();
+    } catch (e) {
+        console.warn("Profil yuklanmadi, fallback ishlatiladi");
+        if (TELEGRAM_USER) {
+            APP_DATA.profile.firstName = TELEGRAM_USER.first_name || "Foydalanuvchi";
+            APP_DATA.profile.lastName = TELEGRAM_USER.last_name || "";
+        }
+    }
+}
+
+async function loadAdsFromAPI() {
+    try {
+        const ads = await apiCall("/api/ads");
+        APP_DATA.ads = ads.map(ad => ({
+            id: ad.id,
+            title: ad.title,
+            description: ad.description || "",
+            image: ad.image_url || "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80",
+            video: ad.video_url,
+            type: ad.ad_type,
+            price: ad.price,
+            location: ad.location,
+            phone: ad.phone,
+            telegram: ad.telegram,
+            views: ad.views,
+            likes: ad.likes,
+            status: ad.status,
+            createdAt: new Date(ad.created_at).getTime(),
+            expiresAt: ad.expires_at ? new Date(ad.expires_at).getTime() : null,
+            account: ad.account_data || {}
+        }));
+    } catch (e) {
+        console.warn("Reklamalar yuklanmadi, demo ishlatiladi");
+        APP_DATA.ads = [...DEMO_ADS];
+    }
+}
+
+async function loadMyAdsFromAPI() {
+    if (!TELEGRAM_USER) return;
+    try {
+        const ads = await apiCall(`/api/my-ads/${TELEGRAM_USER.id}`);
+        APP_DATA.myAds = ads.map(ad => ({
+            id: ad.id,
+            title: ad.title,
+            description: ad.description || "",
+            image: ad.image_url || "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80",
+            video: ad.video_url,
+            type: ad.ad_type,
+            price: ad.price,
+            location: ad.location,
+            phone: ad.phone,
+            telegram: ad.telegram,
+            status: ad.status,
+            createdAt: new Date(ad.created_at).getTime(),
+            account: ad.account_data || {}
+        }));
+    } catch (e) {
+        console.warn("Mening reklamalarim yuklanmadi");
+    }
+}
+
+async function loadAdminStats() {
+    try {
+        const stats = await apiCall("/api/stats");
+        return stats;
+    } catch (e) {
+        console.warn("Statistika yuklanmadi");
+        return { users: 0, ads: 0, pending: 0, total_balance: 0 };
+    }
+}
+
+async function loadPendingAds() {
+    try {
+        const ads = await apiCall("/api/pending-ads");
+        return ads.map(ad => ({
+            id: ad.id,
+            title: ad.title,
+            description: ad.description || "",
+            image: ad.image_url,
+            video: ad.video_url,
+            type: ad.ad_type,
+            price: ad.price,
+            location: ad.location,
+            phone: ad.phone,
+            telegram: ad.telegram,
+            status: ad.status,
+            createdAt: new Date(ad.created_at).getTime(),
+            account: ad.account_data || {}
+        }));
+    } catch (e) {
+        console.warn("Pending reklamalar yuklanmadi");
+        return [];
+    }
+}
+
+async function saveProfileToAPI(firstName, lastName) {
+    if (!TELEGRAM_USER) return false;
+    try {
+        await apiCall("/api/update-profile", "POST", {
+            telegram_id: TELEGRAM_USER.id,
+            first_name: firstName,
+            last_name: lastName,
+            avatar: APP_DATA.profile.avatar
+        });
+        return true;
+    } catch (e) {
+        console.error("Profil saqlash xatosi:", e);
+        return false;
+    }
+}
+
+async function topUpBalanceAPI(amount) {
+    if (!TELEGRAM_USER) return null;
+    try {
+        const data = await apiCall("/api/topup", "POST", {
+            telegram_id: TELEGRAM_USER.id,
+            amount: amount
+        });
+        return data;
+    } catch (e) {
+        console.error("Balans to'ldirish xatosi:", e);
+        throw e;
+    }
+}
+
+async function createAdAPI(adData) {
+    if (!TELEGRAM_USER) return null;
+    try {
+        const data = await apiCall("/api/create-ad", "POST", {
+            telegram_id: TELEGRAM_USER.id,
+            ad_data: adData
+        });
+        return data;
+    } catch (e) {
+        console.error("Reklama yaratish xatosi:", e);
+        throw e;
+    }
+}
+
+async function approveAdAPI(adId) {
+    try {
+        await apiCall(`/api/approve-ad/${adId}`, "POST");
+        return true;
+    } catch (e) {
+        console.error("Tasdiqlash xatosi:", e);
+        return false;
+    }
+}
+
+async function rejectAdAPI(adId, reason) {
+    try {
+        await apiCall(`/api/reject-ad/${adId}`, "POST", { reason });
+        return true;
+    } catch (e) {
+        console.error("Rad etish xatosi:", e);
+        return false;
+    }
+}
+
+/* =========================================================
+   LOADING
+   ========================================================= */
+function showLoading() {
+    document.getElementById("loadingOverlay").classList.add("active");
+}
+
+function hideLoading() {
+    document.getElementById("loadingOverlay").classList.remove("active");
+}
 
 /* =========================================================
    INITIALIZATION
    ========================================================= */
-function init() {
+async function init() {
+    console.log("🚀 App ishga tushdi");
+    
     loadData();
+    
+    // Telegram user'ni ko'rsatish (tezkor)
+    if (TELEGRAM_USER) {
+        APP_DATA.profile.firstName = TELEGRAM_USER.first_name || "Foydalanuvchi";
+        APP_DATA.profile.lastName = TELEGRAM_USER.last_name || "";
+        APP_DATA.profile.username = TELEGRAM_USER.username || "";
+        updateProfileDisplay();
+    }
+    
+    // API'dan yuklash
+    if (TELEGRAM_USER) {
+        showLoading();
+        try {
+            await loadProfileFromAPI();
+            await loadAdsFromAPI();
+            await loadMyAdsFromAPI();
+        } catch (e) {
+            console.error("Init xatosi:", e);
+        }
+        hideLoading();
+    } else {
+        // Telegram yo'q — demo rejim
+        APP_DATA.ads = [...DEMO_ADS];
+    }
+    
     renderDashboard();
     renderChatList();
     updateBalanceDisplay();
     updateProfileDisplay();
     setupEventListeners();
     
-    // Load theme
     if (localStorage.getItem("cardinal_theme") === "dark") {
         document.body.classList.add("dark");
     }
+    
+    console.log("✅ App tayyor");
 }
 
 /* =========================================================
-   DATA MANAGEMENT
+   DATA MANAGEMENT (localStorage — fallback)
    ========================================================= */
 function saveData() {
     localStorage.setItem("cardinal_data", JSON.stringify({
@@ -2750,7 +2502,7 @@ function loadData() {
 /* =========================================================
    NAVIGATION
    ========================================================= */
-function goToPage(pageId) {
+async function goToPage(pageId) {
     document.querySelectorAll(".page").forEach(page => {
         page.classList.toggle("active", page.id === pageId);
     });
@@ -2759,18 +2511,23 @@ function goToPage(pageId) {
         item.classList.toggle("active", item.dataset.page === pageId);
     });
     
-    // Page specific renders
-    if (pageId === "dashboardPage") renderDashboard();
-    if (pageId === "myAdsPage") renderMyAds();
+    if (pageId === "dashboardPage") {
+        renderDashboard();
+    }
+    if (pageId === "myAdsPage") {
+        if (TELEGRAM_USER) await loadMyAdsFromAPI();
+        renderMyAds();
+    }
     if (pageId === "chatPage") renderChatList();
     if (pageId === "profilePage") updateProfileDisplay();
-    if (pageId === "adminPage") renderAdminPanel();
+    if (pageId === "adminPage") {
+        await renderAdminPanel();
+    }
     
     window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
 function setupEventListeners() {
-    // Nav items
     document.querySelectorAll(".nav-item").forEach(item => {
         item.addEventListener("click", () => {
             const page = item.dataset.page;
@@ -2781,20 +2538,16 @@ function setupEventListeners() {
         });
     });
     
-    // Theme toggle
     document.getElementById("themeMenuButton")?.addEventListener("click", toggleTheme);
     
-    // Admin login
     document.getElementById("adminLoginButton")?.addEventListener("click", () => {
         openModal("adminLoginModal");
     });
     
-    // Search
     document.getElementById("dashboardSearch")?.addEventListener("input", (e) => {
         renderDashboard(e.target.value.toLowerCase());
     });
     
-    // Category tabs
     document.querySelectorAll("#dashboardPage .category-tab").forEach(tab => {
         tab.addEventListener("click", () => {
             document.querySelectorAll("#dashboardPage .category-tab").forEach(t => t.classList.remove("active"));
@@ -2803,7 +2556,6 @@ function setupEventListeners() {
         });
     });
     
-    // My Ads tabs
     document.querySelectorAll("[data-myad]").forEach(tab => {
         tab.addEventListener("click", () => {
             document.querySelectorAll("[data-myad]").forEach(t => t.classList.remove("active"));
@@ -2812,27 +2564,21 @@ function setupEventListeners() {
         });
     });
     
-    // Amount input
     document.getElementById("topUpAmount")?.addEventListener("input", (e) => {
         e.target.value = e.target.value.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, " ");
-        updateTopUpButton();
+        updateGoToPaymentButton();
     });
     
-    // Quick amounts
     document.querySelectorAll(".quick-amount").forEach(btn => {
         btn.addEventListener("click", () => {
             const amount = btn.dataset.amount;
             document.getElementById("topUpAmount").value = Number(amount).toLocaleString("uz-UZ");
             document.querySelectorAll(".quick-amount").forEach(b => b.classList.remove("active"));
             btn.classList.add("active");
-            updateTopUpButton();
+            updateGoToPaymentButton();
         });
     });
     
-    // Receipt upload
-    document.getElementById("receiptInput")?.addEventListener("change", handleReceiptUpload);
-    
-    // Tariff cards
     document.querySelectorAll(".tariff-card").forEach(card => {
         card.addEventListener("click", () => {
             document.querySelectorAll(".tariff-card").forEach(c => c.classList.remove("selected"));
@@ -2842,10 +2588,8 @@ function setupEventListeners() {
         });
     });
     
-    // Media upload
     document.getElementById("mediaInput")?.addEventListener("change", handleMediaUpload);
     
-    // Create navigation
     document.getElementById("createBackButton")?.addEventListener("click", () => {
         if (APP_DATA.createStep === 1) {
             goToPage("dashboardPage");
@@ -2856,46 +2600,61 @@ function setupEventListeners() {
     
     document.getElementById("createNextButton")?.addEventListener("click", nextCreateStep);
     
-    // Chat input
     document.getElementById("chatInput")?.addEventListener("keydown", (e) => {
         if (e.key === "Enter" && !e.shiftKey) {
             e.preventDefault();
             sendMessage();
         }
     });
+    
+    // Phone inputs
+    ["accPhone", "profilePhone", "adminPhoneInput"].forEach(id => {
+        document.getElementById(id)?.addEventListener("input", (e) => {
+            e.target.value = e.target.value.replace(/\D/g, "").slice(0, 9);
+        });
+    });
+    
+    document.getElementById("accPrice")?.addEventListener("input", (e) => {
+        e.target.value = e.target.value.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+    });
 }
 
 /* =========================================================
-   BALANCE FUNCTIONS
+   PROFILE EDIT MODAL
    ========================================================= */
-function updateBalanceDisplay() {
-    const formatted = APP_DATA.balance.toLocaleString("uz-UZ") + " so'm";
-    document.getElementById("topBalance").innerText = formatted;
-    document.getElementById("balancePageValue").innerText = formatted;
-    document.getElementById("profileBalance").innerText = APP_DATA.balance.toLocaleString("uz-UZ");
+function openProfileEdit() {
+    document.getElementById("profileFirstName").value = APP_DATA.profile.firstName || "";
+    document.getElementById("profileLastName").value = APP_DATA.profile.lastName || "";
+    document.getElementById("profilePhone").value = APP_DATA.profile.phone || "";
+    openModal("profileEditModal");
 }
 
-function updateTopUpButton() {
-    const amount = parseInt(document.getElementById("topUpAmount").value.replace(/\s/g, "")) || 0;
-    const hasReceipt = document.getElementById("receiptPreview").querySelector("img");
-    document.getElementById("topUpButton").disabled = !(amount > 0 && hasReceipt);
-}
-
-function handleReceiptUpload(e) {
-    const file = e.target.files[0];
-    if (!file) return;
+/* =========================================================
+   BALANCE TOP-UP
+   ========================================================= */
+function startBalanceTopUp() {
+    APP_DATA.pendingTopUpAmount = 0;
     
-    const reader = new FileReader();
-    reader.onload = (event) => {
-        document.getElementById("receiptPreview").innerHTML = `
-            <img src="${event.target.result}" style="width: 100%; max-height: 250px; object-fit: contain; border-radius: 16px; margin-top: 12px; border: 1.5px solid var(--border);">
-        `;
-        updateTopUpButton();
-    };
-    reader.readAsDataURL(file);
+    const amountInput = document.getElementById("topUpAmount");
+    if (amountInput) amountInput.value = "";
+    
+    document.querySelectorAll(".quick-amount").forEach(b => b.classList.remove("active"));
+    
+    document.getElementById("balanceTopUpCurrent").innerText = APP_DATA.balance.toLocaleString("uz-UZ") + " so'm";
+    
+    const btn = document.getElementById("goToPaymentButton");
+    if (btn) btn.disabled = true;
+    
+    goToPage("balanceTopUpPage");
 }
 
-function submitTopUp() {
+function updateGoToPaymentButton() {
+    const amount = parseInt(document.getElementById("topUpAmount").value.replace(/\s/g, "")) || 0;
+    const btn = document.getElementById("goToPaymentButton");
+    if (btn) btn.disabled = !(amount >= 1000);
+}
+
+function goToPaymentPage() {
     const amount = parseInt(document.getElementById("topUpAmount").value.replace(/\s/g, "")) || 0;
     
     if (amount < 1000) {
@@ -2903,22 +2662,72 @@ function submitTopUp() {
         return;
     }
     
-    APP_DATA.balance += amount;
-    saveData();
-    updateBalanceDisplay();
-    
-    document.getElementById("topUpAmount").value = "";
-    document.getElementById("receiptPreview").innerHTML = "";
-    document.querySelectorAll(".quick-amount").forEach(b => b.classList.remove("active"));
-    document.getElementById("topUpButton").disabled = true;
-    
-    showToast(`${amount.toLocaleString("uz-UZ")} so'm hisobingizga qo'shildi!`, "success");
+    APP_DATA.pendingTopUpAmount = amount;
+    document.getElementById("paymentAmountDisplay").innerText = amount.toLocaleString("uz-UZ") + " so'm";
+    goToPage("balancePaymentPage");
+}
+
+function cancelPayment() {
+    if (!confirm("To'lovni bekor qilmoqchimisiz?")) return;
+    APP_DATA.pendingTopUpAmount = 0;
     goToPage("dashboardPage");
+    showToast("To'lov bekor qilindi");
+}
+
+async function confirmPayment() {
+    const amount = APP_DATA.pendingTopUpAmount;
+    
+    if (!amount || amount < 1000) {
+        showToast("Xatolik: summa noto'g'ri", "error");
+        return;
+    }
+    
+    if (!TELEGRAM_USER) {
+        // Telegram yo'q — lokal qo'shish
+        APP_DATA.balance += amount;
+        saveData();
+        updateBalanceDisplay();
+        updateProfileDisplay();
+        showToast(`${amount.toLocaleString("uz-UZ")} so'm qo'shildi (lokal)`, "success");
+        setTimeout(() => goToPage("dashboardPage"), 500);
+        return;
+    }
+    
+    showLoading();
+    try {
+        const data = await topUpBalanceAPI(amount);
+        if (data && data.ok) {
+            APP_DATA.balance = data.new_balance;
+            updateBalanceDisplay();
+            updateProfileDisplay();
+            
+            APP_DATA.pendingTopUpAmount = 0;
+            document.getElementById("topUpAmount").value = "";
+            document.querySelectorAll(".quick-amount").forEach(b => b.classList.remove("active"));
+            
+            showToast(`${amount.toLocaleString("uz-UZ")} so'm hisobingizga qo'shildi!`, "success");
+            setTimeout(() => goToPage("dashboardPage"), 500);
+        } else {
+            showToast("Server xatosi", "error");
+        }
+    } catch (e) {
+        showToast("Xatolik: " + e.message, "error");
+    }
+    hideLoading();
 }
 
 function copyCard() {
     navigator.clipboard?.writeText(CONFIG.ADMIN_CARD);
     showToast("Karta raqami nusxalandi", "success");
+}
+
+/* =========================================================
+   BALANCE DISPLAY
+   ========================================================= */
+function updateBalanceDisplay() {
+    const formatted = APP_DATA.balance.toLocaleString("uz-UZ") + " so'm";
+    document.getElementById("topBalance").innerText = formatted;
+    document.getElementById("profileBalance").innerText = APP_DATA.balance.toLocaleString("uz-UZ");
 }
 
 /* =========================================================
@@ -2929,19 +2738,14 @@ function renderDashboard(search = "", category = "ALL") {
     if (!grid) return;
     
     let ads = APP_DATA.ads.filter(ad => {
-        // Only show approved ads
         if (ad.status !== "ACTIVE") return false;
-        
-        // Category filter
         if (category !== "ALL" && ad.type !== category) return false;
         
-        // Search filter
         if (search) {
-            const text = `${ad.title} ${ad.description} ${ad.location}`.toLowerCase();
+            const text = `${ad.title} ${ad.description || ""} ${ad.location || ""}`.toLowerCase();
             if (!text.includes(search)) return false;
         }
         
-        // Check expiration
         if (ad.expiresAt && Date.now() > ad.expiresAt) {
             ad.status = "EXPIRED";
             return false;
@@ -2950,11 +2754,10 @@ function renderDashboard(search = "", category = "ALL") {
         return true;
     });
     
-    // Sort: Premium first
     ads.sort((a, b) => {
         if (a.type === "PREMIUM" && b.type !== "PREMIUM") return -1;
         if (b.type === "PREMIUM" && a.type !== "PREMIUM") return 1;
-        return b.createdAt - a.createdAt;
+        return (b.createdAt || 0) - (a.createdAt || 0);
     });
     
     if (!ads.length) {
@@ -2973,7 +2776,7 @@ function renderDashboard(search = "", category = "ALL") {
             <div class="ad-image-wrap">
                 ${ad.video 
                     ? `<video class="ad-image" src="${ad.video}" muted loop autoplay></video>`
-                    : `<img class="ad-image" src="${ad.image}" alt="${ad.title}">`
+                    : `<img class="ad-image" src="${ad.image}" alt="${ad.title}" onerror="this.src='https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80'">`
                 }
                 <span class="ad-type-badge ${ad.type === 'PREMIUM' ? 'premium' : ''}">
                     ${ad.type === 'PREMIUM' ? '⭐ VIP' : ad.type === 'RARE' ? '🔥 Noyob' : '📢 Reklama'}
@@ -2981,7 +2784,7 @@ function renderDashboard(search = "", category = "ALL") {
             </div>
             <div class="ad-content">
                 <div class="ad-title">${escapeHTML(ad.title)}</div>
-                <div class="ad-meta">📍 ${escapeHTML(ad.location)}</div>
+                <div class="ad-meta">📍 ${escapeHTML(ad.location || "-")}</div>
                 <div class="ad-meta">👁 ${ad.views || 0} ko'rishlar</div>
                 <div class="ad-price">${formatPrice(ad.price)}</div>
             </div>
@@ -2993,7 +2796,7 @@ function renderDashboard(search = "", category = "ALL") {
    AD DETAIL
    ========================================================= */
 function openAdDetail(id) {
-    const ad = APP_DATA.ads.find(a => a.id === id);
+    const ad = APP_DATA.ads.find(a => String(a.id) === String(id));
     if (!ad) return;
     
     ad.views = (ad.views || 0) + 1;
@@ -3002,7 +2805,7 @@ function openAdDetail(id) {
     content.innerHTML = `
         ${ad.video 
             ? `<video src="${ad.video}" controls style="width: 100%; height: 300px; object-fit: cover; border-radius: 18px;"></video>`
-            : `<img src="${ad.image}" style="width: 100%; height: 300px; object-fit: cover; border-radius: 18px;">`
+            : `<img src="${ad.image}" style="width: 100%; height: 300px; object-fit: cover; border-radius: 18px;" onerror="this.src='https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80'">`
         }
         
         <div style="margin-top: 18px;">
@@ -3012,46 +2815,16 @@ function openAdDetail(id) {
             </div>
             
             <div class="info-list">
-                <div class="info-row">
-                    <span>📈 LVL</span>
-                    <span>${escapeHTML(ad.account?.level || "-")}</span>
-                </div>
-                <div class="info-row">
-                    <span>🛎 RP</span>
-                    <span>${escapeHTML(ad.account?.rp || "-")}</span>
-                </div>
-                <div class="info-row">
-                    <span>🦹‍♂️ Kiymlar</span>
-                    <span>${escapeHTML(ad.account?.clothes || "-")}</span>
-                </div>
-                <div class="info-row">
-                    <span>🔫 Avtomatga Skin</span>
-                    <span>${escapeHTML(ad.account?.gunSkin || "-")}</span>
-                </div>
-                <div class="info-row">
-                    <span>🎈 Parashutga Skin</span>
-                    <span>${escapeHTML(ad.account?.parachuteSkin || "-")}</span>
-                </div>
-                <div class="info-row">
-                    <span>🎒 Papkaga Skin</span>
-                    <span>${escapeHTML(ad.account?.bagSkin || "-")}</span>
-                </div>
-                <div class="info-row">
-                    <span>🔱 Dostajeniya</span>
-                    <span>${escapeHTML(ad.account?.achievement || "-")}</span>
-                </div>
-                <div class="info-row">
-                    <span>⚜️ Titulari</span>
-                    <span>${escapeHTML(ad.account?.titles || "-")}</span>
-                </div>
-                <div class="info-row">
-                    <span>🔐 Ulangan</span>
-                    <span>${escapeHTML(ad.account?.linked || "-")}</span>
-                </div>
-                <div class="info-row">
-                    <span>🏠 Manzil</span>
-                    <span>${escapeHTML(ad.location)}</span>
-                </div>
+                <div class="info-row"><span>📈 LVL</span><span>${escapeHTML(ad.account?.level || "-")}</span></div>
+                <div class="info-row"><span>🛎 RP</span><span>${escapeHTML(ad.account?.rp || "-")}</span></div>
+                <div class="info-row"><span>🦹‍♂️ Kiymlar</span><span>${escapeHTML(ad.account?.clothes || "-")}</span></div>
+                <div class="info-row"><span>🔫 Avtomatga Skin</span><span>${escapeHTML(ad.account?.gunSkin || "-")}</span></div>
+                <div class="info-row"><span>🎈 Parashutga Skin</span><span>${escapeHTML(ad.account?.parachuteSkin || "-")}</span></div>
+                <div class="info-row"><span>🎒 Papkaga Skin</span><span>${escapeHTML(ad.account?.bagSkin || "-")}</span></div>
+                <div class="info-row"><span>🔱 Dostajeniya</span><span>${escapeHTML(ad.account?.achievement || "-")}</span></div>
+                <div class="info-row"><span>⚜️ Titulari</span><span>${escapeHTML(ad.account?.titles || "-")}</span></div>
+                <div class="info-row"><span>🔐 Ulangan</span><span>${escapeHTML(ad.account?.linked || "-")}</span></div>
+                <div class="info-row"><span>🏠 Manzil</span><span>${escapeHTML(ad.location || "-")}</span></div>
             </div>
             
             ${ad.account?.extra ? `
@@ -3062,12 +2835,8 @@ function openAdDetail(id) {
             ` : ""}
             
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 18px;">
-                <button class="btn btn-primary" onclick="contactPhone('${ad.phone}')">
-                    📞 Telefon qilish
-                </button>
-                <button class="btn btn-secondary" onclick="contactTelegram('${ad.telegram}')">
-                    💬 Telegram xabar
-                </button>
+                <button class="btn btn-primary" onclick="contactPhone('${ad.phone || ''}')">📞 Telefon qilish</button>
+                <button class="btn btn-secondary" onclick="contactTelegram('${ad.telegram || ''}')">💬 Telegram xabar</button>
             </div>
             
             <button class="btn btn-success btn-block" style="margin-top: 10px;" onclick="openAdminTrade('${ad.id}')">
@@ -3080,6 +2849,7 @@ function openAdDetail(id) {
 }
 
 function contactPhone(phone) {
+    if (!phone) { showToast("Telefon raqam yo'q", "error"); return; }
     window.location.href = `tel:${phone}`;
 }
 
@@ -3092,29 +2862,28 @@ function contactTelegram(username) {
 }
 
 function openAdminTrade(adId) {
-    const ad = APP_DATA.ads.find(a => a.id === adId);
+    const ad = APP_DATA.ads.find(a => String(a.id) === String(adId));
     if (!ad) return;
     
     const chatId = "admin-trade-" + adId;
-    const existingChat = APP_DATA.chats.find(c => c.id === chatId);
+    let existingChat = APP_DATA.chats.find(c => c.id === chatId);
     
     if (!existingChat) {
-        APP_DATA.chats.unshift({
+        existingChat = {
             id: chatId,
             name: "ADMIN BILAN SAVDO ✓",
             avatar: "🤝",
             isAdminTrade: true,
             adId: adId,
-            messages: [
-                {
-                    id: "msg-" + Date.now(),
-                    sender: "Admin",
-                    text: `Assalomu alaykum! "${ad.title}" akkaunti bo'yicha savdo uchun admin bilan bog'lanmoqdasiz. Savollaringizni yozing.`,
-                    time: new Date().toLocaleTimeString("uz-UZ", { hour: "2-digit", minute: "2-digit" }),
-                    isAdmin: true
-                }
-            ]
-        });
+            messages: [{
+                id: "msg-" + Date.now(),
+                sender: "Admin",
+                text: `Assalomu alaykum! "${ad.title}" akkaunti bo'yicha savdo uchun admin bilan bog'lanmoqdasiz. Savollaringizni yozing.`,
+                time: new Date().toLocaleTimeString("uz-UZ", { hour: "2-digit", minute: "2-digit" }),
+                isAdmin: true
+            }]
+        };
+        APP_DATA.chats.unshift(existingChat);
         saveData();
     }
     
@@ -3130,10 +2899,7 @@ function renderMyAds(filter = "ALL") {
     if (!container) return;
     
     let ads = APP_DATA.myAds;
-    
-    if (filter !== "ALL") {
-        ads = ads.filter(ad => ad.status === filter);
-    }
+    if (filter !== "ALL") ads = ads.filter(ad => ad.status === filter);
     
     if (!ads.length) {
         container.innerHTML = `
@@ -3141,9 +2907,7 @@ function renderMyAds(filter = "ALL") {
                 <div class="empty-icon">📢</div>
                 <strong>Hali reklama yo'q</strong>
                 <p style="margin-top: 6px;">Birinchi reklamangizni joylang</p>
-                <button class="btn btn-primary" style="margin-top: 16px;" onclick="startCreateAd()">
-                    ＋ Reklama berish
-                </button>
+                <button class="btn btn-primary" style="margin-top: 16px;" onclick="startCreateAd()">＋ Reklama berish</button>
             </div>
         `;
         return;
@@ -3151,28 +2915,14 @@ function renderMyAds(filter = "ALL") {
     
     container.innerHTML = ads.map(ad => `
         <div class="my-ad-item">
-            <img class="my-ad-image" src="${ad.image}" alt="">
+            <img class="my-ad-image" src="${ad.image}" alt="" onerror="this.src='https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80'">
             <div class="my-ad-info">
                 <div class="my-ad-title">${escapeHTML(ad.title)}</div>
                 <div class="my-ad-meta">💰 ${formatPrice(ad.price)}</div>
                 <div class="my-ad-meta">📅 ${new Date(ad.createdAt).toLocaleDateString("uz-UZ")}</div>
-                <span class="status ${ad.status.toLowerCase()}">
-                    ${getStatusText(ad.status)}
-                </span>
+                <span class="status ${(ad.status || 'PENDING').toLowerCase()}">${getStatusText(ad.status)}</span>
                 <div class="my-ad-actions">
-                    ${ad.status === "ACTIVE" ? `
-                        <button class="small-btn success" onclick="markAsSold('${ad.id}')">
-                            ✅ Sotildi
-                        </button>
-                    ` : ""}
-                    ${ad.status === "PENDING" ? `
-                        <button class="small-btn primary" onclick="showToast('Admin tasdiqlashini kuting')">
-                            ⏳ Kutilmoqda
-                        </button>
-                    ` : ""}
-                    <button class="small-btn danger" onclick="deleteMyAd('${ad.id}')">
-                        🗑 O'chirish
-                    </button>
+                    ${ad.status === "PENDING" ? `<button class="small-btn primary" onclick="showToast('Admin tasdiqlashini kuting')">⏳ Kutilmoqda</button>` : ""}
                 </div>
             </div>
         </div>
@@ -3186,38 +2936,7 @@ function getStatusText(status) {
         EXPIRED: "⌛ Tugagan",
         REJECTED: "❌ Rad etilgan"
     };
-    return map[status] || status;
-}
-
-function markAsSold(adId) {
-    if (!confirm("Akkauntni sotilgan deb belgilaysizmi? Reklama o'chiriladi.")) return;
-    
-    const ad = APP_DATA.myAds.find(a => a.id === adId);
-    if (ad) {
-        ad.status = "EXPIRED";
-        ad.soldAt = Date.now();
-    }
-    
-    // Remove from main ads
-    APP_DATA.ads = APP_DATA.ads.filter(a => a.id !== adId);
-    
-    saveData();
-    renderMyAds();
-    renderDashboard();
-    showToast("Akkaunt sotilgan deb belgilandi", "success");
-}
-
-function deleteMyAd(adId) {
-    if (!confirm("Reklamani o'chirmoqchimisiz?")) return;
-    
-    APP_DATA.myAds = APP_DATA.myAds.filter(a => a.id !== adId);
-    APP_DATA.pending = APP_DATA.pending.filter(a => a.id !== adId);
-    APP_DATA.ads = APP_DATA.ads.filter(a => a.id !== adId);
-    
-    saveData();
-    renderMyAds();
-    renderDashboard();
-    showToast("Reklama o'chirildi", "success");
+    return map[status] || status || "Noma'lum";
 }
 
 /* =========================================================
@@ -3226,19 +2945,14 @@ function deleteMyAd(adId) {
 function startCreateAd() {
     APP_DATA.createStep = 1;
     APP_DATA.tariff = null;
-    APP_DATA.createData = {
-        media: null,
-        mediaType: null,
-        account: {},
-        preview: null
-    };
+    APP_DATA.createData = { media: null, mediaType: null, account: {}, preview: null };
     
-    // Reset UI
     document.querySelectorAll(".tariff-card").forEach(c => c.classList.remove("selected"));
-    document.getElementById("mediaPreviewGrid").innerHTML = "";
-    document.getElementById("mediaInput").value = "";
+    const grid = document.getElementById("mediaPreviewGrid");
+    if (grid) grid.innerHTML = "";
+    const input = document.getElementById("mediaInput");
+    if (input) input.value = "";
     
-    // Clear account fields
     ["accLevel", "accRP", "accClothes", "accGunSkin", "accParachuteSkin", "accBagSkin", "accAchievement", "accTitles", "accExtra", "accPrice", "accTelegram", "accPhone"].forEach(id => {
         const el = document.getElementById(id);
         if (el) el.value = "";
@@ -3253,38 +2967,32 @@ function startCreateAd() {
 }
 
 function renderCreateStep() {
-    // Update step indicator
     const indicator = document.getElementById("stepIndicator");
-    indicator.innerHTML = Array.from({ length: 4 }, (_, i) => `
-        <div class="step-dot ${i + 1 <= APP_DATA.createStep ? "active" : ""}"></div>
-    `).join("");
+    if (indicator) {
+        indicator.innerHTML = Array.from({ length: 4 }, (_, i) => `
+            <div class="step-dot ${i + 1 <= APP_DATA.createStep ? "active" : ""}"></div>
+        `).join("");
+    }
     
-    // Show current step
     document.querySelectorAll(".create-step").forEach(step => {
         step.classList.toggle("active", Number(step.dataset.step) === APP_DATA.createStep);
     });
     
-    // Update buttons
     const backBtn = document.getElementById("createBackButton");
     const nextBtn = document.getElementById("createNextButton");
     
-    backBtn.innerText = APP_DATA.createStep === 1 ? "✕ Bekor qilish" : "← Orqaga";
-    nextBtn.innerText = APP_DATA.createStep === 4 ? "✓ Tasdiqlash" : "Davom etish →";
+    if (backBtn) backBtn.innerText = APP_DATA.createStep === 1 ? "✕ Bekor qilish" : "← Orqaga";
+    if (nextBtn) nextBtn.innerText = APP_DATA.createStep === 4 ? "✓ Tasdiqlash" : "Davom etish →";
     
-    // Render preview on step 4
-    if (APP_DATA.createStep === 4) {
-        renderAdPreview();
-    }
+    if (APP_DATA.createStep === 4) renderAdPreview();
     
     window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
 function nextCreateStep() {
-    // Validate current step
     if (!validateCreateStep()) return;
     
     if (APP_DATA.createStep === 4) {
-        // Submit
         submitAd();
         return;
     }
@@ -3328,7 +3036,6 @@ function validateCreateStep() {
             }
         }
         
-        // Save account data
         APP_DATA.createData.account = {
             level: document.getElementById("accLevel").value.trim(),
             rp: document.getElementById("accRP").value.trim(),
@@ -3359,6 +3066,12 @@ function handleMediaUpload(e) {
     
     if (!isVideo && !isImage) {
         showToast("Faqat video yoki rasm yuklash mumkin", "error");
+        return;
+    }
+    
+    // 5 MB limit
+    if (file.size > 5 * 1024 * 1024) {
+        showToast("Fayl hajmi 5 MB dan oshmasligi kerak", "error");
         return;
     }
     
@@ -3402,96 +3115,91 @@ function renderAdPreview() {
                 <div class="preview-price">${formatPrice(acc.price)}</div>
                 
                 <div class="info-list">
-                    <div class="info-row">
-                        <span>📈 LVL</span>
-                        <span>${escapeHTML(acc.level)}</span>
-                    </div>
-                    <div class="info-row">
-                        <span>🛎 RP</span>
-                        <span>${escapeHTML(acc.rp)}</span>
-                    </div>
-                    <div class="info-row">
-                        <span>🦹‍♂️ Kiymlar</span>
-                        <span>${escapeHTML(acc.clothes || "-")}</span>
-                    </div>
-                    <div class="info-row">
-                        <span>🔫 Avtomatga Skin</span>
-                        <span>${escapeHTML(acc.gunSkin || "-")}</span>
-                    </div>
-                    <div class="info-row">
-                        <span>🔐 Ulangan</span>
-                        <span>${escapeHTML(acc.linked || "-")}</span>
-                    </div>
-                    <div class="info-row">
-                        <span>🏠 Manzil</span>
-                        <span>${escapeHTML(acc.location || "-")}</span>
-                    </div>
-                    <div class="info-row">
-                        <span>📲 Telegram</span>
-                        <span>${escapeHTML(acc.telegram)}</span>
-                    </div>
-                    <div class="info-row">
-                        <span>📱 Telefon</span>
-                        <span>+998 ${escapeHTML(acc.phone)}</span>
-                    </div>
+                    <div class="info-row"><span>📈 LVL</span><span>${escapeHTML(acc.level)}</span></div>
+                    <div class="info-row"><span>🛎 RP</span><span>${escapeHTML(acc.rp)}</span></div>
+                    <div class="info-row"><span>🦹‍♂️ Kiymlar</span><span>${escapeHTML(acc.clothes || "-")}</span></div>
+                    <div class="info-row"><span>🔫 Avtomatga Skin</span><span>${escapeHTML(acc.gunSkin || "-")}</span></div>
+                    <div class="info-row"><span>🔐 Ulangan</span><span>${escapeHTML(acc.linked || "-")}</span></div>
+                    <div class="info-row"><span>🏠 Manzil</span><span>${escapeHTML(acc.location || "-")}</span></div>
+                    <div class="info-row"><span>📲 Telegram</span><span>${escapeHTML(acc.telegram)}</span></div>
+                    <div class="info-row"><span>📱 Telefon</span><span>+998 ${escapeHTML(acc.phone)}</span></div>
                 </div>
             </div>
         </div>
     `;
 }
 
-function submitAd() {
-    const tariffPrices = { "1": 19000, "2": 9000, "3": 25000, "4": 29000 };
-    const price = tariffPrices[APP_DATA.tariff];
+async function submitAd() {
+    const tariffPrice = CONFIG.TARIFF_PRICES[APP_DATA.tariff];
     
-    if (APP_DATA.balance < price) {
+    if (APP_DATA.balance < tariffPrice) {
         showToast("Balansingizda yetarli mablag' yo'q. Hisobni to'ldiring.", "error");
-        setTimeout(() => goToPage("balancePage"), 1500);
+        setTimeout(() => startBalanceTopUp(), 1500);
         return;
     }
     
     const acc = APP_DATA.createData.account;
-    const adId = "ad-" + Date.now();
     
-    const ad = {
-        id: adId,
+    const adData = {
         title: `PUBG Mobile - ${acc.level} LVL Akkaunt`,
         description: acc.extra || "Zo'r akkaunt!",
-        image: APP_DATA.createData.mediaType === "image" ? APP_DATA.createData.media : "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80",
-        video: APP_DATA.createData.mediaType === "video" ? APP_DATA.createData.media : null,
-        type: APP_DATA.tariff === "4" ? "PREMIUM" : APP_DATA.tariff === "3" ? "RARE" : "STANDARD",
-        price: parseInt(acc.price),
+        image_url: APP_DATA.createData.mediaType === "image" ? APP_DATA.createData.media : null,
+        video_url: APP_DATA.createData.mediaType === "video" ? APP_DATA.createData.media : null,
+        price: parseInt(String(acc.price).replace(/\s/g, "")),
         location: acc.location,
         phone: "+998" + acc.phone,
         telegram: acc.telegram,
-        likes: 0,
-        views: 0,
-        status: "PENDING",
-        createdAt: Date.now(),
-        expiresAt: Date.now() + (APP_DATA.tariff === "4" ? 7 : APP_DATA.tariff === "3" ? 7 : 3) * 86400000,
-        account: acc,
-        tariff: APP_DATA.tariff
+        account_data: acc,
+        tariff: parseInt(APP_DATA.tariff)
     };
     
-    // Deduct balance
-    APP_DATA.balance -= price;
-    APP_DATA.spent += price;
+    if (!TELEGRAM_USER) {
+        // Lokal rejim
+        APP_DATA.balance -= tariffPrice;
+        APP_DATA.spent += tariffPrice;
+        
+        const localAd = {
+            id: "ad-" + Date.now(),
+            ...adData,
+            image: adData.image_url || "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80",
+            video: adData.video_url,
+            type: APP_DATA.tariff === "4" ? "PREMIUM" : APP_DATA.tariff === "3" ? "RARE" : "STANDARD",
+            status: "PENDING",
+            createdAt: Date.now(),
+            account: acc
+        };
+        APP_DATA.myAds.unshift(localAd);
+        saveData();
+        updateBalanceDisplay();
+        showToast("Reklama yuborildi (lokal)!", "success");
+        goToPage("myAdsPage");
+        return;
+    }
     
-    // Add to pending
-    APP_DATA.pending.unshift(ad);
-    APP_DATA.myAds.unshift(ad);
-    
-    saveData();
-    updateBalanceDisplay();
-    
-    showToast("Reklama yuborildi! Admin tasdiqlashini kuting.", "success");
-    
-    // Reset
-    APP_DATA.createStep = 1;
-    APP_DATA.tariff = null;
-    APP_DATA.createData = { media: null, mediaType: null, account: {}, preview: null };
-    
-    goToPage("myAdsPage");
+    showLoading();
+    try {
+        const result = await createAdAPI(adData);
+        if (result && result.ok) {
+            APP_DATA.balance -= result.paid;
+            updateBalanceDisplay();
+            updateProfileDisplay();
+            
+            await loadMyAdsFromAPI();
+            
+            showToast("Reklama yuborildi! Admin tasdiqlashini kuting.", "success");
+            
+            APP_DATA.createStep = 1;
+            APP_DATA.tariff = null;
+            APP_DATA.createData = { media: null, mediaType: null, account: {}, preview: null };
+            
+            goToPage("myAdsPage");
+        } else {
+            showToast("Server xatosi", "error");
+        }
+    } catch (e) {
+        showToast("Xatolik: " + e.message, "error");
+    }
+    hideLoading();
 }
 
 /* =========================================================
@@ -3627,8 +3335,7 @@ function deleteMessage(msgId) {
 }
 
 function blockUser(chatId) {
-    if (!confirm("Bu foydalanuvchini bloklaysizmi? U botdan foydalana olmaydi.")) return;
-    
+    if (!confirm("Bu foydalanuvchini bloklaysizmi?")) return;
     showToast("Foydalanuvchi bloklandi", "success");
     closeChatRoom();
 }
@@ -3655,7 +3362,6 @@ function sendMessage() {
     saveData();
     renderChatMessages();
     
-    // Simulate admin reply
     if (chat.isAdminTrade) {
         setTimeout(() => {
             chat.messages.push({
@@ -3674,91 +3380,89 @@ function sendMessage() {
 /* =========================================================
    ADMIN PANEL
    ========================================================= */
-function renderAdminPanel() {
-    document.getElementById("adminAdsCount").innerText = APP_DATA.ads.length;
-    document.getElementById("adminUsersCount").innerText = APP_DATA.users;
-    document.getElementById("adminPendingCount").innerText = APP_DATA.pending.length;
-    document.getElementById("adminBalanceTotal").innerText = APP_DATA.balance.toLocaleString("uz-UZ");
+async function renderAdminPanel() {
+    showLoading();
     
-    const container = document.getElementById("moderationList");
-    
-    if (!APP_DATA.pending.length) {
-        container.innerHTML = `
-            <div class="empty">
-                <div class="empty-icon">✅</div>
-                <strong>Kutilayotgan e'lon yo'q</strong>
-            </div>
-        `;
-        return;
-    }
-    
-    container.innerHTML = APP_DATA.pending.map(ad => `
-        <div class="moderation-card">
-            <div class="moderation-layout">
-                ${ad.video 
-                    ? `<video src="${ad.video}" class="moderation-photo" controls></video>`
-                    : `<img src="${ad.image}" class="moderation-photo">`
-                }
-                <div class="moderation-info">
-                    <h3>${escapeHTML(ad.title)}</h3>
-                    <div class="moderation-meta">💰 ${formatPrice(ad.price)}</div>
-                    <div class="moderation-meta">📞 ${escapeHTML(ad.phone)}</div>
-                    <div class="moderation-meta">📲 ${escapeHTML(ad.telegram)}</div>
-                    <div class="moderation-meta">📍 ${escapeHTML(ad.location)}</div>
+    try {
+        const stats = await loadAdminStats();
+        const pending = await loadPendingAds();
+        
+        document.getElementById("adminAdsCount").innerText = stats.ads || 0;
+        document.getElementById("adminUsersCount").innerText = stats.users || 0;
+        document.getElementById("adminPendingCount").innerText = stats.pending || 0;
+        document.getElementById("adminBalanceTotal").innerText = (stats.total_balance || 0).toLocaleString("uz-UZ");
+        
+        APP_DATA.pending = pending;
+        
+        const container = document.getElementById("moderationList");
+        
+        if (!pending.length) {
+            container.innerHTML = `
+                <div class="empty">
+                    <div class="empty-icon">✅</div>
+                    <strong>Kutilayotgan e'lon yo'q</strong>
+                </div>
+            `;
+            hideLoading();
+            return;
+        }
+        
+        container.innerHTML = pending.map(ad => `
+            <div class="moderation-card">
+                <div class="moderation-layout">
+                    ${ad.video 
+                        ? `<video src="${ad.video}" class="moderation-photo" controls></video>`
+                        : `<img src="${ad.image}" class="moderation-photo" onerror="this.src='https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80'">`
+                    }
+                    <div class="moderation-info">
+                        <h3>${escapeHTML(ad.title)}</h3>
+                        <div class="moderation-meta">💰 ${formatPrice(ad.price)}</div>
+                        <div class="moderation-meta">📞 ${escapeHTML(ad.phone || "-")}</div>
+                        <div class="moderation-meta">📲 ${escapeHTML(ad.telegram || "-")}</div>
+                        <div class="moderation-meta">📍 ${escapeHTML(ad.location || "-")}</div>
+                    </div>
+                </div>
+                <div class="moderation-actions">
+                    <button class="btn btn-success" onclick="approveAd('${ad.id}')">✓ Qabul</button>
+                    <button class="btn btn-danger" onclick="rejectAd('${ad.id}')">✕ Rad etish</button>
                 </div>
             </div>
-            <div class="moderation-actions">
-                <button class="btn btn-success" onclick="approveAd('${ad.id}')">✓ Qabul</button>
-                <button class="btn btn-danger" onclick="rejectAd('${ad.id}')">✕ Rad etish</button>
-            </div>
-        </div>
-    `).join("");
+        `).join("");
+    } catch (e) {
+        console.error("Admin panel xatosi:", e);
+    }
+    
+    hideLoading();
 }
 
-function approveAd(adId) {
-    const ad = APP_DATA.pending.find(a => a.id === adId);
-    if (!ad) return;
+async function approveAd(adId) {
+    showLoading();
+    const ok = await approveAdAPI(adId);
+    hideLoading();
     
-    ad.status = "ACTIVE";
-    APP_DATA.ads.unshift(ad);
-    APP_DATA.pending = APP_DATA.pending.filter(a => a.id !== adId);
-    
-    // Update myAds status
-    const myAd = APP_DATA.myAds.find(a => a.id === adId);
-    if (myAd) myAd.status = "ACTIVE";
-    
-    saveData();
-    renderAdminPanel();
-    renderDashboard();
-    renderMyAds();
-    showToast("Reklama tasdiqlandi!", "success");
+    if (ok) {
+        showToast("Reklama tasdiqlandi!", "success");
+        await renderAdminPanel();
+        await loadAdsFromAPI();
+    } else {
+        showToast("Xatolik yuz berdi", "error");
+    }
 }
 
-function rejectAd(adId) {
+async function rejectAd(adId) {
     const reason = prompt("Rad etish sababini kiriting:");
     if (!reason) return;
     
-    const ad = APP_DATA.pending.find(a => a.id === adId);
-    if (!ad) return;
+    showLoading();
+    const ok = await rejectAdAPI(adId, reason);
+    hideLoading();
     
-    ad.status = "REJECTED";
-    ad.rejectReason = reason;
-    
-    // Refund balance
-    const tariffPrices = { "1": 19000, "2": 9000, "3": 25000, "4": 29000 };
-    const refund = tariffPrices[ad.tariff] || 0;
-    APP_DATA.balance += refund;
-    
-    APP_DATA.pending = APP_DATA.pending.filter(a => a.id !== adId);
-    
-    const myAd = APP_DATA.myAds.find(a => a.id === adId);
-    if (myAd) myAd.status = "REJECTED";
-    
-    saveData();
-    updateBalanceDisplay();
-    renderAdminPanel();
-    renderMyAds();
-    showToast("Reklama rad etildi. Pul qaytarildi.", "success");
+    if (ok) {
+        showToast("Reklama rad etildi. Pul qaytarildi.", "success");
+        await renderAdminPanel();
+    } else {
+        showToast("Xatolik yuz berdi", "error");
+    }
 }
 
 function verifyAdminLogin() {
@@ -3788,27 +3492,47 @@ function verifyAdminLogin() {
 function updateProfileDisplay() {
     const p = APP_DATA.profile;
     document.getElementById("profileName").innerText = `${p.firstName} ${p.lastName}`.trim() || "Foydalanuvchi";
-    document.getElementById("profileUsername").innerText = p.phone ? `+998${p.phone}` : "@username";
+    document.getElementById("profileUsername").innerText = p.phone ? `+998${p.phone}` : (TELEGRAM_USER?.username ? `@${TELEGRAM_USER.username}` : "@username");
     document.getElementById("profileAvatar").innerText = p.avatar || "🐱";
     document.getElementById("profileSpent").innerText = APP_DATA.spent.toLocaleString("uz-UZ");
     document.getElementById("profileAds").innerText = APP_DATA.myAds.length;
 }
 
-function saveProfile() {
+async function saveProfile() {
     const firstName = document.getElementById("profileFirstName").value.trim();
     const lastName = document.getElementById("profileLastName").value.trim();
-    const phone = document.getElementById("profilePhone").value.trim();
     
     if (!firstName) {
         showToast("Ismingizni kiriting", "error");
         return;
     }
     
-    APP_DATA.profile = { firstName, lastName, phone, avatar: APP_DATA.profile.avatar };
+    if (!TELEGRAM_USER) {
+        APP_DATA.profile.firstName = firstName;
+        APP_DATA.profile.lastName = lastName;
+        saveData();
+        updateProfileDisplay();
+        closeModal("profileEditModal");
+        showToast("Profil saqlandi (lokal)", "success");
+        return;
+    }
+    
+    showLoading();
+    const ok = await saveProfileToAPI(firstName, lastName);
+    hideLoading();
+    
+    APP_DATA.profile.firstName = firstName;
+    APP_DATA.profile.lastName = lastName;
+    
     saveData();
     updateProfileDisplay();
     closeModal("profileEditModal");
-    showToast("Profil saqlandi", "success");
+    
+    if (ok) {
+        showToast("Profil saqlandi!", "success");
+    } else {
+        showToast("Server bilan bog'lanishda xatolik (lokal saqlandi)", "error");
+    }
 }
 
 /* =========================================================
@@ -3859,9 +3583,7 @@ function applyFilter() {
     const maxPrice = parseInt(document.getElementById("filterMaxPrice").value.replace(/\s/g, "")) || 0;
     
     let ads = APP_DATA.ads.filter(ad => ad.status === "ACTIVE");
-    if (maxPrice > 0) {
-        ads = ads.filter(ad => ad.price <= maxPrice);
-    }
+    if (maxPrice > 0) ads = ads.filter(ad => ad.price <= maxPrice);
     
     const grid = document.getElementById("adsGrid");
     if (!ads.length) {
@@ -3875,7 +3597,7 @@ function applyFilter() {
         grid.innerHTML = ads.map(ad => `
             <article class="ad-card" onclick="openAdDetail('${ad.id}')">
                 <div class="ad-image-wrap">
-                    <img class="ad-image" src="${ad.image}">
+                    <img class="ad-image" src="${ad.image}" onerror="this.src='https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80'">
                     <span class="ad-type-badge">${ad.type}</span>
                 </div>
                 <div class="ad-content">
@@ -3894,28 +3616,10 @@ function applyFilter() {
    ========================================================= */
 document.addEventListener("DOMContentLoaded", init);
 
-// Modal overlay click to close
 document.querySelectorAll(".modal-overlay").forEach(overlay => {
     overlay.addEventListener("click", (e) => {
         if (e.target === overlay) closeModal(overlay.id);
     });
-});
-
-// Phone input formatting
-document.getElementById("accPhone")?.addEventListener("input", (e) => {
-    e.target.value = e.target.value.replace(/\D/g, "").slice(0, 9);
-});
-
-document.getElementById("profilePhone")?.addEventListener("input", (e) => {
-    e.target.value = e.target.value.replace(/\D/g, "").slice(0, 9);
-});
-
-document.getElementById("adminPhoneInput")?.addEventListener("input", (e) => {
-    e.target.value = e.target.value.replace(/\D/g, "").slice(0, 9);
-});
-
-document.getElementById("accPrice")?.addEventListener("input", (e) => {
-    e.target.value = e.target.value.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, " ");
 });
 
 </script>
