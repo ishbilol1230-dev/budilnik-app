@@ -37,11 +37,9 @@
         }
 
         html, body {
-            width: 100%;
-            min-height: 100%;
+            width: 100%; min-height: 100%;
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: var(--bg);
-            color: var(--text);
+            background: var(--bg); color: var(--text);
             overflow-x: hidden;
         }
 
@@ -82,33 +80,46 @@
         .brand { display: flex; align-items: center; gap: 12px; }
 
         .brand-logo {
-            width: 48px; height: 48px; border-radius: 16px;
-            background: rgba(255, 255, 255, 0.2);
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.25);
             backdrop-filter: blur(10px);
-            display: flex; justify-content: center; align-items: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             font-size: 26px;
+            border: 2.5px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            flex-shrink: 0;
         }
 
+        .brand-logo img { width: 100%; height: 100%; object-fit: cover; }
+
         .brand-name { font-size: 20px; font-weight: 900; letter-spacing: -0.5px; }
-        .brand-sub { font-size: 11px; opacity: 0.8; }
+        .brand-sub { font-size: 11px; opacity: 0.85; }
 
         .balance-display {
             display: flex; align-items: center; gap: 8px;
             background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(10px);
-            padding: 10px 16px; border-radius: 16px;
-            cursor: pointer; transition: all 0.2s;
+            padding: 10px 16px;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.2s;
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .balance-display:active { transform: scale(0.97); background: rgba(255, 255, 255, 0.25); }
         .balance-icon { font-size: 20px; }
         .balance-info { text-align: right; }
-        .balance-label { font-size: 9px; opacity: 0.8; }
+        .balance-label { font-size: 9px; opacity: 0.85; }
         .balance-amount { font-size: 15px; font-weight: 900; }
 
         .balance-add {
-            width: 28px; height: 28px; border-radius: 10px;
+            width: 28px; height: 28px;
+            border-radius: 10px;
             background: rgba(255, 255, 255, 0.25);
             display: flex; justify-content: center; align-items: center;
             font-size: 18px; font-weight: 900;
@@ -168,9 +179,9 @@
 
         .btn {
             min-height: 48px; padding: 0 20px; border-radius: 15px;
-            font-weight: 700; display: inline-flex; align-items: center;
-            justify-content: center; gap: 8px;
-            transition: all 0.2s; font-size: 14px;
+            font-weight: 700;
+            display: inline-flex; align-items: center; justify-content: center;
+            gap: 8px; transition: all 0.2s; font-size: 14px;
         }
 
         .btn:active { transform: scale(0.97); }
@@ -188,7 +199,9 @@
         }
 
         .btn-danger { background: var(--red); color: white; }
+        .btn-warning { background: var(--orange); color: white; }
         .btn-block { width: 100%; }
+        .btn-sm { min-height: 38px; padding: 0 14px; font-size: 12px; border-radius: 12px; }
         .btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
         .icon-btn {
@@ -205,20 +218,25 @@
         .search-box { margin-top: 16px; position: relative; }
 
         .search-box input {
-            width: 100%; border: 0; background: var(--card);
-            color: var(--text); padding: 16px 50px 16px 50px;
-            border-radius: 18px; box-shadow: var(--shadow); font-size: 14px;
+            width: 100%; border: 0;
+            background: var(--card); color: var(--text);
+            padding: 16px 50px 16px 50px;
+            border-radius: 18px;
+            box-shadow: var(--shadow);
+            font-size: 14px;
         }
 
         .search-icon {
             position: absolute; left: 18px; top: 50%;
-            transform: translateY(-50%); color: var(--muted); font-size: 18px;
+            transform: translateY(-50%); color: var(--muted);
+            font-size: 18px;
         }
 
         .search-filter {
             position: absolute; right: 8px; top: 8px;
             width: 40px; height: 40px; border-radius: 13px;
-            background: var(--primary); color: white; font-size: 18px;
+            background: var(--primary); color: white;
+            font-size: 18px;
         }
 
         /* TABS */
@@ -230,10 +248,12 @@
         .category-tabs::-webkit-scrollbar { display: none; }
 
         .category-tab {
-            flex-shrink: 0; padding: 11px 18px; border-radius: 14px;
+            flex-shrink: 0; padding: 11px 18px;
+            border-radius: 14px;
             background: var(--card); color: var(--muted);
             border: 1.5px solid var(--border);
-            font-size: 12px; font-weight: 700; transition: all 0.2s;
+            font-size: 12px; font-weight: 700;
+            transition: all 0.2s;
         }
 
         .category-tab.active {
@@ -244,12 +264,14 @@
 
         /* ADS GRID */
         .ads-grid {
-            display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
             gap: 14px; margin-top: 16px;
         }
 
         .ad-card {
-            background: var(--card); border: 1px solid var(--border);
+            background: var(--card);
+            border: 1px solid var(--border);
             border-radius: 20px; overflow: hidden;
             box-shadow: var(--shadow); cursor: pointer;
             transition: all 0.25s;
@@ -262,9 +284,10 @@
 
         .ad-type-badge {
             position: absolute; top: 10px; left: 10px;
-            background: rgba(0, 0, 0, 0.65); color: white;
-            backdrop-filter: blur(8px); padding: 6px 12px;
-            border-radius: 10px; font-size: 10px; font-weight: 800;
+            background: rgba(0, 0, 0, 0.65);
+            color: white; backdrop-filter: blur(8px);
+            padding: 6px 12px; border-radius: 10px;
+            font-size: 10px; font-weight: 800;
         }
 
         .ad-type-badge.premium { background: linear-gradient(135deg, var(--gold), #e67e22); }
@@ -276,7 +299,8 @@
         }
 
         .ad-meta {
-            margin-top: 5px; font-size: 11px; color: var(--muted);
+            margin-top: 5px; font-size: 11px;
+            color: var(--muted);
             display: flex; align-items: center; gap: 5px;
         }
 
@@ -288,24 +312,36 @@
         }
 
         .reaction-btn {
-            flex: 1; display: flex; align-items: center; justify-content: center;
-            gap: 6px; padding: 8px; border-radius: 12px;
+            flex: 1; display: flex;
+            align-items: center; justify-content: center; gap: 6px;
+            padding: 8px; border-radius: 12px;
             background: var(--bg); color: var(--muted);
             font-size: 12px; font-weight: 800;
-            border: 1px solid var(--border); transition: all 0.2s;
+            border: 1px solid var(--border);
+            transition: all 0.2s;
         }
 
         .reaction-btn:active { transform: scale(0.95); }
 
-        .reaction-btn.liked { background: rgba(0, 184, 148, 0.15); color: var(--green); border-color: rgba(0, 184, 148, 0.3); }
-        .reaction-btn.disliked { background: rgba(231, 76, 60, 0.15); color: var(--red); border-color: rgba(231, 76, 60, 0.3); }
+        .reaction-btn.liked {
+            background: rgba(0, 184, 148, 0.15);
+            color: var(--green);
+            border-color: rgba(0, 184, 148, 0.3);
+        }
+
+        .reaction-btn.disliked {
+            background: rgba(231, 76, 60, 0.15);
+            color: var(--red);
+            border-color: rgba(231, 76, 60, 0.3);
+        }
 
         /* FORMS */
         .form-group { margin-bottom: 18px; }
         .form-label { display: block; font-size: 13px; font-weight: 800; margin-bottom: 10px; }
 
         .form-input, .form-textarea, .form-select {
-            width: 100%; border: 1.5px solid var(--border);
+            width: 100%;
+            border: 1.5px solid var(--border);
             background: var(--card); color: var(--text);
             border-radius: 15px; padding: 15px;
             font-size: 14px; transition: all 0.2s;
@@ -320,8 +356,10 @@
 
         /* UPLOAD */
         .media-upload {
-            min-height: 200px; border: 2.5px dashed var(--border);
-            border-radius: 22px; background: var(--card);
+            min-height: 200px;
+            border: 2.5px dashed var(--border);
+            border-radius: 22px;
+            background: var(--card);
             display: flex; flex-direction: column;
             justify-content: center; align-items: center;
             text-align: center; padding: 30px;
@@ -333,26 +371,38 @@
         .media-upload strong { font-size: 15px; }
         .media-upload span { color: var(--muted); font-size: 12px; margin-top: 8px; }
 
-        .media-preview-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 14px; }
-        .media-preview { height: 110px; border-radius: 16px; overflow: hidden; position: relative; background: var(--bg); }
+        .media-preview-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 10px; margin-top: 14px;
+        }
+
+        .media-preview {
+            height: 110px; border-radius: 16px;
+            overflow: hidden; position: relative;
+            background: var(--bg);
+        }
+
         .media-preview img, .media-preview video { width: 100%; height: 100%; object-fit: cover; }
 
         .remove-media {
             position: absolute; right: 6px; top: 6px;
             width: 30px; height: 30px; border-radius: 10px;
-            background: rgba(0, 0, 0, 0.7); color: white;
-            font-size: 16px; display: flex;
-            align-items: center; justify-content: center;
+            background: rgba(0, 0, 0, 0.7);
+            color: white; font-size: 16px;
+            display: flex; align-items: center; justify-content: center;
         }
 
         /* ACCOUNT FORM */
         .account-form-card {
-            background: var(--card); border: 1.5px solid var(--border);
-            border-radius: 22px; padding: 20px; margin-bottom: 16px;
+            background: var(--card);
+            border: 1.5px solid var(--border);
+            border-radius: 22px;
+            padding: 20px; margin-bottom: 16px;
         }
 
         .account-form-title {
-            font-size: 16px; font-weight: 900; margin-bottom: 18px;
+            font-size: 16px; font-weight: 900;
+            margin-bottom: 18px;
             display: flex; align-items: center; gap: 10px;
         }
 
@@ -367,9 +417,11 @@
         .chat-list { display: grid; gap: 10px; }
 
         .chat-item {
-            display: flex; align-items: center; gap: 14px;
-            padding: 15px; background: var(--card);
-            border: 1.5px solid var(--border); border-radius: 20px;
+            display: flex; align-items: center;
+            gap: 14px; padding: 15px;
+            background: var(--card);
+            border: 1.5px solid var(--border);
+            border-radius: 20px;
             transition: all 0.2s; cursor: pointer;
         }
 
@@ -379,26 +431,38 @@
             width: 52px; height: 52px; flex-shrink: 0;
             border-radius: 18px;
             background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white; display: flex; justify-content: center;
-            align-items: center; font-size: 24px; position: relative;
+            color: white; display: flex;
+            justify-content: center; align-items: center;
+            font-size: 24px; position: relative;
+            overflow: hidden;
         }
 
+        .chat-avatar img { width: 100%; height: 100%; object-fit: cover; }
         .chat-avatar.admin { background: linear-gradient(135deg, var(--gold), #e67e22); }
 
         .chat-info { flex: 1; min-width: 0; }
         .chat-name { font-size: 14px; font-weight: 800; }
 
         .chat-message {
-            margin-top: 4px; color: var(--muted); font-size: 12px;
+            margin-top: 4px; color: var(--muted);
+            font-size: 12px;
             white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
         }
 
         .chat-time { color: var(--muted); font-size: 10px; font-weight: 600; }
 
+        .chat-badge {
+            background: var(--primary); color: white;
+            font-size: 10px; font-weight: 800;
+            padding: 3px 8px; border-radius: 10px;
+            display: inline-block; margin-top: 4px;
+        }
+
         /* CHAT ROOM */
         .chat-room {
             position: fixed; inset: 0; z-index: 200;
-            background: var(--bg); display: none; flex-direction: column;
+            background: var(--bg);
+            display: none; flex-direction: column;
         }
 
         .chat-room.active { display: flex; }
@@ -421,14 +485,15 @@
             width: 44px; height: 44px; border-radius: 15px;
             background: rgba(255, 255, 255, 0.2);
             display: flex; align-items: center; justify-content: center;
-            font-size: 22px;
+            font-size: 22px; overflow: hidden;
         }
 
+        .chat-room-avatar img { width: 100%; height: 100%; object-fit: cover; }
         .chat-room-info { flex: 1; }
         .chat-room-name { font-size: 15px; font-weight: 800; }
 
         .chat-room-status {
-            font-size: 11px; opacity: 0.8;
+            font-size: 11px; opacity: 0.85;
             display: flex; align-items: center; gap: 5px;
         }
 
@@ -439,9 +504,10 @@
 
         .chat-participants {
             background: rgba(108, 92, 231, 0.08);
-            padding: 10px 16px; font-size: 11px;
-            color: var(--muted); display: flex;
-            gap: 12px; flex-wrap: wrap;
+            padding: 10px 16px;
+            font-size: 11px; color: var(--muted);
+            display: flex; gap: 12px; flex-wrap: wrap;
+            border-bottom: 1px solid var(--border);
         }
 
         .chat-participants span { display: flex; align-items: center; gap: 4px; }
@@ -452,9 +518,10 @@
         }
 
         .message {
-            max-width: 80%; padding: 12px 16px; border-radius: 18px;
-            font-size: 14px; line-height: 1.5;
-            position: relative; word-wrap: break-word;
+            max-width: 80%; padding: 12px 16px;
+            border-radius: 18px; font-size: 14px;
+            line-height: 1.5; position: relative;
+            word-wrap: break-word;
         }
 
         .message.sent {
@@ -464,8 +531,10 @@
         }
 
         .message.received {
-            align-self: flex-start; background: var(--card);
-            border: 1px solid var(--border); border-bottom-left-radius: 6px;
+            align-self: flex-start;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-bottom-left-radius: 6px;
         }
 
         .message.admin {
@@ -475,7 +544,10 @@
             border-bottom-left-radius: 6px;
         }
 
-        .message-sender { font-size: 10px; font-weight: 800; margin-bottom: 4px; opacity: 0.8; }
+        .message-sender {
+            font-size: 10px; font-weight: 800;
+            margin-bottom: 4px; opacity: 0.85;
+        }
 
         .message-time {
             font-size: 9px; opacity: 0.6;
@@ -487,98 +559,173 @@
             display: none; gap: 4px; z-index: 10;
         }
 
-        .message.sent .message-actions { left: -140px; }
+        .message.sent .message-actions { left: -160px; }
         .message.received .message-actions,
-        .message.admin .message-actions { right: -140px; }
+        .message.admin .message-actions { right: -160px; }
         .message.show-actions .message-actions { display: flex; }
 
         .message-action-btn {
             padding: 6px 10px; border-radius: 10px;
-            background: var(--card); border: 1px solid var(--border);
-            font-size: 10px; font-weight: 700; color: var(--text);
-            box-shadow: var(--shadow); white-space: nowrap;
+            background: var(--card);
+            border: 1px solid var(--border);
+            font-size: 10px; font-weight: 700;
+            color: var(--text);
+            box-shadow: var(--shadow);
+            white-space: nowrap;
         }
 
         .message-action-btn.danger { background: var(--red); color: white; border-color: var(--red); }
         .message-action-btn.warn { background: var(--orange); color: white; border-color: var(--orange); }
 
         .chat-input-area {
-            padding: 12px 16px; background: var(--card);
+            padding: 12px 16px;
+            background: var(--card);
             border-top: 1px solid var(--border);
             display: flex; gap: 10px; align-items: flex-end;
         }
 
         .chat-input {
-            flex: 1; border: 1.5px solid var(--border);
+            flex: 1;
+            border: 1.5px solid var(--border);
             background: var(--bg); color: var(--text);
-            border-radius: 20px; padding: 12px 16px;
-            font-size: 14px; max-height: 100px; resize: none;
+            border-radius: 20px;
+            padding: 12px 16px;
+            font-size: 14px;
+            max-height: 100px; resize: none;
         }
 
         .chat-send {
             width: 46px; height: 46px; border-radius: 16px;
             background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: white; display: flex; align-items: center;
-            justify-content: center; font-size: 20px; flex-shrink: 0;
+            color: white;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 20px; flex-shrink: 0;
         }
 
         /* PROFILE */
         .profile-card {
             background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: white; border-radius: 28px; padding: 28px;
-            text-align: center; margin-bottom: 18px;
-            position: relative; overflow: hidden;
+            color: white;
+            border-radius: 28px;
+            padding: 28px;
+            text-align: center;
+            margin-bottom: 18px;
+            position: relative;
+            overflow: hidden;
         }
 
         .profile-card::before {
-            content: ''; position: absolute;
-            top: -50%; right: -30%; width: 200px; height: 200px;
-            border-radius: 50%; background: rgba(255, 255, 255, 0.1);
+            content: '';
+            position: absolute;
+            top: -50%; right: -30%;
+            width: 200px; height: 200px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .profile-avatar-wrap {
+            position: relative;
+            width: 95px; height: 95px;
+            margin: auto;
         }
 
         .profile-avatar {
-            width: 85px; height: 85px; border-radius: 28px;
+            width: 95px; height: 95px;
+            border-radius: 50%;
             background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px); margin: auto;
-            display: flex; justify-content: center; align-items: center;
-            font-size: 40px; border: 3px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: center; align-items: center;
+            font-size: 42px;
+            border: 3px solid rgba(255, 255, 255, 0.4);
             position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.2s;
         }
 
-        .profile-name { margin-top: 14px; font-size: 22px; font-weight: 900; }
-        .profile-username { margin-top: 4px; opacity: 0.8; font-size: 13px; }
+        .profile-avatar:active { transform: scale(0.95); }
+        .profile-avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+        .profile-avatar-edit {
+            position: absolute;
+            bottom: -4px; right: -4px;
+            width: 32px; height: 32px;
+            border-radius: 50%;
+            background: white;
+            color: var(--primary);
+            display: flex;
+            justify-content: center; align-items: center;
+            font-size: 16px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            pointer-events: none;
+        }
+
+        .profile-name {
+            margin-top: 14px;
+            font-size: 22px; font-weight: 900;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .admin-check {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 22px; height: 22px;
+            background: #2ecc71;
+            color: white;
+            border-radius: 50%;
+            font-size: 13px;
+            font-weight: 900;
+        }
+
+        .profile-username { margin-top: 4px; opacity: 0.85; font-size: 13px; }
 
         .profile-stats {
-            display: grid; grid-template-columns: repeat(3, 1fr);
-            gap: 10px; margin-top: 20px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 20px;
         }
 
         .profile-stat {
             background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(10px);
-            border-radius: 16px; padding: 14px 10px;
+            border-radius: 16px;
+            padding: 14px 10px;
         }
 
         .profile-stat-value { font-size: 18px; font-weight: 900; }
-        .profile-stat-label { font-size: 10px; opacity: 0.8; margin-top: 3px; }
+        .profile-stat-label { font-size: 10px; opacity: 0.85; margin-top: 3px; }
 
         .profile-menu { display: grid; gap: 10px; }
 
         .profile-menu-item {
-            width: 100%; padding: 16px; border-radius: 20px;
+            width: 100%; padding: 16px;
+            border-radius: 20px;
             background: var(--card); color: var(--text);
             border: 1.5px solid var(--border);
-            display: flex; align-items: center; gap: 14px;
-            text-align: left; transition: all 0.2s;
+            display: flex; align-items: center;
+            gap: 14px;
+            text-align: left;
+            transition: all 0.2s;
         }
 
         .profile-menu-item:active { transform: scale(0.98); border-color: var(--primary); }
 
         .profile-menu-icon {
-            width: 44px; height: 44px; border-radius: 14px;
+            width: 44px; height: 44px;
+            border-radius: 14px;
             background: linear-gradient(135deg, rgba(108, 92, 231, 0.12), rgba(108, 92, 231, 0.05));
             display: flex; justify-content: center; align-items: center;
             font-size: 20px;
+        }
+
+        .profile-menu-icon.admin {
+            background: linear-gradient(135deg, rgba(241, 196, 15, 0.2), rgba(230, 126, 34, 0.1));
         }
 
         .profile-menu-text { flex: 1; }
@@ -588,28 +735,35 @@
         /* BALANCE PAGE */
         .balance-page-card {
             background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: white; border-radius: 28px; padding: 28px;
-            text-align: center; margin-bottom: 20px;
+            color: white;
+            border-radius: 28px;
+            padding: 28px;
+            text-align: center;
+            margin-bottom: 20px;
             box-shadow: 0 10px 40px rgba(108, 92, 231, 0.3);
         }
 
-        .balance-page-label { font-size: 13px; opacity: 0.8; }
+        .balance-page-label { font-size: 13px; opacity: 0.85; }
         .balance-page-value { font-size: 36px; font-weight: 900; margin-top: 8px; }
-        .balance-page-sub { font-size: 12px; opacity: 0.7; margin-top: 5px; }
+        .balance-page-sub { font-size: 12px; opacity: 0.75; margin-top: 5px; }
 
         .amount-input-wrap { position: relative; }
 
         .amount-input-wrap input {
-            width: 100%; border: 2px solid var(--border);
+            width: 100%;
+            border: 2px solid var(--border);
             background: var(--card); color: var(--text);
-            border-radius: 18px; padding: 20px 70px 20px 20px;
-            font-size: 24px; font-weight: 900; text-align: center;
+            border-radius: 18px;
+            padding: 20px 70px 20px 20px;
+            font-size: 24px; font-weight: 900;
+            text-align: center;
         }
 
         .amount-input-wrap .currency {
             position: absolute; right: 20px; top: 50%;
-            transform: translateY(-50%); font-size: 14px;
-            font-weight: 800; color: var(--muted);
+            transform: translateY(-50%);
+            font-size: 14px; font-weight: 800;
+            color: var(--muted);
         }
 
         .quick-amounts {
@@ -619,18 +773,25 @@
 
         .quick-amount {
             padding: 12px; border-radius: 14px;
-            background: var(--card); border: 1.5px solid var(--border);
-            font-size: 13px; font-weight: 700; color: var(--text);
-            transition: all 0.2s;
+            background: var(--card);
+            border: 1.5px solid var(--border);
+            font-size: 13px; font-weight: 700;
+            color: var(--text); transition: all 0.2s;
         }
 
-        .quick-amount.active { background: var(--primary); border-color: var(--primary); color: white; }
+        .quick-amount.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+        }
 
-        /* RECEIPT UPLOAD */
+        /* RECEIPT */
         .receipt-upload {
             border: 2.5px dashed var(--border);
-            border-radius: 22px; background: var(--card);
-            padding: 24px; text-align: center;
+            border-radius: 22px;
+            background: var(--card);
+            padding: 24px;
+            text-align: center;
             cursor: pointer; transition: all 0.25s;
             min-height: 180px;
             display: flex; flex-direction: column;
@@ -651,16 +812,19 @@
             position: fixed; inset: 0; z-index: 500;
             background: rgba(0, 0, 0, 0.6);
             backdrop-filter: blur(4px);
-            display: none; align-items: flex-end;
+            display: none;
+            align-items: flex-end;
             justify-content: center;
         }
 
         .modal-overlay.active { display: flex; }
 
         .modal {
-            width: min(700px, 100%); max-height: 92vh;
-            overflow-y: auto; background: var(--card);
-            border-radius: 28px 28px 0 0; padding: 22px;
+            width: min(700px, 100%);
+            max-height: 92vh; overflow-y: auto;
+            background: var(--card);
+            border-radius: 28px 28px 0 0;
+            padding: 22px;
             animation: modalUp 0.3s ease;
         }
 
@@ -679,8 +843,8 @@
         .modal-close {
             width: 40px; height: 40px; border-radius: 14px;
             background: var(--bg); color: var(--text);
-            font-size: 22px; display: flex;
-            align-items: center; justify-content: center;
+            font-size: 22px;
+            display: flex; align-items: center; justify-content: center;
         }
 
         /* TOAST */
@@ -694,14 +858,17 @@
 
         .toast {
             background: #2d3436; color: white;
-            border-radius: 16px; padding: 14px 20px;
+            border-radius: 16px;
+            padding: 14px 20px;
             font-size: 13px; font-weight: 600;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-            animation: toastIn 0.3s ease; max-width: 100%;
+            animation: toastIn 0.3s ease;
+            max-width: 100%;
         }
 
         .toast.success { background: linear-gradient(135deg, var(--green), var(--green-dark)); }
         .toast.error { background: linear-gradient(135deg, #e74c3c, #c0392b); }
+        .toast.warn { background: linear-gradient(135deg, var(--orange), #e67e22); }
 
         @keyframes toastIn {
             from { opacity: 0; transform: translateY(-15px); }
@@ -722,12 +889,20 @@
 
         /* MY ADS */
         .my-ad-item {
-            background: var(--card); border: 1.5px solid var(--border);
-            border-radius: 22px; padding: 14px;
-            display: flex; gap: 14px; margin-bottom: 12px;
+            background: var(--card);
+            border: 1.5px solid var(--border);
+            border-radius: 22px;
+            padding: 14px;
+            display: flex; gap: 14px;
+            margin-bottom: 12px;
         }
 
-        .my-ad-image { width: 100px; height: 100px; border-radius: 18px; object-fit: cover; }
+        .my-ad-image {
+            width: 100px; height: 100px;
+            border-radius: 18px;
+            object-fit: cover;
+        }
+
         .my-ad-info { flex: 1; min-width: 0; display: flex; flex-direction: column; }
         .my-ad-title { font-weight: 800; font-size: 14px; }
         .my-ad-meta { font-size: 11px; color: var(--muted); margin-top: 4px; }
@@ -737,13 +912,15 @@
             padding: 8px 12px; border-radius: 10px;
             font-size: 10px; font-weight: 700;
             background: var(--bg); color: var(--text);
-            border: 1px solid var(--border); transition: all 0.2s;
+            border: 1px solid var(--border);
+            transition: all 0.2s;
         }
 
         .small-btn:active { transform: scale(0.95); }
         .small-btn.primary { background: var(--primary); color: white; border-color: var(--primary); }
         .small-btn.danger { background: rgba(231, 76, 60, 0.1); color: var(--red); border-color: rgba(231, 76, 60, 0.2); }
         .small-btn.success { background: rgba(0, 184, 148, 0.1); color: var(--green); border-color: rgba(0, 184, 148, 0.2); }
+        .small-btn.warn { background: rgba(243, 156, 18, 0.1); color: var(--orange); border-color: rgba(243, 156, 18, 0.2); }
 
         /* ADMIN */
         .admin-badge {
@@ -758,8 +935,10 @@
         }
 
         .admin-stat {
-            background: var(--card); border: 1.5px solid var(--border);
-            border-radius: 20px; padding: 18px;
+            background: var(--card);
+            border: 1.5px solid var(--border);
+            border-radius: 20px;
+            padding: 18px;
         }
 
         .admin-stat-icon { font-size: 24px; }
@@ -767,12 +946,21 @@
         .admin-stat-label { color: var(--muted); font-size: 11px; margin-top: 3px; }
 
         .moderation-card {
-            background: var(--card); border: 1.5px solid var(--border);
-            border-radius: 22px; overflow: hidden; margin-bottom: 14px;
+            background: var(--card);
+            border: 1.5px solid var(--border);
+            border-radius: 22px;
+            overflow: hidden;
+            margin-bottom: 14px;
         }
 
         .moderation-layout { display: grid; grid-template-columns: 1fr 1fr; }
-        .moderation-photo { height: 180px; object-fit: cover; width: 100%; }
+
+        .moderation-photo {
+            height: 180px;
+            object-fit: cover;
+            width: 100%;
+        }
+
         .moderation-info { padding: 16px; }
         .moderation-info h3 { font-size: 16px; }
         .moderation-meta { color: var(--muted); font-size: 11px; margin-top: 6px; }
@@ -783,8 +971,11 @@
         }
 
         .topup-card {
-            background: var(--card); border: 1.5px solid var(--border);
-            border-radius: 22px; padding: 16px; margin-bottom: 14px;
+            background: var(--card);
+            border: 1.5px solid var(--border);
+            border-radius: 22px;
+            padding: 16px;
+            margin-bottom: 14px;
         }
 
         .topup-header {
@@ -797,20 +988,60 @@
 
         .topup-receipt {
             width: 100%; max-height: 300px;
-            object-fit: contain; border-radius: 12px;
-            background: var(--bg); margin-bottom: 12px;
+            object-fit: contain;
+            border-radius: 12px;
+            background: var(--bg);
+            margin-bottom: 12px;
         }
 
         .topup-actions {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .user-card {
+            background: var(--card);
+            border: 1.5px solid var(--border);
+            border-radius: 18px;
+            padding: 14px;
+            display: flex; align-items: center;
+            gap: 12px; margin-bottom: 10px;
+        }
+
+        .user-avatar {
+            width: 48px; height: 48px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white; font-size: 22px;
+            display: flex;
+            justify-content: center; align-items: center;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .user-avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+        .user-info { flex: 1; min-width: 0; }
+        .user-name { font-weight: 800; font-size: 14px; display: flex; align-items: center; gap: 5px; }
+        .user-meta { font-size: 11px; color: var(--muted); margin-top: 3px; }
+
+        /* BROADCAST */
+        .broadcast-area {
+            background: var(--card);
+            border: 1.5px solid var(--border);
+            border-radius: 20px;
+            padding: 18px;
+            margin-bottom: 16px;
         }
 
         /* STEP INDICATOR */
         .step-indicator { display: flex; gap: 6px; margin: 18px 0 24px; }
 
         .step-dot {
-            height: 5px; flex: 1; border-radius: 10px;
-            background: var(--border); transition: all 0.3s;
+            height: 5px; flex: 1;
+            border-radius: 10px;
+            background: var(--border);
+            transition: all 0.3s;
         }
 
         .step-dot.active { background: linear-gradient(90deg, var(--primary), var(--primary-light)); }
@@ -823,17 +1054,24 @@
 
         /* PREVIEW */
         .preview-card {
-            background: var(--card); border-radius: 24px;
-            overflow: hidden; border: 1.5px solid var(--border);
+            background: var(--card);
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1.5px solid var(--border);
         }
 
-        .preview-main-image { height: 280px; width: 100%; object-fit: cover; }
+        .preview-main-image {
+            height: 280px; width: 100%;
+            object-fit: cover;
+        }
+
         .preview-content { padding: 20px; }
         .preview-title { font-size: 24px; font-weight: 900; }
 
         .preview-price {
-            color: var(--primary); font-size: 22px;
-            font-weight: 900; margin-top: 8px;
+            color: var(--primary);
+            font-size: 22px; font-weight: 900;
+            margin-top: 8px;
         }
 
         .info-list { margin-top: 20px; display: grid; gap: 12px; }
@@ -857,7 +1095,8 @@
             position: fixed; inset: 0; z-index: 9999;
             background: rgba(0, 0, 0, 0.5);
             backdrop-filter: blur(4px);
-            display: none; align-items: center; justify-content: center;
+            display: none;
+            align-items: center; justify-content: center;
         }
 
         .loading-overlay.active { display: flex; }
@@ -865,7 +1104,8 @@
         .loading-spinner {
             width: 50px; height: 50px;
             border: 4px solid rgba(255, 255, 255, 0.3);
-            border-top-color: white; border-radius: 50%;
+            border-top-color: white;
+            border-radius: 50%;
             animation: spin 0.8s linear infinite;
         }
 
@@ -898,7 +1138,11 @@
     <div class="top-bar">
         <div class="top-bar-content">
             <div class="brand">
-                <div class="brand-logo">🃏</div>
+                <div class="brand-logo" id="brandLogo">
+                    <!-- Rasm yoki emoji -->
+                    <img src="https://i.ibb.co/Y4r0x7T/cardinal-logo.jpg" alt="Cardinal" 
+                         onerror="this.style.display='none'; this.parentElement.innerHTML='🃏';">
+                </div>
                 <div>
                     <div class="brand-name">Cardinal</div>
                     <div class="brand-sub">Reklama Bot</div>
@@ -981,14 +1225,14 @@
         </div>
     </section>
 
-    <!-- BALANCE TOP-UP PAGE 2 (RECEIPT UPLOAD) -->
+    <!-- BALANCE TOP-UP PAGE 2 (RECEIPT) -->
     <section class="page" id="balancePaymentPage">
         <div class="container">
             <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 20px;">
                 <button class="icon-btn" onclick="goToPage('balanceTopUpPage')">←</button>
                 <div>
                     <div class="section-title">To'lov qilish</div>
-                    <div class="section-subtitle">2-qadam: Kartaga o'tkazing va chek yuklang</div>
+                    <div class="section-subtitle">2-qadam: Karta + Chek</div>
                 </div>
             </div>
 
@@ -998,7 +1242,6 @@
                 <div class="balance-page-sub">Quyidagi kartaga o'tkazing</div>
             </div>
 
-            <!-- Karta -->
             <div style="background: linear-gradient(135deg, #1a1a2e, #16213e); border-radius: 24px; padding: 24px; margin-top: 20px; color: white; position: relative; overflow: hidden;">
                 <div style="position: absolute; top: -50px; right: -50px; width: 150px; height: 150px; border-radius: 50%; background: rgba(108, 92, 231, 0.2);"></div>
                 
@@ -1018,7 +1261,7 @@
                             <div style="font-size: 14px; font-weight: 700; margin-top: 3px;">CARDINAL ADMIN</div>
                         </div>
                         <div style="text-align: right;">
-                            <div style="font-size: 10px; opacity: 0.6;">AMAL QILISH MUDDATI</div>
+                            <div style="font-size: 10px; opacity: 0.6;">AMAL QILISH</div>
                             <div style="font-size: 14px; font-weight: 700; margin-top: 3px;">12/28</div>
                         </div>
                     </div>
@@ -1029,7 +1272,6 @@
                 </div>
             </div>
 
-            <!-- Ogohlantirish -->
             <div style="background: rgba(243, 156, 18, 0.1); border: 1.5px solid rgba(243, 156, 18, 0.3); border-radius: 18px; padding: 16px; margin-top: 20px; display: flex; gap: 12px;">
                 <div style="font-size: 22px;">⚠️</div>
                 <div>
@@ -1040,7 +1282,6 @@
                 </div>
             </div>
 
-            <!-- Chek yuklash -->
             <div style="margin-top: 20px;">
                 <label class="form-label">🧾 To'lov chekini yuklang</label>
                 <label class="receipt-upload" id="receiptUpload">
@@ -1083,7 +1324,8 @@
                 <div class="section-subtitle">Reklamangiz qayerda chiqishini tanlang</div>
 
                 <div style="display: grid; gap: 16px; margin-top: 18px;" id="tariffGrid">
-                    <div class="tariff-card" data-tariff="1" style="background: var(--card); border: 2px solid var(--border); border-radius: 24px; padding: 22px; display: flex; flex-direction: column; gap: 14px; cursor: pointer; transition: all 0.25s;">
+                    <div class="tariff-card" data-tariff="1" 
+                         style="background: var(--card); border: 2px solid var(--border); border-radius: 24px; padding: 22px; display: flex; flex-direction: column; gap: 14px; cursor: pointer; transition: all 0.25s;">
                         <div style="display: flex; justify-content: space-between; align-items: flex-start;">
                             <div style="width: 60px; height: 60px; border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 30px; background: linear-gradient(135deg, rgba(108, 92, 231, 0.1), rgba(108, 92, 231, 0.05));">📢</div>
                             <div style="text-align: right;">
@@ -1092,10 +1334,11 @@
                             </div>
                         </div>
                         <div style="font-size: 18px; font-weight: 900;">Kanalda reklama</div>
-                        <div style="font-size: 12px; color: var(--muted); line-height: 1.5;">Faqat Telegram kanalda chiqadi</div>
+                        <div style="font-size: 12px; color: var(--muted); line-height: 1.5;">Faqat Telegram kanalda chiqadi (1 kun)</div>
                     </div>
 
-                    <div class="tariff-card" data-tariff="2" style="background: var(--card); border: 2px solid var(--border); border-radius: 24px; padding: 22px; display: flex; flex-direction: column; gap: 14px; cursor: pointer; transition: all 0.25s; position: relative;">
+                    <div class="tariff-card" data-tariff="2" 
+                         style="background: var(--card); border: 2px solid var(--border); border-radius: 24px; padding: 22px; display: flex; flex-direction: column; gap: 14px; cursor: pointer; transition: all 0.25s; position: relative;">
                         <div style="position: absolute; top: 0; right: 0; background: linear-gradient(135deg, var(--gold), #e67e22); color: white; padding: 6px 16px; border-radius: 0 22px 0 16px; font-size: 10px; font-weight: 900;">🔥 MASHHUR</div>
                         <div style="display: flex; justify-content: space-between; align-items: flex-start;">
                             <div style="width: 60px; height: 60px; border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 30px; background: linear-gradient(135deg, rgba(108, 92, 231, 0.1), rgba(108, 92, 231, 0.05));">📱</div>
@@ -1105,10 +1348,11 @@
                             </div>
                         </div>
                         <div style="font-size: 18px; font-weight: 900;">Web App'da reklama</div>
-                        <div style="font-size: 12px; color: var(--muted); line-height: 1.5;">Asosiy menyuda chiqadi</div>
+                        <div style="font-size: 12px; color: var(--muted); line-height: 1.5;">Asosiy menyuda chiqadi (3 kun)</div>
                     </div>
 
-                    <div class="tariff-card" data-tariff="3" style="background: var(--card); border: 2px solid var(--border); border-radius: 24px; padding: 22px; display: flex; flex-direction: column; gap: 14px; cursor: pointer; transition: all 0.25s;">
+                    <div class="tariff-card" data-tariff="3" 
+                         style="background: var(--card); border: 2px solid var(--border); border-radius: 24px; padding: 22px; display: flex; flex-direction: column; gap: 14px; cursor: pointer; transition: all 0.25s;">
                         <div style="display: flex; justify-content: space-between; align-items: flex-start;">
                             <div style="width: 60px; height: 60px; border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 30px; background: linear-gradient(135deg, rgba(108, 92, 231, 0.1), rgba(108, 92, 231, 0.05));">🔥</div>
                             <div style="text-align: right;">
@@ -1117,10 +1361,11 @@
                             </div>
                         </div>
                         <div style="font-size: 18px; font-weight: 900;">Web App + Kanal</div>
-                        <div style="font-size: 12px; color: var(--muted); line-height: 1.5;">Ikkala joyda chiqadi</div>
+                        <div style="font-size: 12px; color: var(--muted); line-height: 1.5;">Ikkala joyda chiqadi (7 kun)</div>
                     </div>
 
-                    <div class="tariff-card" data-tariff="4" style="background: var(--card); border: 2px solid var(--border); border-radius: 24px; padding: 22px; display: flex; flex-direction: column; gap: 14px; cursor: pointer; transition: all 0.25s;">
+                    <div class="tariff-card" data-tariff="4" 
+                         style="background: var(--card); border: 2px solid var(--border); border-radius: 24px; padding: 22px; display: flex; flex-direction: column; gap: 14px; cursor: pointer; transition: all 0.25s;">
                         <div style="display: flex; justify-content: space-between; align-items: flex-start;">
                             <div style="width: 60px; height: 60px; border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 30px; background: linear-gradient(135deg, rgba(108, 92, 231, 0.1), rgba(108, 92, 231, 0.05));">👑</div>
                             <div style="text-align: right;">
@@ -1129,7 +1374,7 @@
                             </div>
                         </div>
                         <div style="font-size: 18px; font-weight: 900;">VIP Tarif</div>
-                        <div style="font-size: 12px; color: var(--muted); line-height: 1.5;">Eng yuqori tarif</div>
+                        <div style="font-size: 12px; color: var(--muted); line-height: 1.5;">Eng yuqori - tepada turadi (7 kun)</div>
                     </div>
                 </div>
             </div>
@@ -1142,7 +1387,7 @@
                 <label class="media-upload" style="margin-top: 18px;">
                     <div class="media-upload-icon">🎬</div>
                     <strong>Video yoki rasm tanlang</strong>
-                    <span>MP4, JPG yoki PNG formatda</span>
+                    <span>MP4, JPG yoki PNG formatda (maks 5 MB)</span>
                     <input type="file" id="mediaInput" accept="video/*,image/*" hidden>
                 </label>
 
@@ -1260,7 +1505,7 @@
                         </div>
                         
                         <div style="background: rgba(108, 92, 231, 0.08); border-radius: 14px; padding: 12px; font-size: 12px; color: var(--muted); line-height: 1.5;">
-                            ℹ️ Telefon raqam va Telegram username <b>so'ralmaydi</b>. Barcha aloqa <b>chat</b> orqali amalga oshiriladi.
+                            ℹ️ Telefon va Telegram username <b>so'ralmaydi</b>. Barcha aloqa <b>chat</b> orqali.
                         </div>
                     </div>
                 </div>
@@ -1297,6 +1542,7 @@
                 <button class="category-tab" data-myad="ACTIVE">✅ Faol</button>
                 <button class="category-tab" data-myad="PENDING">⏳ Tasdiqlanmoqda</button>
                 <button class="category-tab" data-myad="EXPIRED">⌛ Tugagan</button>
+                <button class="category-tab" data-myad="REJECTED">❌ Rad etilgan</button>
             </div>
 
             <div id="myAdsList" style="margin-top: 16px;"></div>
@@ -1319,8 +1565,17 @@
     <section class="page" id="profilePage">
         <div class="container">
             <div class="profile-card">
-                <div class="profile-avatar" id="profileAvatar">🐱</div>
-                <div class="profile-name" id="profileName">Foydalanuvchi</div>
+                <div class="profile-avatar-wrap" onclick="openAvatarPicker()">
+                    <div class="profile-avatar" id="profileAvatar">
+                        <span id="profileAvatarEmoji">🐱</span>
+                        <img id="profileAvatarImg" src="" alt="" style="display: none;">
+                    </div>
+                    <div class="profile-avatar-edit">📷</div>
+                </div>
+                <div class="profile-name" id="profileName">
+                    Foydalanuvchi
+                    <span class="admin-check" id="adminCheck" style="display: none;">✓</span>
+                </div>
                 <div class="profile-username" id="profileUsername">@username</div>
                 
                 <div class="profile-stats">
@@ -1367,9 +1622,9 @@
                     <span>›</span>
                 </button>
 
-                <!-- Admin panel tugmasi — FAQAT ADMIN uchun ko'rinadi -->
+                <!-- Admin panel tugmasi — FAQAT ADMIN uchun -->
                 <button class="profile-menu-item" id="adminPanelBtn" style="display: none;" onclick="goToPage('adminPage')">
-                    <div class="profile-menu-icon">🛡️</div>
+                    <div class="profile-menu-icon admin">🛡️</div>
                     <div class="profile-menu-text">
                         <strong>Admin panel</strong>
                         <span>Boshqaruv paneli</span>
@@ -1389,13 +1644,16 @@
         </div>
     </section>
 
-    <!-- ADMIN PANEL (FAQAT ADMIN UCHUN) -->
+    <!-- ADMIN PANEL -->
     <section class="page" id="adminPage">
         <div class="container">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                <div>
-                    <div class="section-title">Admin panel</div>
-                    <div class="section-subtitle">Cardinal boshqaruv paneli</div>
+                <div style="display: flex; align-items: center; gap: 14px;">
+                    <button class="icon-btn" onclick="goToPage('profilePage')">←</button>
+                    <div>
+                        <div class="section-title">Admin panel</div>
+                        <div class="section-subtitle">Boshqaruv markazi</div>
+                    </div>
                 </div>
                 <div class="admin-badge">ADMIN</div>
             </div>
@@ -1427,6 +1685,10 @@
             <div class="category-tabs" id="adminTabs">
                 <button class="category-tab active" data-admintab="ads">📢 Reklamalar</button>
                 <button class="category-tab" data-admintab="topups">💳 To'lovlar</button>
+                <button class="category-tab" data-admintab="chats">💬 Chatlar</button>
+                <button class="category-tab" data-admintab="users">👥 Foydalanuvchilar</button>
+                <button class="category-tab" data-admintab="blocked">🚫 Bloklangan</button>
+                <button class="category-tab" data-admintab="broadcast">📢 Broadcast</button>
             </div>
 
             <!-- Reklamalar -->
@@ -1439,6 +1701,38 @@
             <div id="adminTopupsSection" style="margin-top: 16px; display: none;">
                 <div class="section-title" style="font-size: 16px; margin-bottom: 12px;">Chek tasdiqlash</div>
                 <div id="topupList"></div>
+            </div>
+
+            <!-- Chatlar -->
+            <div id="adminChatsSection" style="margin-top: 16px; display: none;">
+                <div class="section-title" style="font-size: 16px; margin-bottom: 12px;">Foydalanuvchilar chatlari</div>
+                <div id="adminChatsList"></div>
+            </div>
+
+            <!-- Foydalanuvchilar -->
+            <div id="adminUsersSection" style="margin-top: 16px; display: none;">
+                <div class="section-title" style="font-size: 16px; margin-bottom: 12px;">Foydalanuvchilar ro'yxati</div>
+                <div id="usersList"></div>
+            </div>
+
+            <!-- Bloklanganlar -->
+            <div id="adminBlockedSection" style="margin-top: 16px; display: none;">
+                <div class="section-title" style="font-size: 16px; margin-bottom: 12px;">Bloklangan foydalanuvchilar</div>
+                <div id="blockedList"></div>
+            </div>
+
+            <!-- Broadcast -->
+            <div id="adminBroadcastSection" style="margin-top: 16px; display: none;">
+                <div class="section-title" style="font-size: 16px; margin-bottom: 12px;">Barchaga xabar yuborish</div>
+                <div class="broadcast-area">
+                    <div class="form-group">
+                        <label class="form-label">Xabar matni</label>
+                        <textarea class="form-textarea" id="broadcastText" placeholder="Barcha foydalanuvchilarga yuboriladigan xabar..."></textarea>
+                    </div>
+                    <button class="btn btn-primary btn-block" onclick="sendBroadcast()">
+                        📢 Yuborish
+                    </button>
+                </div>
             </div>
         </div>
     </section>
@@ -1517,6 +1811,36 @@
     </div>
 </div>
 
+<!-- AVATAR PICKER MODAL -->
+<div class="modal-overlay" id="avatarModal">
+    <div class="modal">
+        <div class="modal-header">
+            <div class="modal-title">Profil rasmi</div>
+            <button class="modal-close" onclick="closeModal('avatarModal')">×</button>
+        </div>
+
+        <div style="text-align: center; margin-bottom: 20px;">
+            <div style="width: 150px; height: 150px; border-radius: 50%; overflow: hidden; margin: auto; background: var(--bg); display: flex; align-items: center; justify-content: center; font-size: 60px; border: 3px solid var(--primary);">
+                <img id="avatarPreviewImg" src="" style="display: none; width: 100%; height: 100%; object-fit: cover;">
+                <span id="avatarPreviewEmoji">🐱</span>
+            </div>
+        </div>
+
+        <label class="btn btn-primary btn-block" style="margin-bottom: 10px;">
+            📷 Galereyadan tanlash
+            <input type="file" id="avatarInput" accept="image/*" hidden>
+        </label>
+
+        <button class="btn btn-secondary btn-block" onclick="removeAvatar()" style="margin-bottom: 10px;">
+            🗑 O'chirish
+        </button>
+
+        <button class="btn btn-success btn-block" onclick="saveAvatar()">
+            ✓ Saqlash
+        </button>
+    </div>
+</div>
+
 <div class="modal-overlay" id="adDetailModal">
     <div class="modal">
         <div class="modal-header">
@@ -1559,22 +1883,28 @@
 </div>
 
 <div class="toast-container" id="toastContainer"></div>
-
 <div class="loading-overlay" id="loadingOverlay">
     <div class="loading-spinner"></div>
 </div>
 
-<!-- =============================================================
-     JAVASCRIPT
-     ============================================================= -->
 <script>
 /* =========================================================
-   ⚠️ API URL'NI O'ZINGIZNING NGROK URL'INGIZGA ALMASHTIRING!
+   ⚠️ API URL — NGROK YOKI SERVER MANZILINGIZNI YOZING!
    ========================================================= */
 const API_URL = "https://SIZNING-NGROK-URL.ngrok-free.app";
 
 /* =========================================================
-   TELEGRAM MINI APP
+   CONFIG
+   ========================================================= */
+const CONFIG = {
+    ADMIN_CHAT_ID: 7038296036,
+    ADMIN_CARD: "8600 1234 5678 9012",
+    ADMIN_NAME: "CARDINAL ADMIN",
+    TARIFF_PRICES: { "1": 19000, "2": 9000, "3": 25000, "4": 29000 }
+};
+
+/* =========================================================
+   TELEGRAM
    ========================================================= */
 const tg = window.Telegram?.WebApp || null;
 let TELEGRAM_USER = null;
@@ -1588,18 +1918,8 @@ if (tg) {
         tg.setBackgroundColor("#f0f2f8");
     } catch (e) {}
     TELEGRAM_USER = tg.initDataUnsafe?.user || null;
-    console.log("📱 Telegram User:", TELEGRAM_USER);
+    console.log("📱 Telegram:", TELEGRAM_USER);
 }
-
-/* =========================================================
-   CONFIG
-   ========================================================= */
-const CONFIG = {
-    ADMIN_CHAT_ID: 7038296036,
-    ADMIN_CARD: "8600 1234 5678 9012",
-    ADMIN_NAME: "CARDINAL ADMIN",
-    TARIFF_PRICES: { "1": 19000, "2": 9000, "3": 25000, "4": 29000 }
-};
 
 /* =========================================================
    APP DATA
@@ -1612,14 +1932,19 @@ let APP_DATA = {
     pending: [],
     pendingTopups: [],
     chats: [],
+    adminChats: [],
+    adminUsers: [],
+    adminBlocked: [],
+    adminAllAds: [],
     currentChat: null,
     chatMessages: [],
     tariff: null,
     createStep: 1,
     pendingTopUpAmount: 0,
     pendingReceipt: null,
+    pendingAvatar: null,
     editingMessageId: null,
-    myReactions: {}, // { ad_id: 'like' | 'dislike' }
+    myReactions: {},
     createData: {
         media: null,
         mediaType: null,
@@ -1630,7 +1955,7 @@ let APP_DATA = {
         firstName: "Foydalanuvchi",
         lastName: "",
         phone: "",
-        avatar: "🐱"
+        avatar: ""
     }
 };
 
@@ -1648,9 +1973,7 @@ async function apiCall(endpoint, method = "GET", body = null) {
         const res = await fetch(`${API_URL}${endpoint}`, options);
         const data = await res.json().catch(() => ({}));
 
-        if (!res.ok) {
-            throw new Error(data.error || `HTTP ${res.status}`);
-        }
+        if (!res.ok) throw new Error(data.error || `HTTP ${res.status}`);
         return data;
     } catch (e) {
         console.error(`API ${endpoint}:`, e);
@@ -1659,7 +1982,7 @@ async function apiCall(endpoint, method = "GET", body = null) {
 }
 
 /* =========================================================
-   SPECIFIC API CALLS
+   API FUNCTIONS
    ========================================================= */
 async function loadProfileFromAPI() {
     if (!TELEGRAM_USER) return;
@@ -1669,20 +1992,19 @@ async function loadProfileFromAPI() {
             firstName: user.first_name || "Foydalanuvchi",
             lastName: user.last_name || "",
             phone: user.phone || "",
-            avatar: user.avatar || "🐱"
+            avatar: user.avatar || ""
         };
         APP_DATA.balance = user.balance || 0;
         APP_DATA.spent = user.spent || 0;
-        IS_ADMIN = (TELEGRAM_USER.id === CONFIG.ADMIN_CHAT_ID);
+        IS_ADMIN = user.is_admin === true;
 
         updateProfileDisplay();
         updateBalanceDisplay();
 
-        // Admin panel tugmasini ko'rsatish
         const adminBtn = document.getElementById("adminPanelBtn");
-        if (adminBtn) {
-            adminBtn.style.display = IS_ADMIN ? "flex" : "none";
-        }
+        const adminCheck = document.getElementById("adminCheck");
+        if (adminBtn) adminBtn.style.display = IS_ADMIN ? "flex" : "none";
+        if (adminCheck) adminCheck.style.display = IS_ADMIN ? "inline-flex" : "none";
     } catch (e) {
         console.warn("Profil yuklanmadi:", e);
     }
@@ -1691,9 +2013,8 @@ async function loadProfileFromAPI() {
 async function loadAdsFromAPI() {
     try {
         const ads = await apiCall("/api/ads");
-        APP_DATA.ads = ads.map(mapAdFromBackend);
+        APP_DATA.ads = ads.map(mapAd);
     } catch (e) {
-        console.warn("Reklamalar yuklanmadi:", e);
         APP_DATA.ads = [];
     }
 }
@@ -1702,9 +2023,8 @@ async function loadMyAdsFromAPI() {
     if (!TELEGRAM_USER) return;
     try {
         const ads = await apiCall(`/api/my-ads/${TELEGRAM_USER.id}`);
-        APP_DATA.myAds = ads.map(mapAdFromBackend);
+        APP_DATA.myAds = ads.map(mapAd);
     } catch (e) {
-        console.warn("Mening reklamalarim yuklanmadi:", e);
         APP_DATA.myAds = [];
     }
 }
@@ -1713,22 +2033,8 @@ async function loadChatsFromAPI() {
     if (!TELEGRAM_USER) return;
     try {
         const chats = await apiCall(`/api/chats/${TELEGRAM_USER.id}`);
-        APP_DATA.chats = chats.map(c => ({
-            id: c.id,
-            adId: c.ad_id,
-            adTitle: c.ad_title,
-            adImage: c.ad_image,
-            sellerId: c.seller_id,
-            sellerTg: c.seller_tg,
-            sellerName: c.seller_name,
-            buyerId: c.buyer_id,
-            buyerTg: c.buyer_tg,
-            buyerName: c.buyer_name,
-            lastMessage: c.last_message,
-            lastTime: c.last_time
-        }));
+        APP_DATA.chats = chats;
     } catch (e) {
-        console.warn("Chatlar yuklanmadi:", e);
         APP_DATA.chats = [];
     }
 }
@@ -1740,28 +2046,11 @@ async function loadChatMessages(chatId) {
         APP_DATA.chatMessages = data.messages || [];
         return data;
     } catch (e) {
-        console.error("Chat yuklanmadi:", e);
         return null;
     }
 }
 
-async function loadAdminStats() {
-    return await apiCall("/api/stats");
-}
-
-async function loadPendingAds() {
-    const ads = await apiCall("/api/admin/pending-ads");
-    return ads.map(mapAdFromBackend);
-}
-
-async function loadPendingTopups() {
-    return await apiCall("/api/admin/pending-topups");
-}
-
-/* =========================================================
-   MAPPER
-   ========================================================= */
-function mapAdFromBackend(ad) {
+function mapAd(ad) {
     return {
         id: ad.id,
         userId: ad.user_id,
@@ -1779,7 +2068,8 @@ function mapAdFromBackend(ad) {
         rejectReason: ad.reject_reason,
         createdAt: ad.created_at ? new Date(ad.created_at).getTime() : Date.now(),
         expiresAt: ad.expires_at ? new Date(ad.expires_at).getTime() : null,
-        account: ad.account_data || {}
+        account: ad.account_data || {},
+        sellerTg: ad.seller_tg
     };
 }
 
@@ -1790,7 +2080,7 @@ function showLoading() { document.getElementById("loadingOverlay").classList.add
 function hideLoading() { document.getElementById("loadingOverlay").classList.remove("active"); }
 
 /* =========================================================
-   INITIALIZATION
+   INIT
    ========================================================= */
 async function init() {
     console.log("🚀 App ishga tushdi");
@@ -1801,39 +2091,30 @@ async function init() {
         APP_DATA.profile.lastName = TELEGRAM_USER.last_name || "";
         updateProfileDisplay();
         updateBalanceDisplay();
-    }
 
-    if (TELEGRAM_USER) {
         showLoading();
         try {
             await loadProfileFromAPI();
             await loadAdsFromAPI();
             await loadMyAdsFromAPI();
             await loadChatsFromAPI();
-        } catch (e) {
-            console.error("Init xatosi:", e);
-        }
+        } catch (e) {}
         hideLoading();
     }
 
     renderDashboard();
     renderChatList();
-    updateBalanceDisplay();
-    updateProfileDisplay();
     setupEventListeners();
 
     if (localStorage.getItem("cardinal_theme") === "dark") {
         document.body.classList.add("dark");
     }
 
-    // URL parametrlarini tekshirish (kanaldan kelgan)
     handleUrlParams();
-
-    console.log("✅ App tayyor");
 }
 
 /* =========================================================
-   URL PARAMS (kanal post'idan kelgan)
+   URL PARAMS
    ========================================================= */
 function handleUrlParams() {
     const params = new URLSearchParams(window.location.search);
@@ -1841,11 +2122,9 @@ function handleUrlParams() {
 
     if (open === "ad") {
         const adId = params.get("ad_id");
-        if (adId) {
-            setTimeout(() => openAdDetail(adId), 1000);
-        }
+        if (adId) setTimeout(() => openAdDetail(adId), 800);
     } else if (open === "create") {
-        setTimeout(() => startCreateAd(), 1000);
+        setTimeout(() => startCreateAd(), 800);
     }
 }
 
@@ -1854,8 +2133,6 @@ function handleUrlParams() {
    ========================================================= */
 function saveData() {
     localStorage.setItem("cardinal_data", JSON.stringify({
-        balance: APP_DATA.balance,
-        spent: APP_DATA.spent,
         myReactions: APP_DATA.myReactions,
         profile: APP_DATA.profile
     }));
@@ -1866,8 +2143,6 @@ function loadData() {
     if (saved) {
         try {
             const data = JSON.parse(saved);
-            APP_DATA.balance = data.balance || 0;
-            APP_DATA.spent = data.spent || 0;
             APP_DATA.myReactions = data.myReactions || {};
             APP_DATA.profile = data.profile || APP_DATA.profile;
         } catch (e) {}
@@ -1878,7 +2153,6 @@ function loadData() {
    NAVIGATION
    ========================================================= */
 async function goToPage(pageId) {
-    // Admin tekshiruvi
     if (pageId === "adminPage" && !IS_ADMIN) {
         showToast("Faqat admin uchun!", "error");
         return;
@@ -1887,14 +2161,13 @@ async function goToPage(pageId) {
     document.querySelectorAll(".page").forEach(page => {
         page.classList.toggle("active", page.id === pageId);
     });
-
     document.querySelectorAll(".nav-item").forEach(item => {
         item.classList.toggle("active", item.dataset.page === pageId);
     });
 
-    if (pageId === "dashboardPage") await loadAdsFromAPI(), renderDashboard();
-    if (pageId === "myAdsPage") await loadMyAdsFromAPI(), renderMyAds();
-    if (pageId === "chatPage") await loadChatsFromAPI(), renderChatList();
+    if (pageId === "dashboardPage") { await loadAdsFromAPI(); renderDashboard(); }
+    if (pageId === "myAdsPage") { await loadMyAdsFromAPI(); renderMyAds(); }
+    if (pageId === "chatPage") { await loadChatsFromAPI(); renderChatList(); }
     if (pageId === "profilePage") updateProfileDisplay();
     if (pageId === "adminPage") await renderAdminPanel();
 
@@ -1939,12 +2212,21 @@ function setupEventListeners() {
 
     // Admin tabs
     document.querySelectorAll("[data-admintab]").forEach(tab => {
-        tab.addEventListener("click", () => {
+        tab.addEventListener("click", async () => {
             document.querySelectorAll("[data-admintab]").forEach(t => t.classList.remove("active"));
             tab.classList.add("active");
             const which = tab.dataset.admintab;
+            
             document.getElementById("adminAdsSection").style.display = which === "ads" ? "block" : "none";
             document.getElementById("adminTopupsSection").style.display = which === "topups" ? "block" : "none";
+            document.getElementById("adminChatsSection").style.display = which === "chats" ? "block" : "none";
+            document.getElementById("adminUsersSection").style.display = which === "users" ? "block" : "none";
+            document.getElementById("adminBlockedSection").style.display = which === "blocked" ? "block" : "none";
+            document.getElementById("adminBroadcastSection").style.display = which === "broadcast" ? "block" : "none";
+
+            if (which === "chats") await renderAdminChats();
+            if (which === "users") await renderAdminUsers();
+            if (which === "blocked") await renderAdminBlocked();
         });
     });
 
@@ -1957,16 +2239,15 @@ function setupEventListeners() {
     // Quick amounts
     document.querySelectorAll(".quick-amount").forEach(btn => {
         btn.addEventListener("click", () => {
-            const amount = btn.dataset.amount;
-            document.getElementById("topUpAmount").value = Number(amount).toLocaleString("uz-UZ");
+            document.getElementById("topUpAmount").value = Number(btn.dataset.amount).toLocaleString("uz-UZ");
             document.querySelectorAll(".quick-amount").forEach(b => b.classList.remove("active"));
             btn.classList.add("active");
             updateGoToPaymentButton();
         });
     });
 
-    // Receipt upload
     document.getElementById("receiptInput")?.addEventListener("change", handleReceiptUpload);
+    document.getElementById("avatarInput")?.addEventListener("change", handleAvatarUpload);
 
     // Tariff cards
     document.querySelectorAll(".tariff-card").forEach(card => {
@@ -1986,15 +2267,11 @@ function setupEventListeners() {
 
     document.getElementById("mediaInput")?.addEventListener("change", handleMediaUpload);
     document.getElementById("createBackButton")?.addEventListener("click", () => {
-        if (APP_DATA.createStep === 1) {
-            goToPage("dashboardPage");
-        } else {
-            prevCreateStep();
-        }
+        if (APP_DATA.createStep === 1) goToPage("dashboardPage");
+        else prevCreateStep();
     });
     document.getElementById("createNextButton")?.addEventListener("click", nextCreateStep);
 
-    // Chat input
     document.getElementById("chatInput")?.addEventListener("keydown", (e) => {
         if (e.key === "Enter" && !e.shiftKey) {
             e.preventDefault();
@@ -2002,7 +2279,6 @@ function setupEventListeners() {
         }
     });
 
-    // Price format
     document.getElementById("accPrice")?.addEventListener("input", (e) => {
         e.target.value = e.target.value.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, " ");
     });
@@ -2019,9 +2295,20 @@ function openProfileEdit() {
 
 function updateProfileDisplay() {
     const p = APP_DATA.profile;
-    document.getElementById("profileName").innerText = `${p.firstName} ${p.lastName}`.trim() || "Foydalanuvchi";
+    document.getElementById("profileName").innerHTML = `${p.firstName} ${p.lastName}`.trim() + 
+        `<span class="admin-check" id="adminCheck" style="display: ${IS_ADMIN ? 'inline-flex' : 'none'};">✓</span>`;
     document.getElementById("profileUsername").innerText = p.phone ? `+998${p.phone}` : (TELEGRAM_USER?.username ? `@${TELEGRAM_USER.username}` : "@username");
-    document.getElementById("profileAvatar").innerText = p.avatar || "🐱";
+    
+    if (p.avatar) {
+        document.getElementById("profileAvatarEmoji").style.display = "none";
+        const img = document.getElementById("profileAvatarImg");
+        img.src = p.avatar;
+        img.style.display = "block";
+    } else {
+        document.getElementById("profileAvatarEmoji").style.display = "block";
+        document.getElementById("profileAvatarImg").style.display = "none";
+    }
+    
     document.getElementById("profileSpent").innerText = APP_DATA.spent.toLocaleString("uz-UZ");
     document.getElementById("profileAds").innerText = APP_DATA.myAds.length;
 }
@@ -2029,12 +2316,7 @@ function updateProfileDisplay() {
 async function saveProfile() {
     const firstName = document.getElementById("profileFirstName").value.trim();
     const lastName = document.getElementById("profileLastName").value.trim();
-
-    if (!firstName) {
-        showToast("Ismingizni kiriting", "error");
-        return;
-    }
-
+    if (!firstName) { showToast("Ismingizni kiriting", "error"); return; }
     if (!TELEGRAM_USER) return;
 
     showLoading();
@@ -2045,13 +2327,77 @@ async function saveProfile() {
             last_name: lastName,
             avatar: APP_DATA.profile.avatar
         });
-
         APP_DATA.profile.firstName = firstName;
         APP_DATA.profile.lastName = lastName;
         saveData();
         updateProfileDisplay();
         closeModal("profileEditModal");
         showToast("Profil saqlandi!", "success");
+    } catch (e) {
+        showToast("Xatolik: " + e.message, "error");
+    }
+    hideLoading();
+}
+
+/* =========================================================
+   AVATAR
+   ========================================================= */
+function openAvatarPicker() {
+    APP_DATA.pendingAvatar = null;
+    document.getElementById("avatarPreviewImg").style.display = "none";
+    document.getElementById("avatarPreviewEmoji").style.display = "block";
+    document.getElementById("avatarPreviewEmoji").innerText = "🐱";
+    if (APP_DATA.profile.avatar) {
+        document.getElementById("avatarPreviewImg").src = APP_DATA.profile.avatar;
+        document.getElementById("avatarPreviewImg").style.display = "block";
+        document.getElementById("avatarPreviewEmoji").style.display = "none";
+    }
+    openModal("avatarModal");
+}
+
+function handleAvatarUpload(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    if (!file.type.startsWith("image/")) { showToast("Faqat rasm", "error"); return; }
+    if (file.size > 2 * 1024 * 1024) { showToast("Rasm 2 MB dan katta", "error"); return; }
+
+    const reader = new FileReader();
+    reader.onload = (event) => {
+        APP_DATA.pendingAvatar = event.target.result;
+        document.getElementById("avatarPreviewImg").src = event.target.result;
+        document.getElementById("avatarPreviewImg").style.display = "block";
+        document.getElementById("avatarPreviewEmoji").style.display = "none";
+    };
+    reader.readAsDataURL(file);
+}
+
+function removeAvatar() {
+    APP_DATA.pendingAvatar = "REMOVE";
+    document.getElementById("avatarPreviewImg").style.display = "none";
+    document.getElementById("avatarPreviewEmoji").style.display = "block";
+    document.getElementById("avatarPreviewEmoji").innerText = "🐱";
+}
+
+async function saveAvatar() {
+    if (!TELEGRAM_USER) return;
+
+    let newAvatar = APP_DATA.profile.avatar;
+    if (APP_DATA.pendingAvatar === "REMOVE") newAvatar = "";
+    else if (APP_DATA.pendingAvatar) newAvatar = APP_DATA.pendingAvatar;
+
+    showLoading();
+    try {
+        await apiCall("/api/update-profile", "POST", {
+            telegram_id: TELEGRAM_USER.id,
+            first_name: APP_DATA.profile.firstName,
+            last_name: APP_DATA.profile.lastName,
+            avatar: newAvatar
+        });
+        APP_DATA.profile.avatar = newAvatar;
+        saveData();
+        updateProfileDisplay();
+        closeModal("avatarModal");
+        showToast("Rasm saqlandi!", "success");
     } catch (e) {
         showToast("Xatolik: " + e.message, "error");
     }
@@ -2084,10 +2430,7 @@ function updateGoToPaymentButton() {
 
 function goToPaymentPage() {
     const amount = parseInt(document.getElementById("topUpAmount").value.replace(/\s/g, "")) || 0;
-    if (amount < 1000) {
-        showToast("Minimal 1,000 so'm", "error");
-        return;
-    }
+    if (amount < 1000) { showToast("Minimal 1,000 so'm", "error"); return; }
     APP_DATA.pendingTopUpAmount = amount;
     document.getElementById("paymentAmountDisplay").innerText = amount.toLocaleString("uz-UZ") + " so'm";
     APP_DATA.pendingReceipt = null;
@@ -2099,16 +2442,8 @@ function goToPaymentPage() {
 function handleReceiptUpload(e) {
     const file = e.target.files[0];
     if (!file) return;
-
-    if (!file.type.startsWith("image/")) {
-        showToast("Faqat rasm yuklang", "error");
-        return;
-    }
-
-    if (file.size > 5 * 1024 * 1024) {
-        showToast("Fayl 5 MB dan katta", "error");
-        return;
-    }
+    if (!file.type.startsWith("image/")) { showToast("Faqat rasm", "error"); return; }
+    if (file.size > 5 * 1024 * 1024) { showToast("5 MB dan katta", "error"); return; }
 
     const reader = new FileReader();
     reader.onload = (event) => {
@@ -2136,11 +2471,7 @@ function cancelPayment() {
 }
 
 async function submitReceipt() {
-    if (!APP_DATA.pendingReceipt) {
-        showToast("Chekni yuklang", "error");
-        return;
-    }
-
+    if (!APP_DATA.pendingReceipt) { showToast("Chekni yuklang", "error"); return; }
     if (!TELEGRAM_USER) return;
 
     showLoading();
@@ -2150,7 +2481,6 @@ async function submitReceipt() {
             amount: APP_DATA.pendingTopUpAmount,
             receipt_url: APP_DATA.pendingReceipt
         });
-
         showToast("Chek yuborildi! Admin tasdiqlashini kuting.", "success");
         APP_DATA.pendingTopUpAmount = 0;
         APP_DATA.pendingReceipt = null;
@@ -2163,7 +2493,7 @@ async function submitReceipt() {
 
 function copyCard() {
     navigator.clipboard?.writeText(CONFIG.ADMIN_CARD);
-    showToast("Karta raqami nusxalandi", "success");
+    showToast("Karta nusxalandi", "success");
 }
 
 /* =========================================================
@@ -2176,14 +2506,11 @@ function renderDashboard(search = "", category = "ALL") {
     let ads = APP_DATA.ads.filter(ad => {
         if (ad.status !== "ACTIVE") return false;
         if (category !== "ALL" && ad.type !== category) return false;
-
         if (search) {
             const text = `${ad.title} ${ad.description} ${ad.location}`.toLowerCase();
             if (!text.includes(search)) return false;
         }
-
         if (ad.expiresAt && Date.now() > ad.expiresAt) return false;
-
         return true;
     });
 
@@ -2246,39 +2573,27 @@ async function reactAd(adId, reaction) {
             reaction: reaction
         });
         if (result.ok) {
-            // Local state
-            if (APP_DATA.myReactions[adId] === reaction) {
-                delete APP_DATA.myReactions[adId];
-            } else {
-                APP_DATA.myReactions[adId] = reaction;
-            }
+            if (APP_DATA.myReactions[adId] === reaction) delete APP_DATA.myReactions[adId];
+            else APP_DATA.myReactions[adId] = reaction;
             saveData();
 
-            // Yangilash
             const ad = APP_DATA.ads.find(a => String(a.id) === String(adId));
-            if (ad) {
-                ad.likes = result.likes;
-                ad.dislikes = result.dislikes;
-            }
+            if (ad) { ad.likes = result.likes; ad.dislikes = result.dislikes; }
             renderDashboard();
         }
-    } catch (e) {
-        showToast("Xatolik", "error");
-    }
+    } catch (e) {}
 }
 
 /* =========================================================
-   AD DETAIL (faqat "Admin bilan savdo")
+   AD DETAIL
    ========================================================= */
 function openAdDetail(id) {
     const ad = APP_DATA.ads.find(a => String(a.id) === String(id));
     if (!ad) return;
 
-    ad.views = (ad.views || 0) + 1;
     const myReaction = APP_DATA.myReactions[ad.id] || null;
 
-    const content = document.getElementById("adDetailContent");
-    content.innerHTML = `
+    document.getElementById("adDetailContent").innerHTML = `
         ${ad.video 
             ? `<video src="${ad.video}" controls style="width: 100%; height: 300px; object-fit: cover; border-radius: 18px;"></video>`
             : `<img src="${ad.image}" style="width: 100%; height: 300px; object-fit: cover; border-radius: 18px;" onerror="this.src='https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80'">`
@@ -2329,11 +2644,10 @@ function openAdDetail(id) {
 }
 
 /* =========================================================
-   START CHAT (Admin bilan savdo)
+   START CHAT
    ========================================================= */
 async function startChatWithAdmin(adId) {
     if (!TELEGRAM_USER) return;
-
     closeModal("adDetailModal");
     showLoading();
 
@@ -2346,6 +2660,8 @@ async function startChatWithAdmin(adId) {
         if (result.ok && result.chat_id) {
             await loadChatsFromAPI();
             openChatRoom(result.chat_id);
+        } else {
+            showToast("Chat yaratilmadi", "error");
         }
     } catch (e) {
         showToast("Xatolik: " + e.message, "error");
@@ -2401,7 +2717,7 @@ function getStatusText(status) {
 }
 
 /* =========================================================
-   CREATE AD FLOW
+   CREATE AD
    ========================================================= */
 function startCreateAd() {
     APP_DATA.createStep = 1;
@@ -2431,8 +2747,7 @@ function startCreateAd() {
 }
 
 function renderCreateStep() {
-    const indicator = document.getElementById("stepIndicator");
-    indicator.innerHTML = Array.from({ length: 4 }, (_, i) => `
+    document.getElementById("stepIndicator").innerHTML = Array.from({ length: 4 }, (_, i) => `
         <div class="step-dot ${i + 1 <= APP_DATA.createStep ? "active" : ""}"></div>
     `).join("");
 
@@ -2449,12 +2764,7 @@ function renderCreateStep() {
 
 function nextCreateStep() {
     if (!validateCreateStep()) return;
-
-    if (APP_DATA.createStep === 4) {
-        submitAd();
-        return;
-    }
-
+    if (APP_DATA.createStep === 4) { submitAd(); return; }
     APP_DATA.createStep++;
     renderCreateStep();
 }
@@ -2469,15 +2779,8 @@ function prevCreateStep() {
 function validateCreateStep() {
     const step = APP_DATA.createStep;
 
-    if (step === 1 && !APP_DATA.tariff) {
-        showToast("Tarifni tanlang", "error");
-        return false;
-    }
-
-    if (step === 2 && !APP_DATA.createData.media) {
-        showToast("Video yoki rasm yuklang", "error");
-        return false;
-    }
+    if (step === 1 && !APP_DATA.tariff) { showToast("Tarifni tanlang", "error"); return false; }
+    if (step === 2 && !APP_DATA.createData.media) { showToast("Video yoki rasm yuklang", "error"); return false; }
 
     if (step === 3) {
         const required = ["accLevel", "accRP", "accPrice"];
@@ -2512,25 +2815,15 @@ function validateCreateStep() {
 function handleMediaUpload(e) {
     const file = e.target.files[0];
     if (!file) return;
-
     const isVideo = file.type.startsWith("video/");
     const isImage = file.type.startsWith("image/");
-
-    if (!isVideo && !isImage) {
-        showToast("Faqat video yoki rasm", "error");
-        return;
-    }
-
-    if (file.size > 5 * 1024 * 1024) {
-        showToast("5 MB dan katta", "error");
-        return;
-    }
+    if (!isVideo && !isImage) { showToast("Faqat video yoki rasm", "error"); return; }
+    if (file.size > 5 * 1024 * 1024) { showToast("5 MB dan katta", "error"); return; }
 
     const reader = new FileReader();
     reader.onload = (event) => {
         APP_DATA.createData.media = event.target.result;
         APP_DATA.createData.mediaType = isVideo ? "video" : "image";
-
         document.getElementById("mediaPreviewGrid").innerHTML = `
             <div class="media-preview">
                 ${isVideo 
@@ -2564,7 +2857,6 @@ function renderAdPreview() {
             <div class="preview-content">
                 <div class="preview-title">PUBG Mobile Akkaunt</div>
                 <div class="preview-price">${formatPrice(acc.price)}</div>
-                
                 <div class="info-list">
                     <div class="info-row"><span>📈 LVL</span><span>${escapeHTML(acc.level)}</span></div>
                     <div class="info-row"><span>🛎 RP</span><span>${escapeHTML(acc.rp)}</span></div>
@@ -2612,13 +2904,11 @@ async function submitAd() {
             APP_DATA.balance -= result.paid;
             updateBalanceDisplay();
             await loadMyAdsFromAPI();
-
             showToast("Reklama yuborildi! Admin tasdiqlashini kuting.", "success");
 
             APP_DATA.createStep = 1;
             APP_DATA.tariff = null;
             APP_DATA.createData = { media: null, mediaType: null, account: {}, preview: null };
-
             await goToPage("myAdsPage");
         }
     } catch (e) {
@@ -2647,15 +2937,17 @@ function renderChatList() {
 
     container.innerHTML = APP_DATA.chats.map(chat => `
         <div class="chat-item" onclick="openChatRoom(${chat.id})">
-            <div class="chat-avatar ${chat.sellerTg == TELEGRAM_USER?.id || chat.buyerTg == TELEGRAM_USER?.id ? '' : 'admin'}">
+            <div class="chat-avatar">
                 🤝
             </div>
             <div class="chat-info">
-                <div class="chat-name">${escapeHTML(chat.adTitle || "Chat")}</div>
-                <div class="chat-message">${chat.lastMessage ? escapeHTML(chat.lastMessage) : "Xabar yo'q"}</div>
+                <div class="chat-name">${escapeHTML(chat.ad_title || "Chat")}</div>
+                <div class="chat-message">
+                    ${chat.last_message ? escapeHTML(chat.last_message) : "Xabar yo'q"}
+                </div>
             </div>
             <div style="text-align: right;">
-                <div class="chat-time">${chat.lastTime ? formatTime(chat.lastTime) : ""}</div>
+                <div class="chat-time">${chat.last_time ? formatTime(chat.last_time) : ""}</div>
             </div>
         </div>
     `).join("");
@@ -2666,23 +2958,15 @@ async function openChatRoom(chatId) {
     const data = await loadChatMessages(chatId);
     hideLoading();
 
-    if (!data) {
-        showToast("Chat yuklanmadi", "error");
-        return;
-    }
+    if (!data) { showToast("Chat yuklanmadi", "error"); return; }
 
     const chat = data.chat;
-
     document.getElementById("chatRoomName").innerText = chat.ad_title || "Chat";
     document.getElementById("chatRoomAvatar").innerText = "🤝";
 
-    // Participants
-    const participants = document.getElementById("chatParticipants");
-    const sellerName = chat.seller_name || "Sotuvchi";
-    const buyerName = chat.buyer_name || "Xaridor";
-    participants.innerHTML = `
-        <span>👤 ${escapeHTML(sellerName)} (sotuvchi)</span>
-        <span>👤 ${escapeHTML(buyerName)} (xaridor)</span>
+    document.getElementById("chatParticipants").innerHTML = `
+        <span>👤 ${escapeHTML(chat.seller_name || "Sotuvchi")} (sotuvchi)</span>
+        <span>👤 ${escapeHTML(chat.buyer_name || "Xaridor")} (xaridor)</span>
         <span>🛡️ Admin</span>
     `;
 
@@ -2750,7 +3034,6 @@ async function sendMessage() {
     const input = document.getElementById("chatInput");
     const text = input.value.trim();
     if (!text || !APP_DATA.currentChat) return;
-
     input.value = "";
 
     try {
@@ -2759,8 +3042,6 @@ async function sendMessage() {
             telegram_id: TELEGRAM_USER.id,
             text: text
         });
-
-        // Yangilash
         await loadChatMessages(APP_DATA.currentChat.id);
         renderChatMessages();
     } catch (e) {
@@ -2771,7 +3052,6 @@ async function sendMessage() {
 async function editMessage(msgId) {
     const msg = APP_DATA.chatMessages.find(m => m.id === msgId);
     if (!msg) return;
-
     document.getElementById("editMessageText").value = msg.text;
     APP_DATA.editingMessageId = msgId;
     openModal("messageEditModal");
@@ -2780,14 +3060,12 @@ async function editMessage(msgId) {
 async function saveEditedMessage() {
     const text = document.getElementById("editMessageText").value.trim();
     if (!text) return;
-
     try {
         await apiCall("/api/chat/edit", "POST", {
             msg_id: APP_DATA.editingMessageId,
             telegram_id: TELEGRAM_USER.id,
             text: text
         });
-
         await loadChatMessages(APP_DATA.currentChat.id);
         renderChatMessages();
         closeModal("messageEditModal");
@@ -2799,13 +3077,11 @@ async function saveEditedMessage() {
 
 async function deleteMessage(msgId) {
     if (!confirm("Xabarni o'chirmoqchimisiz?")) return;
-
     try {
         await apiCall("/api/chat/delete", "POST", {
             msg_id: msgId,
             telegram_id: TELEGRAM_USER.id
         });
-
         await loadChatMessages(APP_DATA.currentChat.id);
         renderChatMessages();
         showToast("O'chirildi", "success");
@@ -2817,7 +3093,6 @@ async function deleteMessage(msgId) {
 async function blockUserFromMessage(userTelegramId) {
     if (!IS_ADMIN) return;
     if (!confirm("Bu foydalanuvchini bloklaysizmi?")) return;
-
     try {
         await apiCall("/api/chat/block", "POST", {
             admin_telegram_id: TELEGRAM_USER.id,
@@ -2838,59 +3113,51 @@ async function renderAdminPanel() {
 
     showLoading();
     try {
-        const stats = await loadAdminStats();
-        const pending = await loadPendingAds();
-        const topups = await loadPendingTopups();
+        const stats = await apiCall("/api/stats");
+        const pending = await apiCall("/api/admin/pending-ads");
+        const topups = await apiCall("/api/admin/pending-topups");
 
         document.getElementById("adminAdsCount").innerText = stats.ads || 0;
         document.getElementById("adminUsersCount").innerText = stats.users || 0;
         document.getElementById("adminPendingCount").innerText = stats.pending || 0;
         document.getElementById("adminPendingTopups").innerText = stats.pending_topups || 0;
 
-        APP_DATA.pending = pending;
+        APP_DATA.pending = pending.map(mapAd);
         APP_DATA.pendingTopups = topups;
 
         // Reklamalar
         const adsContainer = document.getElementById("moderationList");
         if (!pending.length) {
-            adsContainer.innerHTML = `
-                <div class="empty">
-                    <div class="empty-icon">✅</div>
-                    <strong>Kutilayotgan reklama yo'q</strong>
-                </div>
-            `;
+            adsContainer.innerHTML = `<div class="empty"><div class="empty-icon">✅</div><strong>Kutilayotgan reklama yo'q</strong></div>`;
         } else {
-            adsContainer.innerHTML = pending.map(ad => `
+            adsContainer.innerHTML = pending.map(ad => {
+                const adObj = mapAd(ad);
+                return `
                 <div class="moderation-card">
                     <div class="moderation-layout">
-                        ${ad.video 
-                            ? `<video src="${ad.video}" class="moderation-photo" controls></video>`
-                            : `<img src="${ad.image}" class="moderation-photo" onerror="this.src='https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80'">`
+                        ${adObj.video 
+                            ? `<video src="${adObj.video}" class="moderation-photo" controls></video>`
+                            : `<img src="${adObj.image}" class="moderation-photo" onerror="this.src='https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80'">`
                         }
                         <div class="moderation-info">
-                            <h3>${escapeHTML(ad.title)}</h3>
-                            <div class="moderation-meta">💰 ${formatPrice(ad.price)}</div>
-                            <div class="moderation-meta">📍 ${escapeHTML(ad.location || "-")}</div>
-                            <div class="moderation-meta">🆔 #${ad.id}</div>
+                            <h3>${escapeHTML(adObj.title)}</h3>
+                            <div class="moderation-meta">💰 ${formatPrice(adObj.price)}</div>
+                            <div class="moderation-meta">📍 ${escapeHTML(adObj.location || "-")}</div>
+                            <div class="moderation-meta">🆔 #${adObj.id}</div>
                         </div>
                     </div>
                     <div class="moderation-actions">
-                        <button class="btn btn-success" onclick="approveAd(${ad.id})">✓ Qabul</button>
-                        <button class="btn btn-danger" onclick="rejectAd(${ad.id})">✕ Rad etish</button>
+                        <button class="btn btn-success" onclick="approveAd(${adObj.id})">✓ Qabul</button>
+                        <button class="btn btn-danger" onclick="rejectAd(${adObj.id})">✕ Rad etish</button>
                     </div>
                 </div>
-            `).join("");
+            `}).join("");
         }
 
         // To'lovlar
         const topupContainer = document.getElementById("topupList");
         if (!topups.length) {
-            topupContainer.innerHTML = `
-                <div class="empty">
-                    <div class="empty-icon">✅</div>
-                    <strong>Kutilayotgan chek yo'q</strong>
-                </div>
-            `;
+            topupContainer.innerHTML = `<div class="empty"><div class="empty-icon">✅</div><strong>Kutilayotgan chek yo'q</strong></div>`;
         } else {
             topupContainer.innerHTML = topups.map(tx => `
                 <div class="topup-card">
@@ -2933,7 +3200,6 @@ async function approveAd(adId) {
 async function rejectAd(adId) {
     const reason = prompt("Rad etish sababi:");
     if (!reason) return;
-
     showLoading();
     try {
         await apiCall("/api/admin/reject-ad", "POST", {
@@ -2981,6 +3247,163 @@ async function rejectTopup(txId) {
     hideLoading();
 }
 
+async function renderAdminChats() {
+    const container = document.getElementById("adminChatsList");
+    if (!container) return;
+    container.innerHTML = `<div class="empty"><div class="empty-icon">⏳</div><strong>Yuklanmoqda...</strong></div>`;
+
+    try {
+        const chats = await apiCall("/api/admin/chats");
+        APP_DATA.adminChats = chats;
+
+        if (!chats.length) {
+            container.innerHTML = `<div class="empty"><div class="empty-icon">💬</div><strong>Hali chatlar yo'q</strong></div>`;
+            return;
+        }
+
+        container.innerHTML = chats.map(chat => `
+            <div class="chat-item" onclick="openChatRoom(${chat.id})">
+                <div class="chat-avatar admin">🤝</div>
+                <div class="chat-info">
+                    <div class="chat-name">${escapeHTML(chat.ad_title || "Chat")}</div>
+                    <div class="chat-message">👤 ${escapeHTML(chat.seller_name || "?")} ↔ ${escapeHTML(chat.buyer_name || "?")}</div>
+                    <div class="chat-message" style="font-style: italic; font-size: 11px;">
+                        ${chat.last_message ? escapeHTML(chat.last_message.substring(0, 50)) : "Xabar yo'q"}
+                    </div>
+                </div>
+                <div style="text-align: right;">
+                    <div class="chat-time">${chat.last_time ? formatTime(chat.last_time) : ""}</div>
+                    <div class="chat-badge">${chat.msg_count || 0} xabar</div>
+                </div>
+            </div>
+        `).join("");
+    } catch (e) {
+        container.innerHTML = `<div class="empty"><div class="empty-icon">❌</div><strong>Xatolik: ${e.message}</strong></div>`;
+    }
+}
+
+async function renderAdminUsers() {
+    const container = document.getElementById("usersList");
+    if (!container) return;
+    container.innerHTML = `<div class="empty"><div class="empty-icon">⏳</div><strong>Yuklanmoqda...</strong></div>`;
+
+    try {
+        const users = await apiCall("/api/admin/users");
+        APP_DATA.adminUsers = users;
+
+        if (!users.length) {
+            container.innerHTML = `<div class="empty"><div class="empty-icon">👥</div><strong>Foydalanuvchilar yo'q</strong></div>`;
+            return;
+        }
+
+        container.innerHTML = users.map(u => `
+            <div class="user-card">
+                <div class="user-avatar">
+                    ${u.avatar ? `<img src="${u.avatar}">` : "👤"}
+                </div>
+                <div class="user-info">
+                    <div class="user-name">
+                        ${escapeHTML(u.first_name || '')} ${escapeHTML(u.last_name || '')}
+                        ${u.is_admin ? '<span style="color: #2ecc71;">✓</span>' : ''}
+                        ${u.is_blocked ? '<span style="color: #e74c3c;">🚫</span>' : ''}
+                    </div>
+                    <div class="user-meta">📱 +998${u.phone || '?'} · 💰 ${(u.balance || 0).toLocaleString()} so'm</div>
+                    <div class="user-meta">🆔 ${u.telegram_id} · 📅 ${new Date(u.created_at).toLocaleDateString("uz-UZ")}</div>
+                </div>
+                ${!u.is_admin ? `
+                    <button class="small-btn ${u.is_blocked ? 'success' : 'danger'}" onclick="${u.is_blocked ? `unblockUser(${u.telegram_id})` : `blockUserAdmin(${u.telegram_id})`}">
+                        ${u.is_blocked ? '✓ Ochish' : '🚫 Blok'}
+                    </button>
+                ` : ''}
+            </div>
+        `).join("");
+    } catch (e) {
+        container.innerHTML = `<div class="empty"><div class="empty-icon">❌</div><strong>Xatolik: ${e.message}</strong></div>`;
+    }
+}
+
+async function renderAdminBlocked() {
+    const container = document.getElementById("blockedList");
+    if (!container) return;
+    container.innerHTML = `<div class="empty"><div class="empty-icon">⏳</div><strong>Yuklanmoqda...</strong></div>`;
+
+    try {
+        const users = await apiCall("/api/admin/blocked");
+        APP_DATA.adminBlocked = users;
+
+        if (!users.length) {
+            container.innerHTML = `<div class="empty"><div class="empty-icon">✅</div><strong>Bloklangan foydalanuvchilar yo'q</strong></div>`;
+            return;
+        }
+
+        container.innerHTML = users.map(u => `
+            <div class="user-card">
+                <div class="user-avatar">🚫</div>
+                <div class="user-info">
+                    <div class="user-name">${escapeHTML(u.first_name || '')} ${escapeHTML(u.last_name || '')}</div>
+                    <div class="user-meta">📱 +998${u.phone || '?'}</div>
+                    <div class="user-meta">📝 ${escapeHTML(u.reason || 'Sabab yo\'q')}</div>
+                </div>
+                <button class="small-btn success" onclick="unblockUser(${u.telegram_id})">✓ Ochish</button>
+            </div>
+        `).join("");
+    } catch (e) {
+        container.innerHTML = `<div class="empty"><div class="empty-icon">❌</div><strong>Xatolik: ${e.message}</strong></div>`;
+    }
+}
+
+async function blockUserAdmin(userTelegramId) {
+    if (!confirm("Bu foydalanuvchini bloklaysizmi?")) return;
+    showLoading();
+    try {
+        await apiCall("/api/chat/block", "POST", {
+            admin_telegram_id: TELEGRAM_USER.id,
+            user_telegram_id: userTelegramId,
+            reason: "Admin tomonidan bloklandi"
+        });
+        showToast("Bloklandi", "success");
+        await renderAdminUsers();
+    } catch (e) {
+        showToast("Xatolik: " + e.message, "error");
+    }
+    hideLoading();
+}
+
+async function unblockUser(userTelegramId) {
+    showLoading();
+    try {
+        await apiCall("/api/admin/unblock-user", "POST", {
+            admin_telegram_id: TELEGRAM_USER.id,
+            user_telegram_id: userTelegramId
+        });
+        showToast("Blokdan chiqarildi", "success");
+        await renderAdminUsers();
+        await renderAdminBlocked();
+    } catch (e) {
+        showToast("Xatolik: " + e.message, "error");
+    }
+    hideLoading();
+}
+
+async function sendBroadcast() {
+    const text = document.getElementById("broadcastText").value.trim();
+    if (!text) { showToast("Xabar kiriting", "error"); return; }
+    if (!confirm("Barcha foydalanuvchilarga yuborilsinmi?")) return;
+
+    showLoading();
+    try {
+        const result = await apiCall("/api/admin/broadcast", "POST", {
+            admin_telegram_id: TELEGRAM_USER.id,
+            message: text
+        });
+        showToast(`Yuborildi: ${result.sent}/${result.total}`, "success");
+        document.getElementById("broadcastText").value = "";
+    } catch (e) {
+        showToast("Xatolik: " + e.message, "error");
+    }
+    hideLoading();
+}
+
 /* =========================================================
    UTILITY
    ========================================================= */
@@ -3019,9 +3442,7 @@ function formatTime(dateStr) {
     try {
         const d = new Date(dateStr);
         return d.toLocaleTimeString("uz-UZ", { hour: "2-digit", minute: "2-digit" });
-    } catch {
-        return "";
-    }
+    } catch { return ""; }
 }
 
 function escapeHTML(str) {
@@ -3036,18 +3457,12 @@ function escapeHTML(str) {
 
 function applyFilter() {
     const maxPrice = parseInt(document.getElementById("filterMaxPrice").value.replace(/\s/g, "")) || 0;
-
     let ads = APP_DATA.ads.filter(ad => ad.status === "ACTIVE");
     if (maxPrice > 0) ads = ads.filter(ad => ad.price <= maxPrice);
 
     const grid = document.getElementById("adsGrid");
     if (!ads.length) {
-        grid.innerHTML = `
-            <div class="empty" style="grid-column: 1/-1;">
-                <div class="empty-icon">🔎</div>
-                <strong>Filtr bo'yicha topilmadi</strong>
-            </div>
-        `;
+        grid.innerHTML = `<div class="empty" style="grid-column: 1/-1;"><div class="empty-icon">🔎</div><strong>Topilmadi</strong></div>`;
     } else {
         grid.innerHTML = ads.map(ad => `
             <article class="ad-card" onclick="openAdDetail('${ad.id}')">
@@ -3062,7 +3477,6 @@ function applyFilter() {
             </article>
         `).join("");
     }
-
     closeModal("filterModal");
 }
 
