@@ -6,15 +6,7 @@
     <title>Cardinal Reklama Bot</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
-        /* =========================================================
-           GLOBAL CSS
-           ========================================================= */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
         :root {
             --primary: #6c5ce7;
@@ -26,17 +18,13 @@
             --red: #e74c3c;
             --orange: #f39c12;
             --gold: #f1c40f;
-            
             --bg: #f0f2f8;
             --card: #ffffff;
             --text: #2d3436;
             --muted: #7f8c8d;
             --border: #e8eaf0;
-            
             --nav-height: 75px;
-            --radius: 18px;
             --shadow: 0 8px 30px rgba(108, 92, 231, 0.1);
-            --shadow-hover: 0 12px 40px rgba(108, 92, 231, 0.2);
         }
 
         body.dark {
@@ -62,17 +50,9 @@
         input, textarea { outline: none; }
         img { max-width: 100%; display: block; }
 
-        .app {
-            min-height: 100vh;
-            padding-bottom: calc(var(--nav-height) + 15px);
-        }
+        .app { min-height: 100vh; padding-bottom: calc(var(--nav-height) + 15px); }
 
-        .page {
-            display: none;
-            min-height: calc(100vh - var(--nav-height));
-            animation: pageIn 0.3s ease;
-        }
-
+        .page { display: none; min-height: calc(100vh - var(--nav-height)); animation: pageIn 0.3s ease; }
         .page.active { display: block; }
 
         @keyframes pageIn {
@@ -80,12 +60,9 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .container {
-            width: min(1200px, 100%);
-            margin: auto;
-            padding: 16px;
-        }
+        .container { width: min(1200px, 100%); margin: auto; padding: 16px; }
 
+        /* TOP BAR */
         .top-bar {
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             padding: 16px;
@@ -105,14 +82,10 @@
         .brand { display: flex; align-items: center; gap: 12px; }
 
         .brand-logo {
-            width: 48px;
-            height: 48px;
-            border-radius: 16px;
+            width: 48px; height: 48px; border-radius: 16px;
             background: rgba(255, 255, 255, 0.2);
             backdrop-filter: blur(10px);
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            display: flex; justify-content: center; align-items: center;
             font-size: 26px;
         }
 
@@ -120,101 +93,68 @@
         .brand-sub { font-size: 11px; opacity: 0.8; }
 
         .balance-display {
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            display: flex; align-items: center; gap: 8px;
             background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(10px);
-            padding: 10px 16px;
-            border-radius: 16px;
-            cursor: pointer;
-            transition: all 0.2s;
+            padding: 10px 16px; border-radius: 16px;
+            cursor: pointer; transition: all 0.2s;
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
-        .balance-display:active {
-            transform: scale(0.97);
-            background: rgba(255, 255, 255, 0.25);
-        }
-
+        .balance-display:active { transform: scale(0.97); background: rgba(255, 255, 255, 0.25); }
         .balance-icon { font-size: 20px; }
         .balance-info { text-align: right; }
         .balance-label { font-size: 9px; opacity: 0.8; }
         .balance-amount { font-size: 15px; font-weight: 900; }
 
         .balance-add {
-            width: 28px;
-            height: 28px;
-            border-radius: 10px;
+            width: 28px; height: 28px; border-radius: 10px;
             background: rgba(255, 255, 255, 0.25);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 18px;
-            font-weight: 900;
+            display: flex; justify-content: center; align-items: center;
+            font-size: 18px; font-weight: 900;
         }
 
+        /* BOTTOM NAV */
         .bottom-navigation {
-            position: fixed;
-            z-index: 100;
-            left: 0;
-            right: 0;
-            bottom: 0;
+            position: fixed; z-index: 100;
+            left: 0; right: 0; bottom: 0;
             height: var(--nav-height);
             background: rgba(255, 255, 255, 0.96);
             backdrop-filter: blur(20px);
             border-top: 1px solid var(--border);
-            display: flex;
-            justify-content: center;
+            display: flex; justify-content: center;
         }
 
         body.dark .bottom-navigation { background: rgba(20, 20, 28, 0.96); }
 
         .bottom-navigation-inner {
             width: min(650px, 100%);
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
+            display: grid; grid-template-columns: repeat(5, 1fr);
         }
 
         .nav-item {
-            background: transparent;
-            color: var(--muted);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 4px;
-            font-size: 10px;
-            font-weight: 700;
-            transition: all 0.2s;
-            position: relative;
+            background: transparent; color: var(--muted);
+            display: flex; flex-direction: column;
+            justify-content: center; align-items: center;
+            gap: 4px; font-size: 10px; font-weight: 700;
+            transition: all 0.2s; position: relative;
         }
 
         .nav-item .nav-icon {
-            width: 44px;
-            height: 32px;
-            border-radius: 14px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 20px;
-            transition: all 0.2s;
+            width: 44px; height: 32px; border-radius: 14px;
+            display: flex; justify-content: center; align-items: center;
+            font-size: 20px; transition: all 0.2s;
         }
 
         .nav-item.active { color: var(--primary); }
         .nav-item.active .nav-icon { background: rgba(108, 92, 231, 0.12); }
 
         .nav-item.create-btn .nav-icon {
-            width: 52px;
-            height: 52px;
-            border-radius: 50%;
+            width: 52px; height: 52px; border-radius: 50%;
             background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: white;
-            font-size: 26px;
-            font-weight: 300;
+            color: white; font-size: 26px; font-weight: 300;
             box-shadow: 0 6px 20px rgba(108, 92, 231, 0.4);
-            margin-top: -20px;
-            border: 4px solid var(--card);
+            margin-top: -20px; border: 4px solid var(--card);
         }
 
         .nav-item.create-btn.active .nav-icon {
@@ -222,516 +162,265 @@
             transform: scale(1.05);
         }
 
+        /* COMMON */
         .section-title { font-size: 20px; font-weight: 900; letter-spacing: -0.3px; }
         .section-subtitle { margin-top: 4px; color: var(--muted); font-size: 13px; }
 
         .btn {
-            min-height: 48px;
-            padding: 0 20px;
-            border-radius: 15px;
-            font-weight: 700;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            transition: all 0.2s;
-            font-size: 14px;
+            min-height: 48px; padding: 0 20px; border-radius: 15px;
+            font-weight: 700; display: inline-flex; align-items: center;
+            justify-content: center; gap: 8px;
+            transition: all 0.2s; font-size: 14px;
         }
 
         .btn:active { transform: scale(0.97); }
 
         .btn-primary {
             background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: white;
-            box-shadow: 0 4px 15px rgba(108, 92, 231, 0.3);
+            color: white; box-shadow: 0 4px 15px rgba(108, 92, 231, 0.3);
         }
 
-        .btn-secondary {
-            background: var(--card);
-            border: 1.5px solid var(--border);
-            color: var(--text);
-        }
+        .btn-secondary { background: var(--card); border: 1.5px solid var(--border); color: var(--text); }
 
         .btn-success {
             background: linear-gradient(135deg, var(--green), var(--green-dark));
-            color: white;
-            box-shadow: 0 4px 15px rgba(0, 184, 148, 0.3);
+            color: white; box-shadow: 0 4px 15px rgba(0, 184, 148, 0.3);
         }
 
         .btn-danger { background: var(--red); color: white; }
         .btn-block { width: 100%; }
-
-        .btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            transform: none !important;
-        }
+        .btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
         .icon-btn {
-            width: 42px;
-            height: 42px;
-            border-radius: 13px;
-            background: var(--card);
-            border: 1px solid var(--border);
-            color: var(--text);
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 19px;
-            transition: all 0.2s;
+            width: 42px; height: 42px; border-radius: 13px;
+            background: var(--card); border: 1px solid var(--border);
+            color: var(--text); display: inline-flex;
+            align-items: center; justify-content: center;
+            font-size: 19px; transition: all 0.2s;
         }
 
         .icon-btn:active { transform: scale(0.95); }
 
+        /* SEARCH */
         .search-box { margin-top: 16px; position: relative; }
 
         .search-box input {
-            width: 100%;
-            border: 0;
-            background: var(--card);
-            color: var(--text);
-            padding: 16px 50px 16px 50px;
-            border-radius: 18px;
-            box-shadow: var(--shadow);
-            font-size: 14px;
+            width: 100%; border: 0; background: var(--card);
+            color: var(--text); padding: 16px 50px 16px 50px;
+            border-radius: 18px; box-shadow: var(--shadow); font-size: 14px;
         }
 
         .search-icon {
-            position: absolute;
-            left: 18px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--muted);
-            font-size: 18px;
+            position: absolute; left: 18px; top: 50%;
+            transform: translateY(-50%); color: var(--muted); font-size: 18px;
         }
 
         .search-filter {
-            position: absolute;
-            right: 8px;
-            top: 8px;
-            width: 40px;
-            height: 40px;
-            border-radius: 13px;
-            background: var(--primary);
-            color: white;
-            font-size: 18px;
+            position: absolute; right: 8px; top: 8px;
+            width: 40px; height: 40px; border-radius: 13px;
+            background: var(--primary); color: white; font-size: 18px;
         }
 
+        /* TABS */
         .category-tabs {
-            display: flex;
-            gap: 8px;
-            overflow-x: auto;
-            padding: 18px 0 5px;
-            scrollbar-width: none;
+            display: flex; gap: 8px; overflow-x: auto;
+            padding: 18px 0 5px; scrollbar-width: none;
         }
 
         .category-tabs::-webkit-scrollbar { display: none; }
 
         .category-tab {
-            flex-shrink: 0;
-            padding: 11px 18px;
-            border-radius: 14px;
-            background: var(--card);
-            color: var(--muted);
+            flex-shrink: 0; padding: 11px 18px; border-radius: 14px;
+            background: var(--card); color: var(--muted);
             border: 1.5px solid var(--border);
-            font-size: 12px;
-            font-weight: 700;
-            transition: all 0.2s;
+            font-size: 12px; font-weight: 700; transition: all 0.2s;
         }
 
         .category-tab.active {
-            background: var(--primary);
-            color: white;
+            background: var(--primary); color: white;
             border-color: var(--primary);
             box-shadow: 0 4px 15px rgba(108, 92, 231, 0.3);
         }
 
+        /* ADS GRID */
         .ads-grid {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 14px;
-            margin-top: 16px;
+            display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px; margin-top: 16px;
         }
 
         .ad-card {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            cursor: pointer;
+            background: var(--card); border: 1px solid var(--border);
+            border-radius: 20px; overflow: hidden;
+            box-shadow: var(--shadow); cursor: pointer;
             transition: all 0.25s;
         }
 
-        .ad-card:active { transform: scale(0.98); box-shadow: var(--shadow-hover); }
+        .ad-card:active { transform: scale(0.98); }
 
-        .ad-image-wrap {
-            height: 170px;
-            position: relative;
-            background: #ddd;
-            overflow: hidden;
-        }
-
-        .ad-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s;
-        }
-
-        .ad-card:hover .ad-image { transform: scale(1.05); }
+        .ad-image-wrap { height: 170px; position: relative; background: #ddd; overflow: hidden; }
+        .ad-image { width: 100%; height: 100%; object-fit: cover; }
 
         .ad-type-badge {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            background: rgba(0, 0, 0, 0.65);
-            color: white;
-            backdrop-filter: blur(8px);
-            padding: 6px 12px;
-            border-radius: 10px;
-            font-size: 10px;
-            font-weight: 800;
+            position: absolute; top: 10px; left: 10px;
+            background: rgba(0, 0, 0, 0.65); color: white;
+            backdrop-filter: blur(8px); padding: 6px 12px;
+            border-radius: 10px; font-size: 10px; font-weight: 800;
         }
 
-        .ad-type-badge.premium {
-            background: linear-gradient(135deg, var(--gold), #e67e22);
-        }
-
+        .ad-type-badge.premium { background: linear-gradient(135deg, var(--gold), #e67e22); }
         .ad-content { padding: 14px; }
 
         .ad-title {
-            font-size: 14px;
-            font-weight: 800;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            font-size: 14px; font-weight: 800;
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
         }
 
         .ad-meta {
-            margin-top: 5px;
-            font-size: 11px;
-            color: var(--muted);
-            display: flex;
-            align-items: center;
-            gap: 5px;
+            margin-top: 5px; font-size: 11px; color: var(--muted);
+            display: flex; align-items: center; gap: 5px;
         }
 
-        .ad-price {
-            margin-top: 10px;
-            font-size: 16px;
-            font-weight: 900;
-            color: var(--primary);
+        .ad-price { margin-top: 10px; font-size: 16px; font-weight: 900; color: var(--primary); }
+
+        .ad-reactions {
+            display: flex; gap: 8px; margin-top: 10px;
+            padding-top: 10px; border-top: 1px solid var(--border);
         }
 
-        .tariff-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 16px;
-            margin-top: 18px;
+        .reaction-btn {
+            flex: 1; display: flex; align-items: center; justify-content: center;
+            gap: 6px; padding: 8px; border-radius: 12px;
+            background: var(--bg); color: var(--muted);
+            font-size: 12px; font-weight: 800;
+            border: 1px solid var(--border); transition: all 0.2s;
         }
 
-        .tariff-card {
-            background: var(--card);
-            border: 2px solid var(--border);
-            border-radius: 24px;
-            padding: 22px;
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-            transition: all 0.25s;
-            position: relative;
-            overflow: hidden;
-        }
+        .reaction-btn:active { transform: scale(0.95); }
 
-        .tariff-card:hover,
-        .tariff-card.selected {
-            border-color: var(--primary);
-            box-shadow: 0 10px 40px rgba(108, 92, 231, 0.2);
-            transform: translateY(-3px);
-        }
+        .reaction-btn.liked { background: rgba(0, 184, 148, 0.15); color: var(--green); border-color: rgba(0, 184, 148, 0.3); }
+        .reaction-btn.disliked { background: rgba(231, 76, 60, 0.15); color: var(--red); border-color: rgba(231, 76, 60, 0.3); }
 
-        .tariff-card.popular {
-            border-color: var(--gold);
-            background: linear-gradient(180deg, rgba(241, 196, 15, 0.05), transparent);
-        }
-
-        .tariff-card.popular::before {
-            content: '🔥 MASHHUR';
-            position: absolute;
-            top: 0;
-            right: 0;
-            background: linear-gradient(135deg, var(--gold), #e67e22);
-            color: white;
-            padding: 6px 16px;
-            border-radius: 0 22px 0 16px;
-            font-size: 10px;
-            font-weight: 900;
-        }
-
-        .tariff-header { display: flex; justify-content: space-between; align-items: flex-start; }
-
-        .tariff-icon {
-            width: 60px;
-            height: 60px;
-            border-radius: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 30px;
-            background: linear-gradient(135deg, rgba(108, 92, 231, 0.1), rgba(108, 92, 231, 0.05));
-        }
-
-        .tariff-price { text-align: right; }
-
-        .tariff-price-value { font-size: 26px; font-weight: 900; color: var(--primary); }
-        .tariff-price-label { font-size: 11px; color: var(--muted); }
-        .tariff-title { font-size: 18px; font-weight: 900; }
-        .tariff-desc { font-size: 12px; color: var(--muted); line-height: 1.5; }
-
-        .tariff-features { display: flex; flex-direction: column; gap: 10px; margin-top: 4px; }
-
-        .tariff-feature { display: flex; align-items: center; gap: 10px; font-size: 12px; }
-
-        .tariff-feature-icon {
-            width: 22px;
-            height: 22px;
-            border-radius: 8px;
-            background: rgba(0, 184, 148, 0.12);
-            color: var(--green);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 12px;
-            font-weight: 900;
-            flex-shrink: 0;
-        }
-
-        .tariff-feature.disabled .tariff-feature-icon {
-            background: rgba(231, 76, 60, 0.12);
-            color: var(--red);
-        }
-
-        .tariff-feature.disabled { opacity: 0.5; text-decoration: line-through; }
-
+        /* FORMS */
         .form-group { margin-bottom: 18px; }
+        .form-label { display: block; font-size: 13px; font-weight: 800; margin-bottom: 10px; }
 
-        .form-label {
-            display: block;
-            font-size: 13px;
-            font-weight: 800;
-            margin-bottom: 10px;
+        .form-input, .form-textarea, .form-select {
+            width: 100%; border: 1.5px solid var(--border);
+            background: var(--card); color: var(--text);
+            border-radius: 15px; padding: 15px;
+            font-size: 14px; transition: all 0.2s;
         }
 
-        .form-input,
-        .form-textarea,
-        .form-select {
-            width: 100%;
-            border: 1.5px solid var(--border);
-            background: var(--card);
-            color: var(--text);
-            border-radius: 15px;
-            padding: 15px;
-            font-size: 14px;
-            transition: all 0.2s;
-        }
-
-        .form-input:focus,
-        .form-textarea:focus,
-        .form-select:focus {
+        .form-input:focus, .form-textarea:focus, .form-select:focus {
             border-color: var(--primary);
             box-shadow: 0 0 0 4px rgba(108, 92, 231, 0.1);
         }
 
         .form-textarea { min-height: 120px; resize: vertical; line-height: 1.6; }
 
+        /* UPLOAD */
         .media-upload {
-            min-height: 200px;
-            border: 2.5px dashed var(--border);
-            border-radius: 22px;
-            background: var(--card);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 30px;
-            cursor: pointer;
-            transition: all 0.25s;
+            min-height: 200px; border: 2.5px dashed var(--border);
+            border-radius: 22px; background: var(--card);
+            display: flex; flex-direction: column;
+            justify-content: center; align-items: center;
+            text-align: center; padding: 30px;
+            cursor: pointer; transition: all 0.25s;
         }
 
-        .media-upload:active {
-            border-color: var(--primary);
-            background: rgba(108, 92, 231, 0.03);
-        }
-
+        .media-upload:active { border-color: var(--primary); background: rgba(108, 92, 231, 0.03); }
         .media-upload-icon { font-size: 52px; margin-bottom: 12px; }
         .media-upload strong { font-size: 15px; }
         .media-upload span { color: var(--muted); font-size: 12px; margin-top: 8px; }
 
-        .media-preview-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            margin-top: 14px;
-        }
-
-        .media-preview {
-            height: 110px;
-            border-radius: 16px;
-            overflow: hidden;
-            position: relative;
-            background: var(--bg);
-        }
-
-        .media-preview img,
-        .media-preview video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+        .media-preview-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 14px; }
+        .media-preview { height: 110px; border-radius: 16px; overflow: hidden; position: relative; background: var(--bg); }
+        .media-preview img, .media-preview video { width: 100%; height: 100%; object-fit: cover; }
 
         .remove-media {
-            position: absolute;
-            right: 6px;
-            top: 6px;
-            width: 30px;
-            height: 30px;
-            border-radius: 10px;
-            background: rgba(0, 0, 0, 0.7);
-            color: white;
-            font-size: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            position: absolute; right: 6px; top: 6px;
+            width: 30px; height: 30px; border-radius: 10px;
+            background: rgba(0, 0, 0, 0.7); color: white;
+            font-size: 16px; display: flex;
+            align-items: center; justify-content: center;
         }
 
+        /* ACCOUNT FORM */
         .account-form-card {
-            background: var(--card);
-            border: 1.5px solid var(--border);
-            border-radius: 22px;
-            padding: 20px;
-            margin-bottom: 16px;
+            background: var(--card); border: 1.5px solid var(--border);
+            border-radius: 22px; padding: 20px; margin-bottom: 16px;
         }
 
         .account-form-title {
-            font-size: 16px;
-            font-weight: 900;
-            margin-bottom: 18px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            font-size: 16px; font-weight: 900; margin-bottom: 18px;
+            display: flex; align-items: center; gap: 10px;
         }
 
         .account-form-title-icon {
-            width: 36px;
-            height: 36px;
-            border-radius: 12px;
+            width: 36px; height: 36px; border-radius: 12px;
             background: linear-gradient(135deg, rgba(108, 92, 231, 0.15), rgba(108, 92, 231, 0.05));
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            display: flex; align-items: center; justify-content: center;
             font-size: 18px;
         }
 
+        /* CHAT */
         .chat-list { display: grid; gap: 10px; }
 
         .chat-item {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            padding: 15px;
-            background: var(--card);
-            border: 1.5px solid var(--border);
-            border-radius: 20px;
-            transition: all 0.2s;
-            cursor: pointer;
+            display: flex; align-items: center; gap: 14px;
+            padding: 15px; background: var(--card);
+            border: 1.5px solid var(--border); border-radius: 20px;
+            transition: all 0.2s; cursor: pointer;
         }
 
         .chat-item:active { transform: scale(0.98); border-color: var(--primary); }
 
         .chat-avatar {
-            width: 52px;
-            height: 52px;
-            flex-shrink: 0;
+            width: 52px; height: 52px; flex-shrink: 0;
             border-radius: 18px;
             background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 24px;
-            position: relative;
+            color: white; display: flex; justify-content: center;
+            align-items: center; font-size: 24px; position: relative;
         }
 
         .chat-avatar.admin { background: linear-gradient(135deg, var(--gold), #e67e22); }
-
-        .chat-online {
-            position: absolute;
-            right: -2px;
-            bottom: -2px;
-            width: 14px;
-            height: 14px;
-            border-radius: 50%;
-            background: var(--green);
-            border: 3px solid var(--card);
-        }
 
         .chat-info { flex: 1; min-width: 0; }
         .chat-name { font-size: 14px; font-weight: 800; }
 
         .chat-message {
-            margin-top: 4px;
-            color: var(--muted);
-            font-size: 12px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            margin-top: 4px; color: var(--muted); font-size: 12px;
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
         }
 
         .chat-time { color: var(--muted); font-size: 10px; font-weight: 600; }
 
+        /* CHAT ROOM */
         .chat-room {
-            position: fixed;
-            inset: 0;
-            z-index: 200;
-            background: var(--bg);
-            display: none;
-            flex-direction: column;
+            position: fixed; inset: 0; z-index: 200;
+            background: var(--bg); display: none; flex-direction: column;
         }
 
         .chat-room.active { display: flex; }
 
         .chat-room-header {
             background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: white;
-            padding: 14px 16px;
-            display: flex;
-            align-items: center;
-            gap: 14px;
+            color: white; padding: 14px 16px;
+            display: flex; align-items: center; gap: 14px;
             box-shadow: 0 4px 20px rgba(108, 92, 231, 0.3);
         }
 
         .chat-room-back {
-            width: 40px;
-            height: 40px;
-            border-radius: 13px;
+            width: 40px; height: 40px; border-radius: 13px;
             background: rgba(255, 255, 255, 0.15);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            color: white;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 20px; color: white;
         }
 
         .chat-room-avatar {
-            width: 44px;
-            height: 44px;
-            border-radius: 15px;
+            width: 44px; height: 44px; border-radius: 15px;
             background: rgba(255, 255, 255, 0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            display: flex; align-items: center; justify-content: center;
             font-size: 22px;
         }
 
@@ -739,86 +428,44 @@
         .chat-room-name { font-size: 15px; font-weight: 800; }
 
         .chat-room-status {
-            font-size: 11px;
-            opacity: 0.8;
-            display: flex;
-            align-items: center;
-            gap: 5px;
+            font-size: 11px; opacity: 0.8;
+            display: flex; align-items: center; gap: 5px;
         }
 
         .chat-room-status::before {
-            content: '';
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            background: #2ecc71;
+            content: ''; width: 7px; height: 7px;
+            border-radius: 50%; background: #2ecc71;
         }
 
-        .chat-admin-card {
-            background: linear-gradient(135deg, var(--gold), #e67e22);
-            margin: 12px 16px;
-            border-radius: 18px;
-            padding: 14px;
-            color: white;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            box-shadow: 0 6px 20px rgba(241, 196, 15, 0.3);
+        .chat-participants {
+            background: rgba(108, 92, 231, 0.08);
+            padding: 10px 16px; font-size: 11px;
+            color: var(--muted); display: flex;
+            gap: 12px; flex-wrap: wrap;
         }
 
-        .chat-admin-card-icon {
-            width: 44px;
-            height: 44px;
-            border-radius: 14px;
-            background: rgba(255, 255, 255, 0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 22px;
-        }
-
-        .chat-admin-card-info { flex: 1; }
-        .chat-admin-card-label { font-size: 10px; opacity: 0.85; }
-
-        .chat-admin-card-value {
-            font-size: 15px;
-            font-weight: 900;
-            letter-spacing: 1px;
-        }
-
-        .chat-admin-card-name { font-size: 11px; opacity: 0.9; margin-top: 2px; }
+        .chat-participants span { display: flex; align-items: center; gap: 4px; }
 
         .chat-messages {
-            flex: 1;
-            overflow-y: auto;
-            padding: 16px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
+            flex: 1; overflow-y: auto; padding: 16px;
+            display: flex; flex-direction: column; gap: 10px;
         }
 
         .message {
-            max-width: 80%;
-            padding: 12px 16px;
-            border-radius: 18px;
-            font-size: 14px;
-            line-height: 1.5;
-            position: relative;
-            word-wrap: break-word;
+            max-width: 80%; padding: 12px 16px; border-radius: 18px;
+            font-size: 14px; line-height: 1.5;
+            position: relative; word-wrap: break-word;
         }
 
         .message.sent {
             align-self: flex-end;
             background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: white;
-            border-bottom-right-radius: 6px;
+            color: white; border-bottom-right-radius: 6px;
         }
 
         .message.received {
-            align-self: flex-start;
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-bottom-left-radius: 6px;
+            align-self: flex-start; background: var(--card);
+            border: 1px solid var(--border); border-bottom-left-radius: 6px;
         }
 
         .message.admin {
@@ -831,18 +478,13 @@
         .message-sender { font-size: 10px; font-weight: 800; margin-bottom: 4px; opacity: 0.8; }
 
         .message-time {
-            font-size: 9px;
-            opacity: 0.6;
-            margin-top: 5px;
-            text-align: right;
+            font-size: 9px; opacity: 0.6;
+            margin-top: 5px; text-align: right;
         }
 
         .message-actions {
-            position: absolute;
-            top: -8px;
-            display: none;
-            gap: 4px;
-            z-index: 10;
+            position: absolute; top: -8px;
+            display: none; gap: 4px; z-index: 10;
         }
 
         .message.sent .message-actions { left: -140px; }
@@ -851,91 +493,55 @@
         .message.show-actions .message-actions { display: flex; }
 
         .message-action-btn {
-            padding: 6px 10px;
-            border-radius: 10px;
-            background: var(--card);
-            border: 1px solid var(--border);
-            font-size: 10px;
-            font-weight: 700;
-            color: var(--text);
-            box-shadow: var(--shadow);
-            white-space: nowrap;
+            padding: 6px 10px; border-radius: 10px;
+            background: var(--card); border: 1px solid var(--border);
+            font-size: 10px; font-weight: 700; color: var(--text);
+            box-shadow: var(--shadow); white-space: nowrap;
         }
 
-        .message-action-btn.danger {
-            background: var(--red);
-            color: white;
-            border-color: var(--red);
-        }
+        .message-action-btn.danger { background: var(--red); color: white; border-color: var(--red); }
+        .message-action-btn.warn { background: var(--orange); color: white; border-color: var(--orange); }
 
         .chat-input-area {
-            padding: 12px 16px;
-            background: var(--card);
+            padding: 12px 16px; background: var(--card);
             border-top: 1px solid var(--border);
-            display: flex;
-            gap: 10px;
-            align-items: flex-end;
+            display: flex; gap: 10px; align-items: flex-end;
         }
 
         .chat-input {
-            flex: 1;
-            border: 1.5px solid var(--border);
-            background: var(--bg);
-            color: var(--text);
-            border-radius: 20px;
-            padding: 12px 16px;
-            font-size: 14px;
-            max-height: 100px;
-            resize: none;
+            flex: 1; border: 1.5px solid var(--border);
+            background: var(--bg); color: var(--text);
+            border-radius: 20px; padding: 12px 16px;
+            font-size: 14px; max-height: 100px; resize: none;
         }
 
         .chat-send {
-            width: 46px;
-            height: 46px;
-            border-radius: 16px;
+            width: 46px; height: 46px; border-radius: 16px;
             background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            flex-shrink: 0;
+            color: white; display: flex; align-items: center;
+            justify-content: center; font-size: 20px; flex-shrink: 0;
         }
 
+        /* PROFILE */
         .profile-card {
             background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: white;
-            border-radius: 28px;
-            padding: 28px;
-            text-align: center;
-            margin-bottom: 18px;
-            position: relative;
-            overflow: hidden;
+            color: white; border-radius: 28px; padding: 28px;
+            text-align: center; margin-bottom: 18px;
+            position: relative; overflow: hidden;
         }
 
         .profile-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -30%;
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
+            content: ''; position: absolute;
+            top: -50%; right: -30%; width: 200px; height: 200px;
+            border-radius: 50%; background: rgba(255, 255, 255, 0.1);
         }
 
         .profile-avatar {
-            width: 85px;
-            height: 85px;
-            border-radius: 28px;
+            width: 85px; height: 85px; border-radius: 28px;
             background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            margin: auto;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 40px;
-            border: 3px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px); margin: auto;
+            display: flex; justify-content: center; align-items: center;
+            font-size: 40px; border: 3px solid rgba(255, 255, 255, 0.3);
             position: relative;
         }
 
@@ -943,17 +549,14 @@
         .profile-username { margin-top: 4px; opacity: 0.8; font-size: 13px; }
 
         .profile-stats {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            margin-top: 20px;
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 10px; margin-top: 20px;
         }
 
         .profile-stat {
             background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(10px);
-            border-radius: 16px;
-            padding: 14px 10px;
+            border-radius: 16px; padding: 14px 10px;
         }
 
         .profile-stat-value { font-size: 18px; font-weight: 900; }
@@ -962,49 +565,31 @@
         .profile-menu { display: grid; gap: 10px; }
 
         .profile-menu-item {
-            width: 100%;
-            padding: 16px;
-            border-radius: 20px;
-            background: var(--card);
-            color: var(--text);
+            width: 100%; padding: 16px; border-radius: 20px;
+            background: var(--card); color: var(--text);
             border: 1.5px solid var(--border);
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            text-align: left;
-            transition: all 0.2s;
+            display: flex; align-items: center; gap: 14px;
+            text-align: left; transition: all 0.2s;
         }
 
         .profile-menu-item:active { transform: scale(0.98); border-color: var(--primary); }
 
         .profile-menu-icon {
-            width: 44px;
-            height: 44px;
-            border-radius: 14px;
+            width: 44px; height: 44px; border-radius: 14px;
             background: linear-gradient(135deg, rgba(108, 92, 231, 0.12), rgba(108, 92, 231, 0.05));
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            display: flex; justify-content: center; align-items: center;
             font-size: 20px;
         }
 
         .profile-menu-text { flex: 1; }
         .profile-menu-text strong { display: block; font-size: 14px; }
+        .profile-menu-text span { display: block; margin-top: 3px; color: var(--muted); font-size: 11px; }
 
-        .profile-menu-text span {
-            display: block;
-            margin-top: 3px;
-            color: var(--muted);
-            font-size: 11px;
-        }
-
+        /* BALANCE PAGE */
         .balance-page-card {
             background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: white;
-            border-radius: 28px;
-            padding: 28px;
-            text-align: center;
-            margin-bottom: 20px;
+            color: white; border-radius: 28px; padding: 28px;
+            text-align: center; margin-bottom: 20px;
             box-shadow: 0 10px 40px rgba(108, 92, 231, 0.3);
         }
 
@@ -1015,71 +600,67 @@
         .amount-input-wrap { position: relative; }
 
         .amount-input-wrap input {
-            width: 100%;
-            border: 2px solid var(--border);
-            background: var(--card);
-            color: var(--text);
-            border-radius: 18px;
-            padding: 20px 70px 20px 20px;
-            font-size: 24px;
-            font-weight: 900;
-            text-align: center;
+            width: 100%; border: 2px solid var(--border);
+            background: var(--card); color: var(--text);
+            border-radius: 18px; padding: 20px 70px 20px 20px;
+            font-size: 24px; font-weight: 900; text-align: center;
         }
 
         .amount-input-wrap .currency {
-            position: absolute;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 14px;
-            font-weight: 800;
-            color: var(--muted);
+            position: absolute; right: 20px; top: 50%;
+            transform: translateY(-50%); font-size: 14px;
+            font-weight: 800; color: var(--muted);
         }
 
         .quick-amounts {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 8px;
-            margin-top: 12px;
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 8px; margin-top: 12px;
         }
 
         .quick-amount {
-            padding: 12px;
-            border-radius: 14px;
-            background: var(--card);
-            border: 1.5px solid var(--border);
-            font-size: 13px;
-            font-weight: 700;
-            color: var(--text);
+            padding: 12px; border-radius: 14px;
+            background: var(--card); border: 1.5px solid var(--border);
+            font-size: 13px; font-weight: 700; color: var(--text);
             transition: all 0.2s;
         }
 
-        .quick-amount.active {
-            background: var(--primary);
-            border-color: var(--primary);
-            color: white;
+        .quick-amount.active { background: var(--primary); border-color: var(--primary); color: white; }
+
+        /* RECEIPT UPLOAD */
+        .receipt-upload {
+            border: 2.5px dashed var(--border);
+            border-radius: 22px; background: var(--card);
+            padding: 24px; text-align: center;
+            cursor: pointer; transition: all 0.25s;
+            min-height: 180px;
+            display: flex; flex-direction: column;
+            justify-content: center; align-items: center;
         }
 
+        .receipt-upload:active { border-color: var(--primary); }
+
+        .receipt-preview {
+            position: relative; border-radius: 18px;
+            overflow: hidden; margin-top: 12px;
+        }
+
+        .receipt-preview img { width: 100%; border-radius: 18px; }
+
+        /* MODALS */
         .modal-overlay {
-            position: fixed;
-            inset: 0;
-            z-index: 500;
+            position: fixed; inset: 0; z-index: 500;
             background: rgba(0, 0, 0, 0.6);
             backdrop-filter: blur(4px);
-            display: none;
-            align-items: flex-end;
+            display: none; align-items: flex-end;
             justify-content: center;
         }
 
         .modal-overlay.active { display: flex; }
 
         .modal {
-            width: min(700px, 100%);
-            max-height: 92vh;
-            overflow-y: auto;
-            background: var(--card);
-            border-radius: 28px 28px 0 0;
-            padding: 22px;
+            width: min(700px, 100%); max-height: 92vh;
+            overflow-y: auto; background: var(--card);
+            border-radius: 28px 28px 0 0; padding: 22px;
             animation: modalUp 0.3s ease;
         }
 
@@ -1089,49 +670,34 @@
         }
 
         .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
+            display: flex; justify-content: space-between;
+            align-items: center; margin-bottom: 20px;
         }
 
         .modal-title { font-size: 20px; font-weight: 900; }
 
         .modal-close {
-            width: 40px;
-            height: 40px;
-            border-radius: 14px;
-            background: var(--bg);
-            color: var(--text);
-            font-size: 22px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            width: 40px; height: 40px; border-radius: 14px;
+            background: var(--bg); color: var(--text);
+            font-size: 22px; display: flex;
+            align-items: center; justify-content: center;
         }
 
+        /* TOAST */
         .toast-container {
-            position: fixed;
-            z-index: 1000;
-            left: 16px;
-            right: 16px;
-            top: 16px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
+            position: fixed; z-index: 1000;
+            left: 16px; right: 16px; top: 16px;
+            display: flex; flex-direction: column;
+            align-items: center; gap: 10px;
             pointer-events: none;
         }
 
         .toast {
-            background: #2d3436;
-            color: white;
-            border-radius: 16px;
-            padding: 14px 20px;
-            font-size: 13px;
-            font-weight: 600;
+            background: #2d3436; color: white;
+            border-radius: 16px; padding: 14px 20px;
+            font-size: 13px; font-weight: 600;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-            animation: toastIn 0.3s ease;
-            max-width: 100%;
+            animation: toastIn 0.3s ease; max-width: 100%;
         }
 
         .toast.success { background: linear-gradient(135deg, var(--green), var(--green-dark)); }
@@ -1142,14 +708,11 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
+        /* STATUS */
         .status {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            padding: 6px 12px;
-            border-radius: 10px;
-            font-size: 10px;
-            font-weight: 800;
+            display: inline-flex; align-items: center; gap: 5px;
+            padding: 6px 12px; border-radius: 10px;
+            font-size: 10px; font-weight: 800;
         }
 
         .status.active { color: #00a381; background: rgba(0, 184, 148, 0.12); }
@@ -1157,84 +720,46 @@
         .status.expired { color: #7f8c8d; background: rgba(127, 140, 141, 0.12); }
         .status.rejected { color: #c0392b; background: rgba(231, 76, 60, 0.12); }
 
+        /* MY ADS */
         .my-ad-item {
-            background: var(--card);
-            border: 1.5px solid var(--border);
-            border-radius: 22px;
-            padding: 14px;
-            display: flex;
-            gap: 14px;
-            margin-bottom: 12px;
-            transition: all 0.2s;
+            background: var(--card); border: 1.5px solid var(--border);
+            border-radius: 22px; padding: 14px;
+            display: flex; gap: 14px; margin-bottom: 12px;
         }
 
-        .my-ad-item:active { transform: scale(0.99); }
-
-        .my-ad-image {
-            width: 100px;
-            height: 100px;
-            border-radius: 18px;
-            object-fit: cover;
-        }
-
+        .my-ad-image { width: 100px; height: 100px; border-radius: 18px; object-fit: cover; }
         .my-ad-info { flex: 1; min-width: 0; display: flex; flex-direction: column; }
         .my-ad-title { font-weight: 800; font-size: 14px; }
         .my-ad-meta { font-size: 11px; color: var(--muted); margin-top: 4px; }
-
-        .my-ad-actions {
-            display: flex;
-            gap: 8px;
-            margin-top: auto;
-            padding-top: 10px;
-        }
+        .my-ad-actions { display: flex; gap: 8px; margin-top: auto; padding-top: 10px; }
 
         .small-btn {
-            padding: 8px 12px;
-            border-radius: 10px;
-            font-size: 10px;
-            font-weight: 700;
-            background: var(--bg);
-            color: var(--text);
-            border: 1px solid var(--border);
-            transition: all 0.2s;
+            padding: 8px 12px; border-radius: 10px;
+            font-size: 10px; font-weight: 700;
+            background: var(--bg); color: var(--text);
+            border: 1px solid var(--border); transition: all 0.2s;
         }
 
         .small-btn:active { transform: scale(0.95); }
         .small-btn.primary { background: var(--primary); color: white; border-color: var(--primary); }
+        .small-btn.danger { background: rgba(231, 76, 60, 0.1); color: var(--red); border-color: rgba(231, 76, 60, 0.2); }
+        .small-btn.success { background: rgba(0, 184, 148, 0.1); color: var(--green); border-color: rgba(0, 184, 148, 0.2); }
 
-        .small-btn.danger {
-            background: rgba(231, 76, 60, 0.1);
-            color: var(--red);
-            border-color: rgba(231, 76, 60, 0.2);
-        }
-
-        .small-btn.success {
-            background: rgba(0, 184, 148, 0.1);
-            color: var(--green);
-            border-color: rgba(0, 184, 148, 0.2);
-        }
-
+        /* ADMIN */
         .admin-badge {
-            padding: 8px 14px;
-            border-radius: 12px;
+            padding: 8px 14px; border-radius: 12px;
             background: linear-gradient(135deg, rgba(231, 76, 60, 0.15), rgba(231, 76, 60, 0.05));
-            color: var(--red);
-            font-size: 11px;
-            font-weight: 900;
+            color: var(--red); font-size: 11px; font-weight: 900;
         }
 
         .admin-stat-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-            margin-bottom: 20px;
+            display: grid; grid-template-columns: repeat(2, 1fr);
+            gap: 12px; margin-bottom: 20px;
         }
 
         .admin-stat {
-            background: var(--card);
-            border: 1.5px solid var(--border);
-            border-radius: 20px;
-            padding: 18px;
+            background: var(--card); border: 1.5px solid var(--border);
+            border-radius: 20px; padding: 18px;
         }
 
         .admin-stat-icon { font-size: 24px; }
@@ -1242,63 +767,80 @@
         .admin-stat-label { color: var(--muted); font-size: 11px; margin-top: 3px; }
 
         .moderation-card {
-            background: var(--card);
-            border: 1.5px solid var(--border);
-            border-radius: 22px;
-            overflow: hidden;
-            margin-bottom: 14px;
+            background: var(--card); border: 1.5px solid var(--border);
+            border-radius: 22px; overflow: hidden; margin-bottom: 14px;
         }
 
         .moderation-layout { display: grid; grid-template-columns: 1fr 1fr; }
-
-        .moderation-photo,
-        .receipt-photo {
-            height: 180px;
-            object-fit: cover;
-            width: 100%;
-        }
-
+        .moderation-photo { height: 180px; object-fit: cover; width: 100%; }
         .moderation-info { padding: 16px; }
         .moderation-info h3 { font-size: 16px; }
         .moderation-meta { color: var(--muted); font-size: 11px; margin-top: 6px; }
 
         .moderation-actions {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            padding: 14px;
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 10px; padding: 14px;
         }
 
+        .topup-card {
+            background: var(--card); border: 1.5px solid var(--border);
+            border-radius: 22px; padding: 16px; margin-bottom: 14px;
+        }
+
+        .topup-header {
+            display: flex; justify-content: space-between;
+            align-items: center; margin-bottom: 12px;
+        }
+
+        .topup-user { font-weight: 800; font-size: 14px; }
+        .topup-amount { font-size: 20px; font-weight: 900; color: var(--green); }
+
+        .topup-receipt {
+            width: 100%; max-height: 300px;
+            object-fit: contain; border-radius: 12px;
+            background: var(--bg); margin-bottom: 12px;
+        }
+
+        .topup-actions {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+        }
+
+        /* STEP INDICATOR */
+        .step-indicator { display: flex; gap: 6px; margin: 18px 0 24px; }
+
+        .step-dot {
+            height: 5px; flex: 1; border-radius: 10px;
+            background: var(--border); transition: all 0.3s;
+        }
+
+        .step-dot.active { background: linear-gradient(90deg, var(--primary), var(--primary-light)); }
+
+        .create-step { display: none; }
+        .create-step.active { display: block; animation: pageIn 0.3s ease; }
+
+        .create-actions { display: flex; gap: 12px; margin-top: 24px; }
+        .create-actions .btn { flex: 1; }
+
+        /* PREVIEW */
         .preview-card {
-            background: var(--card);
-            border-radius: 24px;
-            overflow: hidden;
-            border: 1.5px solid var(--border);
+            background: var(--card); border-radius: 24px;
+            overflow: hidden; border: 1.5px solid var(--border);
         }
 
-        .preview-main-image {
-            height: 280px;
-            width: 100%;
-            object-fit: cover;
-        }
-
+        .preview-main-image { height: 280px; width: 100%; object-fit: cover; }
         .preview-content { padding: 20px; }
         .preview-title { font-size: 24px; font-weight: 900; }
 
         .preview-price {
-            color: var(--primary);
-            font-size: 22px;
-            font-weight: 900;
-            margin-top: 8px;
+            color: var(--primary); font-size: 22px;
+            font-weight: 900; margin-top: 8px;
         }
 
         .info-list { margin-top: 20px; display: grid; gap: 12px; }
 
         .info-row {
-            display: flex;
-            justify-content: space-between;
-            gap: 10px;
-            font-size: 13px;
+            display: flex; justify-content: space-between;
+            gap: 10px; font-size: 13px;
             border-bottom: 1px solid var(--border);
             padding-bottom: 12px;
         }
@@ -1306,72 +848,39 @@
         .info-row span:first-child { color: var(--muted); }
         .info-row span:last-child { font-weight: 700; text-align: right; }
 
-        .step-indicator { display: flex; gap: 6px; margin: 18px 0 24px; }
-
-        .step-dot {
-            height: 5px;
-            flex: 1;
-            border-radius: 10px;
-            background: var(--border);
-            transition: all 0.3s;
-        }
-
-        .step-dot.active {
-            background: linear-gradient(90deg, var(--primary), var(--primary-light));
-        }
-
-        .create-step { display: none; }
-
-        .create-step.active {
-            display: block;
-            animation: pageIn 0.3s ease;
-        }
-
-        .create-actions { display: flex; gap: 12px; margin-top: 24px; }
-        .create-actions .btn { flex: 1; }
-
+        /* EMPTY */
         .empty { padding: 50px 20px; text-align: center; color: var(--muted); }
         .empty-icon { font-size: 56px; margin-bottom: 14px; }
-        .hidden { display: none !important; }
 
+        /* LOADING */
         .loading-overlay {
-            position: fixed;
-            inset: 0;
-            z-index: 9999;
+            position: fixed; inset: 0; z-index: 9999;
             background: rgba(0, 0, 0, 0.5);
             backdrop-filter: blur(4px);
-            display: none;
-            align-items: center;
-            justify-content: center;
+            display: none; align-items: center; justify-content: center;
         }
 
         .loading-overlay.active { display: flex; }
 
         .loading-spinner {
-            width: 50px;
-            height: 50px;
+            width: 50px; height: 50px;
             border: 4px solid rgba(255, 255, 255, 0.3);
-            border-top-color: white;
-            border-radius: 50%;
+            border-top-color: white; border-radius: 50%;
             animation: spin 0.8s linear infinite;
         }
 
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
+        @keyframes spin { to { transform: rotate(360deg); } }
 
+        /* RESPONSIVE */
         @media (min-width: 700px) {
             .ads-grid { grid-template-columns: repeat(3, 1fr); }
-            .tariff-grid { grid-template-columns: repeat(2, 1fr); }
-            .container { padding: 24px; }
             .admin-stat-grid { grid-template-columns: repeat(4, 1fr); }
         }
 
         @media (min-width: 1000px) {
             .ads-grid { grid-template-columns: repeat(4, 1fr); }
             .bottom-navigation {
-                left: 50%;
-                right: auto;
+                left: 50%; right: auto;
                 transform: translateX(-50%);
                 width: 650px;
                 border: 1px solid var(--border);
@@ -1472,14 +981,14 @@
         </div>
     </section>
 
-    <!-- BALANCE TOP-UP PAGE 2 -->
+    <!-- BALANCE TOP-UP PAGE 2 (RECEIPT UPLOAD) -->
     <section class="page" id="balancePaymentPage">
         <div class="container">
             <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 20px;">
                 <button class="icon-btn" onclick="goToPage('balanceTopUpPage')">←</button>
                 <div>
                     <div class="section-title">To'lov qilish</div>
-                    <div class="section-subtitle">2-qadam: Karta orqali to'lov</div>
+                    <div class="section-subtitle">2-qadam: Kartaga o'tkazing va chek yuklang</div>
                 </div>
             </div>
 
@@ -1489,9 +998,9 @@
                 <div class="balance-page-sub">Quyidagi kartaga o'tkazing</div>
             </div>
 
+            <!-- Karta -->
             <div style="background: linear-gradient(135deg, #1a1a2e, #16213e); border-radius: 24px; padding: 24px; margin-top: 20px; color: white; position: relative; overflow: hidden;">
                 <div style="position: absolute; top: -50px; right: -50px; width: 150px; height: 150px; border-radius: 50%; background: rgba(108, 92, 231, 0.2);"></div>
-                <div style="position: absolute; bottom: -30px; left: -30px; width: 100px; height: 100px; border-radius: 50%; background: rgba(255, 101, 132, 0.15);"></div>
                 
                 <div style="position: relative; z-index: 1;">
                     <div style="font-size: 11px; opacity: 0.7;">TO'LOV UCHUN KARTA</div>
@@ -1520,19 +1029,37 @@
                 </div>
             </div>
 
-            <div style="background: rgba(243, 156, 18, 0.1); border: 1.5px solid rgba(243, 156, 18, 0.3); border-radius: 18px; padding: 16px; margin-top: 20px; display: flex; gap: 12px; align-items: flex-start;">
+            <!-- Ogohlantirish -->
+            <div style="background: rgba(243, 156, 18, 0.1); border: 1.5px solid rgba(243, 156, 18, 0.3); border-radius: 18px; padding: 16px; margin-top: 20px; display: flex; gap: 12px;">
                 <div style="font-size: 22px;">⚠️</div>
                 <div>
                     <div style="font-weight: 800; font-size: 13px; color: #d68910;">Diqqat!</div>
                     <div style="font-size: 12px; color: var(--muted); margin-top: 4px; line-height: 1.5;">
-                        Iltimos, kiritilgan sumani to'ldiring. Undan ko'p ham kiritmang, kam ham kiritmang!
+                        To'lovni amalga oshirib, <b>chekni yuklang</b>. Admin tasdiqlasa, balansingizga qo'shiladi.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chek yuklash -->
+            <div style="margin-top: 20px;">
+                <label class="form-label">🧾 To'lov chekini yuklang</label>
+                <label class="receipt-upload" id="receiptUpload">
+                    <div style="font-size: 52px; margin-bottom: 12px;">📸</div>
+                    <strong>Chek rasmini tanlang</strong>
+                    <span style="color: var(--muted); font-size: 12px; margin-top: 8px;">JPG yoki PNG formatda</span>
+                    <input type="file" id="receiptInput" accept="image/*" hidden>
+                </label>
+                <div id="receiptPreviewWrap" style="display: none;">
+                    <div class="receipt-preview">
+                        <img id="receiptPreviewImg" src="" alt="Chek">
+                        <button class="remove-media" onclick="removeReceipt()">×</button>
                     </div>
                 </div>
             </div>
 
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 24px;">
                 <button class="btn btn-secondary" onclick="cancelPayment()">✕ Bekor qilish</button>
-                <button class="btn btn-success" onclick="confirmPayment()">✓ Tekshirish</button>
+                <button class="btn btn-success" id="submitReceiptBtn" onclick="submitReceipt()" disabled>✓ Yuborish</button>
             </div>
         </div>
     </section>
@@ -1550,114 +1077,69 @@
 
             <div class="step-indicator" id="stepIndicator"></div>
 
+            <!-- STEP 1: Tariff -->
             <div class="create-step active" data-step="1">
                 <div class="section-title">Tarifni tanlang</div>
                 <div class="section-subtitle">Reklamangiz qayerda chiqishini tanlang</div>
 
-                <div class="tariff-grid" id="tariffGrid">
-                    <div class="tariff-card" data-tariff="1">
-                        <div class="tariff-header">
-                            <div class="tariff-icon">📢</div>
-                            <div class="tariff-price">
-                                <div class="tariff-price-value">19,000</div>
-                                <div class="tariff-price-label">so'm</div>
+                <div style="display: grid; gap: 16px; margin-top: 18px;" id="tariffGrid">
+                    <div class="tariff-card" data-tariff="1" style="background: var(--card); border: 2px solid var(--border); border-radius: 24px; padding: 22px; display: flex; flex-direction: column; gap: 14px; cursor: pointer; transition: all 0.25s;">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                            <div style="width: 60px; height: 60px; border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 30px; background: linear-gradient(135deg, rgba(108, 92, 231, 0.1), rgba(108, 92, 231, 0.05));">📢</div>
+                            <div style="text-align: right;">
+                                <div style="font-size: 26px; font-weight: 900; color: var(--primary);">19,000</div>
+                                <div style="font-size: 11px; color: var(--muted);">so'm</div>
                             </div>
                         </div>
-                        <div class="tariff-title">Kanalda reklama</div>
-                        <div class="tariff-desc">Reklamangiz faqat bizning Telegram kanalimizda chiqadi</div>
-                        <div class="tariff-features">
-                            <div class="tariff-feature">
-                                <div class="tariff-feature-icon">✓</div>
-                                <span>Kanalga 1 marta joylash</span>
-                            </div>
-                            <div class="tariff-feature">
-                                <div class="tariff-feature-icon">✓</div>
-                                <span>24 soat davomida ko'rinadi</span>
-                            </div>
-                        </div>
+                        <div style="font-size: 18px; font-weight: 900;">Kanalda reklama</div>
+                        <div style="font-size: 12px; color: var(--muted); line-height: 1.5;">Faqat Telegram kanalda chiqadi</div>
                     </div>
 
-                    <div class="tariff-card popular" data-tariff="2">
-                        <div class="tariff-header">
-                            <div class="tariff-icon">📱</div>
-                            <div class="tariff-price">
-                                <div class="tariff-price-value">9,000</div>
-                                <div class="tariff-price-label">so'm</div>
+                    <div class="tariff-card" data-tariff="2" style="background: var(--card); border: 2px solid var(--border); border-radius: 24px; padding: 22px; display: flex; flex-direction: column; gap: 14px; cursor: pointer; transition: all 0.25s; position: relative;">
+                        <div style="position: absolute; top: 0; right: 0; background: linear-gradient(135deg, var(--gold), #e67e22); color: white; padding: 6px 16px; border-radius: 0 22px 0 16px; font-size: 10px; font-weight: 900;">🔥 MASHHUR</div>
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                            <div style="width: 60px; height: 60px; border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 30px; background: linear-gradient(135deg, rgba(108, 92, 231, 0.1), rgba(108, 92, 231, 0.05));">📱</div>
+                            <div style="text-align: right;">
+                                <div style="font-size: 26px; font-weight: 900; color: var(--primary);">9,000</div>
+                                <div style="font-size: 11px; color: var(--muted);">so'm</div>
                             </div>
                         </div>
-                        <div class="tariff-title">Web App'da reklama</div>
-                        <div class="tariff-desc">Asosiy menyuda reklamangiz chiqadi</div>
-                        <div class="tariff-features">
-                            <div class="tariff-feature">
-                                <div class="tariff-feature-icon">✓</div>
-                                <span>Web App asosiy menyuda</span>
-                            </div>
-                            <div class="tariff-feature">
-                                <div class="tariff-feature-icon">✓</div>
-                                <span>3 kun davomida ko'rinadi</span>
-                            </div>
-                        </div>
+                        <div style="font-size: 18px; font-weight: 900;">Web App'da reklama</div>
+                        <div style="font-size: 12px; color: var(--muted); line-height: 1.5;">Asosiy menyuda chiqadi</div>
                     </div>
 
-                    <div class="tariff-card" data-tariff="3">
-                        <div class="tariff-header">
-                            <div class="tariff-icon">🔥</div>
-                            <div class="tariff-price">
-                                <div class="tariff-price-value">25,000</div>
-                                <div class="tariff-price-label">so'm</div>
+                    <div class="tariff-card" data-tariff="3" style="background: var(--card); border: 2px solid var(--border); border-radius: 24px; padding: 22px; display: flex; flex-direction: column; gap: 14px; cursor: pointer; transition: all 0.25s;">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                            <div style="width: 60px; height: 60px; border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 30px; background: linear-gradient(135deg, rgba(108, 92, 231, 0.1), rgba(108, 92, 231, 0.05));">🔥</div>
+                            <div style="text-align: right;">
+                                <div style="font-size: 26px; font-weight: 900; color: var(--primary);">25,000</div>
+                                <div style="font-size: 11px; color: var(--muted);">so'm</div>
                             </div>
                         </div>
-                        <div class="tariff-title">Web App + Kanal</div>
-                        <div class="tariff-desc">Eng yaxshi tarif - ikkala joyda ham chiqadi</div>
-                        <div class="tariff-features">
-                            <div class="tariff-feature">
-                                <div class="tariff-feature-icon">✓</div>
-                                <span>Web App asosiy menyuda</span>
-                            </div>
-                            <div class="tariff-feature">
-                                <div class="tariff-feature-icon">✓</div>
-                                <span>Telegram kanalda</span>
-                            </div>
-                            <div class="tariff-feature">
-                                <div class="tariff-feature-icon">✓</div>
-                                <span>7 kun davomida ko'rinadi</span>
-                            </div>
-                        </div>
+                        <div style="font-size: 18px; font-weight: 900;">Web App + Kanal</div>
+                        <div style="font-size: 12px; color: var(--muted); line-height: 1.5;">Ikkala joyda chiqadi</div>
                     </div>
 
-                    <div class="tariff-card" data-tariff="4">
-                        <div class="tariff-header">
-                            <div class="tariff-icon">👑</div>
-                            <div class="tariff-price">
-                                <div class="tariff-price-value">29,000</div>
-                                <div class="tariff-price-label">so'm</div>
+                    <div class="tariff-card" data-tariff="4" style="background: var(--card); border: 2px solid var(--border); border-radius: 24px; padding: 22px; display: flex; flex-direction: column; gap: 14px; cursor: pointer; transition: all 0.25s;">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                            <div style="width: 60px; height: 60px; border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 30px; background: linear-gradient(135deg, rgba(108, 92, 231, 0.1), rgba(108, 92, 231, 0.05));">👑</div>
+                            <div style="text-align: right;">
+                                <div style="font-size: 26px; font-weight: 900; color: var(--primary);">29,000</div>
+                                <div style="font-size: 11px; color: var(--muted);">so'm</div>
                             </div>
                         </div>
-                        <div class="tariff-title">VIP Tarif</div>
-                        <div class="tariff-desc">Eng yuqori - vaqtni o'zingiz tanlaysiz</div>
-                        <div class="tariff-features">
-                            <div class="tariff-feature">
-                                <div class="tariff-feature-icon">✓</div>
-                                <span>Web App + Kanal</span>
-                            </div>
-                            <div class="tariff-feature">
-                                <div class="tariff-feature-icon">✓</div>
-                                <span>Reklama vaqtini tanlash</span>
-                            </div>
-                            <div class="tariff-feature">
-                                <div class="tariff-feature-icon">✓</div>
-                                <span>Tepada turadi</span>
-                            </div>
-                        </div>
+                        <div style="font-size: 18px; font-weight: 900;">VIP Tarif</div>
+                        <div style="font-size: 12px; color: var(--muted); line-height: 1.5;">Eng yuqori tarif</div>
                     </div>
                 </div>
             </div>
 
+            <!-- STEP 2: Media -->
             <div class="create-step" data-step="2">
                 <div class="section-title">Video yoki rasm yuklang</div>
-                <div class="section-subtitle">Akkaunt obzor videosini yuklang (rasm ham mumkin)</div>
+                <div class="section-subtitle">Akkaunt obzor videosini yuklang</div>
 
-                <label class="media-upload" id="mediaUpload" style="margin-top: 18px;">
+                <label class="media-upload" style="margin-top: 18px;">
                     <div class="media-upload-icon">🎬</div>
                     <strong>Video yoki rasm tanlang</strong>
                     <span>MP4, JPG yoki PNG formatda</span>
@@ -1667,6 +1149,7 @@
                 <div class="media-preview-grid" id="mediaPreviewGrid"></div>
             </div>
 
+            <!-- STEP 3: Account Info -->
             <div class="create-step" data-step="3">
                 <div class="section-title">Akkaunt ma'lumotlari</div>
                 <div class="section-subtitle">Akkaunt haqida to'liq ma'lumot kiriting</div>
@@ -1689,7 +1172,7 @@
                         </div>
                         
                         <div class="form-group">
-                            <label class="form-label">🦹‍♂️ Kiymlar: nechta kiyim va mifik borligi</label>
+                            <label class="form-label">🦹‍♂️ Kiymlar</label>
                             <input class="form-input" id="accClothes" placeholder="Masalan: 150+ kiyim, 20 mifik">
                         </div>
                         
@@ -1727,14 +1210,14 @@
                         
                         <div class="form-group">
                             <label class="form-label">🔥 Qõshimcha</label>
-                            <textarea class="form-textarea" id="accExtra" placeholder="Lednik 7 lvl&#10;M24 4 lvl&#10;vahokazo orujalarni yozin"></textarea>
+                            <textarea class="form-textarea" id="accExtra" placeholder="Lednik 7 lvl&#10;M24 4 lvl"></textarea>
                         </div>
                     </div>
 
                     <div class="account-form-card">
                         <div class="account-form-title">
                             <div class="account-form-title-icon">📞</div>
-                            <span>Aloqa ma'lumotlari</span>
+                            <span>Qo'shimcha</span>
                         </div>
                         
                         <div class="form-group">
@@ -1776,22 +1259,14 @@
                             </select>
                         </div>
                         
-                        <div class="form-group">
-                            <label class="form-label">📲 Tg-murojat</label>
-                            <input class="form-input" id="accTelegram" placeholder="@username">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label class="form-label">📱 Telefon raqam</label>
-                            <div style="display: flex; align-items: center; border: 1.5px solid var(--border); background: var(--card); border-radius: 15px; overflow: hidden;">
-                                <span style="padding-left: 15px; font-weight: 800; color: var(--muted);">+998</span>
-                                <input class="form-input" id="accPhone" inputmode="numeric" maxlength="9" placeholder="901234567" style="border: 0; background: transparent;">
-                            </div>
+                        <div style="background: rgba(108, 92, 231, 0.08); border-radius: 14px; padding: 12px; font-size: 12px; color: var(--muted); line-height: 1.5;">
+                            ℹ️ Telefon raqam va Telegram username <b>so'ralmaydi</b>. Barcha aloqa <b>chat</b> orqali amalga oshiriladi.
                         </div>
                     </div>
                 </div>
             </div>
 
+            <!-- STEP 4: Preview -->
             <div class="create-step" data-step="4">
                 <div class="section-title">E'lonni tekshiring</div>
                 <div class="section-subtitle">Ma'lumotlarni tekshirib, tasdiqlang</div>
@@ -1831,12 +1306,9 @@
     <!-- CHAT -->
     <section class="page" id="chatPage">
         <div class="container">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                <div>
-                    <div class="section-title">Chat</div>
-                    <div class="section-subtitle">Xabarlar va savdolar</div>
-                </div>
-                <button class="icon-btn">🔍</button>
+            <div style="margin-bottom: 20px;">
+                <div class="section-title">Chat</div>
+                <div class="section-subtitle">Xabarlar va savdolar</div>
             </div>
 
             <div class="chat-list" id="chatList"></div>
@@ -1872,7 +1344,7 @@
                     <div class="profile-menu-icon">👤</div>
                     <div class="profile-menu-text">
                         <strong>Shaxsiy ma'lumotlar</strong>
-                        <span>Ism, familiya va telefon</span>
+                        <span>Ism va familiya</span>
                     </div>
                     <span>›</span>
                 </button>
@@ -1881,7 +1353,7 @@
                     <div class="profile-menu-icon">💰</div>
                     <div class="profile-menu-text">
                         <strong>Hisobni to'ldirish</strong>
-                        <span>Balansni oshirish</span>
+                        <span>Chek yuklash orqali</span>
                     </div>
                     <span>›</span>
                 </button>
@@ -1895,16 +1367,17 @@
                     <span>›</span>
                 </button>
 
-                <button class="profile-menu-item" id="adminLoginButton">
+                <!-- Admin panel tugmasi — FAQAT ADMIN uchun ko'rinadi -->
+                <button class="profile-menu-item" id="adminPanelBtn" style="display: none;" onclick="goToPage('adminPage')">
                     <div class="profile-menu-icon">🛡️</div>
                     <div class="profile-menu-text">
                         <strong>Admin panel</strong>
-                        <span>Administrator kirishi</span>
+                        <span>Boshqaruv paneli</span>
                     </div>
                     <span>›</span>
                 </button>
 
-                <button class="profile-menu-item" onclick="showToast('Cardinal Reklama Bot v1.0')">
+                <button class="profile-menu-item" onclick="showToast('Cardinal Reklama Bot v2.0')">
                     <div class="profile-menu-icon">ℹ️</div>
                     <div class="profile-menu-text">
                         <strong>Ilova haqida</strong>
@@ -1916,7 +1389,7 @@
         </div>
     </section>
 
-    <!-- ADMIN PANEL -->
+    <!-- ADMIN PANEL (FAQAT ADMIN UCHUN) -->
     <section class="page" id="adminPage">
         <div class="container">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
@@ -1941,17 +1414,32 @@
                 <div class="admin-stat">
                     <div class="admin-stat-icon">⏳</div>
                     <div class="admin-stat-number" id="adminPendingCount">0</div>
-                    <div class="admin-stat-label">Kutilmoqda</div>
+                    <div class="admin-stat-label">Reklama kutilmoqda</div>
                 </div>
                 <div class="admin-stat">
-                    <div class="admin-stat-icon">💰</div>
-                    <div class="admin-stat-number" id="adminBalanceTotal">0</div>
-                    <div class="admin-stat-label">Umumiy balans</div>
+                    <div class="admin-stat-icon">💳</div>
+                    <div class="admin-stat-number" id="adminPendingTopups">0</div>
+                    <div class="admin-stat-label">Chek kutilmoqda</div>
                 </div>
             </div>
 
-            <div class="section-title" style="margin-bottom: 12px;">Tekshiruvdagi e'lonlar</div>
-            <div id="moderationList"></div>
+            <!-- Tabs -->
+            <div class="category-tabs" id="adminTabs">
+                <button class="category-tab active" data-admintab="ads">📢 Reklamalar</button>
+                <button class="category-tab" data-admintab="topups">💳 To'lovlar</button>
+            </div>
+
+            <!-- Reklamalar -->
+            <div id="adminAdsSection" style="margin-top: 16px;">
+                <div class="section-title" style="font-size: 16px; margin-bottom: 12px;">Tasdiqlash kutilayotgan reklamalar</div>
+                <div id="moderationList"></div>
+            </div>
+
+            <!-- To'lovlar -->
+            <div id="adminTopupsSection" style="margin-top: 16px; display: none;">
+                <div class="section-title" style="font-size: 16px; margin-bottom: 12px;">Chek tasdiqlash</div>
+                <div id="topupList"></div>
+            </div>
         </div>
     </section>
 
@@ -1959,21 +1447,14 @@
     <div class="chat-room" id="chatRoom">
         <div class="chat-room-header">
             <button class="chat-room-back" onclick="closeChatRoom()">←</button>
-            <div class="chat-room-avatar" id="chatRoomAvatar">👤</div>
+            <div class="chat-room-avatar" id="chatRoomAvatar">🤝</div>
             <div class="chat-room-info">
                 <div class="chat-room-name" id="chatRoomName">Chat</div>
                 <div class="chat-room-status" id="chatRoomStatus">Online</div>
             </div>
         </div>
 
-        <div class="chat-admin-card">
-            <div class="chat-admin-card-icon">💳</div>
-            <div class="chat-admin-card-info">
-                <div class="chat-admin-card-label">ADMIN KARTA RAQAMI</div>
-                <div class="chat-admin-card-value">8600 1234 5678 9012</div>
-                <div class="chat-admin-card-name">CARDINAL ADMIN</div>
-            </div>
-        </div>
+        <div class="chat-participants" id="chatParticipants"></div>
 
         <div class="chat-messages" id="chatMessages"></div>
 
@@ -1983,7 +1464,7 @@
         </div>
     </div>
 
-    <!-- BOTTOM NAVIGATION -->
+    <!-- BOTTOM NAV -->
     <nav class="bottom-navigation">
         <div class="bottom-navigation-inner">
             <button class="nav-item active" data-page="dashboardPage">
@@ -2015,30 +1496,6 @@
 </div>
 
 <!-- MODALS -->
-<div class="modal-overlay" id="adminLoginModal">
-    <div class="modal">
-        <div class="modal-header">
-            <div class="modal-title">🛡️ Admin kirish</div>
-            <button class="modal-close" onclick="closeModal('adminLoginModal')">×</button>
-        </div>
-
-        <div class="form-group">
-            <label class="form-label">Telefon raqamingiz</label>
-            <div style="display: flex; align-items: center; border: 1.5px solid var(--border); background: var(--card); border-radius: 15px; overflow: hidden;">
-                <span style="padding-left: 15px; font-weight: 800; color: var(--muted);">+998</span>
-                <input class="form-input" id="adminPhoneInput" inputmode="numeric" maxlength="9" placeholder="901234567" style="border: 0; background: transparent;">
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="form-label">Parol</label>
-            <input class="form-input" id="adminPasswordInput" type="password" placeholder="Admin parolini kiriting">
-        </div>
-
-        <button class="btn btn-primary btn-block" onclick="verifyAdminLogin()">Kirish</button>
-    </div>
-</div>
-
 <div class="modal-overlay" id="profileEditModal">
     <div class="modal">
         <div class="modal-header">
@@ -2054,14 +1511,6 @@
         <div class="form-group">
             <label class="form-label">Familiya</label>
             <input class="form-input" id="profileLastName" placeholder="Familiyangiz">
-        </div>
-
-        <div class="form-group">
-            <label class="form-label">Telefon (o'zgartirilmaydi)</label>
-            <div style="display: flex; align-items: center; border: 1.5px solid var(--border); background: var(--bg); border-radius: 15px; overflow: hidden; opacity: 0.7;">
-                <span style="padding-left: 15px; font-weight: 800; color: var(--muted);">+998</span>
-                <input class="form-input" id="profilePhone" inputmode="numeric" maxlength="9" placeholder="901234567" style="border: 0; background: transparent;" readonly>
-            </div>
         </div>
 
         <button class="btn btn-primary btn-block" onclick="saveProfile()">Saqlash</button>
@@ -2120,16 +1569,16 @@
      ============================================================= -->
 <script>
 /* =========================================================
-   ⚠️ MUHIM: NGROK URL'INGIZNI SHU YERGA YOZING!
+   ⚠️ API URL'NI O'ZINGIZNING NGROK URL'INGIZGA ALMASHTIRING!
    ========================================================= */
 const API_URL = "https://SIZNING-NGROK-URL.ngrok-free.app";
-// Masalan: "https://abc123-45-67-89.ngrok-free.app"
 
 /* =========================================================
    TELEGRAM MINI APP
    ========================================================= */
 const tg = window.Telegram?.WebApp || null;
 let TELEGRAM_USER = null;
+let IS_ADMIN = false;
 
 if (tg) {
     tg.ready();
@@ -2138,10 +1587,7 @@ if (tg) {
         tg.setHeaderColor("#6c5ce7");
         tg.setBackgroundColor("#f0f2f8");
     } catch (e) {}
-    
-    // Telegram foydalanuvchi ma'lumotlari
     TELEGRAM_USER = tg.initDataUnsafe?.user || null;
-    
     console.log("📱 Telegram User:", TELEGRAM_USER);
 }
 
@@ -2149,8 +1595,7 @@ if (tg) {
    CONFIG
    ========================================================= */
 const CONFIG = {
-    ADMIN_PHONES: ["900512621", "934938181"],
-    ADMIN_PASSWORD: "cardinal2407",
+    ADMIN_CHAT_ID: 7038296036,
     ADMIN_CARD: "8600 1234 5678 9012",
     ADMIN_NAME: "CARDINAL ADMIN",
     TARIFF_PRICES: { "1": 19000, "2": 9000, "3": 25000, "4": 29000 }
@@ -2165,13 +1610,16 @@ let APP_DATA = {
     ads: [],
     myAds: [],
     pending: [],
-    users: 0,
+    pendingTopups: [],
     chats: [],
     currentChat: null,
+    chatMessages: [],
     tariff: null,
     createStep: 1,
     pendingTopUpAmount: 0,
+    pendingReceipt: null,
     editingMessageId: null,
+    myReactions: {}, // { ad_id: 'like' | 'dislike' }
     createData: {
         media: null,
         mediaType: null,
@@ -2186,40 +1634,9 @@ let APP_DATA = {
     }
 };
 
-const DEMO_ADS = [
-    {
-        id: "ad-001",
-        title: "PUBG Mobile - 75 LVL Akkaunt",
-        description: "Juda zo'r akkaunt! Ko'plab mifik kiyimlar mavjud.",
-        image: "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80",
-        video: null,
-        type: "PREMIUM",
-        price: 2500000,
-        location: "Toshkent",
-        phone: "+998901234567",
-        telegram: "@pubg_seller",
-        likes: 45,
-        views: 234,
-        status: "ACTIVE",
-        createdAt: Date.now() - 86400000,
-        expiresAt: Date.now() + 86400000 * 5,
-        account: {
-            level: "75", rp: "15-sezon",
-            clothes: "150+ kiyim, 25 mifik",
-            gunSkin: "77", parachuteSkin: "7", bagSkin: "7",
-            achievement: "777+", titles: "videoda",
-            extra: "Lednik 7 lvl, M24 4 lvl",
-            linked: "Telegram", price: "2500000",
-            location: "Toshkent",
-            telegram: "@pubg_seller", phone: "901234567"
-        }
-    }
-];
-
 /* =========================================================
-   API FUNKSIYALAR
+   API HELPER
    ========================================================= */
-
 async function apiCall(endpoint, method = "GET", body = null) {
     try {
         const options = {
@@ -2227,19 +1644,23 @@ async function apiCall(endpoint, method = "GET", body = null) {
             headers: { "Content-Type": "application/json" }
         };
         if (body) options.body = JSON.stringify(body);
-        
+
         const res = await fetch(`${API_URL}${endpoint}`, options);
+        const data = await res.json().catch(() => ({}));
+
         if (!res.ok) {
-            const err = await res.json().catch(() => ({}));
-            throw new Error(err.error || `HTTP ${res.status}`);
+            throw new Error(data.error || `HTTP ${res.status}`);
         }
-        return await res.json();
+        return data;
     } catch (e) {
-        console.error(`API ${endpoint} xatosi:`, e);
+        console.error(`API ${endpoint}:`, e);
         throw e;
     }
 }
 
+/* =========================================================
+   SPECIFIC API CALLS
+   ========================================================= */
 async function loadProfileFromAPI() {
     if (!TELEGRAM_USER) return;
     try {
@@ -2252,41 +1673,28 @@ async function loadProfileFromAPI() {
         };
         APP_DATA.balance = user.balance || 0;
         APP_DATA.spent = user.spent || 0;
+        IS_ADMIN = (TELEGRAM_USER.id === CONFIG.ADMIN_CHAT_ID);
+
         updateProfileDisplay();
         updateBalanceDisplay();
-    } catch (e) {
-        console.warn("Profil yuklanmadi, fallback ishlatiladi");
-        if (TELEGRAM_USER) {
-            APP_DATA.profile.firstName = TELEGRAM_USER.first_name || "Foydalanuvchi";
-            APP_DATA.profile.lastName = TELEGRAM_USER.last_name || "";
+
+        // Admin panel tugmasini ko'rsatish
+        const adminBtn = document.getElementById("adminPanelBtn");
+        if (adminBtn) {
+            adminBtn.style.display = IS_ADMIN ? "flex" : "none";
         }
+    } catch (e) {
+        console.warn("Profil yuklanmadi:", e);
     }
 }
 
 async function loadAdsFromAPI() {
     try {
         const ads = await apiCall("/api/ads");
-        APP_DATA.ads = ads.map(ad => ({
-            id: ad.id,
-            title: ad.title,
-            description: ad.description || "",
-            image: ad.image_url || "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80",
-            video: ad.video_url,
-            type: ad.ad_type,
-            price: ad.price,
-            location: ad.location,
-            phone: ad.phone,
-            telegram: ad.telegram,
-            views: ad.views,
-            likes: ad.likes,
-            status: ad.status,
-            createdAt: new Date(ad.created_at).getTime(),
-            expiresAt: ad.expires_at ? new Date(ad.expires_at).getTime() : null,
-            account: ad.account_data || {}
-        }));
+        APP_DATA.ads = ads.map(mapAdFromBackend);
     } catch (e) {
-        console.warn("Reklamalar yuklanmadi, demo ishlatiladi");
-        APP_DATA.ads = [...DEMO_ADS];
+        console.warn("Reklamalar yuklanmadi:", e);
+        APP_DATA.ads = [];
     }
 }
 
@@ -2294,191 +1702,162 @@ async function loadMyAdsFromAPI() {
     if (!TELEGRAM_USER) return;
     try {
         const ads = await apiCall(`/api/my-ads/${TELEGRAM_USER.id}`);
-        APP_DATA.myAds = ads.map(ad => ({
-            id: ad.id,
-            title: ad.title,
-            description: ad.description || "",
-            image: ad.image_url || "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80",
-            video: ad.video_url,
-            type: ad.ad_type,
-            price: ad.price,
-            location: ad.location,
-            phone: ad.phone,
-            telegram: ad.telegram,
-            status: ad.status,
-            createdAt: new Date(ad.created_at).getTime(),
-            account: ad.account_data || {}
+        APP_DATA.myAds = ads.map(mapAdFromBackend);
+    } catch (e) {
+        console.warn("Mening reklamalarim yuklanmadi:", e);
+        APP_DATA.myAds = [];
+    }
+}
+
+async function loadChatsFromAPI() {
+    if (!TELEGRAM_USER) return;
+    try {
+        const chats = await apiCall(`/api/chats/${TELEGRAM_USER.id}`);
+        APP_DATA.chats = chats.map(c => ({
+            id: c.id,
+            adId: c.ad_id,
+            adTitle: c.ad_title,
+            adImage: c.ad_image,
+            sellerId: c.seller_id,
+            sellerTg: c.seller_tg,
+            sellerName: c.seller_name,
+            buyerId: c.buyer_id,
+            buyerTg: c.buyer_tg,
+            buyerName: c.buyer_name,
+            lastMessage: c.last_message,
+            lastTime: c.last_time
         }));
     } catch (e) {
-        console.warn("Mening reklamalarim yuklanmadi");
+        console.warn("Chatlar yuklanmadi:", e);
+        APP_DATA.chats = [];
+    }
+}
+
+async function loadChatMessages(chatId) {
+    try {
+        const data = await apiCall(`/api/chat/${chatId}`);
+        APP_DATA.currentChat = data.chat;
+        APP_DATA.chatMessages = data.messages || [];
+        return data;
+    } catch (e) {
+        console.error("Chat yuklanmadi:", e);
+        return null;
     }
 }
 
 async function loadAdminStats() {
-    try {
-        const stats = await apiCall("/api/stats");
-        return stats;
-    } catch (e) {
-        console.warn("Statistika yuklanmadi");
-        return { users: 0, ads: 0, pending: 0, total_balance: 0 };
-    }
+    return await apiCall("/api/stats");
 }
 
 async function loadPendingAds() {
-    try {
-        const ads = await apiCall("/api/pending-ads");
-        return ads.map(ad => ({
-            id: ad.id,
-            title: ad.title,
-            description: ad.description || "",
-            image: ad.image_url,
-            video: ad.video_url,
-            type: ad.ad_type,
-            price: ad.price,
-            location: ad.location,
-            phone: ad.phone,
-            telegram: ad.telegram,
-            status: ad.status,
-            createdAt: new Date(ad.created_at).getTime(),
-            account: ad.account_data || {}
-        }));
-    } catch (e) {
-        console.warn("Pending reklamalar yuklanmadi");
-        return [];
-    }
+    const ads = await apiCall("/api/admin/pending-ads");
+    return ads.map(mapAdFromBackend);
 }
 
-async function saveProfileToAPI(firstName, lastName) {
-    if (!TELEGRAM_USER) return false;
-    try {
-        await apiCall("/api/update-profile", "POST", {
-            telegram_id: TELEGRAM_USER.id,
-            first_name: firstName,
-            last_name: lastName,
-            avatar: APP_DATA.profile.avatar
-        });
-        return true;
-    } catch (e) {
-        console.error("Profil saqlash xatosi:", e);
-        return false;
-    }
+async function loadPendingTopups() {
+    return await apiCall("/api/admin/pending-topups");
 }
 
-async function topUpBalanceAPI(amount) {
-    if (!TELEGRAM_USER) return null;
-    try {
-        const data = await apiCall("/api/topup", "POST", {
-            telegram_id: TELEGRAM_USER.id,
-            amount: amount
-        });
-        return data;
-    } catch (e) {
-        console.error("Balans to'ldirish xatosi:", e);
-        throw e;
-    }
-}
-
-async function createAdAPI(adData) {
-    if (!TELEGRAM_USER) return null;
-    try {
-        const data = await apiCall("/api/create-ad", "POST", {
-            telegram_id: TELEGRAM_USER.id,
-            ad_data: adData
-        });
-        return data;
-    } catch (e) {
-        console.error("Reklama yaratish xatosi:", e);
-        throw e;
-    }
-}
-
-async function approveAdAPI(adId) {
-    try {
-        await apiCall(`/api/approve-ad/${adId}`, "POST");
-        return true;
-    } catch (e) {
-        console.error("Tasdiqlash xatosi:", e);
-        return false;
-    }
-}
-
-async function rejectAdAPI(adId, reason) {
-    try {
-        await apiCall(`/api/reject-ad/${adId}`, "POST", { reason });
-        return true;
-    } catch (e) {
-        console.error("Rad etish xatosi:", e);
-        return false;
-    }
+/* =========================================================
+   MAPPER
+   ========================================================= */
+function mapAdFromBackend(ad) {
+    return {
+        id: ad.id,
+        userId: ad.user_id,
+        title: ad.title,
+        description: ad.description || "",
+        image: ad.image_url || "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80",
+        video: ad.video_url,
+        type: ad.ad_type || "STANDARD",
+        price: ad.price,
+        location: ad.location || "",
+        views: ad.views || 0,
+        likes: ad.likes || 0,
+        dislikes: ad.dislikes || 0,
+        status: ad.status,
+        rejectReason: ad.reject_reason,
+        createdAt: ad.created_at ? new Date(ad.created_at).getTime() : Date.now(),
+        expiresAt: ad.expires_at ? new Date(ad.expires_at).getTime() : null,
+        account: ad.account_data || {}
+    };
 }
 
 /* =========================================================
    LOADING
    ========================================================= */
-function showLoading() {
-    document.getElementById("loadingOverlay").classList.add("active");
-}
-
-function hideLoading() {
-    document.getElementById("loadingOverlay").classList.remove("active");
-}
+function showLoading() { document.getElementById("loadingOverlay").classList.add("active"); }
+function hideLoading() { document.getElementById("loadingOverlay").classList.remove("active"); }
 
 /* =========================================================
    INITIALIZATION
    ========================================================= */
 async function init() {
     console.log("🚀 App ishga tushdi");
-    
     loadData();
-    
-    // Telegram user'ni ko'rsatish (tezkor)
+
     if (TELEGRAM_USER) {
         APP_DATA.profile.firstName = TELEGRAM_USER.first_name || "Foydalanuvchi";
         APP_DATA.profile.lastName = TELEGRAM_USER.last_name || "";
-        APP_DATA.profile.username = TELEGRAM_USER.username || "";
         updateProfileDisplay();
+        updateBalanceDisplay();
     }
-    
-    // API'dan yuklash
+
     if (TELEGRAM_USER) {
         showLoading();
         try {
             await loadProfileFromAPI();
             await loadAdsFromAPI();
             await loadMyAdsFromAPI();
+            await loadChatsFromAPI();
         } catch (e) {
             console.error("Init xatosi:", e);
         }
         hideLoading();
-    } else {
-        // Telegram yo'q — demo rejim
-        APP_DATA.ads = [...DEMO_ADS];
     }
-    
+
     renderDashboard();
     renderChatList();
     updateBalanceDisplay();
     updateProfileDisplay();
     setupEventListeners();
-    
+
     if (localStorage.getItem("cardinal_theme") === "dark") {
         document.body.classList.add("dark");
     }
-    
+
+    // URL parametrlarini tekshirish (kanaldan kelgan)
+    handleUrlParams();
+
     console.log("✅ App tayyor");
 }
 
 /* =========================================================
-   DATA MANAGEMENT (localStorage — fallback)
+   URL PARAMS (kanal post'idan kelgan)
+   ========================================================= */
+function handleUrlParams() {
+    const params = new URLSearchParams(window.location.search);
+    const open = params.get("open");
+
+    if (open === "ad") {
+        const adId = params.get("ad_id");
+        if (adId) {
+            setTimeout(() => openAdDetail(adId), 1000);
+        }
+    } else if (open === "create") {
+        setTimeout(() => startCreateAd(), 1000);
+    }
+}
+
+/* =========================================================
+   DATA MANAGEMENT
    ========================================================= */
 function saveData() {
     localStorage.setItem("cardinal_data", JSON.stringify({
         balance: APP_DATA.balance,
         spent: APP_DATA.spent,
-        myAds: APP_DATA.myAds,
-        pending: APP_DATA.pending,
-        profile: APP_DATA.profile,
-        chats: APP_DATA.chats
+        myReactions: APP_DATA.myReactions,
+        profile: APP_DATA.profile
     }));
 }
 
@@ -2489,13 +1868,9 @@ function loadData() {
             const data = JSON.parse(saved);
             APP_DATA.balance = data.balance || 0;
             APP_DATA.spent = data.spent || 0;
-            APP_DATA.myAds = data.myAds || [];
-            APP_DATA.pending = data.pending || [];
+            APP_DATA.myReactions = data.myReactions || {};
             APP_DATA.profile = data.profile || APP_DATA.profile;
-            APP_DATA.chats = data.chats || [];
-        } catch (e) {
-            console.error("Data load error:", e);
-        }
+        } catch (e) {}
     }
 }
 
@@ -2503,51 +1878,49 @@ function loadData() {
    NAVIGATION
    ========================================================= */
 async function goToPage(pageId) {
+    // Admin tekshiruvi
+    if (pageId === "adminPage" && !IS_ADMIN) {
+        showToast("Faqat admin uchun!", "error");
+        return;
+    }
+
     document.querySelectorAll(".page").forEach(page => {
         page.classList.toggle("active", page.id === pageId);
     });
-    
+
     document.querySelectorAll(".nav-item").forEach(item => {
         item.classList.toggle("active", item.dataset.page === pageId);
     });
-    
-    if (pageId === "dashboardPage") {
-        renderDashboard();
-    }
-    if (pageId === "myAdsPage") {
-        if (TELEGRAM_USER) await loadMyAdsFromAPI();
-        renderMyAds();
-    }
-    if (pageId === "chatPage") renderChatList();
+
+    if (pageId === "dashboardPage") await loadAdsFromAPI(), renderDashboard();
+    if (pageId === "myAdsPage") await loadMyAdsFromAPI(), renderMyAds();
+    if (pageId === "chatPage") await loadChatsFromAPI(), renderChatList();
     if (pageId === "profilePage") updateProfileDisplay();
-    if (pageId === "adminPage") {
-        await renderAdminPanel();
-    }
-    
+    if (pageId === "adminPage") await renderAdminPanel();
+
     window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
+/* =========================================================
+   EVENT LISTENERS
+   ========================================================= */
 function setupEventListeners() {
     document.querySelectorAll(".nav-item").forEach(item => {
-        item.addEventListener("click", () => {
+        item.addEventListener("click", async () => {
             const page = item.dataset.page;
             if (page === "createAdPage") {
                 startCreateAd();
+                return;
             }
-            goToPage(page);
+            await goToPage(page);
         });
     });
-    
+
     document.getElementById("themeMenuButton")?.addEventListener("click", toggleTheme);
-    
-    document.getElementById("adminLoginButton")?.addEventListener("click", () => {
-        openModal("adminLoginModal");
-    });
-    
     document.getElementById("dashboardSearch")?.addEventListener("input", (e) => {
         renderDashboard(e.target.value.toLowerCase());
     });
-    
+
     document.querySelectorAll("#dashboardPage .category-tab").forEach(tab => {
         tab.addEventListener("click", () => {
             document.querySelectorAll("#dashboardPage .category-tab").forEach(t => t.classList.remove("active"));
@@ -2555,7 +1928,7 @@ function setupEventListeners() {
             renderDashboard(null, tab.dataset.category);
         });
     });
-    
+
     document.querySelectorAll("[data-myad]").forEach(tab => {
         tab.addEventListener("click", () => {
             document.querySelectorAll("[data-myad]").forEach(t => t.classList.remove("active"));
@@ -2563,12 +1936,25 @@ function setupEventListeners() {
             renderMyAds(tab.dataset.myad);
         });
     });
-    
+
+    // Admin tabs
+    document.querySelectorAll("[data-admintab]").forEach(tab => {
+        tab.addEventListener("click", () => {
+            document.querySelectorAll("[data-admintab]").forEach(t => t.classList.remove("active"));
+            tab.classList.add("active");
+            const which = tab.dataset.admintab;
+            document.getElementById("adminAdsSection").style.display = which === "ads" ? "block" : "none";
+            document.getElementById("adminTopupsSection").style.display = which === "topups" ? "block" : "none";
+        });
+    });
+
+    // Amount input
     document.getElementById("topUpAmount")?.addEventListener("input", (e) => {
         e.target.value = e.target.value.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, " ");
         updateGoToPaymentButton();
     });
-    
+
+    // Quick amounts
     document.querySelectorAll(".quick-amount").forEach(btn => {
         btn.addEventListener("click", () => {
             const amount = btn.dataset.amount;
@@ -2578,18 +1964,27 @@ function setupEventListeners() {
             updateGoToPaymentButton();
         });
     });
-    
+
+    // Receipt upload
+    document.getElementById("receiptInput")?.addEventListener("change", handleReceiptUpload);
+
+    // Tariff cards
     document.querySelectorAll(".tariff-card").forEach(card => {
         card.addEventListener("click", () => {
-            document.querySelectorAll(".tariff-card").forEach(c => c.classList.remove("selected"));
+            document.querySelectorAll(".tariff-card").forEach(c => {
+                c.classList.remove("selected");
+                c.style.borderColor = "var(--border)";
+                c.style.boxShadow = "none";
+            });
             card.classList.add("selected");
+            card.style.borderColor = "var(--primary)";
+            card.style.boxShadow = "0 10px 40px rgba(108, 92, 231, 0.2)";
             APP_DATA.tariff = card.dataset.tariff;
             setTimeout(() => nextCreateStep(), 300);
         });
     });
-    
+
     document.getElementById("mediaInput")?.addEventListener("change", handleMediaUpload);
-    
     document.getElementById("createBackButton")?.addEventListener("click", () => {
         if (APP_DATA.createStep === 1) {
             goToPage("dashboardPage");
@@ -2597,119 +1992,169 @@ function setupEventListeners() {
             prevCreateStep();
         }
     });
-    
     document.getElementById("createNextButton")?.addEventListener("click", nextCreateStep);
-    
+
+    // Chat input
     document.getElementById("chatInput")?.addEventListener("keydown", (e) => {
         if (e.key === "Enter" && !e.shiftKey) {
             e.preventDefault();
             sendMessage();
         }
     });
-    
-    // Phone inputs
-    ["accPhone", "profilePhone", "adminPhoneInput"].forEach(id => {
-        document.getElementById(id)?.addEventListener("input", (e) => {
-            e.target.value = e.target.value.replace(/\D/g, "").slice(0, 9);
-        });
-    });
-    
+
+    // Price format
     document.getElementById("accPrice")?.addEventListener("input", (e) => {
         e.target.value = e.target.value.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, " ");
     });
 }
 
 /* =========================================================
-   PROFILE EDIT MODAL
+   PROFILE
    ========================================================= */
 function openProfileEdit() {
     document.getElementById("profileFirstName").value = APP_DATA.profile.firstName || "";
     document.getElementById("profileLastName").value = APP_DATA.profile.lastName || "";
-    document.getElementById("profilePhone").value = APP_DATA.profile.phone || "";
     openModal("profileEditModal");
 }
 
+function updateProfileDisplay() {
+    const p = APP_DATA.profile;
+    document.getElementById("profileName").innerText = `${p.firstName} ${p.lastName}`.trim() || "Foydalanuvchi";
+    document.getElementById("profileUsername").innerText = p.phone ? `+998${p.phone}` : (TELEGRAM_USER?.username ? `@${TELEGRAM_USER.username}` : "@username");
+    document.getElementById("profileAvatar").innerText = p.avatar || "🐱";
+    document.getElementById("profileSpent").innerText = APP_DATA.spent.toLocaleString("uz-UZ");
+    document.getElementById("profileAds").innerText = APP_DATA.myAds.length;
+}
+
+async function saveProfile() {
+    const firstName = document.getElementById("profileFirstName").value.trim();
+    const lastName = document.getElementById("profileLastName").value.trim();
+
+    if (!firstName) {
+        showToast("Ismingizni kiriting", "error");
+        return;
+    }
+
+    if (!TELEGRAM_USER) return;
+
+    showLoading();
+    try {
+        await apiCall("/api/update-profile", "POST", {
+            telegram_id: TELEGRAM_USER.id,
+            first_name: firstName,
+            last_name: lastName,
+            avatar: APP_DATA.profile.avatar
+        });
+
+        APP_DATA.profile.firstName = firstName;
+        APP_DATA.profile.lastName = lastName;
+        saveData();
+        updateProfileDisplay();
+        closeModal("profileEditModal");
+        showToast("Profil saqlandi!", "success");
+    } catch (e) {
+        showToast("Xatolik: " + e.message, "error");
+    }
+    hideLoading();
+}
+
 /* =========================================================
-   BALANCE TOP-UP
+   BALANCE
    ========================================================= */
+function updateBalanceDisplay() {
+    document.getElementById("topBalance").innerText = APP_DATA.balance.toLocaleString("uz-UZ") + " so'm";
+    document.getElementById("profileBalance").innerText = APP_DATA.balance.toLocaleString("uz-UZ");
+}
+
 function startBalanceTopUp() {
     APP_DATA.pendingTopUpAmount = 0;
-    
-    const amountInput = document.getElementById("topUpAmount");
-    if (amountInput) amountInput.value = "";
-    
+    APP_DATA.pendingReceipt = null;
+    document.getElementById("topUpAmount").value = "";
+    document.getElementById("receiptPreviewWrap").style.display = "none";
     document.querySelectorAll(".quick-amount").forEach(b => b.classList.remove("active"));
-    
     document.getElementById("balanceTopUpCurrent").innerText = APP_DATA.balance.toLocaleString("uz-UZ") + " so'm";
-    
-    const btn = document.getElementById("goToPaymentButton");
-    if (btn) btn.disabled = true;
-    
+    document.getElementById("goToPaymentButton").disabled = true;
     goToPage("balanceTopUpPage");
 }
 
 function updateGoToPaymentButton() {
     const amount = parseInt(document.getElementById("topUpAmount").value.replace(/\s/g, "")) || 0;
-    const btn = document.getElementById("goToPaymentButton");
-    if (btn) btn.disabled = !(amount >= 1000);
+    document.getElementById("goToPaymentButton").disabled = !(amount >= 1000);
 }
 
 function goToPaymentPage() {
     const amount = parseInt(document.getElementById("topUpAmount").value.replace(/\s/g, "")) || 0;
-    
     if (amount < 1000) {
-        showToast("Minimal to'ldirish summasi 1,000 so'm", "error");
+        showToast("Minimal 1,000 so'm", "error");
         return;
     }
-    
     APP_DATA.pendingTopUpAmount = amount;
     document.getElementById("paymentAmountDisplay").innerText = amount.toLocaleString("uz-UZ") + " so'm";
+    APP_DATA.pendingReceipt = null;
+    document.getElementById("receiptPreviewWrap").style.display = "none";
+    document.getElementById("submitReceiptBtn").disabled = true;
     goToPage("balancePaymentPage");
+}
+
+function handleReceiptUpload(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    if (!file.type.startsWith("image/")) {
+        showToast("Faqat rasm yuklang", "error");
+        return;
+    }
+
+    if (file.size > 5 * 1024 * 1024) {
+        showToast("Fayl 5 MB dan katta", "error");
+        return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = (event) => {
+        APP_DATA.pendingReceipt = event.target.result;
+        document.getElementById("receiptPreviewImg").src = event.target.result;
+        document.getElementById("receiptPreviewWrap").style.display = "block";
+        document.getElementById("submitReceiptBtn").disabled = false;
+    };
+    reader.readAsDataURL(file);
+}
+
+function removeReceipt() {
+    APP_DATA.pendingReceipt = null;
+    document.getElementById("receiptPreviewWrap").style.display = "none";
+    document.getElementById("receiptInput").value = "";
+    document.getElementById("submitReceiptBtn").disabled = true;
 }
 
 function cancelPayment() {
     if (!confirm("To'lovni bekor qilmoqchimisiz?")) return;
     APP_DATA.pendingTopUpAmount = 0;
+    APP_DATA.pendingReceipt = null;
     goToPage("dashboardPage");
     showToast("To'lov bekor qilindi");
 }
 
-async function confirmPayment() {
-    const amount = APP_DATA.pendingTopUpAmount;
-    
-    if (!amount || amount < 1000) {
-        showToast("Xatolik: summa noto'g'ri", "error");
+async function submitReceipt() {
+    if (!APP_DATA.pendingReceipt) {
+        showToast("Chekni yuklang", "error");
         return;
     }
-    
-    if (!TELEGRAM_USER) {
-        // Telegram yo'q — lokal qo'shish
-        APP_DATA.balance += amount;
-        saveData();
-        updateBalanceDisplay();
-        updateProfileDisplay();
-        showToast(`${amount.toLocaleString("uz-UZ")} so'm qo'shildi (lokal)`, "success");
-        setTimeout(() => goToPage("dashboardPage"), 500);
-        return;
-    }
-    
+
+    if (!TELEGRAM_USER) return;
+
     showLoading();
     try {
-        const data = await topUpBalanceAPI(amount);
-        if (data && data.ok) {
-            APP_DATA.balance = data.new_balance;
-            updateBalanceDisplay();
-            updateProfileDisplay();
-            
-            APP_DATA.pendingTopUpAmount = 0;
-            document.getElementById("topUpAmount").value = "";
-            document.querySelectorAll(".quick-amount").forEach(b => b.classList.remove("active"));
-            
-            showToast(`${amount.toLocaleString("uz-UZ")} so'm hisobingizga qo'shildi!`, "success");
-            setTimeout(() => goToPage("dashboardPage"), 500);
-        } else {
-            showToast("Server xatosi", "error");
-        }
+        await apiCall("/api/topup-receipt", "POST", {
+            telegram_id: TELEGRAM_USER.id,
+            amount: APP_DATA.pendingTopUpAmount,
+            receipt_url: APP_DATA.pendingReceipt
+        });
+
+        showToast("Chek yuborildi! Admin tasdiqlashini kuting.", "success");
+        APP_DATA.pendingTopUpAmount = 0;
+        APP_DATA.pendingReceipt = null;
+        setTimeout(() => goToPage("dashboardPage"), 500);
     } catch (e) {
         showToast("Xatolik: " + e.message, "error");
     }
@@ -2722,85 +2167,116 @@ function copyCard() {
 }
 
 /* =========================================================
-   BALANCE DISPLAY
-   ========================================================= */
-function updateBalanceDisplay() {
-    const formatted = APP_DATA.balance.toLocaleString("uz-UZ") + " so'm";
-    document.getElementById("topBalance").innerText = formatted;
-    document.getElementById("profileBalance").innerText = APP_DATA.balance.toLocaleString("uz-UZ");
-}
-
-/* =========================================================
    DASHBOARD
    ========================================================= */
 function renderDashboard(search = "", category = "ALL") {
     const grid = document.getElementById("adsGrid");
     if (!grid) return;
-    
+
     let ads = APP_DATA.ads.filter(ad => {
         if (ad.status !== "ACTIVE") return false;
         if (category !== "ALL" && ad.type !== category) return false;
-        
+
         if (search) {
-            const text = `${ad.title} ${ad.description || ""} ${ad.location || ""}`.toLowerCase();
+            const text = `${ad.title} ${ad.description} ${ad.location}`.toLowerCase();
             if (!text.includes(search)) return false;
         }
-        
-        if (ad.expiresAt && Date.now() > ad.expiresAt) {
-            ad.status = "EXPIRED";
-            return false;
-        }
-        
+
+        if (ad.expiresAt && Date.now() > ad.expiresAt) return false;
+
         return true;
     });
-    
+
     ads.sort((a, b) => {
         if (a.type === "PREMIUM" && b.type !== "PREMIUM") return -1;
         if (b.type === "PREMIUM" && a.type !== "PREMIUM") return 1;
-        return (b.createdAt || 0) - (a.createdAt || 0);
+        return b.createdAt - a.createdAt;
     });
-    
+
     if (!ads.length) {
         grid.innerHTML = `
             <div class="empty" style="grid-column: 1/-1;">
                 <div class="empty-icon">🎮</div>
                 <strong>Reklama topilmadi</strong>
-                <p style="margin-top: 6px;">Boshqa qidiruv yoki filtrni sinab ko'ring</p>
+                <p style="margin-top: 6px;">Hozircha reklamalar yo'q</p>
             </div>
         `;
         return;
     }
-    
-    grid.innerHTML = ads.map(ad => `
-        <article class="ad-card" onclick="openAdDetail('${ad.id}')">
-            <div class="ad-image-wrap">
-                ${ad.video 
-                    ? `<video class="ad-image" src="${ad.video}" muted loop autoplay></video>`
-                    : `<img class="ad-image" src="${ad.image}" alt="${ad.title}" onerror="this.src='https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80'">`
-                }
-                <span class="ad-type-badge ${ad.type === 'PREMIUM' ? 'premium' : ''}">
-                    ${ad.type === 'PREMIUM' ? '⭐ VIP' : ad.type === 'RARE' ? '🔥 Noyob' : '📢 Reklama'}
-                </span>
-            </div>
-            <div class="ad-content">
-                <div class="ad-title">${escapeHTML(ad.title)}</div>
-                <div class="ad-meta">📍 ${escapeHTML(ad.location || "-")}</div>
-                <div class="ad-meta">👁 ${ad.views || 0} ko'rishlar</div>
-                <div class="ad-price">${formatPrice(ad.price)}</div>
-            </div>
-        </article>
-    `).join("");
+
+    grid.innerHTML = ads.map(ad => {
+        const myReaction = APP_DATA.myReactions[ad.id];
+        return `
+            <article class="ad-card" onclick="openAdDetail('${ad.id}')">
+                <div class="ad-image-wrap">
+                    ${ad.video 
+                        ? `<video class="ad-image" src="${ad.video}" muted loop autoplay></video>`
+                        : `<img class="ad-image" src="${ad.image}" alt="" onerror="this.src='https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80'">`
+                    }
+                    <span class="ad-type-badge ${ad.type === 'PREMIUM' ? 'premium' : ''}">
+                        ${ad.type === 'PREMIUM' ? '⭐ VIP' : ad.type === 'RARE' ? '🔥 Noyob' : '📢 Reklama'}
+                    </span>
+                </div>
+                <div class="ad-content">
+                    <div class="ad-title">${escapeHTML(ad.title)}</div>
+                    <div class="ad-meta">📍 ${escapeHTML(ad.location || "-")}</div>
+                    <div class="ad-meta">👁 ${ad.views} ko'rishlar</div>
+                    <div class="ad-price">${formatPrice(ad.price)}</div>
+                    
+                    <div class="ad-reactions" onclick="event.stopPropagation();">
+                        <button class="reaction-btn ${myReaction === 'like' ? 'liked' : ''}" onclick="reactAd('${ad.id}', 'like')">
+                            👍 ${ad.likes}
+                        </button>
+                        <button class="reaction-btn ${myReaction === 'dislike' ? 'disliked' : ''}" onclick="reactAd('${ad.id}', 'dislike')">
+                            👎 ${ad.dislikes}
+                        </button>
+                    </div>
+                </div>
+            </article>
+        `;
+    }).join("");
+}
+
+async function reactAd(adId, reaction) {
+    if (!TELEGRAM_USER) return;
+    try {
+        const result = await apiCall("/api/react-ad", "POST", {
+            ad_id: parseInt(adId),
+            telegram_id: TELEGRAM_USER.id,
+            reaction: reaction
+        });
+        if (result.ok) {
+            // Local state
+            if (APP_DATA.myReactions[adId] === reaction) {
+                delete APP_DATA.myReactions[adId];
+            } else {
+                APP_DATA.myReactions[adId] = reaction;
+            }
+            saveData();
+
+            // Yangilash
+            const ad = APP_DATA.ads.find(a => String(a.id) === String(adId));
+            if (ad) {
+                ad.likes = result.likes;
+                ad.dislikes = result.dislikes;
+            }
+            renderDashboard();
+        }
+    } catch (e) {
+        showToast("Xatolik", "error");
+    }
 }
 
 /* =========================================================
-   AD DETAIL
+   AD DETAIL (faqat "Admin bilan savdo")
    ========================================================= */
 function openAdDetail(id) {
     const ad = APP_DATA.ads.find(a => String(a.id) === String(id));
     if (!ad) return;
-    
+
     ad.views = (ad.views || 0) + 1;
-    
+    const myReaction = APP_DATA.myReactions[ad.id] || null;
+
     const content = document.getElementById("adDetailContent");
     content.innerHTML = `
         ${ad.video 
@@ -2812,6 +2288,15 @@ function openAdDetail(id) {
             <h2 style="font-size: 22px; font-weight: 900;">${escapeHTML(ad.title)}</h2>
             <div style="color: var(--primary); font-size: 20px; font-weight: 900; margin-top: 8px;">
                 ${formatPrice(ad.price)}
+            </div>
+            
+            <div class="ad-reactions" style="margin-top: 14px;">
+                <button class="reaction-btn ${myReaction === 'like' ? 'liked' : ''}" onclick="reactAd('${ad.id}', 'like'); openAdDetail('${ad.id}');">
+                    👍 ${ad.likes}
+                </button>
+                <button class="reaction-btn ${myReaction === 'dislike' ? 'disliked' : ''}" onclick="reactAd('${ad.id}', 'dislike'); openAdDetail('${ad.id}');">
+                    👎 ${ad.dislikes}
+                </button>
             </div>
             
             <div class="info-list">
@@ -2834,61 +2319,38 @@ function openAdDetail(id) {
                 </div>
             ` : ""}
             
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 18px;">
-                <button class="btn btn-primary" onclick="contactPhone('${ad.phone || ''}')">📞 Telefon qilish</button>
-                <button class="btn btn-secondary" onclick="contactTelegram('${ad.telegram || ''}')">💬 Telegram xabar</button>
-            </div>
-            
-            <button class="btn btn-success btn-block" style="margin-top: 10px;" onclick="openAdminTrade('${ad.id}')">
+            <button class="btn btn-success btn-block" style="margin-top: 18px;" onclick="startChatWithAdmin('${ad.id}')">
                 🤝 Admin bilan savdo
             </button>
         </div>
     `;
-    
+
     openModal("adDetailModal");
 }
 
-function contactPhone(phone) {
-    if (!phone) { showToast("Telefon raqam yo'q", "error"); return; }
-    window.location.href = `tel:${phone}`;
-}
+/* =========================================================
+   START CHAT (Admin bilan savdo)
+   ========================================================= */
+async function startChatWithAdmin(adId) {
+    if (!TELEGRAM_USER) return;
 
-function contactTelegram(username) {
-    if (username) {
-        window.open(`https://t.me/${username.replace("@", "")}`, "_blank");
-    } else {
-        showToast("Telegram username mavjud emas", "error");
-    }
-}
-
-function openAdminTrade(adId) {
-    const ad = APP_DATA.ads.find(a => String(a.id) === String(adId));
-    if (!ad) return;
-    
-    const chatId = "admin-trade-" + adId;
-    let existingChat = APP_DATA.chats.find(c => c.id === chatId);
-    
-    if (!existingChat) {
-        existingChat = {
-            id: chatId,
-            name: "ADMIN BILAN SAVDO ✓",
-            avatar: "🤝",
-            isAdminTrade: true,
-            adId: adId,
-            messages: [{
-                id: "msg-" + Date.now(),
-                sender: "Admin",
-                text: `Assalomu alaykum! "${ad.title}" akkaunti bo'yicha savdo uchun admin bilan bog'lanmoqdasiz. Savollaringizni yozing.`,
-                time: new Date().toLocaleTimeString("uz-UZ", { hour: "2-digit", minute: "2-digit" }),
-                isAdmin: true
-            }]
-        };
-        APP_DATA.chats.unshift(existingChat);
-        saveData();
-    }
-    
     closeModal("adDetailModal");
-    openChatRoom(chatId);
+    showLoading();
+
+    try {
+        const result = await apiCall("/api/chat/start", "POST", {
+            ad_id: parseInt(adId),
+            telegram_id: TELEGRAM_USER.id
+        });
+
+        if (result.ok && result.chat_id) {
+            await loadChatsFromAPI();
+            openChatRoom(result.chat_id);
+        }
+    } catch (e) {
+        showToast("Xatolik: " + e.message, "error");
+    }
+    hideLoading();
 }
 
 /* =========================================================
@@ -2897,10 +2359,10 @@ function openAdminTrade(adId) {
 function renderMyAds(filter = "ALL") {
     const container = document.getElementById("myAdsList");
     if (!container) return;
-    
+
     let ads = APP_DATA.myAds;
     if (filter !== "ALL") ads = ads.filter(ad => ad.status === filter);
-    
+
     if (!ads.length) {
         container.innerHTML = `
             <div class="empty">
@@ -2912,18 +2374,17 @@ function renderMyAds(filter = "ALL") {
         `;
         return;
     }
-    
+
     container.innerHTML = ads.map(ad => `
         <div class="my-ad-item">
             <img class="my-ad-image" src="${ad.image}" alt="" onerror="this.src='https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80'">
             <div class="my-ad-info">
                 <div class="my-ad-title">${escapeHTML(ad.title)}</div>
                 <div class="my-ad-meta">💰 ${formatPrice(ad.price)}</div>
+                <div class="my-ad-meta">👁 ${ad.views} · 👍 ${ad.likes} · 👎 ${ad.dislikes}</div>
                 <div class="my-ad-meta">📅 ${new Date(ad.createdAt).toLocaleDateString("uz-UZ")}</div>
                 <span class="status ${(ad.status || 'PENDING').toLowerCase()}">${getStatusText(ad.status)}</span>
-                <div class="my-ad-actions">
-                    ${ad.status === "PENDING" ? `<button class="small-btn primary" onclick="showToast('Admin tasdiqlashini kuting')">⏳ Kutilmoqda</button>` : ""}
-                </div>
+                ${ad.rejectReason ? `<div style="font-size: 11px; color: var(--red); margin-top: 6px;">❌ ${escapeHTML(ad.rejectReason)}</div>` : ""}
             </div>
         </div>
     `).join("");
@@ -2946,14 +2407,17 @@ function startCreateAd() {
     APP_DATA.createStep = 1;
     APP_DATA.tariff = null;
     APP_DATA.createData = { media: null, mediaType: null, account: {}, preview: null };
-    
-    document.querySelectorAll(".tariff-card").forEach(c => c.classList.remove("selected"));
-    const grid = document.getElementById("mediaPreviewGrid");
-    if (grid) grid.innerHTML = "";
-    const input = document.getElementById("mediaInput");
-    if (input) input.value = "";
-    
-    ["accLevel", "accRP", "accClothes", "accGunSkin", "accParachuteSkin", "accBagSkin", "accAchievement", "accTitles", "accExtra", "accPrice", "accTelegram", "accPhone"].forEach(id => {
+
+    document.querySelectorAll(".tariff-card").forEach(c => {
+        c.classList.remove("selected");
+        c.style.borderColor = "var(--border)";
+        c.style.boxShadow = "none";
+    });
+
+    document.getElementById("mediaPreviewGrid").innerHTML = "";
+    document.getElementById("mediaInput").value = "";
+
+    ["accLevel", "accRP", "accClothes", "accGunSkin", "accParachuteSkin", "accBagSkin", "accAchievement", "accTitles", "accExtra", "accPrice"].forEach(id => {
         const el = document.getElementById(id);
         if (el) el.value = "";
     });
@@ -2961,42 +2425,36 @@ function startCreateAd() {
         const el = document.getElementById(id);
         if (el) el.selectedIndex = 0;
     });
-    
+
     renderCreateStep();
     goToPage("createAdPage");
 }
 
 function renderCreateStep() {
     const indicator = document.getElementById("stepIndicator");
-    if (indicator) {
-        indicator.innerHTML = Array.from({ length: 4 }, (_, i) => `
-            <div class="step-dot ${i + 1 <= APP_DATA.createStep ? "active" : ""}"></div>
-        `).join("");
-    }
-    
+    indicator.innerHTML = Array.from({ length: 4 }, (_, i) => `
+        <div class="step-dot ${i + 1 <= APP_DATA.createStep ? "active" : ""}"></div>
+    `).join("");
+
     document.querySelectorAll(".create-step").forEach(step => {
         step.classList.toggle("active", Number(step.dataset.step) === APP_DATA.createStep);
     });
-    
-    const backBtn = document.getElementById("createBackButton");
-    const nextBtn = document.getElementById("createNextButton");
-    
-    if (backBtn) backBtn.innerText = APP_DATA.createStep === 1 ? "✕ Bekor qilish" : "← Orqaga";
-    if (nextBtn) nextBtn.innerText = APP_DATA.createStep === 4 ? "✓ Tasdiqlash" : "Davom etish →";
-    
+
+    document.getElementById("createBackButton").innerText = APP_DATA.createStep === 1 ? "✕ Bekor qilish" : "← Orqaga";
+    document.getElementById("createNextButton").innerText = APP_DATA.createStep === 4 ? "✓ Tasdiqlash" : "Davom etish →";
+
     if (APP_DATA.createStep === 4) renderAdPreview();
-    
     window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
 function nextCreateStep() {
     if (!validateCreateStep()) return;
-    
+
     if (APP_DATA.createStep === 4) {
         submitAd();
         return;
     }
-    
+
     APP_DATA.createStep++;
     renderCreateStep();
 }
@@ -3010,32 +2468,28 @@ function prevCreateStep() {
 
 function validateCreateStep() {
     const step = APP_DATA.createStep;
-    
-    if (step === 1) {
-        if (!APP_DATA.tariff) {
-            showToast("Tarifni tanlang", "error");
-            return false;
-        }
+
+    if (step === 1 && !APP_DATA.tariff) {
+        showToast("Tarifni tanlang", "error");
+        return false;
     }
-    
-    if (step === 2) {
-        if (!APP_DATA.createData.media) {
-            showToast("Video yoki rasm yuklang", "error");
-            return false;
-        }
+
+    if (step === 2 && !APP_DATA.createData.media) {
+        showToast("Video yoki rasm yuklang", "error");
+        return false;
     }
-    
+
     if (step === 3) {
-        const required = ["accLevel", "accRP", "accPrice", "accTelegram", "accPhone"];
+        const required = ["accLevel", "accRP", "accPrice"];
         for (const id of required) {
             const el = document.getElementById(id);
             if (!el || !el.value.trim()) {
-                showToast("Barcha majburiy maydonlarni to'ldiring", "error");
+                showToast("Majburiy maydonlarni to'ldiring", "error");
                 el?.focus();
                 return false;
             }
         }
-        
+
         APP_DATA.createData.account = {
             level: document.getElementById("accLevel").value.trim(),
             rp: document.getElementById("accRP").value.trim(),
@@ -3048,38 +2502,35 @@ function validateCreateStep() {
             extra: document.getElementById("accExtra").value.trim(),
             linked: document.getElementById("accLinked").value,
             price: document.getElementById("accPrice").value.trim(),
-            location: document.getElementById("accLocation").value,
-            telegram: document.getElementById("accTelegram").value.trim(),
-            phone: document.getElementById("accPhone").value.trim()
+            location: document.getElementById("accLocation").value
         };
     }
-    
+
     return true;
 }
 
 function handleMediaUpload(e) {
     const file = e.target.files[0];
     if (!file) return;
-    
+
     const isVideo = file.type.startsWith("video/");
     const isImage = file.type.startsWith("image/");
-    
+
     if (!isVideo && !isImage) {
-        showToast("Faqat video yoki rasm yuklash mumkin", "error");
+        showToast("Faqat video yoki rasm", "error");
         return;
     }
-    
-    // 5 MB limit
+
     if (file.size > 5 * 1024 * 1024) {
-        showToast("Fayl hajmi 5 MB dan oshmasligi kerak", "error");
+        showToast("5 MB dan katta", "error");
         return;
     }
-    
+
     const reader = new FileReader();
     reader.onload = (event) => {
         APP_DATA.createData.media = event.target.result;
         APP_DATA.createData.mediaType = isVideo ? "video" : "image";
-        
+
         document.getElementById("mediaPreviewGrid").innerHTML = `
             <div class="media-preview">
                 ${isVideo 
@@ -3103,7 +2554,7 @@ function removeMedia() {
 function renderAdPreview() {
     const data = APP_DATA.createData;
     const acc = data.account;
-    
+
     document.getElementById("adPreview").innerHTML = `
         <div class="preview-card">
             ${data.mediaType === "video"
@@ -3118,11 +2569,8 @@ function renderAdPreview() {
                     <div class="info-row"><span>📈 LVL</span><span>${escapeHTML(acc.level)}</span></div>
                     <div class="info-row"><span>🛎 RP</span><span>${escapeHTML(acc.rp)}</span></div>
                     <div class="info-row"><span>🦹‍♂️ Kiymlar</span><span>${escapeHTML(acc.clothes || "-")}</span></div>
-                    <div class="info-row"><span>🔫 Avtomatga Skin</span><span>${escapeHTML(acc.gunSkin || "-")}</span></div>
-                    <div class="info-row"><span>🔐 Ulangan</span><span>${escapeHTML(acc.linked || "-")}</span></div>
+                    <div class="info-row"><span>🔓 Ulangan</span><span>${escapeHTML(acc.linked || "-")}</span></div>
                     <div class="info-row"><span>🏠 Manzil</span><span>${escapeHTML(acc.location || "-")}</span></div>
-                    <div class="info-row"><span>📲 Telegram</span><span>${escapeHTML(acc.telegram)}</span></div>
-                    <div class="info-row"><span>📱 Telefon</span><span>+998 ${escapeHTML(acc.phone)}</span></div>
                 </div>
             </div>
         </div>
@@ -3131,70 +2579,47 @@ function renderAdPreview() {
 
 async function submitAd() {
     const tariffPrice = CONFIG.TARIFF_PRICES[APP_DATA.tariff];
-    
+
     if (APP_DATA.balance < tariffPrice) {
-        showToast("Balansingizda yetarli mablag' yo'q. Hisobni to'ldiring.", "error");
+        showToast("Balans yetarli emas!", "error");
         setTimeout(() => startBalanceTopUp(), 1500);
         return;
     }
-    
+
     const acc = APP_DATA.createData.account;
-    
+
     const adData = {
-        title: `PUBG Mobile - ${acc.level} LVL Akkaunt`,
+        title: `PUBG Mobile - ${acc.level} LVL`,
         description: acc.extra || "Zo'r akkaunt!",
         image_url: APP_DATA.createData.mediaType === "image" ? APP_DATA.createData.media : null,
         video_url: APP_DATA.createData.mediaType === "video" ? APP_DATA.createData.media : null,
         price: parseInt(String(acc.price).replace(/\s/g, "")),
         location: acc.location,
-        phone: "+998" + acc.phone,
-        telegram: acc.telegram,
         account_data: acc,
         tariff: parseInt(APP_DATA.tariff)
     };
-    
-    if (!TELEGRAM_USER) {
-        // Lokal rejim
-        APP_DATA.balance -= tariffPrice;
-        APP_DATA.spent += tariffPrice;
-        
-        const localAd = {
-            id: "ad-" + Date.now(),
-            ...adData,
-            image: adData.image_url || "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80",
-            video: adData.video_url,
-            type: APP_DATA.tariff === "4" ? "PREMIUM" : APP_DATA.tariff === "3" ? "RARE" : "STANDARD",
-            status: "PENDING",
-            createdAt: Date.now(),
-            account: acc
-        };
-        APP_DATA.myAds.unshift(localAd);
-        saveData();
-        updateBalanceDisplay();
-        showToast("Reklama yuborildi (lokal)!", "success");
-        goToPage("myAdsPage");
-        return;
-    }
-    
+
+    if (!TELEGRAM_USER) return;
+
     showLoading();
     try {
-        const result = await createAdAPI(adData);
-        if (result && result.ok) {
+        const result = await apiCall("/api/create-ad", "POST", {
+            telegram_id: TELEGRAM_USER.id,
+            ad_data: adData
+        });
+
+        if (result.ok) {
             APP_DATA.balance -= result.paid;
             updateBalanceDisplay();
-            updateProfileDisplay();
-            
             await loadMyAdsFromAPI();
-            
+
             showToast("Reklama yuborildi! Admin tasdiqlashini kuting.", "success");
-            
+
             APP_DATA.createStep = 1;
             APP_DATA.tariff = null;
             APP_DATA.createData = { media: null, mediaType: null, account: {}, preview: null };
-            
-            goToPage("myAdsPage");
-        } else {
-            showToast("Server xatosi", "error");
+
+            await goToPage("myAdsPage");
         }
     } catch (e) {
         showToast("Xatolik: " + e.message, "error");
@@ -3203,12 +2628,12 @@ async function submitAd() {
 }
 
 /* =========================================================
-   CHAT FUNCTIONS
+   CHAT
    ========================================================= */
 function renderChatList() {
     const container = document.getElementById("chatList");
     if (!container) return;
-    
+
     if (!APP_DATA.chats.length) {
         container.innerHTML = `
             <div class="empty">
@@ -3219,36 +2644,48 @@ function renderChatList() {
         `;
         return;
     }
-    
-    container.innerHTML = APP_DATA.chats.map(chat => {
-        const lastMsg = chat.messages[chat.messages.length - 1];
-        return `
-            <div class="chat-item" onclick="openChatRoom('${chat.id}')">
-                <div class="chat-avatar ${chat.isAdminTrade ? 'admin' : ''}">
-                    ${chat.avatar || "👤"}
-                    <div class="chat-online"></div>
-                </div>
-                <div class="chat-info">
-                    <div class="chat-name">${escapeHTML(chat.name)}</div>
-                    <div class="chat-message">${lastMsg ? escapeHTML(lastMsg.text) : "Xabar yo'q"}</div>
-                </div>
-                <div style="text-align: right;">
-                    <div class="chat-time">${lastMsg ? lastMsg.time : ""}</div>
-                </div>
+
+    container.innerHTML = APP_DATA.chats.map(chat => `
+        <div class="chat-item" onclick="openChatRoom(${chat.id})">
+            <div class="chat-avatar ${chat.sellerTg == TELEGRAM_USER?.id || chat.buyerTg == TELEGRAM_USER?.id ? '' : 'admin'}">
+                🤝
             </div>
-        `;
-    }).join("");
+            <div class="chat-info">
+                <div class="chat-name">${escapeHTML(chat.adTitle || "Chat")}</div>
+                <div class="chat-message">${chat.lastMessage ? escapeHTML(chat.lastMessage) : "Xabar yo'q"}</div>
+            </div>
+            <div style="text-align: right;">
+                <div class="chat-time">${chat.lastTime ? formatTime(chat.lastTime) : ""}</div>
+            </div>
+        </div>
+    `).join("");
 }
 
-function openChatRoom(chatId) {
-    const chat = APP_DATA.chats.find(c => c.id === chatId);
-    if (!chat) return;
-    
-    APP_DATA.currentChat = chat;
-    
-    document.getElementById("chatRoomName").innerText = chat.name;
-    document.getElementById("chatRoomAvatar").innerText = chat.avatar || "👤";
-    
+async function openChatRoom(chatId) {
+    showLoading();
+    const data = await loadChatMessages(chatId);
+    hideLoading();
+
+    if (!data) {
+        showToast("Chat yuklanmadi", "error");
+        return;
+    }
+
+    const chat = data.chat;
+
+    document.getElementById("chatRoomName").innerText = chat.ad_title || "Chat";
+    document.getElementById("chatRoomAvatar").innerText = "🤝";
+
+    // Participants
+    const participants = document.getElementById("chatParticipants");
+    const sellerName = chat.seller_name || "Sotuvchi";
+    const buyerName = chat.buyer_name || "Xaridor";
+    participants.innerHTML = `
+        <span>👤 ${escapeHTML(sellerName)} (sotuvchi)</span>
+        <span>👤 ${escapeHTML(buyerName)} (xaridor)</span>
+        <span>🛡️ Admin</span>
+    `;
+
     renderChatMessages();
     document.getElementById("chatRoom").classList.add("active");
     document.body.style.overflow = "hidden";
@@ -3258,122 +2695,138 @@ function closeChatRoom() {
     document.getElementById("chatRoom").classList.remove("active");
     document.body.style.overflow = "";
     APP_DATA.currentChat = null;
-    renderChatList();
+    APP_DATA.chatMessages = [];
+    loadChatsFromAPI().then(renderChatList);
 }
 
 function renderChatMessages() {
     const container = document.getElementById("chatMessages");
-    const chat = APP_DATA.currentChat;
-    if (!chat) return;
-    
-    container.innerHTML = chat.messages.map(msg => {
-        const isSent = msg.sender === "Men";
-        const isAdmin = msg.isAdmin;
-        
+    if (!APP_DATA.chatMessages.length) {
+        container.innerHTML = `
+            <div class="empty" style="padding: 30px 20px;">
+                <div class="empty-icon">💬</div>
+                <strong>Hali xabarlar yo'q</strong>
+                <p style="margin-top: 6px; font-size: 13px;">Birinchi xabarni yozing</p>
+            </div>
+        `;
+        return;
+    }
+
+    container.innerHTML = APP_DATA.chatMessages.map(msg => {
+        const isMine = msg.telegram_id === TELEGRAM_USER?.id;
+        const isAdmin = msg.user_is_admin;
+
         return `
-            <div class="message ${isSent ? 'sent' : isAdmin ? 'admin' : 'received'}" 
+            <div class="message ${isMine ? 'sent' : isAdmin ? 'admin' : 'received'}" 
                  data-msg-id="${msg.id}"
-                 onclick="toggleMessageActions('${msg.id}')">
-                ${!isSent ? `<div class="message-sender">${escapeHTML(msg.sender)}</div>` : ""}
+                 onclick="toggleMessageActions(${msg.id})">
+                ${!isMine ? `<div class="message-sender">${escapeHTML(msg.first_name || '')} ${isAdmin ? '🛡️' : ''}</div>` : ""}
                 <div class="message-text">${escapeHTML(msg.text)}</div>
-                <div class="message-time">${msg.time} ${msg.edited ? "(tahrirlangan)" : ""}</div>
+                <div class="message-time">${formatTime(msg.created_at)} ${msg.is_edited ? "(tahrirlangan)" : ""}</div>
                 
                 <div class="message-actions">
-                    ${isSent ? `
-                        <button class="message-action-btn" onclick="event.stopPropagation(); editMessage('${msg.id}')">✏️</button>
-                        <button class="message-action-btn danger" onclick="event.stopPropagation(); deleteMessage('${msg.id}')">🗑</button>
-                    ` : `
-                        <button class="message-action-btn danger" onclick="event.stopPropagation(); blockUser('${chat.id}')">🚫 Bloklash</button>
-                    `}
+                    ${isMine ? `
+                        <button class="message-action-btn" onclick="event.stopPropagation(); editMessage(${msg.id})">✏️</button>
+                        <button class="message-action-btn danger" onclick="event.stopPropagation(); deleteMessage(${msg.id})">🗑</button>
+                    ` : ""}
+                    ${IS_ADMIN && !isAdmin ? `
+                        <button class="message-action-btn warn" onclick="event.stopPropagation(); blockUserFromMessage(${msg.telegram_id})">🚫 Bloklash</button>
+                    ` : ""}
                 </div>
             </div>
         `;
     }).join("");
-    
+
     container.scrollTop = container.scrollHeight;
 }
 
 function toggleMessageActions(msgId) {
     document.querySelectorAll(".message").forEach(m => {
-        m.classList.toggle("show-actions", m.dataset.msgId === msgId);
+        m.classList.toggle("show-actions", Number(m.dataset.msgId) === msgId);
     });
 }
 
-function editMessage(msgId) {
-    const chat = APP_DATA.currentChat;
-    const msg = chat.messages.find(m => m.id === msgId);
+async function sendMessage() {
+    const input = document.getElementById("chatInput");
+    const text = input.value.trim();
+    if (!text || !APP_DATA.currentChat) return;
+
+    input.value = "";
+
+    try {
+        await apiCall("/api/chat/send", "POST", {
+            chat_id: APP_DATA.currentChat.id,
+            telegram_id: TELEGRAM_USER.id,
+            text: text
+        });
+
+        // Yangilash
+        await loadChatMessages(APP_DATA.currentChat.id);
+        renderChatMessages();
+    } catch (e) {
+        showToast("Xatolik: " + e.message, "error");
+    }
+}
+
+async function editMessage(msgId) {
+    const msg = APP_DATA.chatMessages.find(m => m.id === msgId);
     if (!msg) return;
-    
+
     document.getElementById("editMessageText").value = msg.text;
     APP_DATA.editingMessageId = msgId;
     openModal("messageEditModal");
 }
 
-function saveEditedMessage() {
-    const chat = APP_DATA.currentChat;
-    const msg = chat.messages.find(m => m.id === APP_DATA.editingMessageId);
-    if (!msg) return;
-    
-    msg.text = document.getElementById("editMessageText").value;
-    msg.edited = true;
-    
-    saveData();
-    renderChatMessages();
-    closeModal("messageEditModal");
-    showToast("Xabar tahrirlandi", "success");
-}
-
-function deleteMessage(msgId) {
-    if (!confirm("Xabarni o'chirmoqchimisiz?")) return;
-    
-    const chat = APP_DATA.currentChat;
-    chat.messages = chat.messages.filter(m => m.id !== msgId);
-    
-    saveData();
-    renderChatMessages();
-    showToast("Xabar o'chirildi", "success");
-}
-
-function blockUser(chatId) {
-    if (!confirm("Bu foydalanuvchini bloklaysizmi?")) return;
-    showToast("Foydalanuvchi bloklandi", "success");
-    closeChatRoom();
-}
-
-function sendMessage() {
-    const input = document.getElementById("chatInput");
-    const text = input.value.trim();
+async function saveEditedMessage() {
+    const text = document.getElementById("editMessageText").value.trim();
     if (!text) return;
-    
-    const chat = APP_DATA.currentChat;
-    if (!chat) return;
-    
-    const msg = {
-        id: "msg-" + Date.now(),
-        sender: "Men",
-        text: text,
-        time: new Date().toLocaleTimeString("uz-UZ", { hour: "2-digit", minute: "2-digit" }),
-        isAdmin: false
-    };
-    
-    chat.messages.push(msg);
-    input.value = "";
-    
-    saveData();
-    renderChatMessages();
-    
-    if (chat.isAdminTrade) {
-        setTimeout(() => {
-            chat.messages.push({
-                id: "msg-" + Date.now(),
-                sender: "Admin",
-                text: "Xabaringiz qabul qilindi. Tez orada javob beramiz.",
-                time: new Date().toLocaleTimeString("uz-UZ", { hour: "2-digit", minute: "2-digit" }),
-                isAdmin: true
-            });
-            saveData();
-            renderChatMessages();
-        }, 1500);
+
+    try {
+        await apiCall("/api/chat/edit", "POST", {
+            msg_id: APP_DATA.editingMessageId,
+            telegram_id: TELEGRAM_USER.id,
+            text: text
+        });
+
+        await loadChatMessages(APP_DATA.currentChat.id);
+        renderChatMessages();
+        closeModal("messageEditModal");
+        showToast("Tahrirlandi", "success");
+    } catch (e) {
+        showToast("Xatolik: " + e.message, "error");
+    }
+}
+
+async function deleteMessage(msgId) {
+    if (!confirm("Xabarni o'chirmoqchimisiz?")) return;
+
+    try {
+        await apiCall("/api/chat/delete", "POST", {
+            msg_id: msgId,
+            telegram_id: TELEGRAM_USER.id
+        });
+
+        await loadChatMessages(APP_DATA.currentChat.id);
+        renderChatMessages();
+        showToast("O'chirildi", "success");
+    } catch (e) {
+        showToast("Xatolik: " + e.message, "error");
+    }
+}
+
+async function blockUserFromMessage(userTelegramId) {
+    if (!IS_ADMIN) return;
+    if (!confirm("Bu foydalanuvchini bloklaysizmi?")) return;
+
+    try {
+        await apiCall("/api/chat/block", "POST", {
+            admin_telegram_id: TELEGRAM_USER.id,
+            user_telegram_id: userTelegramId,
+            reason: "Admin tomonidan bloklandi"
+        });
+        showToast("Foydalanuvchi bloklandi", "success");
+    } catch (e) {
+        showToast("Xatolik: " + e.message, "error");
     }
 }
 
@@ -3381,162 +2834,155 @@ function sendMessage() {
    ADMIN PANEL
    ========================================================= */
 async function renderAdminPanel() {
+    if (!IS_ADMIN) return;
+
     showLoading();
-    
     try {
         const stats = await loadAdminStats();
         const pending = await loadPendingAds();
-        
+        const topups = await loadPendingTopups();
+
         document.getElementById("adminAdsCount").innerText = stats.ads || 0;
         document.getElementById("adminUsersCount").innerText = stats.users || 0;
         document.getElementById("adminPendingCount").innerText = stats.pending || 0;
-        document.getElementById("adminBalanceTotal").innerText = (stats.total_balance || 0).toLocaleString("uz-UZ");
-        
+        document.getElementById("adminPendingTopups").innerText = stats.pending_topups || 0;
+
         APP_DATA.pending = pending;
-        
-        const container = document.getElementById("moderationList");
-        
+        APP_DATA.pendingTopups = topups;
+
+        // Reklamalar
+        const adsContainer = document.getElementById("moderationList");
         if (!pending.length) {
-            container.innerHTML = `
+            adsContainer.innerHTML = `
                 <div class="empty">
                     <div class="empty-icon">✅</div>
-                    <strong>Kutilayotgan e'lon yo'q</strong>
+                    <strong>Kutilayotgan reklama yo'q</strong>
                 </div>
             `;
-            hideLoading();
-            return;
-        }
-        
-        container.innerHTML = pending.map(ad => `
-            <div class="moderation-card">
-                <div class="moderation-layout">
-                    ${ad.video 
-                        ? `<video src="${ad.video}" class="moderation-photo" controls></video>`
-                        : `<img src="${ad.image}" class="moderation-photo" onerror="this.src='https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80'">`
-                    }
-                    <div class="moderation-info">
-                        <h3>${escapeHTML(ad.title)}</h3>
-                        <div class="moderation-meta">💰 ${formatPrice(ad.price)}</div>
-                        <div class="moderation-meta">📞 ${escapeHTML(ad.phone || "-")}</div>
-                        <div class="moderation-meta">📲 ${escapeHTML(ad.telegram || "-")}</div>
-                        <div class="moderation-meta">📍 ${escapeHTML(ad.location || "-")}</div>
+        } else {
+            adsContainer.innerHTML = pending.map(ad => `
+                <div class="moderation-card">
+                    <div class="moderation-layout">
+                        ${ad.video 
+                            ? `<video src="${ad.video}" class="moderation-photo" controls></video>`
+                            : `<img src="${ad.image}" class="moderation-photo" onerror="this.src='https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80'">`
+                        }
+                        <div class="moderation-info">
+                            <h3>${escapeHTML(ad.title)}</h3>
+                            <div class="moderation-meta">💰 ${formatPrice(ad.price)}</div>
+                            <div class="moderation-meta">📍 ${escapeHTML(ad.location || "-")}</div>
+                            <div class="moderation-meta">🆔 #${ad.id}</div>
+                        </div>
+                    </div>
+                    <div class="moderation-actions">
+                        <button class="btn btn-success" onclick="approveAd(${ad.id})">✓ Qabul</button>
+                        <button class="btn btn-danger" onclick="rejectAd(${ad.id})">✕ Rad etish</button>
                     </div>
                 </div>
-                <div class="moderation-actions">
-                    <button class="btn btn-success" onclick="approveAd('${ad.id}')">✓ Qabul</button>
-                    <button class="btn btn-danger" onclick="rejectAd('${ad.id}')">✕ Rad etish</button>
+            `).join("");
+        }
+
+        // To'lovlar
+        const topupContainer = document.getElementById("topupList");
+        if (!topups.length) {
+            topupContainer.innerHTML = `
+                <div class="empty">
+                    <div class="empty-icon">✅</div>
+                    <strong>Kutilayotgan chek yo'q</strong>
                 </div>
-            </div>
-        `).join("");
+            `;
+        } else {
+            topupContainer.innerHTML = topups.map(tx => `
+                <div class="topup-card">
+                    <div class="topup-header">
+                        <div>
+                            <div class="topup-user">${escapeHTML(tx.first_name || '')} ${escapeHTML(tx.last_name || '')}</div>
+                            <div style="font-size: 11px; color: var(--muted);">+998${tx.phone || '?'}</div>
+                        </div>
+                        <div class="topup-amount">${formatPrice(tx.amount)}</div>
+                    </div>
+                    ${tx.receipt_url ? `<img src="${tx.receipt_url}" class="topup-receipt" onerror="this.style.display='none'">` : ""}
+                    <div class="topup-actions">
+                        <button class="btn btn-success" onclick="approveTopup(${tx.id})">✓ Tasdiqlash</button>
+                        <button class="btn btn-danger" onclick="rejectTopup(${tx.id})">✕ Rad etish</button>
+                    </div>
+                </div>
+            `).join("");
+        }
     } catch (e) {
         console.error("Admin panel xatosi:", e);
     }
-    
     hideLoading();
 }
 
 async function approveAd(adId) {
     showLoading();
-    const ok = await approveAdAPI(adId);
-    hideLoading();
-    
-    if (ok) {
-        showToast("Reklama tasdiqlandi!", "success");
+    try {
+        await apiCall("/api/admin/approve-ad", "POST", {
+            admin_telegram_id: TELEGRAM_USER.id,
+            ad_id: adId
+        });
+        showToast("Tasdiqlandi!", "success");
         await renderAdminPanel();
-        await loadAdsFromAPI();
-    } else {
-        showToast("Xatolik yuz berdi", "error");
+    } catch (e) {
+        showToast("Xatolik: " + e.message, "error");
     }
+    hideLoading();
 }
 
 async function rejectAd(adId) {
-    const reason = prompt("Rad etish sababini kiriting:");
+    const reason = prompt("Rad etish sababi:");
     if (!reason) return;
-    
+
     showLoading();
-    const ok = await rejectAdAPI(adId, reason);
-    hideLoading();
-    
-    if (ok) {
-        showToast("Reklama rad etildi. Pul qaytarildi.", "success");
+    try {
+        await apiCall("/api/admin/reject-ad", "POST", {
+            admin_telegram_id: TELEGRAM_USER.id,
+            ad_id: adId,
+            reason: reason
+        });
+        showToast("Rad etildi. Pul qaytarildi.", "success");
         await renderAdminPanel();
-    } else {
-        showToast("Xatolik yuz berdi", "error");
+    } catch (e) {
+        showToast("Xatolik: " + e.message, "error");
     }
-}
-
-function verifyAdminLogin() {
-    const phone = document.getElementById("adminPhoneInput").value.trim();
-    const password = document.getElementById("adminPasswordInput").value.trim();
-    
-    if (!CONFIG.ADMIN_PHONES.includes(phone)) {
-        showToast("Bu raqam admin emas", "error");
-        return;
-    }
-    
-    if (password !== CONFIG.ADMIN_PASSWORD) {
-        showToast("Parol noto'g'ri", "error");
-        return;
-    }
-    
-    closeModal("adminLoginModal");
-    document.getElementById("adminPhoneInput").value = "";
-    document.getElementById("adminPasswordInput").value = "";
-    showToast("Admin panelga xush kelibsiz!", "success");
-    goToPage("adminPage");
-}
-
-/* =========================================================
-   PROFILE FUNCTIONS
-   ========================================================= */
-function updateProfileDisplay() {
-    const p = APP_DATA.profile;
-    document.getElementById("profileName").innerText = `${p.firstName} ${p.lastName}`.trim() || "Foydalanuvchi";
-    document.getElementById("profileUsername").innerText = p.phone ? `+998${p.phone}` : (TELEGRAM_USER?.username ? `@${TELEGRAM_USER.username}` : "@username");
-    document.getElementById("profileAvatar").innerText = p.avatar || "🐱";
-    document.getElementById("profileSpent").innerText = APP_DATA.spent.toLocaleString("uz-UZ");
-    document.getElementById("profileAds").innerText = APP_DATA.myAds.length;
-}
-
-async function saveProfile() {
-    const firstName = document.getElementById("profileFirstName").value.trim();
-    const lastName = document.getElementById("profileLastName").value.trim();
-    
-    if (!firstName) {
-        showToast("Ismingizni kiriting", "error");
-        return;
-    }
-    
-    if (!TELEGRAM_USER) {
-        APP_DATA.profile.firstName = firstName;
-        APP_DATA.profile.lastName = lastName;
-        saveData();
-        updateProfileDisplay();
-        closeModal("profileEditModal");
-        showToast("Profil saqlandi (lokal)", "success");
-        return;
-    }
-    
-    showLoading();
-    const ok = await saveProfileToAPI(firstName, lastName);
     hideLoading();
-    
-    APP_DATA.profile.firstName = firstName;
-    APP_DATA.profile.lastName = lastName;
-    
-    saveData();
-    updateProfileDisplay();
-    closeModal("profileEditModal");
-    
-    if (ok) {
-        showToast("Profil saqlandi!", "success");
-    } else {
-        showToast("Server bilan bog'lanishda xatolik (lokal saqlandi)", "error");
+}
+
+async function approveTopup(txId) {
+    showLoading();
+    try {
+        await apiCall("/api/admin/approve-topup", "POST", {
+            admin_telegram_id: TELEGRAM_USER.id,
+            tx_id: txId
+        });
+        showToast("Chek tasdiqlandi!", "success");
+        await renderAdminPanel();
+    } catch (e) {
+        showToast("Xatolik: " + e.message, "error");
     }
+    hideLoading();
+}
+
+async function rejectTopup(txId) {
+    if (!confirm("Chekni rad etmoqchimisiz?")) return;
+    showLoading();
+    try {
+        await apiCall("/api/admin/reject-topup", "POST", {
+            admin_telegram_id: TELEGRAM_USER.id,
+            tx_id: txId,
+            reason: "Chek tasdiqlanmadi"
+        });
+        showToast("Rad etildi", "success");
+        await renderAdminPanel();
+    } catch (e) {
+        showToast("Xatolik: " + e.message, "error");
+    }
+    hideLoading();
 }
 
 /* =========================================================
-   UTILITY FUNCTIONS
+   UTILITY
    ========================================================= */
 function toggleTheme() {
     document.body.classList.toggle("dark");
@@ -3561,12 +3007,21 @@ function showToast(message, type = "") {
     toast.className = `toast ${type}`;
     toast.innerText = message;
     container.appendChild(toast);
-    
     setTimeout(() => toast.remove(), 3000);
 }
 
 function formatPrice(price) {
     return Number(price).toLocaleString("uz-UZ") + " so'm";
+}
+
+function formatTime(dateStr) {
+    if (!dateStr) return "";
+    try {
+        const d = new Date(dateStr);
+        return d.toLocaleTimeString("uz-UZ", { hour: "2-digit", minute: "2-digit" });
+    } catch {
+        return "";
+    }
 }
 
 function escapeHTML(str) {
@@ -3581,16 +3036,16 @@ function escapeHTML(str) {
 
 function applyFilter() {
     const maxPrice = parseInt(document.getElementById("filterMaxPrice").value.replace(/\s/g, "")) || 0;
-    
+
     let ads = APP_DATA.ads.filter(ad => ad.status === "ACTIVE");
     if (maxPrice > 0) ads = ads.filter(ad => ad.price <= maxPrice);
-    
+
     const grid = document.getElementById("adsGrid");
     if (!ads.length) {
         grid.innerHTML = `
             <div class="empty" style="grid-column: 1/-1;">
                 <div class="empty-icon">🔎</div>
-                <strong>Filtr bo'yicha reklama topilmadi</strong>
+                <strong>Filtr bo'yicha topilmadi</strong>
             </div>
         `;
     } else {
@@ -3607,12 +3062,12 @@ function applyFilter() {
             </article>
         `).join("");
     }
-    
+
     closeModal("filterModal");
 }
 
 /* =========================================================
-   INITIALIZE APP
+   INIT
    ========================================================= */
 document.addEventListener("DOMContentLoaded", init);
 
@@ -3621,7 +3076,6 @@ document.querySelectorAll(".modal-overlay").forEach(overlay => {
         if (e.target === overlay) closeModal(overlay.id);
     });
 });
-
 </script>
 
 </body>
