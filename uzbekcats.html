@@ -18,6 +18,7 @@
             --red: #e74c3c;
             --orange: #f39c12;
             --gold: #f1c40f;
+            --blue-tick: #2196f3;
             --bg: #f0f2f8;
             --card: #ffffff;
             --text: #2d3436;
@@ -60,7 +61,7 @@
 
         .container { width: min(1200px, 100%); margin: auto; padding: 16px; }
 
-        /* TOP BAR */
+        /* ========== TOP BAR (YANGI) ========== */
         .top-bar {
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             padding: 16px;
@@ -75,9 +76,10 @@
             align-items: center;
             max-width: 1200px;
             margin: 0 auto;
+            gap: 12px;
         }
 
-        .brand { display: flex; align-items: center; gap: 12px; }
+        .brand { display: flex; align-items: center; gap: 12px; min-width: 0; flex: 1; }
 
         .brand-logo {
             width: 52px;
@@ -93,29 +95,47 @@
             border: 2.5px solid rgba(255, 255, 255, 0.4);
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             flex-shrink: 0;
+            cursor: pointer;
         }
 
         .brand-logo img { width: 100%; height: 100%; object-fit: cover; }
 
-        .brand-name { font-size: 20px; font-weight: 900; letter-spacing: -0.5px; }
-        .brand-sub { font-size: 11px; opacity: 0.85; }
+        .brand-name { 
+            font-size: 17px; 
+            font-weight: 900; 
+            letter-spacing: -0.5px; 
+            white-space: nowrap; 
+            overflow: hidden; 
+            text-overflow: ellipsis;
+            max-width: 150px;
+        }
+        .brand-sub { 
+            font-size: 11px; 
+            opacity: 0.85; 
+            white-space: nowrap; 
+            overflow: hidden; 
+            text-overflow: ellipsis;
+            max-width: 150px;
+        }
 
+        /* Balans - endi summa tepada, "Balans" yozuvi ostida */
         .balance-display {
             display: flex; align-items: center; gap: 8px;
             background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(10px);
-            padding: 10px 16px;
+            padding: 10px 14px;
             border-radius: 16px;
             cursor: pointer;
             transition: all 0.2s;
             border: 1px solid rgba(255, 255, 255, 0.2);
+            flex-shrink: 0;
         }
 
         .balance-display:active { transform: scale(0.97); background: rgba(255, 255, 255, 0.25); }
         .balance-icon { font-size: 20px; }
         .balance-info { text-align: right; }
-        .balance-label { font-size: 9px; opacity: 0.85; }
-        .balance-amount { font-size: 15px; font-weight: 900; }
+        .balance-label { font-size: 9px; opacity: 0.85; }        /* endi ostida */
+        .balance-amount { font-size: 15px; font-weight: 900; }   /* endi tepada */
 
         .balance-add {
             width: 28px; height: 28px;
@@ -125,7 +145,7 @@
             font-size: 18px; font-weight: 900;
         }
 
-        /* BOTTOM NAV */
+        /* ========== BOTTOM NAV ========== */
         .bottom-navigation {
             position: fixed; z-index: 100;
             left: 0; right: 0; bottom: 0;
@@ -173,7 +193,7 @@
             transform: scale(1.05);
         }
 
-        /* COMMON */
+        /* ========== COMMON ========== */
         .section-title { font-size: 20px; font-weight: 900; letter-spacing: -0.3px; }
         .section-subtitle { margin-top: 4px; color: var(--muted); font-size: 13px; }
 
@@ -214,32 +234,7 @@
 
         .icon-btn:active { transform: scale(0.95); }
 
-        /* SEARCH */
-        .search-box { margin-top: 16px; position: relative; }
-
-        .search-box input {
-            width: 100%; border: 0;
-            background: var(--card); color: var(--text);
-            padding: 16px 50px 16px 50px;
-            border-radius: 18px;
-            box-shadow: var(--shadow);
-            font-size: 14px;
-        }
-
-        .search-icon {
-            position: absolute; left: 18px; top: 50%;
-            transform: translateY(-50%); color: var(--muted);
-            font-size: 18px;
-        }
-
-        .search-filter {
-            position: absolute; right: 8px; top: 8px;
-            width: 40px; height: 40px; border-radius: 13px;
-            background: var(--primary); color: white;
-            font-size: 18px;
-        }
-
-        /* TABS */
+        /* ========== TABS ========== */
         .category-tabs {
             display: flex; gap: 8px; overflow-x: auto;
             padding: 18px 0 5px; scrollbar-width: none;
@@ -262,7 +257,7 @@
             box-shadow: 0 4px 15px rgba(108, 92, 231, 0.3);
         }
 
-        /* ADS GRID */
+        /* ========== ADS GRID ========== */
         .ads-grid {
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -291,6 +286,16 @@
         }
 
         .ad-type-badge.premium { background: linear-gradient(135deg, var(--gold), #e67e22); }
+
+        /* Rasm indikator (OLX uslubida) */
+        .ad-photo-count {
+            position: absolute; bottom: 10px; right: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white; padding: 4px 10px;
+            border-radius: 10px; font-size: 10px; font-weight: 800;
+            backdrop-filter: blur(8px);
+        }
+
         .ad-content { padding: 14px; }
 
         .ad-title {
@@ -335,7 +340,7 @@
             border-color: rgba(231, 76, 60, 0.3);
         }
 
-        /* FORMS */
+        /* ========== FORMS ========== */
         .form-group { margin-bottom: 18px; }
         .form-label { display: block; font-size: 13px; font-weight: 800; margin-bottom: 10px; }
 
@@ -354,9 +359,9 @@
 
         .form-textarea { min-height: 120px; resize: vertical; line-height: 1.6; }
 
-        /* UPLOAD */
+        /* ========== MEDIA UPLOAD (YANGI - KO'P RASM) ========== */
         .media-upload {
-            min-height: 200px;
+            min-height: 180px;
             border: 2.5px dashed var(--border);
             border-radius: 22px;
             background: var(--card);
@@ -384,6 +389,27 @@
 
         .media-preview img, .media-preview video { width: 100%; height: 100%; object-fit: cover; }
 
+        .media-preview .preview-index {
+            position: absolute; bottom: 4px; left: 4px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white; padding: 2px 8px;
+            border-radius: 8px; font-size: 10px; font-weight: 800;
+        }
+
+        .media-preview.main-photo {
+            grid-column: span 2;
+            grid-row: span 2;
+            height: 230px;
+        }
+
+        .media-preview.main-photo::after {
+            content: "ASOSIY";
+            position: absolute; top: 6px; left: 6px;
+            background: var(--primary);
+            color: white; padding: 3px 10px;
+            border-radius: 8px; font-size: 9px; font-weight: 900;
+        }
+
         .remove-media {
             position: absolute; right: 6px; top: 6px;
             width: 30px; height: 30px; border-radius: 10px;
@@ -392,7 +418,14 @@
             display: flex; align-items: center; justify-content: center;
         }
 
-        /* ACCOUNT FORM */
+        .media-hint {
+            background: rgba(108, 92, 231, 0.08);
+            border-radius: 14px; padding: 12px;
+            font-size: 12px; color: var(--muted);
+            margin-top: 12px; line-height: 1.6;
+        }
+
+        /* ========== ACCOUNT FORM ========== */
         .account-form-card {
             background: var(--card);
             border: 1.5px solid var(--border);
@@ -413,23 +446,24 @@
             font-size: 18px;
         }
 
-        /* CHAT */
-        .chat-list { display: grid; gap: 10px; }
+        /* ========== CHAT LIST (YANGI TELEGRAM USLUBI) ========== */
+        .chat-list { display: grid; gap: 4px; }
 
         .chat-item {
             display: flex; align-items: center;
-            gap: 14px; padding: 15px;
+            gap: 12px; padding: 12px;
             background: var(--card);
-            border: 1.5px solid var(--border);
-            border-radius: 20px;
-            transition: all 0.2s; cursor: pointer;
+            border-radius: 16px;
+            transition: all 0.15s; cursor: pointer;
+            border: 1px solid transparent;
         }
 
-        .chat-item:active { transform: scale(0.98); border-color: var(--primary); }
+        .chat-item:active { background: var(--bg); }
+        .chat-item.unread { border-color: rgba(108, 92, 231, 0.3); }
 
         .chat-avatar {
-            width: 52px; height: 52px; flex-shrink: 0;
-            border-radius: 18px;
+            width: 54px; height: 54px; flex-shrink: 0;
+            border-radius: 50%;
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white; display: flex;
             justify-content: center; align-items: center;
@@ -441,24 +475,47 @@
         .chat-avatar.admin { background: linear-gradient(135deg, var(--gold), #e67e22); }
 
         .chat-info { flex: 1; min-width: 0; }
-        .chat-name { font-size: 14px; font-weight: 800; }
+        .chat-name { font-size: 15px; font-weight: 800; display: flex; align-items: center; gap: 6px; }
+        .chat-name .admin-tick {
+            width: 16px; height: 16px;
+            background: #2ecc71; color: white;
+            border-radius: 50%; display: inline-flex;
+            align-items: center; justify-content: center;
+            font-size: 10px; font-weight: 900;
+        }
 
         .chat-message {
-            margin-top: 4px; color: var(--muted);
-            font-size: 12px;
+            margin-top: 3px; color: var(--muted);
+            font-size: 13px;
             white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+            display: flex; align-items: center; gap: 5px;
         }
 
-        .chat-time { color: var(--muted); font-size: 10px; font-weight: 600; }
+        .chat-message .msg-tick {
+            font-size: 13px;
+            flex-shrink: 0;
+        }
 
-        .chat-badge {
+        .chat-message .msg-tick.read { color: var(--blue-tick); }
+        .chat-message .msg-tick.sent { color: var(--muted); }
+
+        .chat-meta-right {
+            display: flex; flex-direction: column;
+            align-items: flex-end; gap: 6px;
+            flex-shrink: 0;
+        }
+
+        .chat-time { color: var(--muted); font-size: 11px; font-weight: 600; }
+
+        .chat-unread-badge {
             background: var(--primary); color: white;
-            font-size: 10px; font-weight: 800;
-            padding: 3px 8px; border-radius: 10px;
-            display: inline-block; margin-top: 4px;
+            font-size: 11px; font-weight: 800;
+            min-width: 20px; height: 20px;
+            padding: 0 6px; border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
         }
 
-        /* CHAT ROOM */
+        /* ========== CHAT ROOM (TELEGRAM USLUBI) ========== */
         .chat-room {
             position: fixed; inset: 0; z-index: 200;
             background: var(--bg);
@@ -469,8 +526,8 @@
 
         .chat-room-header {
             background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: white; padding: 14px 16px;
-            display: flex; align-items: center; gap: 14px;
+            color: white; padding: 12px 14px;
+            display: flex; align-items: center; gap: 12px;
             box-shadow: 0 4px 20px rgba(108, 92, 231, 0.3);
         }
 
@@ -482,15 +539,16 @@
         }
 
         .chat-room-avatar {
-            width: 44px; height: 44px; border-radius: 15px;
+            width: 42px; height: 42px; border-radius: 50%;
             background: rgba(255, 255, 255, 0.2);
             display: flex; align-items: center; justify-content: center;
-            font-size: 22px; overflow: hidden;
+            font-size: 20px; overflow: hidden;
+            flex-shrink: 0;
         }
 
         .chat-room-avatar img { width: 100%; height: 100%; object-fit: cover; }
-        .chat-room-info { flex: 1; }
-        .chat-room-name { font-size: 15px; font-weight: 800; }
+        .chat-room-info { flex: 1; min-width: 0; }
+        .chat-room-name { font-size: 15px; font-weight: 800; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
         .chat-room-status {
             font-size: 11px; opacity: 0.85;
@@ -514,45 +572,82 @@
 
         .chat-messages {
             flex: 1; overflow-y: auto; padding: 16px;
-            display: flex; flex-direction: column; gap: 10px;
+            display: flex; flex-direction: column; gap: 8px;
+            background: var(--bg);
         }
 
+        /* Telegram uslubidagi xabar */
         .message {
-            max-width: 80%; padding: 12px 16px;
-            border-radius: 18px; font-size: 14px;
-            line-height: 1.5; position: relative;
+            max-width: 78%; padding: 8px 12px 6px 12px;
+            border-radius: 16px; font-size: 14px;
+            line-height: 1.4; position: relative;
             word-wrap: break-word;
         }
 
         .message.sent {
             align-self: flex-end;
             background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: white; border-bottom-right-radius: 6px;
+            color: white; border-bottom-right-radius: 4px;
         }
 
         .message.received {
             align-self: flex-start;
             background: var(--card);
             border: 1px solid var(--border);
-            border-bottom-left-radius: 6px;
+            border-bottom-left-radius: 4px;
         }
 
         .message.admin {
             align-self: flex-start;
             background: linear-gradient(135deg, rgba(241, 196, 15, 0.15), rgba(230, 126, 34, 0.1));
             border: 1px solid rgba(241, 196, 15, 0.3);
-            border-bottom-left-radius: 6px;
+            border-bottom-left-radius: 4px;
         }
 
+        /* Avatar va ism ko'rsatilgan sender */
+        .msg-sender-row {
+            display: flex; align-items: center; gap: 6px;
+            margin-bottom: 4px;
+        }
+
+        .msg-sender-avatar {
+            width: 22px; height: 22px; border-radius: 50%;
+            overflow: hidden; flex-shrink: 0;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex; align-items: center; justify-content: center;
+            font-size: 12px; color: white;
+        }
+
+        .msg-sender-avatar img { width: 100%; height: 100%; object-fit: cover; }
+
         .message-sender {
-            font-size: 10px; font-weight: 800;
-            margin-bottom: 4px; opacity: 0.85;
+            font-size: 11px; font-weight: 800;
+            color: var(--primary);
+            display: flex; align-items: center; gap: 3px;
+        }
+
+        .message-sender .tick-badge {
+            color: #2ecc71;
+            font-size: 11px;
         }
 
         .message-time {
-            font-size: 9px; opacity: 0.6;
-            margin-top: 5px; text-align: right;
+            font-size: 10px; opacity: 0.75;
+            margin-top: 3px; text-align: right;
+            display: flex; align-items: center; justify-content: flex-end;
+            gap: 3px;
         }
+
+        .message-time .tick {
+            font-size: 12px;
+            line-height: 1;
+        }
+
+        .message-time .tick.sent { color: rgba(255, 255, 255, 0.7); }
+        .message-time .tick.read { color: #4fc3f7; }
+
+        .message.received .message-time .tick,
+        .message.admin .message-time .tick { color: var(--blue-tick); }
 
         .message-actions {
             position: absolute; top: -8px;
@@ -578,31 +673,31 @@
         .message-action-btn.warn { background: var(--orange); color: white; border-color: var(--orange); }
 
         .chat-input-area {
-            padding: 12px 16px;
+            padding: 10px 12px;
             background: var(--card);
             border-top: 1px solid var(--border);
-            display: flex; gap: 10px; align-items: flex-end;
+            display: flex; gap: 8px; align-items: flex-end;
         }
 
         .chat-input {
             flex: 1;
             border: 1.5px solid var(--border);
             background: var(--bg); color: var(--text);
-            border-radius: 20px;
-            padding: 12px 16px;
+            border-radius: 22px;
+            padding: 11px 16px;
             font-size: 14px;
             max-height: 100px; resize: none;
         }
 
         .chat-send {
-            width: 46px; height: 46px; border-radius: 16px;
+            width: 44px; height: 44px; border-radius: 50%;
             background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: white;
             display: flex; align-items: center; justify-content: center;
-            font-size: 20px; flex-shrink: 0;
+            font-size: 18px; flex-shrink: 0;
         }
 
-        /* PROFILE */
+        /* ========== PROFILE ========== */
         .profile-card {
             background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: white;
@@ -732,7 +827,7 @@
         .profile-menu-text strong { display: block; font-size: 14px; }
         .profile-menu-text span { display: block; margin-top: 3px; color: var(--muted); font-size: 11px; }
 
-        /* BALANCE PAGE */
+        /* ========== BALANCE PAGES ========== */
         .balance-page-card {
             background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: white;
@@ -785,7 +880,6 @@
             color: white;
         }
 
-        /* RECEIPT */
         .receipt-upload {
             border: 2.5px dashed var(--border);
             border-radius: 22px;
@@ -807,7 +901,7 @@
 
         .receipt-preview img { width: 100%; border-radius: 18px; }
 
-        /* MODALS */
+        /* ========== MODALS ========== */
         .modal-overlay {
             position: fixed; inset: 0; z-index: 500;
             background: rgba(0, 0, 0, 0.6);
@@ -847,7 +941,80 @@
             display: flex; align-items: center; justify-content: center;
         }
 
-        /* TOAST */
+        /* ========== AD DETAIL (OLX USLUBI - KO'P RASM) ========== */
+        .ad-detail-gallery {
+            position: relative;
+            width: 100%;
+            height: 320px;
+            border-radius: 20px;
+            overflow: hidden;
+            background: #000;
+            margin-bottom: 16px;
+        }
+
+        .ad-detail-media {
+            width: 100%; height: 100%;
+            object-fit: contain;
+            display: none;
+        }
+
+        .ad-detail-media.active { display: block; }
+
+        .gallery-nav {
+            position: absolute; top: 50%;
+            transform: translateY(-50%);
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 20px;
+            backdrop-filter: blur(8px);
+            z-index: 5;
+        }
+
+        .gallery-nav.prev { left: 10px; }
+        .gallery-nav.next { right: 10px; }
+
+        .gallery-dots {
+            position: absolute; bottom: 12px;
+            left: 50%; transform: translateX(-50%);
+            display: flex; gap: 6px;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 6px 10px; border-radius: 12px;
+            backdrop-filter: blur(8px);
+        }
+
+        .gallery-dot {
+            width: 8px; height: 8px; border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            transition: all 0.2s;
+        }
+
+        .gallery-dot.active {
+            background: white;
+            width: 20px; border-radius: 4px;
+        }
+
+        .gallery-thumbs {
+            display: flex; gap: 8px;
+            overflow-x: auto; padding: 4px 0 10px;
+            scrollbar-width: none;
+        }
+
+        .gallery-thumbs::-webkit-scrollbar { display: none; }
+
+        .gallery-thumb {
+            width: 60px; height: 60px;
+            border-radius: 12px; object-fit: cover;
+            flex-shrink: 0; cursor: pointer;
+            border: 2.5px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .gallery-thumb.active { border-color: var(--primary); }
+
+        /* ========== TOAST ========== */
         .toast-container {
             position: fixed; z-index: 1000;
             left: 16px; right: 16px; top: 16px;
@@ -875,7 +1042,7 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* STATUS */
+        /* ========== STATUS ========== */
         .status {
             display: inline-flex; align-items: center; gap: 5px;
             padding: 6px 12px; border-radius: 10px;
@@ -887,7 +1054,7 @@
         .status.expired { color: #7f8c8d; background: rgba(127, 140, 141, 0.12); }
         .status.rejected { color: #c0392b; background: rgba(231, 76, 60, 0.12); }
 
-        /* MY ADS */
+        /* ========== MY ADS ========== */
         .my-ad-item {
             background: var(--card);
             border: 1.5px solid var(--border);
@@ -922,7 +1089,7 @@
         .small-btn.success { background: rgba(0, 184, 148, 0.1); color: var(--green); border-color: rgba(0, 184, 148, 0.2); }
         .small-btn.warn { background: rgba(243, 156, 18, 0.1); color: var(--orange); border-color: rgba(243, 156, 18, 0.2); }
 
-        /* ADMIN */
+        /* ========== ADMIN ========== */
         .admin-badge {
             padding: 8px 14px; border-radius: 12px;
             background: linear-gradient(135deg, rgba(231, 76, 60, 0.15), rgba(231, 76, 60, 0.05));
@@ -1010,7 +1177,7 @@
 
         .user-avatar {
             width: 48px; height: 48px;
-            border-radius: 14px;
+            border-radius: 50%;
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white; font-size: 22px;
             display: flex;
@@ -1025,7 +1192,6 @@
         .user-name { font-weight: 800; font-size: 14px; display: flex; align-items: center; gap: 5px; }
         .user-meta { font-size: 11px; color: var(--muted); margin-top: 3px; }
 
-        /* BROADCAST */
         .broadcast-area {
             background: var(--card);
             border: 1.5px solid var(--border);
@@ -1034,7 +1200,7 @@
             margin-bottom: 16px;
         }
 
-        /* STEP INDICATOR */
+        /* ========== STEP INDICATOR ========== */
         .step-indicator { display: flex; gap: 6px; margin: 18px 0 24px; }
 
         .step-dot {
@@ -1052,7 +1218,6 @@
         .create-actions { display: flex; gap: 12px; margin-top: 24px; }
         .create-actions .btn { flex: 1; }
 
-        /* PREVIEW */
         .preview-card {
             background: var(--card);
             border-radius: 24px;
@@ -1086,11 +1251,9 @@
         .info-row span:first-child { color: var(--muted); }
         .info-row span:last-child { font-weight: 700; text-align: right; }
 
-        /* EMPTY */
         .empty { padding: 50px 20px; text-align: center; color: var(--muted); }
         .empty-icon { font-size: 56px; margin-bottom: 14px; }
 
-        /* LOADING */
         .loading-overlay {
             position: fixed; inset: 0; z-index: 9999;
             background: rgba(0, 0, 0, 0.5);
@@ -1111,7 +1274,6 @@
 
         @keyframes spin { to { transform: rotate(360deg); } }
 
-        /* RESPONSIVE */
         @media (min-width: 700px) {
             .ads-grid { grid-template-columns: repeat(3, 1fr); }
             .admin-stat-grid { grid-template-columns: repeat(4, 1fr); }
@@ -1134,42 +1296,35 @@
 
 <div class="app">
 
-    <!-- TOP BAR -->
+    <!-- ========== TOP BAR (YANGI - FOYDALANUVCHI MA'LUMOTLARI) ========== -->
     <div class="top-bar">
         <div class="top-bar-content">
-            <div class="brand">
+            <div class="brand" onclick="goToPage('profilePage')">
                 <div class="brand-logo" id="brandLogo">
-                    <!-- Rasm yoki emoji -->
-                    <img src="https://i.ibb.co/Y4r0x7T/cardinal-logo.jpg" alt="Cardinal" 
-                         onerror="this.style.display='none'; this.parentElement.innerHTML='🃏';">
+                    <span id="topAvatarEmoji">👤</span>
+                    <img id="topAvatarImg" src="" alt="" style="display: none;">
                 </div>
-                <div>
-                    <div class="brand-name">Cardinal</div>
-                    <div class="brand-sub">Reklama Bot</div>
+                <div style="min-width: 0;">
+                    <div class="brand-name" id="topUserName">Foydalanuvchi</div>
+                    <div class="brand-sub" id="topUserLastName">Reklama Bot</div>
                 </div>
             </div>
             
             <div class="balance-display" onclick="startBalanceTopUp()">
                 <span class="balance-icon">💰</span>
                 <div class="balance-info">
-                    <div class="balance-label">Balans</div>
                     <div class="balance-amount" id="topBalance">0 so'm</div>
+                    <div class="balance-label">Balans</div>
                 </div>
                 <div class="balance-add">+</div>
             </div>
         </div>
     </div>
 
-    <!-- DASHBOARD -->
+    <!-- ========== DASHBOARD (QIDIRUV OLIB TASHLANDI) ========== -->
     <section class="page active" id="dashboardPage">
         <div class="container">
-            <div class="search-box">
-                <span class="search-icon">🔎</span>
-                <input id="dashboardSearch" type="search" placeholder="Akkaunt, skin yoki narx qidiring...">
-                <button class="search-filter" onclick="openModal('filterModal')">⚙</button>
-            </div>
-
-            <div class="category-tabs">
+            <div class="category-tabs" style="padding-top: 8px;">
                 <button class="category-tab active" data-category="ALL">Hammasi</button>
                 <button class="category-tab" data-category="PREMIUM">⭐ Premium</button>
                 <button class="category-tab" data-category="STANDARD">💰 Arzon</button>
@@ -1185,7 +1340,7 @@
         </div>
     </section>
 
-    <!-- BALANCE TOP-UP PAGE 1 -->
+    <!-- ========== BALANCE TOP-UP PAGE 1 ========== -->
     <section class="page" id="balanceTopUpPage">
         <div class="container">
             <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 20px;">
@@ -1225,7 +1380,7 @@
         </div>
     </section>
 
-    <!-- BALANCE TOP-UP PAGE 2 (RECEIPT) -->
+    <!-- ========== BALANCE PAYMENT PAGE ========== -->
     <section class="page" id="balancePaymentPage">
         <div class="container">
             <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 20px;">
@@ -1305,7 +1460,7 @@
         </div>
     </section>
 
-    <!-- CREATE AD -->
+    <!-- ========== CREATE AD ========== -->
     <section class="page" id="createAdPage">
         <div class="container">
             <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 20px;">
@@ -1334,7 +1489,7 @@
                             </div>
                         </div>
                         <div style="font-size: 18px; font-weight: 900;">Kanalda reklama</div>
-                        <div style="font-size: 12px; color: var(--muted); line-height: 1.5;">Faqat Telegram kanalda chiqadi (1 kun)</div>
+                        <div style="font-size: 12px; color: var(--muted); line-height: 1.5;">Faqat Telegram kanalda chiqadi (1 hafta)</div>
                     </div>
 
                     <div class="tariff-card" data-tariff="2" 
@@ -1348,7 +1503,7 @@
                             </div>
                         </div>
                         <div style="font-size: 18px; font-weight: 900;">Web App'da reklama</div>
-                        <div style="font-size: 12px; color: var(--muted); line-height: 1.5;">Asosiy menyuda chiqadi (3 kun)</div>
+                        <div style="font-size: 12px; color: var(--muted); line-height: 1.5;">Asosiy menyuda chiqadi (1 hafta)</div>
                     </div>
 
                     <div class="tariff-card" data-tariff="3" 
@@ -1361,7 +1516,7 @@
                             </div>
                         </div>
                         <div style="font-size: 18px; font-weight: 900;">Web App + Kanal</div>
-                        <div style="font-size: 12px; color: var(--muted); line-height: 1.5;">Ikkala joyda chiqadi (7 kun)</div>
+                        <div style="font-size: 12px; color: var(--muted); line-height: 1.5;">Ikkala joyda chiqadi (1 hafta)</div>
                     </div>
 
                     <div class="tariff-card" data-tariff="4" 
@@ -1374,22 +1529,26 @@
                             </div>
                         </div>
                         <div style="font-size: 18px; font-weight: 900;">VIP Tarif</div>
-                        <div style="font-size: 12px; color: var(--muted); line-height: 1.5;">Eng yuqori - tepada turadi (7 kun)</div>
+                        <div style="font-size: 12px; color: var(--muted); line-height: 1.5;">Eng yuqori - tepada turadi (1 hafta)</div>
                     </div>
                 </div>
             </div>
 
-            <!-- STEP 2: Media -->
+            <!-- STEP 2: Media (YANGI - 10 RASM YOKI 1 VIDEO) -->
             <div class="create-step" data-step="2">
-                <div class="section-title">Video yoki rasm yuklang</div>
-                <div class="section-subtitle">Akkaunt obzor videosini yuklang</div>
+                <div class="section-title">Rasm yoki video yuklang</div>
+                <div class="section-subtitle">Maksimal 10 ta rasm yoki 1 ta video (10 daqiqa)</div>
 
                 <label class="media-upload" style="margin-top: 18px;">
-                    <div class="media-upload-icon">🎬</div>
-                    <strong>Video yoki rasm tanlang</strong>
-                    <span>MP4, JPG yoki PNG formatda (maks 5 MB)</span>
-                    <input type="file" id="mediaInput" accept="video/*,image/*" hidden>
+                    <div class="media-upload-icon">📸</div>
+                    <strong>Rasm yoki video tanlang</strong>
+                    <span>1-10 ta rasm yoki 1 ta video (10 daqiqagacha)</span>
+                    <input type="file" id="mediaInput" accept="image/*,video/*" multiple hidden>
                 </label>
+
+                <div class="media-hint">
+                    💡 <b>Maslahat:</b> Birinchi yuklangan rasm yoki video <b>asosiy</b> bo'ladi va asosiy menyuda ko'rinadi. Keyingi rasmlarni ustiga bosib ko'rish mumkin.
+                </div>
 
                 <div class="media-preview-grid" id="mediaPreviewGrid"></div>
             </div>
@@ -1526,7 +1685,7 @@
         </div>
     </section>
 
-    <!-- MY ADS -->
+    <!-- ========== MY ADS ========== -->
     <section class="page" id="myAdsPage">
         <div class="container">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
@@ -1549,7 +1708,7 @@
         </div>
     </section>
 
-    <!-- CHAT -->
+    <!-- ========== CHAT (TELEGRAM USLUBI) ========== -->
     <section class="page" id="chatPage">
         <div class="container">
             <div style="margin-bottom: 20px;">
@@ -1561,13 +1720,13 @@
         </div>
     </section>
 
-    <!-- PROFILE -->
+    <!-- ========== PROFILE ========== -->
     <section class="page" id="profilePage">
         <div class="container">
             <div class="profile-card">
                 <div class="profile-avatar-wrap" onclick="openAvatarPicker()">
                     <div class="profile-avatar" id="profileAvatar">
-                        <span id="profileAvatarEmoji">🐱</span>
+                        <span id="profileAvatarEmoji">👤</span>
                         <img id="profileAvatarImg" src="" alt="" style="display: none;">
                     </div>
                     <div class="profile-avatar-edit">📷</div>
@@ -1622,7 +1781,6 @@
                     <span>›</span>
                 </button>
 
-                <!-- Admin panel tugmasi — FAQAT ADMIN uchun -->
                 <button class="profile-menu-item" id="adminPanelBtn" style="display: none;" onclick="goToPage('adminPage')">
                     <div class="profile-menu-icon admin">🛡️</div>
                     <div class="profile-menu-text">
@@ -1644,7 +1802,7 @@
         </div>
     </section>
 
-    <!-- ADMIN PANEL -->
+    <!-- ========== ADMIN PANEL ========== -->
     <section class="page" id="adminPage">
         <div class="container">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
@@ -1681,7 +1839,6 @@
                 </div>
             </div>
 
-            <!-- Tabs -->
             <div class="category-tabs" id="adminTabs">
                 <button class="category-tab active" data-admintab="ads">📢 Reklamalar</button>
                 <button class="category-tab" data-admintab="topups">💳 To'lovlar</button>
@@ -1691,37 +1848,31 @@
                 <button class="category-tab" data-admintab="broadcast">📢 Broadcast</button>
             </div>
 
-            <!-- Reklamalar -->
             <div id="adminAdsSection" style="margin-top: 16px;">
                 <div class="section-title" style="font-size: 16px; margin-bottom: 12px;">Tasdiqlash kutilayotgan reklamalar</div>
                 <div id="moderationList"></div>
             </div>
 
-            <!-- To'lovlar -->
             <div id="adminTopupsSection" style="margin-top: 16px; display: none;">
                 <div class="section-title" style="font-size: 16px; margin-bottom: 12px;">Chek tasdiqlash</div>
                 <div id="topupList"></div>
             </div>
 
-            <!-- Chatlar -->
             <div id="adminChatsSection" style="margin-top: 16px; display: none;">
                 <div class="section-title" style="font-size: 16px; margin-bottom: 12px;">Foydalanuvchilar chatlari</div>
                 <div id="adminChatsList"></div>
             </div>
 
-            <!-- Foydalanuvchilar -->
             <div id="adminUsersSection" style="margin-top: 16px; display: none;">
                 <div class="section-title" style="font-size: 16px; margin-bottom: 12px;">Foydalanuvchilar ro'yxati</div>
                 <div id="usersList"></div>
             </div>
 
-            <!-- Bloklanganlar -->
             <div id="adminBlockedSection" style="margin-top: 16px; display: none;">
                 <div class="section-title" style="font-size: 16px; margin-bottom: 12px;">Bloklangan foydalanuvchilar</div>
                 <div id="blockedList"></div>
             </div>
 
-            <!-- Broadcast -->
             <div id="adminBroadcastSection" style="margin-top: 16px; display: none;">
                 <div class="section-title" style="font-size: 16px; margin-bottom: 12px;">Barchaga xabar yuborish</div>
                 <div class="broadcast-area">
@@ -1737,7 +1888,7 @@
         </div>
     </section>
 
-    <!-- CHAT ROOM -->
+    <!-- ========== CHAT ROOM ========== -->
     <div class="chat-room" id="chatRoom">
         <div class="chat-room-header">
             <button class="chat-room-back" onclick="closeChatRoom()">←</button>
@@ -1758,7 +1909,7 @@
         </div>
     </div>
 
-    <!-- BOTTOM NAV -->
+    <!-- ========== BOTTOM NAV ========== -->
     <nav class="bottom-navigation">
         <div class="bottom-navigation-inner">
             <button class="nav-item active" data-page="dashboardPage">
@@ -1789,7 +1940,7 @@
     </nav>
 </div>
 
-<!-- MODALS -->
+<!-- ========== MODALS ========== -->
 <div class="modal-overlay" id="profileEditModal">
     <div class="modal">
         <div class="modal-header">
@@ -1811,7 +1962,6 @@
     </div>
 </div>
 
-<!-- AVATAR PICKER MODAL -->
 <div class="modal-overlay" id="avatarModal">
     <div class="modal">
         <div class="modal-header">
@@ -1822,7 +1972,7 @@
         <div style="text-align: center; margin-bottom: 20px;">
             <div style="width: 150px; height: 150px; border-radius: 50%; overflow: hidden; margin: auto; background: var(--bg); display: flex; align-items: center; justify-content: center; font-size: 60px; border: 3px solid var(--primary);">
                 <img id="avatarPreviewImg" src="" style="display: none; width: 100%; height: 100%; object-fit: cover;">
-                <span id="avatarPreviewEmoji">🐱</span>
+                <span id="avatarPreviewEmoji">👤</span>
             </div>
         </div>
 
@@ -1851,22 +2001,6 @@
     </div>
 </div>
 
-<div class="modal-overlay" id="filterModal">
-    <div class="modal">
-        <div class="modal-header">
-            <div class="modal-title">Filtr</div>
-            <button class="modal-close" onclick="closeModal('filterModal')">×</button>
-        </div>
-
-        <div class="form-group">
-            <label class="form-label">Maksimal narx</label>
-            <input class="form-input" id="filterMaxPrice" inputmode="numeric" placeholder="Masalan: 5000000">
-        </div>
-
-        <button class="btn btn-primary btn-block" onclick="applyFilter()">Filtrni qo'llash</button>
-    </div>
-</div>
-
 <div class="modal-overlay" id="messageEditModal">
     <div class="modal">
         <div class="modal-header">
@@ -1889,18 +2023,18 @@
 
 <script>
 /* =========================================================
-   ⚠️ API URL — NGROK YOKI SERVER MANZILINGIZNI YOZING!
+   ⚠️ API URL — SERVER MANZILINGIZNI YOZING!
    ========================================================= */
 const API_URL = "https://cardinalgithub-production.up.railway.app";
 
-/* =========================================================
-   CONFIG
-   ========================================================= */
 const CONFIG = {
     ADMIN_CHAT_ID: 7038296036,
     ADMIN_CARD: "8600 1234 5678 9012",
     ADMIN_NAME: "CARDINAL ADMIN",
-    TARIFF_PRICES: { "1": 19000, "2": 9000, "3": 25000, "4": 29000 }
+    TARIFF_PRICES: { "1": 19000, "2": 9000, "3": 25000, "4": 29000 },
+    AD_LIFETIME_DAYS: 7,  // 1 hafta
+    MAX_PHOTOS: 10,
+    MAX_VIDEO_MINUTES: 10
 };
 
 /* =========================================================
@@ -1946,8 +2080,9 @@ let APP_DATA = {
     editingMessageId: null,
     myReactions: {},
     createData: {
-        media: null,
-        mediaType: null,
+        mediaList: [],      // ko'p rasm
+        mediaType: null,    // 'image' | 'video'
+        videoFile: null,    // video
         account: {},
         preview: null
     },
@@ -2000,6 +2135,7 @@ async function loadProfileFromAPI() {
 
         updateProfileDisplay();
         updateBalanceDisplay();
+        updateTopBarUser();
 
         const adminBtn = document.getElementById("adminPanelBtn");
         const adminCheck = document.getElementById("adminCheck");
@@ -2051,12 +2187,23 @@ async function loadChatMessages(chatId) {
 }
 
 function mapAd(ad) {
+    // Ko'p rasmni qo'llab-quvvatlash
+    let images = [];
+    if (ad.images && Array.isArray(ad.images) && ad.images.length > 0) {
+        images = ad.images;
+    } else if (ad.image_url) {
+        images = [ad.image_url];
+    } else {
+        images = ["https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80"];
+    }
+
     return {
         id: ad.id,
         userId: ad.user_id,
         title: ad.title,
         description: ad.description || "",
-        image: ad.image_url || "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80",
+        images: images,                                       // ko'p rasm
+        image: images[0],                                     // asosiy rasm
         video: ad.video_url,
         type: ad.ad_type || "STANDARD",
         price: ad.price,
@@ -2067,7 +2214,7 @@ function mapAd(ad) {
         status: ad.status,
         rejectReason: ad.reject_reason,
         createdAt: ad.created_at ? new Date(ad.created_at).getTime() : Date.now(),
-        expiresAt: ad.expires_at ? new Date(ad.expires_at).getTime() : null,
+        expiresAt: ad.expires_at ? new Date(ad.expires_at).getTime() : (Date.now() + 7 * 24 * 60 * 60 * 1000),
         account: ad.account_data || {},
         sellerTg: ad.seller_tg
     };
@@ -2091,6 +2238,7 @@ async function init() {
         APP_DATA.profile.lastName = TELEGRAM_USER.last_name || "";
         updateProfileDisplay();
         updateBalanceDisplay();
+        updateTopBarUser();
 
         showLoading();
         try {
@@ -2113,9 +2261,6 @@ async function init() {
     handleUrlParams();
 }
 
-/* =========================================================
-   URL PARAMS
-   ========================================================= */
 function handleUrlParams() {
     const params = new URLSearchParams(window.location.search);
     const open = params.get("open");
@@ -2190,9 +2335,6 @@ function setupEventListeners() {
     });
 
     document.getElementById("themeMenuButton")?.addEventListener("click", toggleTheme);
-    document.getElementById("dashboardSearch")?.addEventListener("input", (e) => {
-        renderDashboard(e.target.value.toLowerCase());
-    });
 
     document.querySelectorAll("#dashboardPage .category-tab").forEach(tab => {
         tab.addEventListener("click", () => {
@@ -2210,7 +2352,6 @@ function setupEventListeners() {
         });
     });
 
-    // Admin tabs
     document.querySelectorAll("[data-admintab]").forEach(tab => {
         tab.addEventListener("click", async () => {
             document.querySelectorAll("[data-admintab]").forEach(t => t.classList.remove("active"));
@@ -2230,13 +2371,11 @@ function setupEventListeners() {
         });
     });
 
-    // Amount input
     document.getElementById("topUpAmount")?.addEventListener("input", (e) => {
         e.target.value = e.target.value.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, " ");
         updateGoToPaymentButton();
     });
 
-    // Quick amounts
     document.querySelectorAll(".quick-amount").forEach(btn => {
         btn.addEventListener("click", () => {
             document.getElementById("topUpAmount").value = Number(btn.dataset.amount).toLocaleString("uz-UZ");
@@ -2249,7 +2388,6 @@ function setupEventListeners() {
     document.getElementById("receiptInput")?.addEventListener("change", handleReceiptUpload);
     document.getElementById("avatarInput")?.addEventListener("change", handleAvatarUpload);
 
-    // Tariff cards
     document.querySelectorAll(".tariff-card").forEach(card => {
         card.addEventListener("click", () => {
             document.querySelectorAll(".tariff-card").forEach(c => {
@@ -2313,6 +2451,28 @@ function updateProfileDisplay() {
     document.getElementById("profileAds").innerText = APP_DATA.myAds.length;
 }
 
+function updateTopBarUser() {
+    const p = APP_DATA.profile;
+    const nameEl = document.getElementById("topUserName");
+    const lastNameEl = document.getElementById("topUserLastName");
+    const avatarEmoji = document.getElementById("topAvatarEmoji");
+    const avatarImg = document.getElementById("topAvatarImg");
+
+    if (nameEl) nameEl.innerText = p.firstName || "Foydalanuvchi";
+    if (lastNameEl) lastNameEl.innerText = p.lastName || "Reklama Bot";
+
+    if (p.avatar) {
+        if (avatarEmoji) avatarEmoji.style.display = "none";
+        if (avatarImg) {
+            avatarImg.src = p.avatar;
+            avatarImg.style.display = "block";
+        }
+    } else {
+        if (avatarEmoji) avatarEmoji.style.display = "block";
+        if (avatarImg) avatarImg.style.display = "none";
+    }
+}
+
 async function saveProfile() {
     const firstName = document.getElementById("profileFirstName").value.trim();
     const lastName = document.getElementById("profileLastName").value.trim();
@@ -2331,6 +2491,7 @@ async function saveProfile() {
         APP_DATA.profile.lastName = lastName;
         saveData();
         updateProfileDisplay();
+        updateTopBarUser();
         closeModal("profileEditModal");
         showToast("Profil saqlandi!", "success");
     } catch (e) {
@@ -2346,7 +2507,7 @@ function openAvatarPicker() {
     APP_DATA.pendingAvatar = null;
     document.getElementById("avatarPreviewImg").style.display = "none";
     document.getElementById("avatarPreviewEmoji").style.display = "block";
-    document.getElementById("avatarPreviewEmoji").innerText = "🐱";
+    document.getElementById("avatarPreviewEmoji").innerText = "👤";
     if (APP_DATA.profile.avatar) {
         document.getElementById("avatarPreviewImg").src = APP_DATA.profile.avatar;
         document.getElementById("avatarPreviewImg").style.display = "block";
@@ -2375,7 +2536,7 @@ function removeAvatar() {
     APP_DATA.pendingAvatar = "REMOVE";
     document.getElementById("avatarPreviewImg").style.display = "none";
     document.getElementById("avatarPreviewEmoji").style.display = "block";
-    document.getElementById("avatarPreviewEmoji").innerText = "🐱";
+    document.getElementById("avatarPreviewEmoji").innerText = "👤";
 }
 
 async function saveAvatar() {
@@ -2396,6 +2557,7 @@ async function saveAvatar() {
         APP_DATA.profile.avatar = newAvatar;
         saveData();
         updateProfileDisplay();
+        updateTopBarUser();
         closeModal("avatarModal");
         showToast("Rasm saqlandi!", "success");
     } catch (e) {
@@ -2506,10 +2668,6 @@ function renderDashboard(search = "", category = "ALL") {
     let ads = APP_DATA.ads.filter(ad => {
         if (ad.status !== "ACTIVE") return false;
         if (category !== "ALL" && ad.type !== category) return false;
-        if (search) {
-            const text = `${ad.title} ${ad.description} ${ad.location}`.toLowerCase();
-            if (!text.includes(search)) return false;
-        }
         if (ad.expiresAt && Date.now() > ad.expiresAt) return false;
         return true;
     });
@@ -2533,6 +2691,7 @@ function renderDashboard(search = "", category = "ALL") {
 
     grid.innerHTML = ads.map(ad => {
         const myReaction = APP_DATA.myReactions[ad.id];
+        const photoCount = ad.images?.length || 1;
         return `
             <article class="ad-card" onclick="openAdDetail('${ad.id}')">
                 <div class="ad-image-wrap">
@@ -2543,6 +2702,7 @@ function renderDashboard(search = "", category = "ALL") {
                     <span class="ad-type-badge ${ad.type === 'PREMIUM' ? 'premium' : ''}">
                         ${ad.type === 'PREMIUM' ? '⭐ VIP' : ad.type === 'RARE' ? '🔥 Noyob' : '📢 Reklama'}
                     </span>
+                    ${photoCount > 1 ? `<span class="ad-photo-count">📸 ${photoCount}</span>` : ""}
                 </div>
                 <div class="ad-content">
                     <div class="ad-title">${escapeHTML(ad.title)}</div>
@@ -2585,7 +2745,7 @@ async function reactAd(adId, reaction) {
 }
 
 /* =========================================================
-   AD DETAIL
+   AD DETAIL (OLX USLUBIDA - KO'P RASM)
    ========================================================= */
 function openAdDetail(id) {
     const ad = APP_DATA.ads.find(a => String(a.id) === String(id));
@@ -2593,11 +2753,53 @@ function openAdDetail(id) {
 
     const myReaction = APP_DATA.myReactions[ad.id] || null;
 
-    document.getElementById("adDetailContent").innerHTML = `
-        ${ad.video 
-            ? `<video src="${ad.video}" controls style="width: 100%; height: 300px; object-fit: cover; border-radius: 18px;"></video>`
-            : `<img src="${ad.image}" style="width: 100%; height: 300px; object-fit: cover; border-radius: 18px;" onerror="this.src='https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80'">`
+    // Galereya HTML
+    let galleryHTML = "";
+    let thumbsHTML = "";
+
+    if (ad.video) {
+        galleryHTML = `
+            <video class="ad-detail-media active" src="${ad.video}" controls></video>
+        `;
+    } else if (ad.images && ad.images.length > 0) {
+        galleryHTML = ad.images.map((img, idx) => `
+            <img class="ad-detail-media ${idx === 0 ? 'active' : ''}" 
+                 src="${img}" 
+                 data-index="${idx}"
+                 onclick="nextGalleryImage('${ad.id}')"
+                 onerror="this.src='https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80'">
+        `).join("");
+
+        if (ad.images.length > 1) {
+            thumbsHTML = `
+                <div class="gallery-thumbs">
+                    ${ad.images.map((img, idx) => `
+                        <img class="gallery-thumb ${idx === 0 ? 'active' : ''}" 
+                             src="${img}" 
+                             onclick="selectGalleryImage('${ad.id}', ${idx})"
+                             onerror="this.src='https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=200&q=80'">
+                    `).join("")}
+                </div>
+            `;
         }
+    }
+
+    const navHTML = (!ad.video && ad.images && ad.images.length > 1) ? `
+        <button class="gallery-nav prev" onclick="prevGalleryImage('${ad.id}')">‹</button>
+        <button class="gallery-nav next" onclick="nextGalleryImage('${ad.id}')">›</button>
+        <div class="gallery-dots" id="galleryDots">
+            ${ad.images.map((_, idx) => `
+                <div class="gallery-dot ${idx === 0 ? 'active' : ''}"></div>
+            `).join("")}
+        </div>
+    ` : "";
+
+    document.getElementById("adDetailContent").innerHTML = `
+        <div class="ad-detail-gallery" id="adGallery" data-ad-id="${ad.id}">
+            ${galleryHTML}
+            ${navHTML}
+        </div>
+        ${thumbsHTML}
         
         <div style="margin-top: 18px;">
             <h2 style="font-size: 22px; font-weight: 900;">${escapeHTML(ad.title)}</h2>
@@ -2641,6 +2843,46 @@ function openAdDetail(id) {
     `;
 
     openModal("adDetailModal");
+}
+
+let currentGalleryIndex = 0;
+
+function nextGalleryImage(adId) {
+    const ad = APP_DATA.ads.find(a => String(a.id) === String(adId));
+    if (!ad || !ad.images || ad.images.length < 2) return;
+    
+    currentGalleryIndex = (currentGalleryIndex + 1) % ad.images.length;
+    updateGalleryDisplay(adId);
+}
+
+function prevGalleryImage(adId) {
+    const ad = APP_DATA.ads.find(a => String(a.id) === String(adId));
+    if (!ad || !ad.images || ad.images.length < 2) return;
+    
+    currentGalleryIndex = (currentGalleryIndex - 1 + ad.images.length) % ad.images.length;
+    updateGalleryDisplay(adId);
+}
+
+function selectGalleryImage(adId, idx) {
+    currentGalleryIndex = idx;
+    updateGalleryDisplay(adId);
+}
+
+function updateGalleryDisplay(adId) {
+    const gallery = document.getElementById("adGallery");
+    if (!gallery) return;
+    
+    gallery.querySelectorAll(".ad-detail-media").forEach((el, idx) => {
+        el.classList.toggle("active", idx === currentGalleryIndex);
+    });
+    
+    document.querySelectorAll(".gallery-thumb").forEach((el, idx) => {
+        el.classList.toggle("active", idx === currentGalleryIndex);
+    });
+    
+    document.querySelectorAll(".gallery-dot").forEach((el, idx) => {
+        el.classList.toggle("active", idx === currentGalleryIndex);
+    });
 }
 
 /* =========================================================
@@ -2691,19 +2933,21 @@ function renderMyAds(filter = "ALL") {
         return;
     }
 
-    container.innerHTML = ads.map(ad => `
+    container.innerHTML = ads.map(ad => {
+        const daysLeft = ad.expiresAt ? Math.max(0, Math.ceil((ad.expiresAt - Date.now()) / (1000 * 60 * 60 * 24))) : null;
+        return `
         <div class="my-ad-item">
             <img class="my-ad-image" src="${ad.image}" alt="" onerror="this.src='https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80'">
             <div class="my-ad-info">
                 <div class="my-ad-title">${escapeHTML(ad.title)}</div>
                 <div class="my-ad-meta">💰 ${formatPrice(ad.price)}</div>
                 <div class="my-ad-meta">👁 ${ad.views} · 👍 ${ad.likes} · 👎 ${ad.dislikes}</div>
-                <div class="my-ad-meta">📅 ${new Date(ad.createdAt).toLocaleDateString("uz-UZ")}</div>
+                <div class="my-ad-meta">📅 ${new Date(ad.createdAt).toLocaleDateString("uz-UZ")}${daysLeft !== null ? ` · ⏳ ${daysLeft} kun qoldi` : ""}</div>
                 <span class="status ${(ad.status || 'PENDING').toLowerCase()}">${getStatusText(ad.status)}</span>
                 ${ad.rejectReason ? `<div style="font-size: 11px; color: var(--red); margin-top: 6px;">❌ ${escapeHTML(ad.rejectReason)}</div>` : ""}
             </div>
         </div>
-    `).join("");
+    `}).join("");
 }
 
 function getStatusText(status) {
@@ -2717,12 +2961,18 @@ function getStatusText(status) {
 }
 
 /* =========================================================
-   CREATE AD
+   CREATE AD (YANGI - KO'P RASM / VIDEO)
    ========================================================= */
 function startCreateAd() {
     APP_DATA.createStep = 1;
     APP_DATA.tariff = null;
-    APP_DATA.createData = { media: null, mediaType: null, account: {}, preview: null };
+    APP_DATA.createData = { 
+        mediaList: [], 
+        mediaType: null, 
+        videoFile: null, 
+        account: {}, 
+        preview: null 
+    };
 
     document.querySelectorAll(".tariff-card").forEach(c => {
         c.classList.remove("selected");
@@ -2780,7 +3030,7 @@ function validateCreateStep() {
     const step = APP_DATA.createStep;
 
     if (step === 1 && !APP_DATA.tariff) { showToast("Tarifni tanlang", "error"); return false; }
-    if (step === 2 && !APP_DATA.createData.media) { showToast("Video yoki rasm yuklang", "error"); return false; }
+    if (step === 2 && !APP_DATA.createData.mediaType) { showToast("Rasm yoki video yuklang", "error"); return false; }
 
     if (step === 3) {
         const required = ["accLevel", "accRP", "accPrice"];
@@ -2812,48 +3062,154 @@ function validateCreateStep() {
     return true;
 }
 
+// YANGI: 1-10 rasm yoki 1 video (10 daqiqagacha)
 function handleMediaUpload(e) {
-    const file = e.target.files[0];
-    if (!file) return;
-    const isVideo = file.type.startsWith("video/");
-    const isImage = file.type.startsWith("image/");
-    if (!isVideo && !isImage) { showToast("Faqat video yoki rasm", "error"); return; }
-    if (file.size > 5 * 1024 * 1024) { showToast("5 MB dan katta", "error"); return; }
+    const files = Array.from(e.target.files);
+    if (!files.length) return;
 
+    const hasVideo = files.some(f => f.type.startsWith("video/"));
+    const hasImages = files.some(f => f.type.startsWith("image/"));
+    const hasOther = files.some(f => !f.type.startsWith("video/") && !f.type.startsWith("image/"));
+
+    if (hasOther) {
+        showToast("Faqat rasm yoki video", "error");
+        return;
+    }
+
+    if (hasVideo && hasImages) {
+        showToast("Yoki rasm, yoki video tanlang", "error");
+        return;
+    }
+
+    // VIDEO HOLATI
+    if (hasVideo) {
+        if (files.length > 1) {
+            showToast("Faqat 1 ta video yuklash mumkin", "error");
+            return;
+        }
+        const file = files[0];
+        if (file.size > 50 * 1024 * 1024) {
+            showToast("Video 50 MB dan katta", "error");
+            return;
+        }
+
+        // Video davomiyligini tekshirish
+        const video = document.createElement("video");
+        video.preload = "metadata";
+        video.onloadedmetadata = () => {
+            window.URL.revokeObjectURL(video.src);
+            const durationMin = video.duration / 60;
+            if (durationMin > CONFIG.MAX_VIDEO_MINUTES) {
+                showToast(`Video ${CONFIG.MAX_VIDEO_MINUTES} daqiqadan oshmasligi kerak`, "error");
+                return;
+            }
+            readVideoFile(file);
+        };
+        video.src = URL.createObjectURL(file);
+        return;
+    }
+
+    // RASM HOLATI
+    if (hasImages) {
+        if (files.length > CONFIG.MAX_PHOTOS) {
+            showToast(`Maksimal ${CONFIG.MAX_PHOTOS} ta rasm`, "error");
+            return;
+        }
+
+        APP_DATA.createData.mediaType = "image";
+        APP_DATA.createData.mediaList = [];
+        APP_DATA.createData.videoFile = null;
+
+        let loaded = 0;
+        files.forEach((file, idx) => {
+            if (file.size > 5 * 1024 * 1024) {
+                showToast(`${file.name} 5 MB dan katta`, "error");
+                return;
+            }
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                APP_DATA.createData.mediaList.push(event.target.result);
+                loaded++;
+                if (loaded === files.length) {
+                    renderMediaPreview();
+                }
+            };
+            reader.readAsDataURL(file);
+        });
+    }
+}
+
+function readVideoFile(file) {
     const reader = new FileReader();
     reader.onload = (event) => {
-        APP_DATA.createData.media = event.target.result;
-        APP_DATA.createData.mediaType = isVideo ? "video" : "image";
-        document.getElementById("mediaPreviewGrid").innerHTML = `
-            <div class="media-preview">
-                ${isVideo 
-                    ? `<video src="${event.target.result}" muted controls></video>`
-                    : `<img src="${event.target.result}">`
-                }
-                <button class="remove-media" onclick="removeMedia()">×</button>
-            </div>
-        `;
+        APP_DATA.createData.mediaType = "video";
+        APP_DATA.createData.videoFile = event.target.result;
+        APP_DATA.createData.mediaList = [];
+        renderMediaPreview();
     };
     reader.readAsDataURL(file);
 }
 
+function renderMediaPreview() {
+    const grid = document.getElementById("mediaPreviewGrid");
+    const data = APP_DATA.createData;
+
+    if (data.mediaType === "video" && data.videoFile) {
+        grid.innerHTML = `
+            <div class="media-preview main-photo" style="grid-column: span 3; height: 250px;">
+                <video src="${data.videoFile}" controls style="width: 100%; height: 100%; object-fit: contain; background: #000;"></video>
+                <button class="remove-media" onclick="removeMedia()">×</button>
+            </div>
+        `;
+    } else if (data.mediaType === "image" && data.mediaList.length) {
+        grid.innerHTML = data.mediaList.map((img, idx) => `
+            <div class="media-preview ${idx === 0 ? 'main-photo' : ''}">
+                <img src="${img}">
+                <span class="preview-index">${idx + 1}</span>
+                <button class="remove-media" onclick="removeMediaAt(${idx})">×</button>
+            </div>
+        `).join("");
+    }
+}
+
 function removeMedia() {
-    APP_DATA.createData.media = null;
+    APP_DATA.createData.mediaList = [];
     APP_DATA.createData.mediaType = null;
+    APP_DATA.createData.videoFile = null;
     document.getElementById("mediaPreviewGrid").innerHTML = "";
     document.getElementById("mediaInput").value = "";
+}
+
+function removeMediaAt(idx) {
+    APP_DATA.createData.mediaList.splice(idx, 1);
+    if (APP_DATA.createData.mediaList.length === 0) {
+        removeMedia();
+    } else {
+        renderMediaPreview();
+    }
 }
 
 function renderAdPreview() {
     const data = APP_DATA.createData;
     const acc = data.account;
 
+    let mediaHTML = "";
+    if (data.mediaType === "video" && data.videoFile) {
+        mediaHTML = `<video src="${data.videoFile}" controls class="preview-main-image"></video>`;
+    } else if (data.mediaType === "image" && data.mediaList.length) {
+        mediaHTML = `
+            <div style="position: relative;">
+                <img src="${data.mediaList[0]}" class="preview-main-image">
+                ${data.mediaList.length > 1 ? `
+                    <span class="ad-photo-count">📸 ${data.mediaList.length} rasm</span>
+                ` : ""}
+            </div>
+        `;
+    }
+
     document.getElementById("adPreview").innerHTML = `
         <div class="preview-card">
-            ${data.mediaType === "video"
-                ? `<video src="${data.media}" controls class="preview-main-image"></video>`
-                : `<img src="${data.media}" class="preview-main-image">`
-            }
+            ${mediaHTML}
             <div class="preview-content">
                 <div class="preview-title">PUBG Mobile Akkaunt</div>
                 <div class="preview-price">${formatPrice(acc.price)}</div>
@@ -2879,12 +3235,14 @@ async function submitAd() {
     }
 
     const acc = APP_DATA.createData.account;
+    const data = APP_DATA.createData;
 
     const adData = {
         title: `PUBG Mobile - ${acc.level} LVL`,
         description: acc.extra || "Zo'r akkaunt!",
-        image_url: APP_DATA.createData.mediaType === "image" ? APP_DATA.createData.media : null,
-        video_url: APP_DATA.createData.mediaType === "video" ? APP_DATA.createData.media : null,
+        images: data.mediaType === "image" ? data.mediaList : null,         // ko'p rasm
+        image_url: data.mediaType === "image" ? data.mediaList[0] : null,   // asosiy rasm
+        video_url: data.mediaType === "video" ? data.videoFile : null,       // video
         price: parseInt(String(acc.price).replace(/\s/g, "")),
         location: acc.location,
         account_data: acc,
@@ -2904,11 +3262,11 @@ async function submitAd() {
             APP_DATA.balance -= result.paid;
             updateBalanceDisplay();
             await loadMyAdsFromAPI();
-            showToast("Reklama yuborildi! Admin tasdiqlashini kuting.", "success");
+            showToast("Reklama yuborildi! 1 hafta davomida faol.", "success");
 
             APP_DATA.createStep = 1;
             APP_DATA.tariff = null;
-            APP_DATA.createData = { media: null, mediaType: null, account: {}, preview: null };
+            APP_DATA.createData = { mediaList: [], mediaType: null, videoFile: null, account: {}, preview: null };
             await goToPage("myAdsPage");
         }
     } catch (e) {
@@ -2918,7 +3276,7 @@ async function submitAd() {
 }
 
 /* =========================================================
-   CHAT
+   CHAT LIST (TELEGRAM USLUBI)
    ========================================================= */
 function renderChatList() {
     const container = document.getElementById("chatList");
@@ -2935,22 +3293,44 @@ function renderChatList() {
         return;
     }
 
-    container.innerHTML = APP_DATA.chats.map(chat => `
-        <div class="chat-item" onclick="openChatRoom(${chat.id})">
-            <div class="chat-avatar">
-                🤝
-            </div>
-            <div class="chat-info">
-                <div class="chat-name">${escapeHTML(chat.ad_title || "Chat")}</div>
-                <div class="chat-message">
-                    ${chat.last_message ? escapeHTML(chat.last_message) : "Xabar yo'q"}
+    container.innerHTML = APP_DATA.chats.map(chat => {
+        const lastMsg = chat.last_message || "";
+        const isMine = chat.last_sender_tg === TELEGRAM_USER?.id;
+        const isRead = chat.last_read === true;
+        const hasUnread = chat.unread_count > 0;
+
+        // Ptichkalar (tick)
+        let tickHTML = "";
+        if (isMine) {
+            tickHTML = isRead 
+                ? `<span class="msg-tick read">✓✓</span>` 
+                : `<span class="msg-tick sent">✓</span>`;
+        }
+
+        return `
+            <div class="chat-item ${hasUnread ? 'unread' : ''}" onclick="openChatRoom(${chat.id})">
+                <div class="chat-avatar ${chat.is_admin_chat ? 'admin' : ''}">
+                    ${chat.ad_image ? `<img src="${chat.ad_image}">` : "🤝"}
+                </div>
+                <div class="chat-info">
+                    <div class="chat-name">
+                        ${escapeHTML(chat.ad_title || "Chat")}
+                        ${chat.is_admin_chat ? `<span class="admin-tick">✓</span>` : ""}
+                    </div>
+                    <div class="chat-message">
+                        ${tickHTML}
+                        <span style="flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                            ${lastMsg ? escapeHTML(lastMsg) : "Xabar yo'q"}
+                        </span>
+                    </div>
+                </div>
+                <div class="chat-meta-right">
+                    <div class="chat-time">${chat.last_time ? formatTime(chat.last_time) : ""}</div>
+                    ${hasUnread ? `<div class="chat-unread-badge">${chat.unread_count}</div>` : ""}
                 </div>
             </div>
-            <div style="text-align: right;">
-                <div class="chat-time">${chat.last_time ? formatTime(chat.last_time) : ""}</div>
-            </div>
-        </div>
-    `).join("");
+        `;
+    }).join("");
 }
 
 async function openChatRoom(chatId) {
@@ -2962,7 +3342,14 @@ async function openChatRoom(chatId) {
 
     const chat = data.chat;
     document.getElementById("chatRoomName").innerText = chat.ad_title || "Chat";
-    document.getElementById("chatRoomAvatar").innerText = "🤝";
+
+    // Avatar
+    const avatarEl = document.getElementById("chatRoomAvatar");
+    if (chat.ad_image) {
+        avatarEl.innerHTML = `<img src="${chat.ad_image}">`;
+    } else {
+        avatarEl.innerHTML = chat.is_admin_chat ? "🛡️" : "🤝";
+    }
 
     document.getElementById("chatParticipants").innerHTML = `
         <span>👤 ${escapeHTML(chat.seller_name || "Sotuvchi")} (sotuvchi)</span>
@@ -2971,6 +3358,15 @@ async function openChatRoom(chatId) {
     `;
 
     renderChatMessages();
+
+    // Xabarlar o'qilgan deb belgilash
+    try {
+        await apiCall("/api/chat/mark-read", "POST", {
+            chat_id: chatId,
+            telegram_id: TELEGRAM_USER.id
+        });
+    } catch (e) {}
+
     document.getElementById("chatRoom").classList.add("active");
     document.body.style.overflow = "hidden";
 }
@@ -3000,13 +3396,44 @@ function renderChatMessages() {
         const isMine = msg.telegram_id === TELEGRAM_USER?.id;
         const isAdmin = msg.user_is_admin;
 
+        // Ptichkalar (o'qilganlik)
+        let tickHTML = "";
+        if (isMine) {
+            const isRead = msg.is_read === true;
+            tickHTML = isRead 
+                ? `<span class="tick read">✓✓</span>` 
+                : `<span class="tick sent">✓</span>`;
+        }
+
+        // Sender avatar va ism (faqat boshqalarniki uchun)
+        let senderHTML = "";
+        if (!isMine) {
+            const avatar = msg.avatar;
+            const name = msg.first_name || "Foydalanuvchi";
+            senderHTML = `
+                <div class="msg-sender-row">
+                    <div class="msg-sender-avatar">
+                        ${avatar ? `<img src="${avatar}">` : "👤"}
+                    </div>
+                    <div class="message-sender">
+                        ${escapeHTML(name)}
+                        ${isAdmin ? `<span class="tick-badge">🛡️</span>` : ""}
+                    </div>
+                </div>
+            `;
+        }
+
         return `
             <div class="message ${isMine ? 'sent' : isAdmin ? 'admin' : 'received'}" 
                  data-msg-id="${msg.id}"
                  onclick="toggleMessageActions(${msg.id})">
-                ${!isMine ? `<div class="message-sender">${escapeHTML(msg.first_name || '')} ${isAdmin ? '🛡️' : ''}</div>` : ""}
+                ${senderHTML}
                 <div class="message-text">${escapeHTML(msg.text)}</div>
-                <div class="message-time">${formatTime(msg.created_at)} ${msg.is_edited ? "(tahrirlangan)" : ""}</div>
+                <div class="message-time">
+                    ${formatTime(msg.created_at)} 
+                    ${msg.is_edited ? "(tahrirlangan)" : ""}
+                    ${tickHTML}
+                </div>
                 
                 <div class="message-actions">
                     ${isMine ? `
@@ -3125,7 +3552,6 @@ async function renderAdminPanel() {
         APP_DATA.pending = pending.map(mapAd);
         APP_DATA.pendingTopups = topups;
 
-        // Reklamalar
         const adsContainer = document.getElementById("moderationList");
         if (!pending.length) {
             adsContainer.innerHTML = `<div class="empty"><div class="empty-icon">✅</div><strong>Kutilayotgan reklama yo'q</strong></div>`;
@@ -3144,6 +3570,7 @@ async function renderAdminPanel() {
                             <div class="moderation-meta">💰 ${formatPrice(adObj.price)}</div>
                             <div class="moderation-meta">📍 ${escapeHTML(adObj.location || "-")}</div>
                             <div class="moderation-meta">🆔 #${adObj.id}</div>
+                            ${adObj.images.length > 1 ? `<div class="moderation-meta">📸 ${adObj.images.length} rasm</div>` : ""}
                         </div>
                     </div>
                     <div class="moderation-actions">
@@ -3154,7 +3581,6 @@ async function renderAdminPanel() {
             `}).join("");
         }
 
-        // To'lovlar
         const topupContainer = document.getElementById("topupList");
         if (!topups.length) {
             topupContainer.innerHTML = `<div class="empty"><div class="empty-icon">✅</div><strong>Kutilayotgan chek yo'q</strong></div>`;
@@ -3189,7 +3615,7 @@ async function approveAd(adId) {
             admin_telegram_id: TELEGRAM_USER.id,
             ad_id: adId
         });
-        showToast("Tasdiqlandi!", "success");
+        showToast("Tasdiqlandi! 1 hafta faol bo'ladi.", "success");
         await renderAdminPanel();
     } catch (e) {
         showToast("Xatolik: " + e.message, "error");
@@ -3273,7 +3699,7 @@ async function renderAdminChats() {
                 </div>
                 <div style="text-align: right;">
                     <div class="chat-time">${chat.last_time ? formatTime(chat.last_time) : ""}</div>
-                    <div class="chat-badge">${chat.msg_count || 0} xabar</div>
+                    <div class="chat-unread-badge" style="background: var(--orange);">${chat.msg_count || 0}</div>
                 </div>
             </div>
         `).join("");
@@ -3441,7 +3867,19 @@ function formatTime(dateStr) {
     if (!dateStr) return "";
     try {
         const d = new Date(dateStr);
-        return d.toLocaleTimeString("uz-UZ", { hour: "2-digit", minute: "2-digit" });
+        const now = new Date();
+        const diffMs = now - d;
+        const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+
+        if (diffDays === 0) {
+            return d.toLocaleTimeString("uz-UZ", { hour: "2-digit", minute: "2-digit" });
+        } else if (diffDays === 1) {
+            return "Kecha";
+        } else if (diffDays < 7) {
+            return d.toLocaleDateString("uz-UZ", { weekday: "short" });
+        } else {
+            return d.toLocaleDateString("uz-UZ", { day: "2-digit", month: "2-digit" });
+        }
     } catch { return ""; }
 }
 
@@ -3453,31 +3891,6 @@ function escapeHTML(str) {
         .replace(/>/g, "&gt;")
         .replace(/"/g, "&quot;")
         .replace(/'/g, "&#039;");
-}
-
-function applyFilter() {
-    const maxPrice = parseInt(document.getElementById("filterMaxPrice").value.replace(/\s/g, "")) || 0;
-    let ads = APP_DATA.ads.filter(ad => ad.status === "ACTIVE");
-    if (maxPrice > 0) ads = ads.filter(ad => ad.price <= maxPrice);
-
-    const grid = document.getElementById("adsGrid");
-    if (!ads.length) {
-        grid.innerHTML = `<div class="empty" style="grid-column: 1/-1;"><div class="empty-icon">🔎</div><strong>Topilmadi</strong></div>`;
-    } else {
-        grid.innerHTML = ads.map(ad => `
-            <article class="ad-card" onclick="openAdDetail('${ad.id}')">
-                <div class="ad-image-wrap">
-                    <img class="ad-image" src="${ad.image}" onerror="this.src='https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80'">
-                    <span class="ad-type-badge">${ad.type}</span>
-                </div>
-                <div class="ad-content">
-                    <div class="ad-title">${escapeHTML(ad.title)}</div>
-                    <div class="ad-price">${formatPrice(ad.price)}</div>
-                </div>
-            </article>
-        `).join("");
-    }
-    closeModal("filterModal");
 }
 
 /* =========================================================
