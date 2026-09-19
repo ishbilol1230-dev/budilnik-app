@@ -264,8 +264,9 @@
 
         .ad-card:active { transform: scale(0.97); box-shadow: var(--shadow-md); }
 
-        .ad-image-wrap { height: 180px; position: relative; background: linear-gradient(135deg, #E8EAF0, #F5F6FA); overflow: hidden; }
+        .ad-image-wrap { height: 220px; position: relative; background: linear-gradient(135deg, #1A1D2E, #2D3142); overflow: hidden; }
         .ad-image { width: 100%; height: 100%; object-fit: cover; }
+        .ad-video-preview { width: 100%; height: 100%; object-fit: cover; }
 
         .ad-type-badge {
             position: absolute; top: 12px; left: 12px;
@@ -277,15 +278,30 @@
 
         .ad-type-badge svg { width: 14px; height: 14px; }
         .ad-type-badge.premium { background: linear-gradient(135deg, #FFD93D, #FFA502); box-shadow: 0 4px 20px rgba(255, 217, 61, 0.5); }
+        .ad-type-badge.rare { background: linear-gradient(135deg, #FF6B9D, #E84A7F); }
 
-        .ad-photo-count {
+        /* SAVE BUTTON (YURAKCHA) */
+        .ad-save-btn {
+            position: absolute; top: 12px; right: 12px;
+            width: 42px; height: 42px; border-radius: 50%;
+            background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(12px);
+            color: white; display: flex; align-items: center; justify-content: center;
+            transition: var(--transition-bounce); z-index: 3;
+        }
+
+        .ad-save-btn svg { width: 22px; height: 22px; fill: none; stroke: white; stroke-width: 2; }
+        .ad-save-btn:active { transform: scale(0.85); }
+        .ad-save-btn.saved { background: linear-gradient(135deg, #FF6B9D, #E84A7F); }
+        .ad-save-btn.saved svg { fill: white; stroke: white; }
+
+        .ad-video-icon {
             position: absolute; bottom: 12px; right: 12px;
-            background: rgba(0, 0, 0, 0.75); color: white; padding: 5px 10px;
+            background: rgba(0, 0, 0, 0.75); color: white; padding: 6px 12px;
             border-radius: 10px; font-size: 11px; font-weight: 800;
             backdrop-filter: blur(12px); display: flex; align-items: center; gap: 4px;
         }
 
-        .ad-photo-count svg { width: 14px; height: 14px; }
+        .ad-video-icon svg { width: 14px; height: 14px; }
 
         .ad-content { padding: 16px; }
         .ad-title { font-size: 15px; font-weight: 800; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; letter-spacing: -0.3px; }
@@ -299,21 +315,6 @@
             -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
             letter-spacing: -0.5px;
         }
-
-        .ad-reactions { display: flex; gap: 8px; margin-top: 12px; padding-top: 12px; border-top: 1.5px solid var(--border-light); }
-
-        .reaction-btn {
-            flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px;
-            padding: 10px; border-radius: 14px;
-            background: var(--bg); color: var(--muted);
-            font-size: 13px; font-weight: 800;
-            border: 1.5px solid transparent; transition: var(--transition);
-        }
-
-        .reaction-btn svg { width: 16px; height: 16px; }
-        .reaction-btn:active { transform: scale(0.92); }
-        .reaction-btn.liked { background: rgba(0, 217, 165, 0.12); color: var(--green); border-color: rgba(0, 217, 165, 0.3); }
-        .reaction-btn.disliked { background: rgba(255, 71, 87, 0.12); color: var(--red); border-color: rgba(255, 71, 87, 0.3); }
 
         /* ====== FORMS ====== */
         .form-group { margin-bottom: 20px; }
@@ -345,9 +346,9 @@
             background-repeat: no-repeat; background-position: right 16px center; background-size: 20px; padding-right: 50px;
         }
 
-        /* ====== MEDIA UPLOAD ====== */
-        .media-upload {
-            min-height: 200px;
+        /* ====== VIDEO UPLOAD ====== */
+        .video-upload {
+            min-height: 220px;
             border: 2.5px dashed var(--border);
             border-radius: 24px;
             background: var(--card);
@@ -357,44 +358,39 @@
             cursor: pointer; transition: var(--transition); gap: 12px;
         }
 
-        .media-upload svg { width: 64px; height: 64px; color: var(--primary); stroke-width: 1.5; }
-        .media-upload:active { border-color: var(--primary); background: rgba(124, 92, 252, 0.03); transform: scale(0.98); }
-        .media-upload strong { font-size: 16px; font-weight: 800; }
-        .media-upload span { color: var(--muted); font-size: 13px; font-weight: 500; }
+        .video-upload svg { width: 64px; height: 64px; color: var(--primary); stroke-width: 1.5; }
+        .video-upload:active { border-color: var(--primary); background: rgba(124, 92, 252, 0.03); transform: scale(0.98); }
+        .video-upload strong { font-size: 16px; font-weight: 800; }
+        .video-upload span { color: var(--muted); font-size: 13px; font-weight: 500; }
 
-        .media-preview-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 16px; }
-
-        .media-preview {
-            height: 120px; border-radius: 20px;
-            overflow: hidden; position: relative;
-            background: var(--bg); box-shadow: var(--shadow-sm);
+        .video-preview-wrap {
+            position: relative; border-radius: 24px; overflow: hidden;
+            background: #000; margin-top: 16px;
         }
 
-        .media-preview img, .media-preview video { width: 100%; height: 100%; object-fit: cover; }
-
-        .media-preview .preview-index {
-            position: absolute; bottom: 8px; left: 8px;
-            background: rgba(0, 0, 0, 0.75); color: white;
-            padding: 3px 10px; border-radius: 10px;
-            font-size: 11px; font-weight: 800;
+        .video-preview-wrap video {
+            width: 100%; max-height: 400px; border-radius: 24px; display: block;
         }
 
-        .media-preview.main-photo { grid-column: span 2; grid-row: span 2; height: 252px; }
-        .media-preview.main-photo::after {
-            content: "ASOSIY"; position: absolute; top: 8px; left: 8px;
-            background: var(--primary); color: white; padding: 4px 12px;
-            border-radius: 10px; font-size: 10px; font-weight: 900;
-        }
-
-        .remove-media {
-            position: absolute; right: 8px; top: 8px;
-            width: 34px; height: 34px; border-radius: 12px;
+        .video-preview-wrap .remove-media {
+            position: absolute; top: 12px; right: 12px;
+            width: 40px; height: 40px; border-radius: 14px;
             background: rgba(0, 0, 0, 0.75); color: white;
             display: flex; align-items: center; justify-content: center;
-            backdrop-filter: blur(8px);
+            backdrop-filter: blur(8px); z-index: 2;
         }
 
-        .remove-media svg { width: 18px; height: 18px; }
+        .video-preview-wrap .remove-media svg { width: 20px; height: 20px; }
+
+        .video-info {
+            position: absolute; bottom: 12px; left: 12px;
+            background: rgba(0, 0, 0, 0.75); color: white;
+            padding: 8px 14px; border-radius: 12px;
+            font-size: 12px; font-weight: 700;
+            backdrop-filter: blur(8px); display: flex; align-items: center; gap: 6px;
+        }
+
+        .video-info svg { width: 16px; height: 16px; }
 
         .media-hint {
             background: linear-gradient(135deg, rgba(124, 92, 252, 0.08), rgba(255, 107, 157, 0.05));
@@ -424,7 +420,7 @@
 
         .account-form-title-icon svg { width: 22px; height: 22px; }
 
-        /* ====== CHECKBOX GRID (AKKAUNT ULANGAN) ====== */
+        /* ====== CHECKBOX GRID ====== */
         .checkbox-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -482,6 +478,11 @@
 
         .checkbox-item.checked .checkbox-box svg { opacity: 1; }
 
+        /* Game Center - to'liq kenglik */
+        .checkbox-item.full-width {
+            grid-column: span 2;
+        }
+
         /* ====== CURRENCY SELECTOR ====== */
         .currency-grid {
             display: grid;
@@ -518,17 +519,17 @@
         .currency-symbol { font-size: 11px; color: var(--muted); font-weight: 600; }
         .currency-item.active .currency-name { color: var(--primary); }
 
-        /* ====== GUNS LIST ====== */
-        .guns-list { display: grid; gap: 10px; }
+        /* ====== LIST ITEMS (SKINS / GUNS) ====== */
+        .list-items { display: grid; gap: 10px; }
 
-        .gun-item {
+        .list-item {
             display: flex;
             gap: 10px;
             align-items: center;
             animation: pageIn 0.3s ease;
         }
 
-        .gun-item input {
+        .list-item input {
             flex: 1;
             border: 2px solid var(--border);
             background: var(--bg);
@@ -539,12 +540,16 @@
             font-weight: 500;
         }
 
-        .gun-item input:focus {
+        .list-item input:focus {
             border-color: var(--primary);
             background: var(--card);
         }
 
-        .gun-remove {
+        .list-item input:disabled {
+            opacity: 0.7;
+        }
+
+        .list-remove {
             width: 44px;
             height: 44px;
             border-radius: 14px;
@@ -556,10 +561,11 @@
             flex-shrink: 0;
         }
 
-        .gun-remove svg { width: 20px; height: 20px; }
-        .gun-remove:active { transform: scale(0.9); }
+        .list-remove svg { width: 20px; height: 20px; }
+        .list-remove:active { transform: scale(0.9); }
+        .list-remove:disabled { opacity: 0.3; }
 
-        .add-gun-btn {
+        .add-item-btn {
             width: 100%;
             padding: 14px;
             border: 2px dashed var(--border);
@@ -575,10 +581,33 @@
             margin-top: 10px;
         }
 
-        .add-gun-btn:active { background: rgba(124, 92, 252, 0.05); border-color: var(--primary); }
-        .add-gun-btn svg { width: 20px; height: 20px; }
+        .add-item-btn:active { background: rgba(124, 92, 252, 0.05); border-color: var(--primary); }
+        .add-item-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .add-item-btn svg { width: 20px; height: 20px; }
 
-        /* ====== CHAT ====== */
+        .item-counter {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 14px;
+            padding: 12px 16px;
+            background: linear-gradient(135deg, rgba(124, 92, 252, 0.08), rgba(255, 107, 157, 0.05));
+            border-radius: 14px;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .item-counter span:first-child {
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .item-counter span:first-child svg { width: 16px; height: 16px; color: var(--primary); }
+        .item-counter span:last-child { color: var(--primary); font-size: 18px; font-weight: 900; }
+
+        /* ====== CHAT (TELEGRAM STYLE) ====== */
         .chat-list { display: grid; gap: 6px; }
 
         .chat-item {
@@ -641,7 +670,7 @@
             display: flex; align-items: center; justify-content: center;
         }
 
-        /* ====== CHAT ROOM ====== */
+        /* ====== CHAT ROOM (TELEGRAM STYLE) ====== */
         .chat-room { position: fixed; inset: 0; z-index: 200; background: var(--bg); display: none; flex-direction: column; }
         .chat-room.active { display: flex; }
 
@@ -694,7 +723,11 @@
         .chat-participants span { display: flex; align-items: center; gap: 5px; }
         .chat-participants svg { width: 14px; height: 14px; }
 
-        .chat-messages { flex: 1; overflow-y: auto; padding: 20px 16px; display: flex; flex-direction: column; gap: 10px; background: var(--bg); }
+        .chat-messages { 
+            flex: 1; overflow-y: auto; padding: 20px 16px; 
+            display: flex; flex-direction: column; gap: 10px; 
+            background: var(--bg);
+        }
 
         .message {
             max-width: 80%; padding: 10px 14px 8px 14px;
@@ -717,6 +750,7 @@
         }
 
         .msg-sender-avatar svg { width: 14px; height: 14px; color: white; }
+        .msg-sender-avatar img { width: 100%; height: 100%; object-fit: cover; }
 
         .message-sender { font-size: 12px; font-weight: 800; color: var(--primary); display: flex; align-items: center; gap: 4px; }
 
@@ -834,6 +868,7 @@
 
         .profile-menu-icon svg { width: 24px; height: 24px; }
         .profile-menu-icon.admin { background: linear-gradient(135deg, rgba(255, 217, 61, 0.2), rgba(255, 165, 2, 0.1)); color: var(--orange); }
+        .profile-menu-icon.green { background: linear-gradient(135deg, rgba(0, 217, 165, 0.15), rgba(0, 217, 165, 0.05)); color: var(--green); }
 
         .profile-menu-text { flex: 1; }
         .profile-menu-text strong { display: block; font-size: 15px; font-weight: 800; }
@@ -922,49 +957,364 @@
         .modal-close svg { width: 22px; height: 22px; }
         .modal-close:active { transform: scale(0.9); background: var(--red); color: white; }
 
-        /* ====== AD DETAIL GALLERY ====== */
-        .ad-detail-gallery {
-            position: relative; width: 100%; height: 350px;
+        /* ====== AD DETAIL ====== */
+        .ad-detail-video {
+            position: relative; width: 100%; max-height: 450px;
             border-radius: 24px; overflow: hidden;
             background: #000; margin-bottom: 20px;
         }
 
-        .ad-detail-media { width: 100%; height: 100%; object-fit: contain; display: none; }
-        .ad-detail-media.active { display: block; }
+        .ad-detail-video video {
+            width: 100%; max-height: 450px; display: block; border-radius: 24px;
+        }
 
-        .gallery-nav {
-            position: absolute; top: 50%; transform: translateY(-50%);
-            width: 46px; height: 46px; border-radius: 50%;
+        .video-fullscreen-btn {
+            position: absolute; top: 12px; right: 12px;
+            width: 46px; height: 46px; border-radius: 14px;
             background: rgba(0, 0, 0, 0.65); color: white;
             display: flex; align-items: center; justify-content: center;
             backdrop-filter: blur(12px); z-index: 5;
         }
 
-        .gallery-nav svg { width: 24px; height: 24px; color: white; }
-        .gallery-nav.prev { left: 12px; }
-        .gallery-nav.next { right: 12px; }
+        .video-fullscreen-btn svg { width: 22px; height: 22px; color: white; }
 
-        .gallery-dots {
-            position: absolute; bottom: 16px; left: 50%;
-            transform: translateX(-50%);
-            display: flex; gap: 8px;
-            background: rgba(0, 0, 0, 0.5);
-            padding: 8px 14px; border-radius: 16px;
+        /* ====== INFO LIST (KETMA-KET) ====== */
+        .info-list { margin-top: 24px; display: grid; gap: 0; }
+
+        .info-row {
+            display: flex; justify-content: space-between;
+            gap: 12px; font-size: 14px;
+            border-bottom: 1.5px solid var(--border-light);
+            padding: 14px 0; font-weight: 500;
         }
 
-        .gallery-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255, 255, 255, 0.5); transition: var(--transition); }
-        .gallery-dot.active { background: white; width: 24px; border-radius: 4px; }
+        .info-row:last-child { border-bottom: none; }
 
-        .gallery-thumbs { display: flex; gap: 10px; overflow-x: auto; padding: 4px 0 12px; scrollbar-width: none; }
-        .gallery-thumbs::-webkit-scrollbar { display: none; }
+        .info-row span:first-child { color: var(--muted); display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+        .info-row span:first-child svg { width: 16px; height: 16px; }
+        .info-row span:last-child { font-weight: 800; text-align: right; word-break: break-word; }
 
-        .gallery-thumb {
-            width: 70px; height: 70px; border-radius: 16px;
-            object-fit: cover; flex-shrink: 0; cursor: pointer;
-            border: 3px solid transparent; transition: var(--transition);
+        /* ====== TARIF CARDS (YANGILANGAN) ====== */
+        .tariff-card {
+            background: var(--card); 
+            border: 2.5px solid var(--border); 
+            border-radius: 28px; 
+            padding: 26px; 
+            display: flex; 
+            flex-direction: column; 
+            gap: 16px; 
+            cursor: pointer; 
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
         }
 
-        .gallery-thumb.active { border-color: var(--primary); box-shadow: 0 4px 15px rgba(124, 92, 252, 0.4); }
+        .tariff-card:active { transform: scale(0.98); }
+
+        .tariff-card.selected {
+            border-color: var(--primary);
+            box-shadow: 0 15px 50px rgba(124, 92, 252, 0.3);
+            transform: scale(1.02);
+        }
+
+        .tariff-popular-badge {
+            position: absolute; top: 0; right: 0; 
+            background: linear-gradient(135deg, #FF6B9D, #E84A7F); 
+            color: white; padding: 8px 20px; 
+            border-radius: 0 28px 0 20px; 
+            font-size: 11px; font-weight: 900;
+            display: flex; align-items: center; gap: 5px;
+        }
+
+        .tariff-popular-badge svg { width: 14px; height: 14px; }
+
+        .tariff-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .tariff-icon {
+            width: 68px; height: 68px; border-radius: 22px;
+            display: flex; align-items: center; justify-content: center;
+            background: linear-gradient(135deg, rgba(124, 92, 252, 0.15), rgba(124, 92, 252, 0.05));
+            color: var(--primary);
+        }
+
+        .tariff-icon svg { width: 36px; height: 36px; }
+        .tariff-icon.gold { background: linear-gradient(135deg, rgba(255, 217, 61, 0.2), rgba(255, 165, 2, 0.1)); color: #FFA502; }
+        .tariff-icon.pink { background: linear-gradient(135deg, rgba(255, 107, 157, 0.2), rgba(232, 74, 127, 0.1)); color: #FF6B9D; }
+
+        .tariff-price-wrap { text-align: right; }
+        .tariff-price {
+            font-size: 30px; font-weight: 900;
+            background: linear-gradient(135deg, #7C5CFC, #FF6B9D);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+
+        .tariff-currency {
+            font-size: 12px; color: var(--muted); font-weight: 600;
+        }
+
+        .tariff-name {
+            font-size: 20px; font-weight: 900;
+        }
+
+        .tariff-features {
+            display: grid;
+            gap: 10px;
+            margin-top: 4px;
+        }
+
+        .tariff-feature {
+            display: flex; align-items: center; gap: 10px;
+            font-size: 13px; font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        .tariff-feature .feature-icon {
+            width: 24px; height: 24px; border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .tariff-feature.yes .feature-icon { background: rgba(0, 217, 165, 0.15); color: var(--green); }
+        .tariff-feature.no .feature-icon { background: rgba(255, 71, 87, 0.12); color: var(--red); }
+        .tariff-feature.yes { color: var(--text); }
+        .tariff-feature.no { color: var(--muted); opacity: 0.7; }
+
+        .tariff-feature .feature-icon svg { width: 14px; height: 14px; stroke-width: 3; }
+
+        .tariff-discount-badge {
+            display: inline-flex; align-items: center; gap: 5px;
+            padding: 5px 12px; border-radius: 10px;
+            background: linear-gradient(135deg, rgba(255, 107, 157, 0.15), rgba(232, 74, 127, 0.1));
+            color: #E84A7F; font-size: 11px; font-weight: 900;
+            margin-top: 8px; width: fit-content;
+        }
+
+        .tariff-discount-badge svg { width: 12px; height: 12px; }
+
+        /* ====== FEEDBACK ====== */
+        .feedback-list { display: grid; gap: 12px; }
+
+        .feedback-item {
+            background: var(--card); border: 1.5px solid var(--border);
+            border-radius: 20px; padding: 16px;
+            display: flex; gap: 14px;
+        }
+
+        .feedback-avatar {
+            width: 48px; height: 48px; border-radius: 50%;
+            background: linear-gradient(135deg, #7C5CFC, #FF6B9D);
+            color: white; display: flex;
+            justify-content: center; align-items: center;
+            overflow: hidden; flex-shrink: 0;
+        }
+
+        .feedback-avatar svg { width: 22px; height: 22px; color: white; }
+        .feedback-avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+        .feedback-body { flex: 1; min-width: 0; }
+        .feedback-name { font-weight: 800; font-size: 14px; display: flex; align-items: center; gap: 6px; }
+        .feedback-text { 
+            margin-top: 6px; font-size: 14px; 
+            color: var(--text-secondary); font-weight: 500;
+            line-height: 1.5;
+        }
+        .feedback-time { margin-top: 8px; font-size: 11px; color: var(--muted); font-weight: 600; }
+
+        .feedback-form {
+            background: var(--card); border: 1.5px solid var(--border);
+            border-radius: 24px; padding: 20px; margin-bottom: 20px;
+        }
+
+        .char-counter {
+            text-align: right; font-size: 11px; 
+            color: var(--muted); font-weight: 700;
+            margin-top: 6px;
+        }
+
+        .char-counter.warning { color: var(--orange); }
+        .char-counter.danger { color: var(--red); }
+
+        /* ====== ADMIN STATS ====== */
+        .admin-stat-grid { 
+            display: grid; 
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 14px; 
+            margin-bottom: 24px; 
+        }
+
+        .admin-stat { 
+            background: var(--card); border: 1.5px solid var(--border); 
+            border-radius: 24px; padding: 22px; 
+        }
+
+        .admin-stat-icon {
+            width: 44px; height: 44px; border-radius: 14px;
+            background: linear-gradient(135deg, rgba(124, 92, 252, 0.15), rgba(124, 92, 252, 0.05));
+            color: var(--primary); display: flex; align-items: center; justify-content: center;
+        }
+
+        .admin-stat-icon.green { background: linear-gradient(135deg, rgba(0, 217, 165, 0.15), rgba(0, 217, 165, 0.05)); color: var(--green); }
+        .admin-stat-icon.orange { background: linear-gradient(135deg, rgba(255, 165, 2, 0.15), rgba(255, 165, 2, 0.05)); color: var(--orange); }
+        .admin-stat-icon.red { background: linear-gradient(135deg, rgba(255, 71, 87, 0.15), rgba(255, 71, 87, 0.05)); color: var(--red); }
+        .admin-stat-icon.pink { background: linear-gradient(135deg, rgba(255, 107, 157, 0.15), rgba(255, 107, 157, 0.05)); color: var(--secondary); }
+
+        .admin-stat-icon svg { width: 24px; height: 24px; }
+
+        .admin-stat-number {
+            font-size: 26px; font-weight: 900; margin-top: 10px;
+            background: linear-gradient(135deg, #7C5CFC, #FF6B9D);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+            word-break: break-all;
+        }
+
+        .admin-stat-label { color: var(--muted); font-size: 12px; margin-top: 4px; font-weight: 600; }
+
+        .moderation-card { 
+            background: var(--card); border: 1.5px solid var(--border); 
+            border-radius: 24px; overflow: hidden; margin-bottom: 16px; 
+        }
+
+        .moderation-layout { display: grid; grid-template-columns: 1fr; }
+        
+        @media (min-width: 500px) {
+            .moderation-layout { grid-template-columns: 200px 1fr; }
+        }
+
+        .moderation-video { 
+            height: 200px; width: 100%; 
+            background: #000; 
+            display: flex; align-items: center; justify-content: center;
+        }
+
+        .moderation-video video { width: 100%; height: 100%; object-fit: cover; }
+
+        .moderation-info { padding: 18px; }
+        .moderation-info h3 { font-size: 17px; font-weight: 800; }
+        .moderation-meta { color: var(--muted); font-size: 12px; margin-top: 8px; display: flex; align-items: center; gap: 5px; }
+        .moderation-meta svg { width: 14px; height: 14px; }
+        .moderation-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 16px; }
+
+        /* ====== ADMIN TRANSACTION LIST ====== */
+        .tx-item {
+            background: var(--card); border: 1.5px solid var(--border);
+            border-radius: 20px; padding: 16px; margin-bottom: 10px;
+            display: flex; align-items: center; gap: 14px;
+        }
+
+        .tx-icon {
+            width: 48px; height: 48px; border-radius: 16px;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .tx-icon.topup { background: rgba(0, 217, 165, 0.12); color: var(--green); }
+        .tx-icon.spend { background: rgba(255, 71, 87, 0.12); color: var(--red); }
+        .tx-icon svg { width: 22px; height: 22px; }
+
+        .tx-info { flex: 1; min-width: 0; }
+        .tx-user { font-weight: 800; font-size: 14px; }
+        .tx-desc { font-size: 12px; color: var(--muted); margin-top: 3px; font-weight: 500; }
+        .tx-date { font-size: 11px; color: var(--muted); margin-top: 3px; font-weight: 600; }
+        .tx-amount { font-weight: 900; font-size: 16px; text-align: right; }
+        .tx-amount.plus { color: var(--green); }
+        .tx-amount.minus { color: var(--red); }
+
+        .tx-status {
+            display: inline-flex; align-items: center; gap: 4px;
+            font-size: 10px; font-weight: 800;
+            padding: 3px 8px; border-radius: 8px;
+            margin-top: 4px;
+        }
+
+        .tx-status.approved { background: rgba(0, 217, 165, 0.12); color: var(--green); }
+        .tx-status.pending { background: rgba(255, 165, 2, 0.12); color: var(--orange); }
+        .tx-status.rejected { background: rgba(255, 71, 87, 0.12); color: var(--red); }
+
+        /* ====== USER CARD ====== */
+        .user-card { 
+            background: var(--card); border: 1.5px solid var(--border); 
+            border-radius: 20px; padding: 16px; 
+            display: flex; align-items: center; gap: 14px; 
+            margin-bottom: 12px; 
+        }
+
+        .user-avatar {
+            width: 54px; height: 54px; border-radius: 50%;
+            background: linear-gradient(135deg, #7C5CFC, #FF6B9D);
+            color: white; display: flex; justify-content: center; align-items: center;
+            overflow: hidden; flex-shrink: 0;
+        }
+
+        .user-avatar svg { width: 24px; height: 24px; color: white; }
+        .user-avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+        .user-info { flex: 1; min-width: 0; }
+        .user-name { font-weight: 800; font-size: 15px; display: flex; align-items: center; gap: 6px; }
+        .user-name svg { width: 14px; height: 14px; }
+        .user-meta { font-size: 12px; color: var(--muted); margin-top: 4px; display: flex; align-items: center; gap: 5px; }
+        .user-meta svg { width: 12px; height: 12px; }
+
+        .small-btn {
+            padding: 8px 14px; border-radius: 12px;
+            font-size: 12px; font-weight: 800;
+            display: flex; align-items: center; gap: 4px; color: white;
+            flex-shrink: 0;
+        }
+
+        .small-btn svg { width: 14px; height: 14px; }
+        .small-btn.success { background: var(--green); }
+        .small-btn.danger { background: var(--red); }
+        .small-btn.primary { background: var(--primary); }
+
+        /* ====== BROADCAST ====== */
+        .broadcast-area { 
+            background: var(--card); border: 1.5px solid var(--border); 
+            border-radius: 24px; padding: 22px; 
+        }
+
+        /* ====== ADD BALANCE FORM ====== */
+        .add-balance-form {
+            background: var(--card); border: 1.5px solid var(--border);
+            border-radius: 24px; padding: 22px;
+        }
+
+        /* ====== STEP INDICATOR ====== */
+        .step-indicator { display: flex; gap: 8px; margin: 24px 0 30px; }
+
+        .step-dot { height: 6px; flex: 1; border-radius: 10px; background: var(--border); transition: var(--transition); }
+        .step-dot.active { background: linear-gradient(90deg, #7C5CFC, #FF6B9D); }
+
+        .create-step { display: none; }
+        .create-step.active { display: block; animation: pageIn 0.4s; }
+
+        .create-actions { display: flex; gap: 14px; margin-top: 30px; }
+        .create-actions .btn { flex: 1; }
+
+        /* ====== EMPTY & LOADING ====== */
+        .empty { padding: 60px 24px; text-align: center; color: var(--muted); }
+        .empty-icon { width: 72px; height: 72px; margin: 0 auto 18px; color: var(--primary); opacity: 0.5; stroke-width: 1.5; }
+        .empty strong { font-size: 16px; font-weight: 800; color: var(--text); display: block; }
+
+        .loading-overlay {
+            position: fixed; inset: 0; z-index: 9999;
+            background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(8px);
+            display: none; align-items: center; justify-content: center;
+        }
+
+        .loading-overlay.active { display: flex; }
+
+        .loading-spinner {
+            width: 60px; height: 60px;
+            border: 5px solid rgba(255, 255, 255, 0.2);
+            border-top-color: #7C5CFC; border-right-color: #FF6B9D;
+            border-radius: 50%; animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
 
         /* ====== TOAST ====== */
         .toast-container {
@@ -991,171 +1341,12 @@
 
         @keyframes toastIn { from { opacity: 0; transform: translateY(-20px) scale(0.9); } to { opacity: 1; transform: translateY(0) scale(1); } }
 
-        /* ====== STATUS ====== */
-        .status {
-            display: inline-flex; align-items: center; gap: 6px;
-            padding: 8px 14px; border-radius: 12px;
-            font-size: 11px; font-weight: 800; margin-top: 6px;
-        }
-
-        .status svg { width: 14px; height: 14px; }
-        .status.active { color: #00B88A; background: rgba(0, 217, 165, 0.12); }
-        .status.pending { color: #E67E22; background: rgba(255, 165, 2, 0.12); }
-        .status.expired { color: var(--muted); background: rgba(139, 144, 168, 0.12); }
-        .status.rejected { color: #E63946; background: rgba(255, 71, 87, 0.12); }
-
-        /* ====== MY ADS ====== */
-        .my-ad-item {
-            background: var(--card); border: 1.5px solid var(--border);
-            border-radius: 24px; padding: 16px;
-            display: flex; gap: 16px; margin-bottom: 14px;
-        }
-
-        .my-ad-image { width: 110px; height: 110px; border-radius: 20px; object-fit: cover; }
-        .my-ad-info { flex: 1; min-width: 0; }
-        .my-ad-title { font-weight: 800; font-size: 15px; }
-        .my-ad-meta { font-size: 12px; color: var(--muted); margin-top: 6px; font-weight: 500; display: flex; align-items: center; gap: 5px; }
-        .my-ad-meta svg { width: 14px; height: 14px; }
-
-        /* ====== ADMIN ====== */
-        .admin-badge {
-            padding: 10px 16px; border-radius: 14px;
-            background: linear-gradient(135deg, rgba(255, 71, 87, 0.15), rgba(255, 71, 87, 0.05));
-            color: var(--red); font-size: 12px; font-weight: 900;
-            display: flex; align-items: center; gap: 6px;
-        }
-
-        .admin-badge svg { width: 16px; height: 16px; }
-
-        .admin-stat-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-bottom: 24px; }
-
-        .admin-stat { background: var(--card); border: 1.5px solid var(--border); border-radius: 24px; padding: 22px; }
-
-        .admin-stat-icon {
-            width: 44px; height: 44px; border-radius: 14px;
-            background: linear-gradient(135deg, rgba(124, 92, 252, 0.15), rgba(124, 92, 252, 0.05));
-            color: var(--primary); display: flex; align-items: center; justify-content: center;
-        }
-
-        .admin-stat-icon svg { width: 24px; height: 24px; }
-
-        .admin-stat-number {
-            font-size: 30px; font-weight: 900; margin-top: 10px;
-            background: linear-gradient(135deg, #7C5CFC, #FF6B9D);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-        }
-
-        .admin-stat-label { color: var(--muted); font-size: 12px; margin-top: 4px; font-weight: 600; }
-
-        .moderation-card { background: var(--card); border: 1.5px solid var(--border); border-radius: 24px; overflow: hidden; margin-bottom: 16px; }
-        .moderation-layout { display: grid; grid-template-columns: 1fr 1fr; }
-        .moderation-photo { height: 200px; object-fit: cover; width: 100%; }
-        .moderation-info { padding: 18px; }
-        .moderation-info h3 { font-size: 17px; font-weight: 800; }
-        .moderation-meta { color: var(--muted); font-size: 12px; margin-top: 8px; display: flex; align-items: center; gap: 5px; }
-        .moderation-meta svg { width: 14px; height: 14px; }
-        .moderation-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 16px; }
-
-        .topup-card { background: var(--card); border: 1.5px solid var(--border); border-radius: 24px; padding: 20px; margin-bottom: 16px; }
-        .topup-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
-        .topup-user { font-weight: 800; font-size: 15px; }
-        .topup-amount { font-size: 22px; font-weight: 900; color: var(--green); }
-        .topup-receipt { width: 100%; max-height: 320px; object-fit: contain; border-radius: 16px; margin-bottom: 16px; }
-        .topup-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-
-        .user-card { background: var(--card); border: 1.5px solid var(--border); border-radius: 20px; padding: 16px; display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
-
-        .user-avatar {
-            width: 54px; height: 54px; border-radius: 50%;
-            background: linear-gradient(135deg, #7C5CFC, #FF6B9D);
-            color: white; display: flex; justify-content: center; align-items: center;
-            overflow: hidden; flex-shrink: 0;
-        }
-
-        .user-avatar svg { width: 24px; height: 24px; color: white; }
-        .user-avatar img { width: 100%; height: 100%; object-fit: cover; }
-
-        .user-info { flex: 1; min-width: 0; }
-        .user-name { font-weight: 800; font-size: 15px; display: flex; align-items: center; gap: 6px; }
-        .user-name svg { width: 14px; height: 14px; }
-        .user-meta { font-size: 12px; color: var(--muted); margin-top: 4px; display: flex; align-items: center; gap: 5px; }
-        .user-meta svg { width: 12px; height: 12px; }
-
-        .small-btn {
-            padding: 8px 14px; border-radius: 12px;
-            font-size: 12px; font-weight: 800;
-            display: flex; align-items: center; gap: 4px; color: white;
-        }
-
-        .small-btn svg { width: 14px; height: 14px; }
-        .small-btn.success { background: var(--green); }
-        .small-btn.danger { background: var(--red); }
-
-        .broadcast-area { background: var(--card); border: 1.5px solid var(--border); border-radius: 24px; padding: 22px; }
-
-        /* ====== STEP INDICATOR ====== */
-        .step-indicator { display: flex; gap: 8px; margin: 24px 0 30px; }
-
-        .step-dot { height: 6px; flex: 1; border-radius: 10px; background: var(--border); transition: var(--transition); }
-        .step-dot.active { background: linear-gradient(90deg, #7C5CFC, #FF6B9D); }
-
-        .create-step { display: none; }
-        .create-step.active { display: block; animation: pageIn 0.4s; }
-
-        .create-actions { display: flex; gap: 14px; margin-top: 30px; }
-        .create-actions .btn { flex: 1; }
-
-        .preview-card { background: var(--card); border-radius: 28px; overflow: hidden; border: 1.5px solid var(--border); }
-        .preview-main-image { height: 300px; width: 100%; object-fit: cover; }
-        .preview-content { padding: 24px; }
-        .preview-title { font-size: 26px; font-weight: 900; }
-
-        .preview-price {
-            background: linear-gradient(135deg, #7C5CFC, #FF6B9D);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-            font-size: 26px; font-weight: 900; margin-top: 10px;
-        }
-
-        .info-list { margin-top: 24px; display: grid; gap: 14px; }
-
-        .info-row {
-            display: flex; justify-content: space-between;
-            gap: 12px; font-size: 14px;
-            border-bottom: 1.5px solid var(--border-light);
-            padding-bottom: 14px; font-weight: 500;
-        }
-
-        .info-row span:first-child { color: var(--muted); display: flex; align-items: center; gap: 6px; }
-        .info-row span:first-child svg { width: 16px; height: 16px; }
-        .info-row span:last-child { font-weight: 800; text-align: right; }
-
-        /* ====== EMPTY & LOADING ====== */
-        .empty { padding: 60px 24px; text-align: center; color: var(--muted); }
-        .empty-icon { width: 72px; height: 72px; margin: 0 auto 18px; color: var(--primary); opacity: 0.5; stroke-width: 1.5; }
-        .empty strong { font-size: 16px; font-weight: 800; color: var(--text); display: block; }
-
-        .loading-overlay {
-            position: fixed; inset: 0; z-index: 9999;
-            background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(8px);
-            display: none; align-items: center; justify-content: center;
-        }
-
-        .loading-overlay.active { display: flex; }
-
-        .loading-spinner {
-            width: 60px; height: 60px;
-            border: 5px solid rgba(255, 255, 255, 0.2);
-            border-top-color: #7C5CFC; border-right-color: #FF6B9D;
-            border-radius: 50%; animation: spin 0.8s linear infinite;
-        }
-
-        @keyframes spin { to { transform: rotate(360deg); } }
-
         /* ====== RESPONSIVE ====== */
         @media (min-width: 700px) {
             .ads-grid { grid-template-columns: repeat(3, 1fr); }
             .admin-stat-grid { grid-template-columns: repeat(4, 1fr); }
             .checkbox-grid { grid-template-columns: repeat(3, 1fr); }
+            .checkbox-item.full-width { grid-column: span 3; }
         }
 
         @media (min-width: 1000px) {
@@ -1182,8 +1373,6 @@
         <symbol id="icon-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
         <symbol id="icon-wallet" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12a2 2 0 0 0 0 4h4v-4Z"/></symbol>
         <symbol id="icon-credit-card" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></symbol>
-        <symbol id="icon-thumbs-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></symbol>
-        <symbol id="icon-thumbs-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3zm7-13h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"/></symbol>
         <symbol id="icon-star" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></symbol>
         <symbol id="icon-crown" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 18h20l-2-10-4 4-4-8-4 8-4-4z"/><path d="M2 18v3h20v-3"/></symbol>
         <symbol id="icon-fire" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></symbol>
@@ -1205,7 +1394,6 @@
         <symbol id="icon-trash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/></symbol>
         <symbol id="icon-edit" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></symbol>
         <symbol id="icon-save" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></symbol>
-        <symbol id="icon-settings" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></symbol>
         <symbol id="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></symbol>
         <symbol id="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></symbol>
         <symbol id="icon-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></symbol>
@@ -1224,6 +1412,16 @@
         <symbol id="icon-award" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></symbol>
         <symbol id="icon-target" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></symbol>
         <symbol id="icon-zap" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></symbol>
+        <symbol id="icon-video" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></symbol>
+        <symbol id="icon-play" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></symbol>
+        <symbol id="icon-maximize" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></symbol>
+        <symbol id="icon-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></symbol>
+        <symbol id="icon-message-square" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></symbol>
+        <symbol id="icon-percent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="5" x2="5" y2="19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></symbol>
+        <symbol id="icon-trending-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/><polyline points="17 18 23 18 23 12"/></symbol>
+        <symbol id="icon-bar-chart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></symbol>
+        <symbol id="icon-volume" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></symbol>
+        <symbol id="icon-volume-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></symbol>
     </defs>
 </svg>
 
@@ -1258,15 +1456,28 @@
         <div class="container">
             <div class="category-tabs" style="padding-top: 8px;">
                 <button class="category-tab active" data-category="ALL"><svg><use href="#icon-home"/></svg>Hammasi</button>
-                <button class="category-tab" data-category="PREMIUM"><svg><use href="#icon-star"/></svg>Premium</button>
-                <button class="category-tab" data-category="STANDARD"><svg><use href="#icon-dollar"/></svg>Arzon</button>
+                <button class="category-tab" data-category="PREMIUM"><svg><use href="#icon-crown"/></svg>VIP</button>
                 <button class="category-tab" data-category="RARE"><svg><use href="#icon-fire"/></svg>Noyob</button>
+                <button class="category-tab" data-category="STANDARD"><svg><use href="#icon-megaphone"/></svg>Standart</button>
             </div>
             <div style="margin-top: 24px;">
                 <div class="section-title"><svg><use href="#icon-megaphone"/></svg>So'nggi e'lonlar</div>
                 <div class="section-subtitle">Yangi joylashtirilgan akkauntlar</div>
             </div>
             <div class="ads-grid" id="adsGrid"></div>
+        </div>
+    </section>
+
+    <!-- ====== SAVED ADS ====== -->
+    <section class="page" id="savedAdsPage">
+        <div class="container">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+                <div>
+                    <div class="section-title"><svg><use href="#icon-heart"/></svg>Saqlangan</div>
+                    <div class="section-subtitle">Siz yoqtirgan reklamalar</div>
+                </div>
+            </div>
+            <div class="ads-grid" id="savedAdsGrid"></div>
         </div>
     </section>
 
@@ -1354,7 +1565,7 @@
                 <div id="receiptPreviewWrap" style="display: none;">
                     <div class="receipt-preview">
                         <img id="receiptPreviewImg" src="" alt="Chek">
-                        <button class="remove-media" onclick="removeReceipt()"><svg><use href="#icon-x"/></svg></button>
+                        <button class="remove-media" style="position: absolute; right: 8px; top: 8px; width: 34px; height: 34px; border-radius: 12px; background: rgba(0,0,0,0.75); color: white; display: flex; align-items: center; justify-content: center;" onclick="removeReceipt()"><svg><use href="#icon-x"/></svg></button>
                     </div>
                 </div>
             </div>
@@ -1377,82 +1588,30 @@
             </div>
             <div class="step-indicator" id="stepIndicator"></div>
 
-            <!-- STEP 1 -->
+            <!-- STEP 1: TARIFF -->
             <div class="create-step active" data-step="1">
                 <div class="section-title">Tarifni tanlang</div>
                 <div class="section-subtitle">Reklamangiz qayerda chiqishini tanlang</div>
                 <div style="display: grid; gap: 18px; margin-top: 20px;" id="tariffGrid">
-                    <div class="tariff-card" data-tariff="1" style="background: var(--card); border: 2.5px solid var(--border); border-radius: 28px; padding: 26px; display: flex; flex-direction: column; gap: 16px; cursor: pointer; transition: var(--transition);">
-                        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
-                            <div style="width: 68px; height: 68px; border-radius: 22px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, rgba(124, 92, 252, 0.15), rgba(124, 92, 252, 0.05)); color: var(--primary);">
-                                <svg style="width:36px;height:36px;"><use href="#icon-megaphone"/></svg>
-                            </div>
-                            <div style="text-align: right;">
-                                <div style="font-size: 30px; font-weight: 900; background: linear-gradient(135deg, #7C5CFC, #FF6B9D); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">19,000</div>
-                                <div style="font-size: 12px; color: var(--muted); font-weight: 600;">so'm</div>
-                            </div>
-                        </div>
-                        <div style="font-size: 20px; font-weight: 900;">Kanalda reklama</div>
-                        <div style="font-size: 13px; color: var(--muted); line-height: 1.6; font-weight: 500;">Faqat Telegram kanalda chiqadi (1 hafta)</div>
-                    </div>
-                    <div class="tariff-card" data-tariff="2" style="background: var(--card); border: 2.5px solid var(--border); border-radius: 28px; padding: 26px; display: flex; flex-direction: column; gap: 16px; cursor: pointer; transition: var(--transition); position: relative;">
-                        <div style="position: absolute; top: 0; right: 0; background: linear-gradient(135deg, #FFD93D, #FFA502); color: white; padding: 8px 20px; border-radius: 0 28px 0 20px; font-size: 11px; font-weight: 900;">MASHHUR</div>
-                        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
-                            <div style="width: 68px; height: 68px; border-radius: 22px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, rgba(124, 92, 252, 0.15), rgba(124, 92, 252, 0.05)); color: var(--primary);">
-                                <svg style="width:36px;height:36px;"><use href="#icon-smartphone"/></svg>
-                            </div>
-                            <div style="text-align: right;">
-                                <div style="font-size: 30px; font-weight: 900; background: linear-gradient(135deg, #7C5CFC, #FF6B9D); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">9,000</div>
-                                <div style="font-size: 12px; color: var(--muted); font-weight: 600;">so'm</div>
-                            </div>
-                        </div>
-                        <div style="font-size: 20px; font-weight: 900;">Web App'da reklama</div>
-                        <div style="font-size: 13px; color: var(--muted); line-height: 1.6; font-weight: 500;">Asosiy menyuda chiqadi (1 hafta)</div>
-                    </div>
-                    <div class="tariff-card" data-tariff="3" style="background: var(--card); border: 2.5px solid var(--border); border-radius: 28px; padding: 26px; display: flex; flex-direction: column; gap: 16px; cursor: pointer; transition: var(--transition);">
-                        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
-                            <div style="width: 68px; height: 68px; border-radius: 22px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, rgba(124, 92, 252, 0.15), rgba(124, 92, 252, 0.05)); color: var(--primary);">
-                                <svg style="width:36px;height:36px;"><use href="#icon-fire"/></svg>
-                            </div>
-                            <div style="text-align: right;">
-                                <div style="font-size: 30px; font-weight: 900; background: linear-gradient(135deg, #7C5CFC, #FF6B9D); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">25,000</div>
-                                <div style="font-size: 12px; color: var(--muted); font-weight: 600;">so'm</div>
-                            </div>
-                        </div>
-                        <div style="font-size: 20px; font-weight: 900;">Web App + Kanal</div>
-                        <div style="font-size: 13px; color: var(--muted); line-height: 1.6; font-weight: 500;">Ikkala joyda chiqadi (1 hafta)</div>
-                    </div>
-                    <div class="tariff-card" data-tariff="4" style="background: var(--card); border: 2.5px solid var(--border); border-radius: 28px; padding: 26px; display: flex; flex-direction: column; gap: 16px; cursor: pointer; transition: var(--transition);">
-                        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
-                            <div style="width: 68px; height: 68px; border-radius: 22px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, rgba(124, 92, 252, 0.15), rgba(124, 92, 252, 0.05)); color: var(--primary);">
-                                <svg style="width:36px;height:36px;"><use href="#icon-crown"/></svg>
-                            </div>
-                            <div style="text-align: right;">
-                                <div style="font-size: 30px; font-weight: 900; background: linear-gradient(135deg, #7C5CFC, #FF6B9D); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">29,000</div>
-                                <div style="font-size: 12px; color: var(--muted); font-weight: 600;">so'm</div>
-                            </div>
-                        </div>
-                        <div style="font-size: 20px; font-weight: 900;">VIP Tarif</div>
-                        <div style="font-size: 13px; color: var(--muted); line-height: 1.6; font-weight: 500;">Eng yuqori - tepada turadi (1 hafta)</div>
-                    </div>
+                    <!-- Tariff cards dynamically generated -->
                 </div>
             </div>
 
-            <!-- STEP 2: MEDIA -->
+            <!-- STEP 2: VIDEO -->
             <div class="create-step" data-step="2">
-                <div class="section-title">Rasm yoki video yuklang</div>
-                <div class="section-subtitle">Maksimal 10 ta rasm yoki 1 ta video (10 daqiqa)</div>
-                <label class="media-upload" style="margin-top: 20px;">
-                    <svg><use href="#icon-upload"/></svg>
-                    <strong>Rasm yoki video tanlang</strong>
-                    <span>1-10 ta rasm yoki 1 ta video (10 daqiqagacha)</span>
-                    <input type="file" id="mediaInput" accept="image/*,video/*" multiple hidden>
+                <div class="section-title">Video yuklang</div>
+                <div class="section-subtitle">Faqat 1 ta video (maksimal 10 daqiqa)</div>
+                <label class="video-upload" style="margin-top: 20px;">
+                    <svg><use href="#icon-video"/></svg>
+                    <strong>Video tanlang</strong>
+                    <span>1 ta video, 10 daqiqagacha</span>
+                    <input type="file" id="videoInput" accept="video/*" hidden>
                 </label>
+                <div id="videoPreviewWrap" style="display: none;"></div>
                 <div class="media-hint">
                     <svg><use href="#icon-info"/></svg>
-                    <div><b>Maslahat:</b> Birinchi yuklangan rasm yoki video <b>asosiy</b> bo'ladi va asosiy menyuda ko'rinadi.</div>
+                    <div><b>Diqqat:</b> Reklama uchun <b>faqat video</b> qabul qilinadi. Rasm qabul qilinmaydi. Video <b>10 daqiqadan</b> oshmasligi kerak.</div>
                 </div>
-                <div class="media-preview-grid" id="mediaPreviewGrid"></div>
             </div>
 
             <!-- STEP 3: ACCOUNT -->
@@ -1485,7 +1644,7 @@
 
                         <div class="form-group">
                             <label class="form-label"><svg><use href="#icon-package"/></svg>Mifik kiyimlar soni</label>
-                            <textarea class="form-textarea" id="accMythicClothes" placeholder="Masalan: 120+ mifik kiyimlar" maxlength="300"></textarea>
+                            <input class="form-input" id="accMythicClothes" inputmode="numeric" placeholder="Masalan: 120" oninput="this.value=this.value.replace(/\D/g,'')">
                         </div>
                     </div>
 
@@ -1496,8 +1655,15 @@
                             <span>Redkiy skinlar</span>
                         </div>
                         <div class="form-group">
-                            <label class="form-label"><svg><use href="#icon-fire"/></svg>Ro'yxat (har biri yangi qatorda)</label>
-                            <textarea class="form-textarea" id="accRareSkins" placeholder="Masalan:&#10;Bape&#10;Misiya A&#10;Misiya B" style="min-height: 140px;"></textarea>
+                            <label class="form-label"><svg><use href="#icon-fire"/></svg>Skinlar ro'yxati (maksimal 25 ta)</label>
+                            <div class="list-items" id="rareSkinsList"></div>
+                            <button class="add-item-btn" id="addSkinBtn" onclick="addRareSkin()">
+                                <svg><use href="#icon-plus"/></svg>Yana skin qo'shish
+                            </button>
+                            <div class="item-counter">
+                                <span><svg><use href="#icon-star"/></svg>Jami skinlar</span>
+                                <span id="rareSkinsCount">0 / 25</span>
+                            </div>
                         </div>
                     </div>
 
@@ -1508,16 +1674,15 @@
                             <span>Kuchaytirilgan qurollar</span>
                         </div>
                         <div class="form-group">
-                            <label class="form-label"><svg><use href="#icon-target"/></svg>Qurol nomi va darajasi</label>
-                            <div class="guns-list" id="gunsList">
-                                <div class="gun-item">
-                                    <input type="text" placeholder="Masalan: Lednik 7 full">
-                                    <button class="gun-remove" onclick="removeGun(this)"><svg><use href="#icon-trash"/></svg></button>
-                                </div>
-                            </div>
-                            <button class="add-gun-btn" onclick="addGun()">
+                            <label class="form-label"><svg><use href="#icon-target"/></svg>Qurollar ro'yxati (maksimal 25 ta)</label>
+                            <div class="list-items" id="gunsList"></div>
+                            <button class="add-item-btn" id="addGunBtn" onclick="addGun()">
                                 <svg><use href="#icon-plus"/></svg>Yana qurol qo'shish
                             </button>
+                            <div class="item-counter">
+                                <span><svg><use href="#icon-target"/></svg>Jami qurollar</span>
+                                <span id="gunsCount">0 / 25</span>
+                            </div>
                         </div>
                     </div>
 
@@ -1532,7 +1697,7 @@
                         <div class="form-group">
                             <label class="form-label"><svg><use href="#icon-link"/></svg>Akkaunt nimalarga ulangan?</label>
                             <div class="checkbox-grid" id="linkedGrid">
-                                <div class="checkbox-item" data-value="Google">
+                                <div class="checkbox-item" data-value="Google Play">
                                     <div class="checkbox-box"><svg><use href="#icon-check"/></svg></div>
                                     <span>Google Play</span>
                                 </div>
@@ -1554,7 +1719,7 @@
                                 </div>
                                 <div class="checkbox-item" data-value="Telefon raqam">
                                     <div class="checkbox-box"><svg><use href="#icon-check"/></svg></div>
-                                    <span>Telefon raqam</span>
+                                    <span>Telefon</span>
                                 </div>
                                 <div class="checkbox-item" data-value="Apple ID">
                                     <div class="checkbox-box"><svg><use href="#icon-check"/></svg></div>
@@ -1564,11 +1729,7 @@
                                     <div class="checkbox-box"><svg><use href="#icon-check"/></svg></div>
                                     <span>Discord</span>
                                 </div>
-                                <div class="checkbox-item" data-value="Telegram">
-                                    <div class="checkbox-box"><svg><use href="#icon-check"/></svg></div>
-                                    <span>Telegram</span>
-                                </div>
-                                <div class="checkbox-item" data-value="Game Center">
+                                <div class="checkbox-item full-width" data-value="Game Center">
                                     <div class="checkbox-box"><svg><use href="#icon-check"/></svg></div>
                                     <span>Game Center</span>
                                 </div>
@@ -1598,12 +1759,12 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="form-label"><svg><use href="#icon-dollar"/></svg>Narxi (<span id="priceCurrencyLabel">so'm</span>)</label>
-                            <input class="form-input" id="accPrice" inputmode="numeric" placeholder="Masalan: 500000" oninput="this.value=this.value.replace(/\D/g,'').replace(/\B(?=(\d{3})+(?!\d))/g,' ')">
+                            <label class="form-label"><svg><use href="#icon-dollar"/></svg>Akkauntizni nechpulga sotmoqchisiz?</label>
+                            <input class="form-input" id="accPrice" inputmode="numeric" placeholder="Masalan: 200.000 So'm">
                         </div>
 
                         <div class="form-group">
-                            <label class="form-label"><svg><use href="#icon-map-pin"/></svg>Manzil</label>
+                            <label class="form-label"><svg><use href="#icon-map-pin"/></svg>Viloyat</label>
                             <select class="form-select" id="accLocation">
                                 <option value="">Tanlang</option>
                                 <option value="Toshkent">Toshkent</option>
@@ -1624,9 +1785,14 @@
                             </select>
                         </div>
 
+                        <div class="form-group">
+                            <label class="form-label"><svg><use href="#icon-map-pin"/></svg>Manzilni to'liq yozing (ixtiyoriy)</label>
+                            <input class="form-input" id="accFullLocation" placeholder="Masalan: Qo'qon shahri">
+                        </div>
+
                         <div style="background: linear-gradient(135deg, rgba(124, 92, 252, 0.08), rgba(255, 107, 157, 0.05)); border-radius: 18px; padding: 16px; font-size: 13px; color: var(--text-secondary); line-height: 1.6; display: flex; gap: 10px;">
-                            <svg style="width:18px;height:18px;color:var(--primary);flex-shrink:0;margin-top:2px;"><use href="#icon-info"/></svg>
-                            <div>Telefon va Telegram username <b>so'ralmaydi</b>. Barcha aloqa <b>chat</b> orqali.</div>
+                            <svg style="width:18px;height:18px;color:var(--primary);flex-shrink:0;margin-top:2px;"><use href="#icon-shield"/></svg>
+                            <div>Akkountizni fribgarlardan asrash uchun <b>Web App</b> ni ichidagi <b>chat orqali</b> soting. Biz sizga qulay va admin bilan ishlashingizga yordam beramiz.</div>
                         </div>
                     </div>
                 </div>
@@ -1715,6 +1881,21 @@
                     <div class="profile-menu-text"><strong>Shaxsiy ma'lumotlar</strong><span>Ism va familiya</span></div>
                     <div class="profile-menu-arrow"><svg><use href="#icon-chevron-right"/></svg></div>
                 </button>
+                <button class="profile-menu-item" onclick="goToPage('myAdsPage')">
+                    <div class="profile-menu-icon"><svg><use href="#icon-list"/></svg></div>
+                    <div class="profile-menu-text"><strong>Reklamalarim</strong><span>Mening e'lonlarim</span></div>
+                    <div class="profile-menu-arrow"><svg><use href="#icon-chevron-right"/></svg></div>
+                </button>
+                <button class="profile-menu-item" onclick="goToPage('savedAdsPage')">
+                    <div class="profile-menu-icon" style="background: linear-gradient(135deg, rgba(255, 107, 157, 0.15), rgba(232, 74, 127, 0.05)); color: var(--secondary);"><svg><use href="#icon-heart"/></svg></div>
+                    <div class="profile-menu-text"><strong>Saqlangan</strong><span>Yoqtirgan reklamalar</span></div>
+                    <div class="profile-menu-arrow"><svg><use href="#icon-chevron-right"/></svg></div>
+                </button>
+                <button class="profile-menu-item" onclick="goToPage('feedbackPage')">
+                    <div class="profile-menu-icon green"><svg><use href="#icon-message-square"/></svg></div>
+                    <div class="profile-menu-text"><strong>Otzif</strong><span>Fikr qoldirish va o'qish</span></div>
+                    <div class="profile-menu-arrow"><svg><use href="#icon-chevron-right"/></svg></div>
+                </button>
                 <button class="profile-menu-item" onclick="startBalanceTopUp()">
                     <div class="profile-menu-icon"><svg><use href="#icon-wallet"/></svg></div>
                     <div class="profile-menu-text"><strong>Hisobni to'ldirish</strong><span>Chek yuklash orqali</span></div>
@@ -1730,12 +1911,49 @@
                     <div class="profile-menu-text"><strong>Admin panel</strong><span>Boshqaruv paneli</span></div>
                     <div class="profile-menu-arrow"><svg><use href="#icon-chevron-right"/></svg></div>
                 </button>
-                <button class="profile-menu-item" onclick="showToast('Cardinal Reklama Bot v3.0')">
+                <button class="profile-menu-item" onclick="showToast('Cardinal Reklama Bot v4.0')">
                     <div class="profile-menu-icon"><svg><use href="#icon-info"/></svg></div>
-                    <div class="profile-menu-text"><strong>Ilova haqida</strong><span>Cardinal Reklama Bot</span></div>
+                    <div class="profile-menu-text"><strong>Ilova haqida</strong><span>Cardinal Reklama Bot v4.0</span></div>
                     <div class="profile-menu-arrow"><svg><use href="#icon-chevron-right"/></svg></div>
                 </button>
             </div>
+        </div>
+    </section>
+
+    <!-- ====== FEEDBACK PAGE ====== -->
+    <section class="page" id="feedbackPage">
+        <div class="container">
+            <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 24px;">
+                <button class="icon-btn" onclick="goToPage('profilePage')"><svg><use href="#icon-arrow-left"/></svg></button>
+                <div>
+                    <div class="section-title">Otzif</div>
+                    <div class="section-subtitle">Bot haqida fikringizni bildiring</div>
+                </div>
+            </div>
+
+            <!-- Feedback form -->
+            <div class="feedback-form">
+                <div class="account-form-title" style="margin-bottom: 14px;">
+                    <div class="account-form-title-icon"><svg><use href="#icon-message-square"/></svg></div>
+                    <span>Fikr qoldirish</span>
+                </div>
+                <div class="form-group" style="margin-bottom: 0;">
+                    <textarea class="form-textarea" id="feedbackText" 
+                              placeholder="Bot haqida fikringizni yozing (maks. 30 belgi)" 
+                              maxlength="30" 
+                              style="min-height: 80px;"></textarea>
+                    <div class="char-counter" id="feedbackCounter">0 / 30</div>
+                </div>
+                <button class="btn btn-primary btn-block" style="margin-top: 14px;" onclick="submitFeedback()">
+                    <svg><use href="#icon-send"/></svg>Yuborish
+                </button>
+            </div>
+
+            <!-- Feedback list -->
+            <div class="section-title" style="font-size: 17px; margin-bottom: 16px;">
+                <svg><use href="#icon-users"/></svg>Foydalanuvchilar fikri
+            </div>
+            <div class="feedback-list" id="feedbackList"></div>
         </div>
     </section>
 
@@ -1750,8 +1968,12 @@
                         <div class="section-subtitle">Boshqaruv markazi</div>
                     </div>
                 </div>
-                <div class="admin-badge"><svg><use href="#icon-shield"/></svg>ADMIN</div>
+                <div class="admin-badge" style="padding: 10px 16px; border-radius: 14px; background: linear-gradient(135deg, rgba(255, 71, 87, 0.15), rgba(255, 71, 87, 0.05)); color: var(--red); font-size: 12px; font-weight: 900; display: flex; align-items: center; gap: 6px;">
+                    <svg style="width:16px;height:16px;"><use href="#icon-shield"/></svg>ADMIN
+                </div>
             </div>
+            
+            <!-- Stats -->
             <div class="admin-stat-grid">
                 <div class="admin-stat">
                     <div class="admin-stat-icon"><svg><use href="#icon-megaphone"/></svg></div>
@@ -1759,49 +1981,104 @@
                     <div class="admin-stat-label">Jami e'lonlar</div>
                 </div>
                 <div class="admin-stat">
-                    <div class="admin-stat-icon"><svg><use href="#icon-users"/></svg></div>
+                    <div class="admin-stat-icon green"><svg><use href="#icon-users"/></svg></div>
                     <div class="admin-stat-number" id="adminUsersCount">0</div>
                     <div class="admin-stat-label">Foydalanuvchilar</div>
                 </div>
                 <div class="admin-stat">
-                    <div class="admin-stat-icon"><svg><use href="#icon-clock"/></svg></div>
+                    <div class="admin-stat-icon orange"><svg><use href="#icon-clock"/></svg></div>
                     <div class="admin-stat-number" id="adminPendingCount">0</div>
                     <div class="admin-stat-label">Reklama kutilmoqda</div>
                 </div>
                 <div class="admin-stat">
-                    <div class="admin-stat-icon"><svg><use href="#icon-credit-card"/></svg></div>
+                    <div class="admin-stat-icon pink"><svg><use href="#icon-credit-card"/></svg></div>
                     <div class="admin-stat-number" id="adminPendingTopups">0</div>
                     <div class="admin-stat-label">Chek kutilmoqda</div>
                 </div>
+                <div class="admin-stat">
+                    <div class="admin-stat-icon green"><svg><use href="#icon-trending-up"/></svg></div>
+                    <div class="admin-stat-number" id="adminMonthlyIncome">0</div>
+                    <div class="admin-stat-label">1 oylik daromad</div>
+                </div>
+                <div class="admin-stat">
+                    <div class="admin-stat-icon red"><svg><use href="#icon-trending-down"/></svg></div>
+                    <div class="admin-stat-number" id="adminMonthlySpent">0</div>
+                    <div class="admin-stat-label">1 oylik sarflangan</div>
+                </div>
+                <div class="admin-stat">
+                    <div class="admin-stat-icon"><svg><use href="#icon-chat"/></svg></div>
+                    <div class="admin-stat-number" id="adminChatsCount">0</div>
+                    <div class="admin-stat-label">Chatlar</div>
+                </div>
+                <div class="admin-stat">
+                    <div class="admin-stat-icon pink"><svg><use href="#icon-message-square"/></svg></div>
+                    <div class="admin-stat-number" id="adminFeedbacksCount">0</div>
+                    <div class="admin-stat-label">Fikrlar</div>
+                </div>
             </div>
+
+            <!-- Tabs -->
             <div class="category-tabs" id="adminTabs">
                 <button class="category-tab active" data-admintab="ads"><svg><use href="#icon-megaphone"/></svg>Reklamalar</button>
                 <button class="category-tab" data-admintab="topups"><svg><use href="#icon-credit-card"/></svg>To'lovlar</button>
+                <button class="category-tab" data-admintab="transactions"><svg><use href="#icon-list"/></svg>Tranzaksiyalar</button>
                 <button class="category-tab" data-admintab="chats"><svg><use href="#icon-chat"/></svg>Chatlar</button>
                 <button class="category-tab" data-admintab="users"><svg><use href="#icon-users"/></svg>Foydalanuvchilar</button>
-                <button class="category-tab" data-admintab="blocked"><svg><use href="#icon-ban"/></svg>Bloklangan</button>
+                <button class="category-tab" data-admintab="addbalance"><svg><use href="#icon-wallet"/></svg>Balans qo'shish</button>
                 <button class="category-tab" data-admintab="broadcast"><svg><use href="#icon-send"/></svg>Broadcast</button>
             </div>
+
+            <!-- ADS -->
             <div id="adminAdsSection" style="margin-top: 20px;">
                 <div class="section-title" style="font-size: 17px; margin-bottom: 16px;">Tasdiqlash kutilayotgan reklamalar</div>
                 <div id="moderationList"></div>
+                <div class="section-title" style="font-size: 17px; margin: 24px 0 16px;">Barcha reklamalar</div>
+                <div id="allAdsList"></div>
             </div>
+
+            <!-- TOPUPS -->
             <div id="adminTopupsSection" style="margin-top: 20px; display: none;">
                 <div class="section-title" style="font-size: 17px; margin-bottom: 16px;">Chek tasdiqlash</div>
                 <div id="topupList"></div>
             </div>
+
+            <!-- TRANSACTIONS -->
+            <div id="adminTransactionsSection" style="margin-top: 20px; display: none;">
+                <div class="section-title" style="font-size: 17px; margin-bottom: 16px;">Barcha tranzaksiyalar</div>
+                <div id="transactionsList"></div>
+            </div>
+
+            <!-- CHATS -->
             <div id="adminChatsSection" style="margin-top: 20px; display: none;">
                 <div class="section-title" style="font-size: 17px; margin-bottom: 16px;">Foydalanuvchilar chatlari</div>
                 <div id="adminChatsList"></div>
             </div>
+
+            <!-- USERS -->
             <div id="adminUsersSection" style="margin-top: 20px; display: none;">
                 <div class="section-title" style="font-size: 17px; margin-bottom: 16px;">Foydalanuvchilar ro'yxati</div>
                 <div id="usersList"></div>
             </div>
-            <div id="adminBlockedSection" style="margin-top: 20px; display: none;">
-                <div class="section-title" style="font-size: 17px; margin-bottom: 16px;">Bloklangan foydalanuvchilar</div>
-                <div id="blockedList"></div>
+
+            <!-- ADD BALANCE -->
+            <div id="adminAddBalanceSection" style="margin-top: 20px; display: none;">
+                <div class="section-title" style="font-size: 17px; margin-bottom: 16px;">Foydalanuvchiga balans qo'shish</div>
+                <div class="add-balance-form">
+                    <div class="form-group">
+                        <label class="form-label"><svg><use href="#icon-phone"/></svg>Foydalanuvchi telefon raqami</label>
+                        <input class="form-input" id="addBalancePhone" placeholder="Masalan: 901234567" inputmode="numeric" oninput="this.value=this.value.replace(/\D/g,'')">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label"><svg><use href="#icon-dollar"/></svg>Qo'shiladigan summa (so'm)</label>
+                        <input class="form-input" id="addBalanceAmount" placeholder="Masalan: 40000" inputmode="numeric" oninput="this.value=this.value.replace(/\D/g,'')">
+                    </div>
+                    <button class="btn btn-success btn-block" onclick="adminAddBalance()">
+                        <svg><use href="#icon-plus"/></svg>Balans qo'shish
+                    </button>
+                </div>
             </div>
+
+            <!-- BROADCAST -->
             <div id="adminBroadcastSection" style="margin-top: 20px; display: none;">
                 <div class="section-title" style="font-size: 17px; margin-bottom: 16px;">Barchaga xabar yuborish</div>
                 <div class="broadcast-area">
@@ -1833,6 +2110,14 @@
         </div>
     </div>
 
+    <!-- ====== VIDEO FULLSCREEN MODAL ====== -->
+    <div class="modal-overlay" id="videoFullscreenModal" style="align-items: center;">
+        <div style="width: 100%; max-width: 900px; padding: 16px;">
+            <button class="modal-close" style="position: absolute; top: 16px; right: 16px; background: white; z-index: 10;" onclick="closeVideoFullscreen()"><svg><use href="#icon-x"/></svg></button>
+            <video id="fullscreenVideo" controls style="width: 100%; max-height: 85vh; border-radius: 20px; background: #000;"></video>
+        </div>
+    </div>
+
     <!-- ====== BOTTOM NAV ====== -->
     <nav class="bottom-navigation">
         <div class="bottom-navigation-inner">
@@ -1840,9 +2125,9 @@
                 <span class="nav-icon"><svg><use href="#icon-home"/></svg></span>
                 <span>Asosiy</span>
             </button>
-            <button class="nav-item" data-page="myAdsPage">
-                <span class="nav-icon"><svg><use href="#icon-list"/></svg></span>
-                <span>Reklamalarim</span>
+            <button class="nav-item" data-page="savedAdsPage">
+                <span class="nav-icon"><svg><use href="#icon-heart"/></svg></span>
+                <span>Saqlangan</span>
             </button>
             <button class="nav-item create-btn" data-page="createAdPage">
                 <span class="nav-icon"><svg><use href="#icon-plus"/></svg></span>
@@ -1903,21 +2188,31 @@
 <div class="modal-overlay" id="adDetailModal">
     <div class="modal">
         <div class="modal-header">
-            <div class="modal-title">E'lon</div>
+            <div class="modal-title">E'lon ma'lumotlari</div>
             <button class="modal-close" onclick="closeModal('adDetailModal')"><svg><use href="#icon-x"/></svg></button>
         </div>
         <div id="adDetailContent"></div>
     </div>
 </div>
 
-<div class="modal-overlay" id="messageEditModal">
+<!-- ====== DELETE AD CONFIRM MODAL (ADMIN) ====== -->
+<div class="modal-overlay" id="deleteAdModal">
     <div class="modal">
         <div class="modal-header">
-            <div class="modal-title">Xabarni tahrirlash</div>
-            <button class="modal-close" onclick="closeModal('messageEditModal')"><svg><use href="#icon-x"/></svg></button>
+            <div class="modal-title">Reklamani o'chirish</div>
+            <button class="modal-close" onclick="closeModal('deleteAdModal')"><svg><use href="#icon-x"/></svg></button>
         </div>
-        <div class="form-group"><textarea class="form-textarea" id="editMessageText"></textarea></div>
-        <button class="btn btn-primary btn-block" onclick="saveEditedMessage()"><svg><use href="#icon-save"/></svg>Saqlash</button>
+        <div style="text-align: center; padding: 20px 0;">
+            <div style="width: 80px; height: 80px; border-radius: 50%; background: rgba(255, 71, 87, 0.12); color: var(--red); display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;">
+                <svg style="width:40px;height:40px;"><use href="#icon-trash"/></svg>
+            </div>
+            <h3 style="font-size: 18px; font-weight: 800; margin-bottom: 10px;">Rostdan o'chirmoqchimisiz?</h3>
+            <p style="color: var(--muted); font-size: 14px; font-weight: 500;">Bu reklama botdan va kanaldan butunlay o'chiriladi.</p>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <button class="btn btn-secondary" onclick="closeModal('deleteAdModal')"><svg><use href="#icon-x"/></svg>Bekor qilish</button>
+            <button class="btn btn-danger" id="confirmDeleteBtn"><svg><use href="#icon-trash"/></svg>O'chirish</button>
+        </div>
     </div>
 </div>
 
@@ -1934,15 +2229,82 @@ const CONFIG = {
     ADMIN_CHAT_ID: 7038296036,
     ADMIN_CARD: "8600 1234 5678 9012",
     ADMIN_NAME: "CARDINAL ADMIN",
-    TARIFF_PRICES: { "1": 19000, "2": 9000, "3": 25000, "4": 29000 },
-    AD_LIFETIME_DAYS: 7,
-    MAX_PHOTOS: 10,
-    MAX_VIDEO_MINUTES: 10,
+    TARIFFS: {
+        1: {
+            price: 19000, days: 7, type: "STANDARD", 
+            channel: true, webapp: true, 
+            name: "Kanalda reklama",
+            icon: "megaphone",
+            popular: false,
+            discount: false,
+            features: [
+                { text: "Telegram kanalda joylanadi", yes: true },
+                { text: "Web App'da chiqadi", yes: false },
+                { text: "7 kun faol turadi", yes: true },
+                { text: "Video reklama (10 daqiqa)", yes: true },
+                { text: "VIP tepada turadi", yes: false },
+                { text: "10% skidka", yes: false },
+            ]
+        },
+        2: {
+            price: 9000, days: 7, type: "STANDARD", 
+            channel: false, webapp: true, 
+            name: "Web App reklama",
+            icon: "smartphone",
+            popular: false,
+            discount: false,
+            features: [
+                { text: "Telegram kanalda joylanmaydi", yes: false },
+                { text: "Web App'da chiqadi", yes: true },
+                { text: "7 kun faol turadi", yes: true },
+                { text: "Video reklama (10 daqiqa)", yes: true },
+                { text: "VIP tepada turadi", yes: false },
+                { text: "10% skidka", yes: false },
+            ]
+        },
+        3: {
+            price: 25000, days: 7, type: "RARE", 
+            channel: true, webapp: true, 
+            name: "Web App + Kanal",
+            icon: "fire",
+            popular: true,
+            popularText: "10% Skidka",
+            discount: true,
+            features: [
+                { text: "Telegram kanalda joylanadi", yes: true },
+                { text: "Web App'da chiqadi", yes: true },
+                { text: "7 kun faol turadi", yes: true },
+                { text: "Video reklama (10 daqiqa)", yes: true },
+                { text: "VIP tepada turadi", yes: false },
+                { text: "10% skidka", yes: true },
+            ]
+        },
+        4: {
+            price: 29000, days: 7, type: "PREMIUM", 
+            channel: true, webapp: true, 
+            name: "VIP Tarif",
+            icon: "crown",
+            popular: false,
+            discount: false,
+            features: [
+                { text: "Telegram kanalda joylanadi", yes: true },
+                { text: "Web App'da chiqadi", yes: true },
+                { text: "7 kun faol turadi", yes: true },
+                { text: "Video reklama (10 daqiqa)", yes: true },
+                { text: "VIP tepada turadi", yes: true },
+                { text: "10% skidka", yes: false },
+            ]
+        },
+    },
     CURRENCIES: {
         UZS: { symbol: "so'm", flag: "🇺🇿", name: "So'm" },
         USD: { symbol: "$", flag: "🇺🇸", name: "Dollar" },
         RUB: { symbol: "₽", flag: "🇷🇺", name: "Rubl" }
-    }
+    },
+    MAX_RARE_SKINS: 25,
+    MAX_GUNS: 25,
+    MAX_VIDEO_MINUTES: 10,
+    MAX_FEEDBACK_LENGTH: 30
 };
 
 /* ====== ICON HELPER ====== */
@@ -1972,12 +2334,16 @@ let APP_DATA = {
     spent: 0,
     ads: [],
     myAds: [],
+    savedAds: [],
+    savedAdsIds: [],
+    feedbacks: [],
     pending: [],
     pendingTopups: [],
+    allTransactions: [],
     chats: [],
     adminChats: [],
     adminUsers: [],
-    adminBlocked: [],
+    adminAllAds: [],
     currentChat: null,
     chatMessages: [],
     tariff: null,
@@ -1986,14 +2352,12 @@ let APP_DATA = {
     pendingReceipt: null,
     pendingAvatar: null,
     editingMessageId: null,
-    myReactions: {},
     selectedCurrency: "UZS",
     selectedLinked: [],
-    guns: [],
+    deleteAdId: null,
     createData: {
-        mediaList: [],
-        mediaType: null,
         videoFile: null,
+        videoDuration: 0,
         account: {},
         preview: null
     },
@@ -2022,6 +2386,84 @@ async function apiCall(endpoint, method = "GET", body = null) {
     } catch (e) {
         console.error(`API ${endpoint}:`, e);
         throw e;
+    }
+}
+
+/* ====== LOADING ====== */
+function showLoading() { document.getElementById("loadingOverlay").classList.add("active"); }
+function hideLoading() { document.getElementById("loadingOverlay").classList.remove("active"); }
+
+/* ====== INIT ====== */
+async function init() {
+    console.log("App v4.0 ishga tushdi");
+    loadLocalData();
+
+    if (TELEGRAM_USER) {
+        APP_DATA.profile.firstName = TELEGRAM_USER.first_name || "Foydalanuvchi";
+        APP_DATA.profile.lastName = TELEGRAM_USER.last_name || "";
+        updateProfileDisplay();
+        updateBalanceDisplay();
+        updateTopBarUser();
+
+        showLoading();
+        try {
+            await loadProfileFromAPI();
+            await loadAdsFromAPI();
+            await loadMyAdsFromAPI();
+            await loadSavedAdsFromAPI();
+            await loadChatsFromAPI();
+        } catch (e) {
+            console.error("Init xato:", e);
+        }
+        hideLoading();
+    }
+
+    renderTariffs();
+    renderDashboard();
+    renderChatList();
+    renderSavedAds();
+    setupEventListeners();
+
+    if (localStorage.getItem("cardinal_theme") === "dark") {
+        document.body.classList.add("dark");
+        updateThemeIcon(true);
+    }
+
+    handleUrlParams();
+}
+
+function handleUrlParams() {
+    const params = new URLSearchParams(window.location.search);
+    const open = params.get("open");
+
+    if (open === "ad") {
+        const adId = params.get("ad_id");
+        const chat = params.get("chat");
+        if (adId) setTimeout(() => {
+            if (chat === "1") startChatWithAdmin(adId);
+            else openAdDetail(adId);
+        }, 800);
+    } else if (open === "create") {
+        setTimeout(() => startCreateAd(), 800);
+    }
+}
+
+/* ====== LOCAL DATA ====== */
+function saveLocalData() {
+    localStorage.setItem("cardinal_data_v4", JSON.stringify({
+        profile: APP_DATA.profile,
+        savedAdsIds: APP_DATA.savedAdsIds
+    }));
+}
+
+function loadLocalData() {
+    const saved = localStorage.getItem("cardinal_data_v4");
+    if (saved) {
+        try {
+            const data = JSON.parse(saved);
+            APP_DATA.profile = data.profile || APP_DATA.profile;
+            APP_DATA.savedAdsIds = data.savedAdsIds || [];
+        } catch (e) {}
     }
 }
 
@@ -2072,6 +2514,26 @@ async function loadMyAdsFromAPI() {
     }
 }
 
+async function loadSavedAdsFromAPI() {
+    if (!TELEGRAM_USER) return;
+    try {
+        const ads = await apiCall(`/api/saved-ads/${TELEGRAM_USER.id}`);
+        APP_DATA.savedAds = ads.map(mapAd);
+        APP_DATA.savedAdsIds = ads.map(a => String(a.id));
+    } catch (e) {
+        APP_DATA.savedAds = [];
+    }
+}
+
+async function loadFeedbacksFromAPI() {
+    try {
+        const feedbacks = await apiCall("/api/feedbacks");
+        APP_DATA.feedbacks = feedbacks;
+    } catch (e) {
+        APP_DATA.feedbacks = [];
+    }
+}
+
 async function loadChatsFromAPI() {
     if (!TELEGRAM_USER) return;
     try {
@@ -2094,110 +2556,29 @@ async function loadChatMessages(chatId) {
 }
 
 function mapAd(ad) {
-    let images = [];
-    if (ad.images && Array.isArray(ad.images) && ad.images.length > 0) {
-        images = ad.images;
-    } else if (ad.image_url) {
-        images = [ad.image_url];
-    } else {
-        images = ["https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80"];
-    }
-
     return {
         id: ad.id,
         userId: ad.user_id,
         title: ad.title,
         description: ad.description || "",
-        images: images,
-        image: images[0],
         video: ad.video_url,
+        videoDuration: ad.video_duration || 0,
         type: ad.ad_type || "STANDARD",
         price: ad.price,
         currency: ad.currency || "UZS",
         location: ad.location || "",
+        fullLocation: ad.full_location || "",
         views: ad.views || 0,
-        likes: ad.likes || 0,
-        dislikes: ad.dislikes || 0,
         status: ad.status,
         rejectReason: ad.reject_reason,
         createdAt: ad.created_at ? new Date(ad.created_at).getTime() : Date.now(),
         expiresAt: ad.expires_at ? new Date(ad.expires_at).getTime() : (Date.now() + 7 * 24 * 60 * 60 * 1000),
         account: ad.account_data || {},
-        sellerTg: ad.seller_tg
+        sellerTg: ad.seller_tg,
+        sellerFirstName: ad.seller_first_name || ad.first_name,
+        sellerLastName: ad.seller_last_name || ad.last_name,
+        channelMsgId: ad.channel_msg_id
     };
-}
-
-/* ====== LOADING ====== */
-function showLoading() { document.getElementById("loadingOverlay").classList.add("active"); }
-function hideLoading() { document.getElementById("loadingOverlay").classList.remove("active"); }
-
-/* ====== INIT ====== */
-async function init() {
-    console.log("App ishga tushdi");
-    loadData();
-
-    if (TELEGRAM_USER) {
-        APP_DATA.profile.firstName = TELEGRAM_USER.first_name || "Foydalanuvchi";
-        APP_DATA.profile.lastName = TELEGRAM_USER.last_name || "";
-        updateProfileDisplay();
-        updateBalanceDisplay();
-        updateTopBarUser();
-
-        showLoading();
-        try {
-            await loadProfileFromAPI();
-            await loadAdsFromAPI();
-            await loadMyAdsFromAPI();
-            await loadChatsFromAPI();
-        } catch (e) {}
-        hideLoading();
-    }
-
-    renderDashboard();
-    renderChatList();
-    setupEventListeners();
-
-    if (localStorage.getItem("cardinal_theme") === "dark") {
-        document.body.classList.add("dark");
-        updateThemeIcon(true);
-    }
-
-    handleUrlParams();
-}
-
-function handleUrlParams() {
-    const params = new URLSearchParams(window.location.search);
-    const open = params.get("open");
-
-    if (open === "ad") {
-        const adId = params.get("ad_id");
-        const chat = params.get("chat");
-        if (adId) setTimeout(() => {
-            if (chat === "1") startChatWithAdmin(adId);
-            else openAdDetail(adId);
-        }, 800);
-    } else if (open === "create") {
-        setTimeout(() => startCreateAd(), 800);
-    }
-}
-
-/* ====== DATA MGMT ====== */
-function saveData() {
-    localStorage.setItem("cardinal_data", JSON.stringify({
-        myReactions: APP_DATA.myReactions,
-        profile: APP_DATA.profile
-    }));
-}
-
-function loadData() {
-    const saved = localStorage.getItem("cardinal_data");
-    if (saved) {
-        try {
-            const data = JSON.parse(saved);
-            APP_DATA.myReactions = data.myReactions || {};
-            APP_DATA.profile = data.profile || APP_DATA.profile;
-        } catch (e) {}
-    }
 }
 
 /* ====== NAVIGATION ====== */
@@ -2216,8 +2597,10 @@ async function goToPage(pageId) {
 
     if (pageId === "dashboardPage") { await loadAdsFromAPI(); renderDashboard(); }
     if (pageId === "myAdsPage") { await loadMyAdsFromAPI(); renderMyAds(); }
+    if (pageId === "savedAdsPage") { await loadSavedAdsFromAPI(); renderSavedAds(); }
     if (pageId === "chatPage") { await loadChatsFromAPI(); renderChatList(); }
     if (pageId === "profilePage") updateProfileDisplay();
+    if (pageId === "feedbackPage") { await loadFeedbacksFromAPI(); renderFeedbacks(); }
     if (pageId === "adminPage") await renderAdminPanel();
 
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -2225,6 +2608,7 @@ async function goToPage(pageId) {
 
 /* ====== EVENT LISTENERS ====== */
 function setupEventListeners() {
+    // Bottom nav
     document.querySelectorAll(".nav-item").forEach(item => {
         item.addEventListener("click", async () => {
             const page = item.dataset.page;
@@ -2233,16 +2617,19 @@ function setupEventListeners() {
         });
     });
 
+    // Theme
     document.getElementById("themeMenuButton")?.addEventListener("click", toggleTheme);
 
+    // Dashboard tabs
     document.querySelectorAll("#dashboardPage .category-tab").forEach(tab => {
         tab.addEventListener("click", () => {
             document.querySelectorAll("#dashboardPage .category-tab").forEach(t => t.classList.remove("active"));
             tab.classList.add("active");
-            renderDashboard(null, tab.dataset.category);
+            renderDashboard(tab.dataset.category);
         });
     });
 
+    // My ads tabs
     document.querySelectorAll("[data-myad]").forEach(tab => {
         tab.addEventListener("click", () => {
             document.querySelectorAll("[data-myad]").forEach(t => t.classList.remove("active"));
@@ -2251,6 +2638,7 @@ function setupEventListeners() {
         });
     });
 
+    // Admin tabs
     document.querySelectorAll("[data-admintab]").forEach(tab => {
         tab.addEventListener("click", async () => {
             document.querySelectorAll("[data-admintab]").forEach(t => t.classList.remove("active"));
@@ -2259,14 +2647,15 @@ function setupEventListeners() {
             
             document.getElementById("adminAdsSection").style.display = which === "ads" ? "block" : "none";
             document.getElementById("adminTopupsSection").style.display = which === "topups" ? "block" : "none";
+            document.getElementById("adminTransactionsSection").style.display = which === "transactions" ? "block" : "none";
             document.getElementById("adminChatsSection").style.display = which === "chats" ? "block" : "none";
             document.getElementById("adminUsersSection").style.display = which === "users" ? "block" : "none";
-            document.getElementById("adminBlockedSection").style.display = which === "blocked" ? "block" : "none";
+            document.getElementById("adminAddBalanceSection").style.display = which === "addbalance" ? "block" : "none";
             document.getElementById("adminBroadcastSection").style.display = which === "broadcast" ? "block" : "none";
 
             if (which === "chats") await renderAdminChats();
             if (which === "users") await renderAdminUsers();
-            if (which === "blocked") await renderAdminBlocked();
+            if (which === "transactions") await renderAdminTransactions();
         });
     });
 
@@ -2285,34 +2674,19 @@ function setupEventListeners() {
         });
     });
 
+    // Receipt
     document.getElementById("receiptInput")?.addEventListener("change", handleReceiptUpload);
     document.getElementById("avatarInput")?.addEventListener("change", handleAvatarUpload);
+    document.getElementById("videoInput")?.addEventListener("change", handleVideoUpload);
 
-    // Tariff cards
-    document.querySelectorAll(".tariff-card").forEach(card => {
-        card.addEventListener("click", () => {
-            document.querySelectorAll(".tariff-card").forEach(c => {
-                c.classList.remove("selected");
-                c.style.borderColor = "var(--border)";
-                c.style.boxShadow = "var(--shadow-sm)";
-                c.style.transform = "scale(1)";
-            });
-            card.classList.add("selected");
-            card.style.borderColor = "var(--primary)";
-            card.style.boxShadow = "0 15px 50px rgba(124, 92, 252, 0.3)";
-            card.style.transform = "scale(1.02)";
-            APP_DATA.tariff = card.dataset.tariff;
-            setTimeout(() => nextCreateStep(), 400);
-        });
-    });
-
-    document.getElementById("mediaInput")?.addEventListener("change", handleMediaUpload);
+    // Create ad buttons
     document.getElementById("createBackButton")?.addEventListener("click", () => {
         if (APP_DATA.createStep === 1) goToPage("dashboardPage");
         else prevCreateStep();
     });
     document.getElementById("createNextButton")?.addEventListener("click", nextCreateStep);
 
+    // Chat
     document.getElementById("chatInput")?.addEventListener("keydown", (e) => {
         if (e.key === "Enter" && !e.shiftKey) {
             e.preventDefault();
@@ -2320,14 +2694,13 @@ function setupEventListeners() {
         }
     });
 
-    // Currency selector
+    // Currency
     document.querySelectorAll("#currencyGrid .currency-item").forEach(item => {
         item.addEventListener("click", () => {
             document.querySelectorAll("#currencyGrid .currency-item").forEach(i => i.classList.remove("active"));
             item.classList.add("active");
             APP_DATA.selectedCurrency = item.dataset.currency;
-            const curr = CONFIG.CURRENCIES[APP_DATA.selectedCurrency];
-            document.getElementById("priceCurrencyLabel").innerText = curr.symbol;
+            updatePricePlaceholder();
         });
     });
 
@@ -2344,10 +2717,27 @@ function setupEventListeners() {
         });
     });
 
-    // Faqat son kiritish
-    ["accLevel", "accCollection"].forEach(id => {
-        document.getElementById(id)?.addEventListener("input", (e) => {
-            e.target.value = e.target.value.replace(/\D/g, "");
+    // Feedback character counter
+    document.getElementById("feedbackText")?.addEventListener("input", (e) => {
+        const len = e.target.value.length;
+        const counter = document.getElementById("feedbackCounter");
+        counter.textContent = `${len} / ${CONFIG.MAX_FEEDBACK_LENGTH}`;
+        counter.className = "char-counter";
+        if (len >= 25) counter.classList.add("warning");
+        if (len >= 30) counter.classList.add("danger");
+    });
+
+    // Delete ad modal
+    document.getElementById("confirmDeleteBtn")?.addEventListener("click", () => {
+        if (APP_DATA.deleteAdId) {
+            performDeleteAd(APP_DATA.deleteAdId);
+        }
+    });
+
+    // Modal backdrop click
+    document.querySelectorAll(".modal-overlay").forEach(overlay => {
+        overlay.addEventListener("click", (e) => {
+            if (e.target === overlay) closeModal(overlay.id);
         });
     });
 }
@@ -2361,9 +2751,16 @@ function openProfileEdit() {
 
 function updateProfileDisplay() {
     const p = APP_DATA.profile;
-    document.getElementById("profileName").innerHTML = `${p.firstName} ${p.lastName}`.trim() + 
-        `<span class="admin-check" id="adminCheck" style="display: ${IS_ADMIN ? 'inline-flex' : 'none'};"><svg><use href="#icon-check"/></svg></span>`;
-    document.getElementById("profileUsername").innerText = p.phone ? `+998${p.phone}` : (TELEGRAM_USER?.username ? `@${TELEGRAM_USER.username}` : "@username");
+    const nameEl = document.getElementById("profileName");
+    if (nameEl) {
+        nameEl.innerHTML = `${p.firstName} ${p.lastName}`.trim() + 
+            `<span class="admin-check" id="adminCheck" style="display: ${IS_ADMIN ? 'inline-flex' : 'none'};"><svg><use href="#icon-check"/></svg></span>`;
+    }
+    
+    const usernameEl = document.getElementById("profileUsername");
+    if (usernameEl) {
+        usernameEl.innerText = p.phone ? `+998${p.phone}` : (TELEGRAM_USER?.username ? `@${TELEGRAM_USER.username}` : "@username");
+    }
     
     if (p.avatar) {
         document.getElementById("profileAvatarSvg").style.display = "none";
@@ -2417,7 +2814,7 @@ async function saveProfile() {
         });
         APP_DATA.profile.firstName = firstName;
         APP_DATA.profile.lastName = lastName;
-        saveData();
+        saveLocalData();
         updateProfileDisplay();
         updateTopBarUser();
         closeModal("profileEditModal");
@@ -2478,7 +2875,7 @@ async function saveAvatar() {
             avatar: newAvatar
         });
         APP_DATA.profile.avatar = newAvatar;
-        saveData();
+        saveLocalData();
         updateProfileDisplay();
         updateTopBarUser();
         closeModal("avatarModal");
@@ -2580,7 +2977,7 @@ function copyCard() {
 }
 
 /* ====== DASHBOARD ====== */
-function renderDashboard(search = "", category = "ALL") {
+function renderDashboard(category = "ALL") {
     const grid = document.getElementById("adsGrid");
     if (!grid) return;
 
@@ -2592,8 +2989,10 @@ function renderDashboard(search = "", category = "ALL") {
     });
 
     ads.sort((a, b) => {
-        if (a.type === "PREMIUM" && b.type !== "PREMIUM") return -1;
-        if (b.type === "PREMIUM" && a.type !== "PREMIUM") return 1;
+        const priority = { "PREMIUM": 1, "RARE": 2, "STANDARD": 3 };
+        const pa = priority[a.type] || 3;
+        const pb = priority[b.type] || 3;
+        if (pa !== pb) return pa - pb;
         return b.createdAt - a.createdAt;
     });
 
@@ -2611,207 +3010,256 @@ function renderDashboard(search = "", category = "ALL") {
         return;
     }
 
-    grid.innerHTML = ads.map(ad => {
-        const myReaction = APP_DATA.myReactions[ad.id];
-        const photoCount = ad.images?.length || 1;
-        const currency = CONFIG.CURRENCIES[ad.currency] || CONFIG.CURRENCIES.UZS;
-
-        return `
-            <article class="ad-card" onclick="openAdDetail('${ad.id}')">
-                <div class="ad-image-wrap">
-                    ${ad.video 
-                        ? `<video class="ad-image" src="${ad.video}" muted loop autoplay></video>`
-                        : `<img class="ad-image" src="${ad.image}" alt="" onerror="this.src='https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80'">`
-                    }
-                    <span class="ad-type-badge ${ad.type === 'PREMIUM' ? 'premium' : ''}">
-                        ${ad.type === 'PREMIUM' ? icon('star') : ad.type === 'RARE' ? icon('fire') : icon('megaphone')}
-                        ${ad.type === 'PREMIUM' ? 'VIP' : ad.type === 'RARE' ? 'Noyob' : 'Reklama'}
-                    </span>
-                    ${photoCount > 1 ? `<span class="ad-photo-count">${icon('image')} ${photoCount}</span>` : ""}
-                </div>
-                <div class="ad-content">
-                    <div class="ad-title">${escapeHTML(ad.title)}</div>
-                    <div class="ad-meta">${icon('map-pin')} ${escapeHTML(ad.location || "-")}</div>
-                    <div class="ad-meta">${icon('eye')} ${ad.views} ko'rishlar</div>
-                    <div class="ad-price">${formatPriceCurrency(ad.price, ad.currency)}</div>
-                    
-                    <div class="ad-reactions" onclick="event.stopPropagation();">
-                        <button class="reaction-btn ${myReaction === 'like' ? 'liked' : ''}" onclick="reactAd('${ad.id}', 'like')">
-                            ${icon('thumbs-up')} ${ad.likes}
-                        </button>
-                        <button class="reaction-btn ${myReaction === 'dislike' ? 'disliked' : ''}" onclick="reactAd('${ad.id}', 'dislike')">
-                            ${icon('thumbs-down')} ${ad.dislikes}
-                        </button>
-                    </div>
-                </div>
-            </article>
-        `;
-    }).join("");
+    grid.innerHTML = ads.map(ad => renderAdCard(ad, 'dashboard')).join("");
 }
 
-async function reactAd(adId, reaction) {
-    if (!TELEGRAM_USER) return;
-    try {
-        const result = await apiCall("/api/react-ad", "POST", {
-            ad_id: parseInt(adId),
-            telegram_id: TELEGRAM_USER.id,
-            reaction: reaction
-        });
-        if (result.ok) {
-            if (APP_DATA.myReactions[adId] === reaction) delete APP_DATA.myReactions[adId];
-            else APP_DATA.myReactions[adId] = reaction;
-            saveData();
+function renderSavedAds() {
+    const grid = document.getElementById("savedAdsGrid");
+    if (!grid) return;
 
-            const ad = APP_DATA.ads.find(a => String(a.id) === String(adId));
-            if (ad) { ad.likes = result.likes; ad.dislikes = result.dislikes; }
+    const ads = APP_DATA.savedAds.filter(ad => {
+        if (ad.status !== "ACTIVE") return false;
+        if (ad.expiresAt && Date.now() > ad.expiresAt) return false;
+        return true;
+    });
+
+    if (!ads.length) {
+        grid.innerHTML = `
+            <div class="empty" style="grid-column: 1/-1;">
+                <svg class="empty-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                </svg>
+                <strong>Saqlangan reklamalar yo'q</strong>
+                <p style="margin-top: 8px;">Yurakcha tugmasini bosib saqlang</p>
+            </div>
+        `;
+        return;
+    }
+
+    grid.innerHTML = ads.map(ad => renderAdCard(ad, 'saved')).join("");
+}
+
+function renderAdCard(ad, context = 'dashboard') {
+    const isSaved = APP_DATA.savedAdsIds.includes(String(ad.id));
+    const currency = CONFIG.CURRENCIES[ad.currency] || CONFIG.CURRENCIES.UZS;
+    
+    let badgeIcon = 'megaphone';
+    let badgeText = 'Standart';
+    let badgeClass = '';
+    
+    if (ad.type === 'PREMIUM') {
+        badgeIcon = 'crown';
+        badgeText = 'VIP';
+        badgeClass = 'premium';
+    } else if (ad.type === 'RARE') {
+        badgeIcon = 'fire';
+        badgeText = 'Noyob';
+        badgeClass = 'rare';
+    }
+
+    const videoDuration = ad.videoDuration ? formatDuration(ad.videoDuration) : '';
+
+    return `
+        <article class="ad-card">
+            <div class="ad-image-wrap" onclick="openAdDetail('${ad.id}')">
+                ${ad.video 
+                    ? `<video class="ad-video-preview" src="${ad.video}" muted loop autoplay playsinline></video>`
+                    : `<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:#8B90A8;">
+                        ${icon('video', 'icon-lg')}
+                       </div>`
+                }
+                <span class="ad-type-badge ${badgeClass}">
+                    ${icon(badgeIcon)}
+                    ${badgeText}
+                </span>
+                
+                <button class="ad-save-btn ${isSaved ? 'saved' : ''}" 
+                        onclick="event.stopPropagation(); toggleSaveAd('${ad.id}')" 
+                        title="${isSaved ? 'Saqlanganlardan olib tashlash' : 'Saqlash'}">
+                    ${icon('heart')}
+                </button>
+                
+                ${videoDuration ? `<span class="ad-video-icon">${icon('video')} ${videoDuration}</span>` : ''}
+            </div>
+            <div class="ad-content" onclick="openAdDetail('${ad.id}')">
+                <div class="ad-title">${escapeHTML(ad.title)}</div>
+                <div class="ad-meta">${icon('map-pin')} ${escapeHTML(ad.fullLocation || ad.location || "-")}</div>
+                <div class="ad-meta">${icon('eye')} ${ad.views} ko'rishlar</div>
+                <div class="ad-price">${formatPriceCurrency(ad.price, ad.currency)}</div>
+            </div>
+        </article>
+    `;
+}
+
+async function toggleSaveAd(adId) {
+    if (!TELEGRAM_USER) {
+        showToast("Avval tizimga kiring", "error");
+        return;
+    }
+    
+    try {
+        const result = await apiCall("/api/save-ad", "POST", {
+            telegram_id: TELEGRAM_USER.id,
+            ad_id: parseInt(adId)
+        });
+        
+        if (result.ok) {
+            const adIdStr = String(adId);
+            if (result.saved) {
+                if (!APP_DATA.savedAdsIds.includes(adIdStr)) {
+                    APP_DATA.savedAdsIds.push(adIdStr);
+                }
+                showToast("Saqlanganlarga qo'shildi", "success");
+            } else {
+                APP_DATA.savedAdsIds = APP_DATA.savedAdsIds.filter(id => id !== adIdStr);
+                showToast("Saqlanganlardan olib tashlandi");
+            }
+            
+            saveLocalData();
+            
+            // Refresh views
             renderDashboard();
+            renderSavedAds();
+            
+            // Reload from API
+            await loadSavedAdsFromAPI();
         }
-    } catch (e) {}
+    } catch (e) {
+        showToast("Xatolik: " + e.message, "error");
+    }
 }
 
 /* ====== AD DETAIL ====== */
-function openAdDetail(id) {
-    const ad = APP_DATA.ads.find(a => String(a.id) === String(id));
+async function openAdDetail(id) {
+    let ad = APP_DATA.ads.find(a => String(a.id) === String(id));
+    if (!ad) ad = APP_DATA.savedAds.find(a => String(a.id) === String(id));
     if (!ad) return;
 
-    const myReaction = APP_DATA.myReactions[ad.id] || null;
     const acc = ad.account || {};
+    const isSaved = APP_DATA.savedAdsIds.includes(String(ad.id));
 
-    let galleryHTML = "";
-    let thumbsHTML = "";
-
-    if (ad.video) {
-        galleryHTML = `<video class="ad-detail-media active" src="${ad.video}" controls></video>`;
-    } else if (ad.images && ad.images.length > 0) {
-        galleryHTML = ad.images.map((img, idx) => `
-            <img class="ad-detail-media ${idx === 0 ? 'active' : ''}" src="${img}" onerror="this.src='https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80'">
-        `).join("");
-
-        if (ad.images.length > 1) {
-            thumbsHTML = `
-                <div class="gallery-thumbs">
-                    ${ad.images.map((img, idx) => `
-                        <img class="gallery-thumb ${idx === 0 ? 'active' : ''}" src="${img}" onclick="selectGalleryImage('${ad.id}', ${idx})" onerror="this.src='https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=200&q=80'">
-                    `).join("")}
-                </div>
-            `;
-        }
+    // Redkiy skinlar
+    let rareSkinsHTML = "-";
+    if (Array.isArray(acc.rare_skins) && acc.rare_skins.length > 0) {
+        rareSkinsHTML = acc.rare_skins.join(", ");
+    } else if (typeof acc.rare_skins === 'string' && acc.rare_skins) {
+        rareSkinsHTML = acc.rare_skins;
     }
 
-    const navHTML = (!ad.video && ad.images && ad.images.length > 1) ? `
-        <button class="gallery-nav prev" onclick="prevGalleryImage('${ad.id}')">${icon('chevron-left')}</button>
-        <button class="gallery-nav next" onclick="nextGalleryImage('${ad.id}')">${icon('chevron-right')}</button>
-        <div class="gallery-dots" id="galleryDots">
-            ${ad.images.map((_, idx) => `<div class="gallery-dot ${idx === 0 ? 'active' : ''}"></div>`).join("")}
-        </div>
-    ` : "";
-
-    // Qurollar
-    let gunsHTML = "";
-    if (acc.guns && Array.isArray(acc.guns) && acc.guns.length > 0) {
-        gunsHTML = acc.guns.map(g => `<div style="padding: 6px 0;">• ${escapeHTML(g)}</div>`).join("");
-    } else if (acc.guns && typeof acc.guns === 'string') {
-        gunsHTML = `<div>${escapeHTML(acc.guns)}</div>`;
-    } else {
-        gunsHTML = `<div>-</div>`;
+    // Kuchaytirilgan qurollar
+    let gunsHTML = "-";
+    if (Array.isArray(acc.guns) && acc.guns.length > 0) {
+        gunsHTML = acc.guns.join(", ");
+    } else if (typeof acc.guns === 'string' && acc.guns) {
+        gunsHTML = acc.guns;
     }
 
     // Ulangan
     let linkedHTML = "-";
-    if (acc.linked) {
-        if (Array.isArray(acc.linked)) linkedHTML = acc.linked.join(", ");
-        else linkedHTML = String(acc.linked);
+    if (Array.isArray(acc.linked) && acc.linked.length > 0) {
+        linkedHTML = acc.linked.join(", ");
+    } else if (typeof acc.linked === 'string' && acc.linked) {
+        linkedHTML = acc.linked;
     }
 
+    // Admin o'chirish tugmasi
+    const adminDeleteBtn = IS_ADMIN ? `
+        <button class="btn btn-danger btn-block" style="margin-top: 12px;" onclick="openDeleteAdModal('${ad.id}')">
+            ${icon('trash')} Reklamani o'chirish (Admin)
+        </button>
+    ` : '';
+
     document.getElementById("adDetailContent").innerHTML = `
-        <div class="ad-detail-gallery" id="adGallery" data-ad-id="${ad.id}">
-            ${galleryHTML}
-            ${navHTML}
-        </div>
-        ${thumbsHTML}
+        ${ad.video ? `
+            <div class="ad-detail-video">
+                <video src="${ad.video}" controls playsinline></video>
+                <button class="video-fullscreen-btn" onclick="openVideoFullscreen('${ad.video}')">
+                    ${icon('maximize')}
+                </button>
+            </div>
+        ` : ''}
         
-        <div style="margin-top: 24px;">
-            <h2 style="font-size: 26px; font-weight: 900;">${escapeHTML(ad.title)}</h2>
-            <div style="background: linear-gradient(135deg, #7C5CFC, #FF6B9D); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 24px; font-weight: 900; margin-top: 10px;">
+        <div style="margin-top: 8px;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px;">
+                <h2 style="font-size: 22px; font-weight: 900; flex: 1;">${escapeHTML(ad.title)}</h2>
+                <button class="ad-save-btn ${isSaved ? 'saved' : ''}" 
+                        style="position: static; flex-shrink: 0;"
+                        onclick="toggleSaveAdFromDetail('${ad.id}')">
+                    ${icon('heart')}
+                </button>
+            </div>
+            
+            <div style="background: linear-gradient(135deg, #7C5CFC, #FF6B9D); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 26px; font-weight: 900; margin-top: 10px;">
                 ${formatPriceCurrency(ad.price, ad.currency)}
             </div>
             
-            <div class="ad-reactions" style="margin-top: 18px;">
-                <button class="reaction-btn ${myReaction === 'like' ? 'liked' : ''}" onclick="reactAd('${ad.id}', 'like'); openAdDetail('${ad.id}');">
-                    ${icon('thumbs-up')} ${ad.likes}
-                </button>
-                <button class="reaction-btn ${myReaction === 'dislike' ? 'disliked' : ''}" onclick="reactAd('${ad.id}', 'dislike'); openAdDetail('${ad.id}');">
-                    ${icon('thumbs-down')} ${ad.dislikes}
-                </button>
-            </div>
-            
             <div class="info-list">
-                <div class="info-row"><span>${icon('trending-up')} LVL</span><span>${escapeHTML(String(acc.level || "-"))}</span></div>
-                <div class="info-row"><span>${icon('award')} Kolleksiya darajasi</span><span>${escapeHTML(String(acc.collection || "-"))}</span></div>
-                <div class="info-row"><span>${icon('calendar')} RP</span><span>${escapeHTML(String(acc.rp || "-"))}</span></div>
-                <div class="info-row"><span>${icon('package')} Mifik kiyimlar</span><span>${escapeHTML(String(acc.mythicClothes || "-"))}</span></div>
-                <div class="info-row"><span>${icon('link')} Ulangan</span><span>${escapeHTML(linkedHTML)}</span></div>
-                <div class="info-row"><span>${icon('map-pin')} Manzil</span><span>${escapeHTML(ad.location || "-")}</span></div>
+                <div class="info-row">
+                    <span>${icon('trending-up')} LVL</span>
+                    <span>${escapeHTML(String(acc.level || "-"))}</span>
+                </div>
+                <div class="info-row">
+                    <span>${icon('award')} Kolleksiya darajasi</span>
+                    <span>${escapeHTML(String(acc.collection || "-"))}</span>
+                </div>
+                <div class="info-row">
+                    <span>${icon('calendar')} RP</span>
+                    <span>${escapeHTML(String(acc.rp || "-"))}</span>
+                </div>
+                <div class="info-row">
+                    <span>${icon('package')} Mifik kiyimlar</span>
+                    <span>${escapeHTML(String(acc.mythic_clothes || "-"))} ta</span>
+                </div>
+                <div class="info-row">
+                    <span>${icon('star')} Redkiy skinlar</span>
+                    <span>${escapeHTML(rareSkinsHTML)}</span>
+                </div>
+                <div class="info-row">
+                    <span>${icon('target')} Kuchaytirilgan qurollar</span>
+                    <span>${escapeHTML(gunsHTML)}</span>
+                </div>
+                <div class="info-row">
+                    <span>${icon('zap')} Jami qurollar</span>
+                    <span>${escapeHTML(String(acc.guns_count || "-"))} ta</span>
+                </div>
+                <div class="info-row">
+                    <span>${icon('link')} Ulangan</span>
+                    <span>${escapeHTML(linkedHTML)}</span>
+                </div>
+                <div class="info-row">
+                    <span>${icon('map-pin')} Manzil</span>
+                    <span>${escapeHTML(ad.fullLocation || ad.location || "-")}</span>
+                </div>
             </div>
-
-            ${acc.rareSkins ? `
-                <div style="margin-top: 20px; padding: 18px; background: var(--bg); border-radius: 18px;">
-                    <div style="font-size: 12px; color: var(--muted); margin-bottom: 8px; font-weight: 700; display: flex; align-items: center; gap: 6px;">${icon('star')} Redkiy skinlar</div>
-                    <div style="font-size: 14px; line-height: 1.7; font-weight: 500; white-space: pre-line;">${escapeHTML(String(acc.rareSkins))}</div>
-                </div>
-            ` : ""}
-
-            ${gunsHTML !== "<div>-</div>" ? `
-                <div style="margin-top: 20px; padding: 18px; background: var(--bg); border-radius: 18px;">
-                    <div style="font-size: 12px; color: var(--muted); margin-bottom: 8px; font-weight: 700; display: flex; align-items: center; gap: 6px;">${icon('target')} Kuchaytirilgan qurollar</div>
-                    <div style="font-size: 14px; line-height: 1.7; font-weight: 500;">${gunsHTML}</div>
-                    ${acc.gunsCount ? `<div style="margin-top: 10px; font-weight: 800; color: var(--primary);">Jami: ${escapeHTML(String(acc.gunsCount))} ta</div>` : ""}
-                </div>
-            ` : ""}
             
             <button class="btn btn-success btn-block" style="margin-top: 24px;" onclick="startChatWithAdmin('${ad.id}')">
                 ${icon('chat')} Admin bilan savdo
             </button>
+            
+            ${adminDeleteBtn}
         </div>
     `;
 
     openModal("adDetailModal");
 }
 
-let currentGalleryIndex = 0;
-
-function nextGalleryImage(adId) {
-    const ad = APP_DATA.ads.find(a => String(a.id) === String(adId));
-    if (!ad || !ad.images || ad.images.length < 2) return;
-    currentGalleryIndex = (currentGalleryIndex + 1) % ad.images.length;
-    updateGalleryDisplay(adId);
+async function toggleSaveAdFromDetail(adId) {
+    await toggleSaveAd(adId);
+    closeModal("adDetailModal");
+    setTimeout(() => openAdDetail(adId), 300);
 }
 
-function prevGalleryImage(adId) {
-    const ad = APP_DATA.ads.find(a => String(a.id) === String(adId));
-    if (!ad || !ad.images || ad.images.length < 2) return;
-    currentGalleryIndex = (currentGalleryIndex - 1 + ad.images.length) % ad.images.length;
-    updateGalleryDisplay(adId);
+function openVideoFullscreen(src) {
+    document.getElementById("fullscreenVideo").src = src;
+    document.getElementById("videoFullscreenModal").classList.add("active");
+    document.getElementById("fullscreenVideo").play();
 }
 
-function selectGalleryImage(adId, idx) {
-    currentGalleryIndex = idx;
-    updateGalleryDisplay(adId);
-}
-
-function updateGalleryDisplay(adId) {
-    const gallery = document.getElementById("adGallery");
-    if (!gallery) return;
-    
-    gallery.querySelectorAll(".ad-detail-media").forEach((el, idx) => {
-        el.classList.toggle("active", idx === currentGalleryIndex);
-    });
-    document.querySelectorAll(".gallery-thumb").forEach((el, idx) => {
-        el.classList.toggle("active", idx === currentGalleryIndex);
-    });
-    document.querySelectorAll(".gallery-dot").forEach((el, idx) => {
-        el.classList.toggle("active", idx === currentGalleryIndex);
-    });
+function closeVideoFullscreen() {
+    const v = document.getElementById("fullscreenVideo");
+    v.pause();
+    v.src = "";
+    document.getElementById("videoFullscreenModal").classList.remove("active");
 }
 
 /* ====== START CHAT ====== */
@@ -2866,15 +3314,24 @@ function renderMyAds(filter = "ALL") {
     container.innerHTML = ads.map(ad => {
         const daysLeft = ad.expiresAt ? Math.max(0, Math.ceil((ad.expiresAt - Date.now()) / (1000 * 60 * 60 * 24))) : null;
         return `
-        <div class="my-ad-item">
-            <img class="my-ad-image" src="${ad.image}" alt="" onerror="this.src='https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80'">
-            <div class="my-ad-info">
-                <div class="my-ad-title">${escapeHTML(ad.title)}</div>
-                <div class="my-ad-meta">${icon('dollar')} ${formatPriceCurrency(ad.price, ad.currency)}</div>
-                <div class="my-ad-meta">${icon('eye')} ${ad.views} · ${icon('thumbs-up')} ${ad.likes} · ${icon('thumbs-down')} ${ad.dislikes}</div>
-                <div class="my-ad-meta">${icon('calendar')} ${new Date(ad.createdAt).toLocaleDateString("uz-UZ")}${daysLeft !== null ? ` · ${icon('clock')} ${daysLeft} kun qoldi` : ""}</div>
-                <span class="status ${(ad.status || 'PENDING').toLowerCase()}">
-                    ${ad.status === 'ACTIVE' ? icon('check-circle') : ad.status === 'PENDING' ? icon('clock') : ad.status === 'REJECTED' ? icon('x') : icon('clock')}
+        <div class="my-ad-item" style="background: var(--card); border: 1.5px solid var(--border); border-radius: 24px; padding: 16px; display: flex; gap: 16px; margin-bottom: 14px;">
+            <div style="width: 110px; height: 110px; border-radius: 20px; overflow: hidden; background: #000; flex-shrink: 0;">
+                ${ad.video ? `<video src="${ad.video}" style="width: 100%; height: 100%; object-fit: cover;" muted></video>` : ''}
+            </div>
+            <div style="flex: 1; min-width: 0;">
+                <div style="font-weight: 800; font-size: 15px;">${escapeHTML(ad.title)}</div>
+                <div style="font-size: 12px; color: var(--muted); margin-top: 6px; font-weight: 500; display: flex; align-items: center; gap: 5px;">
+                    ${icon('dollar')} ${formatPriceCurrency(ad.price, ad.currency)}
+                </div>
+                <div style="font-size: 12px; color: var(--muted); margin-top: 4px; font-weight: 500; display: flex; align-items: center; gap: 5px;">
+                    ${icon('eye')} ${ad.views}
+                </div>
+                <div style="font-size: 12px; color: var(--muted); margin-top: 4px; font-weight: 500; display: flex; align-items: center; gap: 5px;">
+                    ${icon('calendar')} ${new Date(ad.createdAt).toLocaleDateString("uz-UZ")}
+                    ${daysLeft !== null ? ` · ${icon('clock')} ${daysLeft} kun` : ""}
+                </div>
+                <span class="status ${(ad.status || 'PENDING').toLowerCase()}" style="display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 10px; font-size: 11px; font-weight: 800; margin-top: 8px; ${getStatusStyle(ad.status)}">
+                    ${getStatusIcon(ad.status)}
                     ${getStatusText(ad.status)}
                 </span>
                 ${ad.rejectReason ? `<div style="font-size: 12px; color: var(--red); margin-top: 8px; font-weight: 600;">${icon('x')} ${escapeHTML(ad.rejectReason)}</div>` : ""}
@@ -2883,52 +3340,149 @@ function renderMyAds(filter = "ALL") {
     `}).join("");
 }
 
+function getStatusStyle(status) {
+    const styles = {
+        ACTIVE: 'color: #00B88A; background: rgba(0, 217, 165, 0.12);',
+        PENDING: 'color: #E67E22; background: rgba(255, 165, 2, 0.12);',
+        EXPIRED: 'color: #8B90A8; background: rgba(139, 144, 168, 0.12);',
+        REJECTED: 'color: #E63946; background: rgba(255, 71, 87, 0.12);'
+    };
+    return styles[status] || styles.PENDING;
+}
+
+function getStatusIcon(status) {
+    const icons = {
+        ACTIVE: 'check-circle',
+        PENDING: 'clock',
+        EXPIRED: 'clock',
+        REJECTED: 'x'
+    };
+    return icon(icons[status] || 'clock');
+}
+
 function getStatusText(status) {
     const map = { ACTIVE: "Faol", PENDING: "Tasdiqlanmoqda", EXPIRED: "Tugagan", REJECTED: "Rad etilgan" };
     return map[status] || status || "Noma'lum";
 }
 
 /* ====== CREATE AD ====== */
+function renderTariffs() {
+    const grid = document.getElementById("tariffGrid");
+    if (!grid) return;
+    
+    const tariffs = [
+        { id: 2, ...CONFIG.TARIFFS[2] },
+        { id: 1, ...CONFIG.TARIFFS[1] },
+        { id: 3, ...CONFIG.TARIFFS[3] },
+        { id: 4, ...CONFIG.TARIFFS[4] },
+    ];
+
+    grid.innerHTML = tariffs.map(t => {
+        const iconClass = t.id === 4 ? 'gold' : t.id === 3 ? 'pink' : '';
+        const popularBadge = t.popular ? `
+            <div class="tariff-popular-badge">
+                ${icon('percent')} ${t.popularText || 'Mashhur'}
+            </div>
+        ` : '';
+
+        const featuresHTML = t.features.map(f => `
+            <div class="tariff-feature ${f.yes ? 'yes' : 'no'}">
+                <div class="feature-icon">${f.yes ? icon('check') : icon('x')}</div>
+                <span>${f.text}</span>
+            </div>
+        `).join('');
+
+        const discountBadge = t.discount ? `
+            <div class="tariff-discount-badge">
+                ${icon('percent')} 10% skidka
+            </div>
+        ` : '';
+
+        return `
+            <div class="tariff-card" data-tariff="${t.id}">
+                ${popularBadge}
+                <div class="tariff-header">
+                    <div class="tariff-icon ${iconClass}">
+                        ${icon(t.icon)}
+                    </div>
+                    <div class="tariff-price-wrap">
+                        <div class="tariff-price">${t.price.toLocaleString('uz-UZ')}</div>
+                        <div class="tariff-currency">so'm</div>
+                    </div>
+                </div>
+                <div class="tariff-name">${t.name}</div>
+                <div class="tariff-features">
+                    ${featuresHTML}
+                </div>
+                ${discountBadge}
+            </div>
+        `;
+    }).join('');
+
+    // Attach events
+    grid.querySelectorAll(".tariff-card").forEach(card => {
+        card.addEventListener("click", () => {
+            grid.querySelectorAll(".tariff-card").forEach(c => c.classList.remove("selected"));
+            card.classList.add("selected");
+            APP_DATA.tariff = card.dataset.tariff;
+            setTimeout(() => nextCreateStep(), 400);
+        });
+    });
+}
+
 function startCreateAd() {
     APP_DATA.createStep = 1;
     APP_DATA.tariff = null;
     APP_DATA.selectedCurrency = "UZS";
     APP_DATA.selectedLinked = [];
-    APP_DATA.guns = [];
-    APP_DATA.createData = { mediaList: [], mediaType: null, videoFile: null, account: {}, preview: null };
+    APP_DATA.createData = { videoFile: null, videoDuration: 0, account: {}, preview: null };
 
-    document.querySelectorAll(".tariff-card").forEach(c => {
-        c.classList.remove("selected");
-        c.style.borderColor = "var(--border)";
-        c.style.boxShadow = "var(--shadow-sm)";
-        c.style.transform = "scale(1)";
-    });
+    // Reset tariffs
+    document.querySelectorAll(".tariff-card").forEach(c => c.classList.remove("selected"));
 
+    // Reset currency
     document.querySelectorAll("#currencyGrid .currency-item").forEach(i => i.classList.remove("active"));
     document.querySelector('#currencyGrid .currency-item[data-currency="UZS"]')?.classList.add("active");
-    document.getElementById("priceCurrencyLabel").innerText = "so'm";
 
+    // Reset linked
     document.querySelectorAll("#linkedGrid .checkbox-item").forEach(i => i.classList.remove("checked"));
 
-    document.getElementById("gunsList").innerHTML = `
-        <div class="gun-item">
-            <input type="text" placeholder="Masalan: Lednik 7 full">
-            <button class="gun-remove" onclick="removeGun(this)">${icon('trash')}</button>
-        </div>
-    `;
+    // Reset skins list
+    const skinsList = document.getElementById("rareSkinsList");
+    skinsList.innerHTML = "";
+    addRareSkin(true);
 
-    document.getElementById("mediaPreviewGrid").innerHTML = "";
-    document.getElementById("mediaInput").value = "";
+    // Reset guns list
+    const gunsList = document.getElementById("gunsList");
+    gunsList.innerHTML = "";
+    addGun(true);
 
-    ["accLevel", "accCollection", "accRP", "accMythicClothes", "accRareSkins", "accPrice"].forEach(id => {
+    // Reset video
+    document.getElementById("videoPreviewWrap").style.display = "none";
+    document.getElementById("videoPreviewWrap").innerHTML = "";
+    document.getElementById("videoInput").value = "";
+
+    // Reset form
+    ["accLevel", "accCollection", "accRP", "accMythicClothes", "accPrice", "accFullLocation"].forEach(id => {
         const el = document.getElementById(id);
         if (el) el.value = "";
     });
     const locEl = document.getElementById("accLocation");
     if (locEl) locEl.selectedIndex = 0;
 
+    updatePricePlaceholder();
     renderCreateStep();
     goToPage("createAdPage");
+}
+
+function updatePricePlaceholder() {
+    const priceInput = document.getElementById("accPrice");
+    if (!priceInput) return;
+    
+    const currency = APP_DATA.selectedCurrency;
+    if (currency === "UZS") priceInput.placeholder = "Masalan: 200.000 So'm";
+    else if (currency === "USD") priceInput.placeholder = "Masalan: 80$";
+    else if (currency === "RUB") priceInput.placeholder = "Masalan: 80000 ₽";
 }
 
 function renderCreateStep() {
@@ -2969,7 +3523,7 @@ function validateCreateStep() {
     const step = APP_DATA.createStep;
 
     if (step === 1 && !APP_DATA.tariff) { showToast("Tarifni tanlang", "error"); return false; }
-    if (step === 2 && !APP_DATA.createData.mediaType) { showToast("Rasm yoki video yuklang", "error"); return false; }
+    if (step === 2 && !APP_DATA.createData.videoFile) { showToast("Video yuklang", "error"); return false; }
 
     if (step === 3) {
         const level = document.getElementById("accLevel").value.trim();
@@ -2978,16 +3532,25 @@ function validateCreateStep() {
         const price = document.getElementById("accPrice").value.trim();
         const location = document.getElementById("accLocation").value;
         const mythicClothes = document.getElementById("accMythicClothes").value.trim();
-        const rareSkins = document.getElementById("accRareSkins").value.trim();
+        const fullLocation = document.getElementById("accFullLocation").value.trim();
 
         if (!level) { showToast("LVL kiriting", "error"); return false; }
         if (!collection) { showToast("Kolleksiya darajasini kiriting", "error"); return false; }
         if (!rp) { showToast("RP sezonini kiriting", "error"); return false; }
+        if (!mythicClothes) { showToast("Mifik kiyimlar sonini kiriting", "error"); return false; }
         if (!price) { showToast("Narxni kiriting", "error"); return false; }
-        if (!location) { showToast("Manzilni tanlang", "error"); return false; }
+        if (!location) { showToast("Viloyatni tanlang", "error"); return false; }
 
-        // Qurollarni yig'ish
-        const gunsInputs = document.querySelectorAll("#gunsList .gun-item input");
+        // Get rare skins
+        const rareSkinsInputs = document.querySelectorAll("#rareSkinsList .list-item input");
+        const rareSkins = [];
+        rareSkinsInputs.forEach(inp => {
+            const v = inp.value.trim();
+            if (v) rareSkins.push(v);
+        });
+
+        // Get guns
+        const gunsInputs = document.querySelectorAll("#gunsList .list-item input");
         const guns = [];
         gunsInputs.forEach(inp => {
             const v = inp.value.trim();
@@ -2998,29 +3561,119 @@ function validateCreateStep() {
             level: level,
             collection: collection,
             rp: rp,
-            mythicClothes: mythicClothes,
-            rareSkins: rareSkins,
+            mythic_clothes: mythicClothes,
+            rare_skins: rareSkins,
             guns: guns,
-            gunsCount: guns.length,
+            guns_count: guns.length,
             linked: APP_DATA.selectedLinked,
-            price: price.replace(/\s/g, ""),
+            price: price.replace(/\s/g, "").replace(/[^\d]/g, ""),
             currency: APP_DATA.selectedCurrency,
-            location: location
+            location: location,
+            full_location: fullLocation
         };
     }
 
     return true;
 }
 
-function addGun() {
-    const list = document.getElementById("gunsList");
+/* ====== RARE SKINS ====== */
+const SKIN_PLACEHOLDERS = [
+    "Masalan: Misiya A",
+    "Masalan: Hadok",
+    "Masalan: X-suvt fravn",
+    "Masalan: X-suvt voron",
+    "Masalan: Bape",
+    "Masalan: Brigatka"
+];
+
+function addRareSkin(silent = false) {
+    const list = document.getElementById("rareSkinsList");
+    const count = list.children.length;
+    
+    if (count >= CONFIG.MAX_RARE_SKINS) {
+        showToast(`Maksimal ${CONFIG.MAX_RARE_SKINS} ta skin`, "error");
+        return;
+    }
+    
+    const placeholder = count < SKIN_PLACEHOLDERS.length 
+        ? SKIN_PLACEHOLDERS[count] 
+        : "Masalan: Old kiyimlarni yozing";
+    
     const div = document.createElement("div");
-    div.className = "gun-item";
+    div.className = "list-item";
     div.innerHTML = `
-        <input type="text" placeholder="Masalan: Shut 4">
-        <button class="gun-remove" onclick="removeGun(this)">${icon('trash')}</button>
+        <input type="text" placeholder="${placeholder}" maxlength="50">
+        <button class="list-remove" onclick="removeRareSkin(this)">
+            ${icon('trash')}
+        </button>
     `;
     list.appendChild(div);
+    updateRareSkinsCounter();
+    if (!silent) updateAddSkinButton();
+}
+
+function removeRareSkin(btn) {
+    const list = document.getElementById("rareSkinsList");
+    if (list.children.length <= 1) {
+        btn.parentElement.querySelector("input").value = "";
+        return;
+    }
+    btn.parentElement.remove();
+    updateRareSkinsCounter();
+    updateAddSkinButton();
+}
+
+function updateRareSkinsCounter() {
+    const list = document.getElementById("rareSkinsList");
+    const count = list.children.length;
+    document.getElementById("rareSkinsCount").textContent = `${count} / ${CONFIG.MAX_RARE_SKINS}`;
+}
+
+function updateAddSkinButton() {
+    const list = document.getElementById("rareSkinsList");
+    const btn = document.getElementById("addSkinBtn");
+    if (list.children.length >= CONFIG.MAX_RARE_SKINS) {
+        btn.disabled = true;
+        btn.innerHTML = `${icon('ban')} Limit tugadi`;
+    } else {
+        btn.disabled = false;
+        btn.innerHTML = `${icon('plus')} Yana skin qo'shish`;
+    }
+}
+
+/* ====== GUNS ====== */
+const GUN_PLACEHOLDERS = [
+    "Masalan: Lednik 7 full",
+    "Masalan: Shut 4",
+    "Masalan: Akm Lednik 5",
+    "Masalan: UMP lednik 3",
+    "Masalan: M416 Mumiyo 2"
+];
+
+function addGun(silent = false) {
+    const list = document.getElementById("gunsList");
+    const count = list.children.length;
+    
+    if (count >= CONFIG.MAX_GUNS) {
+        showToast(`Maksimal ${CONFIG.MAX_GUNS} ta qurol`, "error");
+        return;
+    }
+    
+    const placeholder = count < GUN_PLACEHOLDERS.length 
+        ? GUN_PLACEHOLDERS[count] 
+        : "Masalan: Ledkin 7 ful";
+    
+    const div = document.createElement("div");
+    div.className = "list-item";
+    div.innerHTML = `
+        <input type="text" placeholder="${placeholder}" maxlength="50">
+        <button class="list-remove" onclick="removeGun(this)">
+            ${icon('trash')}
+        </button>
+    `;
+    list.appendChild(div);
+    updateGunsCounter();
+    if (!silent) updateAddGunButton();
 }
 
 function removeGun(btn) {
@@ -3030,118 +3683,105 @@ function removeGun(btn) {
         return;
     }
     btn.parentElement.remove();
+    updateGunsCounter();
+    updateAddGunButton();
 }
 
-function handleMediaUpload(e) {
-    const files = Array.from(e.target.files);
-    if (!files.length) return;
+function updateGunsCounter() {
+    const list = document.getElementById("gunsList");
+    const count = list.children.length;
+    document.getElementById("gunsCount").textContent = `${count} / ${CONFIG.MAX_GUNS}`;
+}
 
-    const hasVideo = files.some(f => f.type.startsWith("video/"));
-    const hasImages = files.some(f => f.type.startsWith("image/"));
+function updateAddGunButton() {
+    const list = document.getElementById("gunsList");
+    const btn = document.getElementById("addGunBtn");
+    if (list.children.length >= CONFIG.MAX_GUNS) {
+        btn.disabled = true;
+        btn.innerHTML = `${icon('ban')} Limit tugadi`;
+    } else {
+        btn.disabled = false;
+        btn.innerHTML = `${icon('plus')} Yana qurol qo'shish`;
+    }
+}
 
-    if (hasVideo && hasImages) { showToast("Yoki rasm, yoki video tanlang", "error"); return; }
+/* ====== VIDEO UPLOAD ====== */
+function handleVideoUpload(e) {
+    const file = e.target.files[0];
+    if (!file) return;
 
-    if (hasVideo) {
-        if (files.length > 1) { showToast("Faqat 1 ta video yuklash mumkin", "error"); return; }
-        const file = files[0];
-        if (file.size > 50 * 1024 * 1024) { showToast("Video 50 MB dan katta", "error"); return; }
-
-        const video = document.createElement("video");
-        video.preload = "metadata";
-        video.onloadedmetadata = () => {
-            window.URL.revokeObjectURL(video.src);
-            if (video.duration / 60 > CONFIG.MAX_VIDEO_MINUTES) {
-                showToast(`Video ${CONFIG.MAX_VIDEO_MINUTES} daqiqadan oshmasligi kerak`, "error");
-                return;
-            }
-            readVideoFile(file);
-        };
-        video.src = URL.createObjectURL(file);
+    if (!file.type.startsWith("video/")) {
+        showToast("Faqat video fayl", "error");
         return;
     }
 
-    if (hasImages) {
-        if (files.length > CONFIG.MAX_PHOTOS) { showToast(`Maksimal ${CONFIG.MAX_PHOTOS} ta rasm`, "error"); return; }
-
-        APP_DATA.createData.mediaType = "image";
-        APP_DATA.createData.mediaList = [];
-        APP_DATA.createData.videoFile = null;
-
-        let loaded = 0;
-        files.forEach((file) => {
-            if (file.size > 5 * 1024 * 1024) { showToast(`${file.name} 5 MB dan katta`, "error"); return; }
-            const reader = new FileReader();
-            reader.onload = (event) => {
-                APP_DATA.createData.mediaList.push(event.target.result);
-                loaded++;
-                if (loaded === files.length) renderMediaPreview();
-            };
-            reader.readAsDataURL(file);
-        });
+    if (file.size > 100 * 1024 * 1024) {
+        showToast("Video 100 MB dan katta", "error");
+        return;
     }
-}
 
-function readVideoFile(file) {
-    const reader = new FileReader();
-    reader.onload = (event) => {
-        APP_DATA.createData.mediaType = "video";
-        APP_DATA.createData.videoFile = event.target.result;
-        APP_DATA.createData.mediaList = [];
-        renderMediaPreview();
+    const video = document.createElement("video");
+    video.preload = "metadata";
+    video.onloadedmetadata = () => {
+        const duration = video.duration;
+        window.URL.revokeObjectURL(video.src);
+        
+        if (duration > CONFIG.MAX_VIDEO_MINUTES * 60) {
+            showToast(`Video ${CONFIG.MAX_VIDEO_MINUTES} daqiqadan oshmasligi kerak`, "error");
+            document.getElementById("videoInput").value = "";
+            return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = (event) => {
+            APP_DATA.createData.videoFile = event.target.result;
+            APP_DATA.createData.videoDuration = duration;
+            renderVideoPreview();
+        };
+        reader.readAsDataURL(file);
     };
-    reader.readAsDataURL(file);
+    video.src = URL.createObjectURL(file);
 }
 
-function renderMediaPreview() {
-    const grid = document.getElementById("mediaPreviewGrid");
+function renderVideoPreview() {
+    const wrap = document.getElementById("videoPreviewWrap");
     const data = APP_DATA.createData;
 
-    if (data.mediaType === "video" && data.videoFile) {
-        grid.innerHTML = `
-            <div class="media-preview main-photo" style="grid-column: span 3; height: 280px;">
-                <video src="${data.videoFile}" controls style="width: 100%; height: 100%; object-fit: contain; background: #000;"></video>
-                <button class="remove-media" onclick="removeMedia()">${icon('x')}</button>
-            </div>
-        `;
-    } else if (data.mediaType === "image" && data.mediaList.length) {
-        grid.innerHTML = data.mediaList.map((img, idx) => `
-            <div class="media-preview ${idx === 0 ? 'main-photo' : ''}">
-                <img src="${img}">
-                <span class="preview-index">${idx + 1}</span>
-                <button class="remove-media" onclick="removeMediaAt(${idx})">${icon('x')}</button>
-            </div>
-        `).join("");
+    if (!data.videoFile) {
+        wrap.style.display = "none";
+        wrap.innerHTML = "";
+        return;
     }
+
+    wrap.style.display = "block";
+    wrap.innerHTML = `
+        <div class="video-preview-wrap">
+            <video src="${data.videoFile}" controls playsinline></video>
+            <button class="remove-media" onclick="removeVideo()">
+                ${icon('x')}
+            </button>
+            <div class="video-info">
+                ${icon('clock')} ${formatDuration(data.videoDuration)}
+            </div>
+        </div>
+    `;
 }
 
-function removeMedia() {
-    APP_DATA.createData.mediaList = [];
-    APP_DATA.createData.mediaType = null;
+function removeVideo() {
     APP_DATA.createData.videoFile = null;
-    document.getElementById("mediaPreviewGrid").innerHTML = "";
-    document.getElementById("mediaInput").value = "";
+    APP_DATA.createData.videoDuration = 0;
+    document.getElementById("videoInput").value = "";
+    renderVideoPreview();
 }
 
-function removeMediaAt(idx) {
-    APP_DATA.createData.mediaList.splice(idx, 1);
-    if (APP_DATA.createData.mediaList.length === 0) removeMedia();
-    else renderMediaPreview();
-}
-
+/* ====== AD PREVIEW ====== */
 function renderAdPreview() {
     const data = APP_DATA.createData;
     const acc = data.account;
 
-    let mediaHTML = "";
-    if (data.mediaType === "video" && data.videoFile) {
-        mediaHTML = `<video src="${data.videoFile}" controls class="preview-main-image"></video>`;
-    } else if (data.mediaType === "image" && data.mediaList.length) {
-        mediaHTML = `
-            <div style="position: relative;">
-                <img src="${data.mediaList[0]}" class="preview-main-image">
-                ${data.mediaList.length > 1 ? `<span class="ad-photo-count">${icon('image')} ${data.mediaList.length} rasm</span>` : ""}
-            </div>
-        `;
+    let videoHTML = "";
+    if (data.videoFile) {
+        videoHTML = `<video src="${data.videoFile}" controls playsinline style="width: 100%; max-height: 300px; border-radius: 20px 20px 0 0; display: block; background: #000;"></video>`;
     }
 
     let linkedStr = "-";
@@ -3150,20 +3790,27 @@ function renderAdPreview() {
     let gunsStr = "-";
     if (Array.isArray(acc.guns) && acc.guns.length) gunsStr = acc.guns.join(", ");
 
+    let skinsStr = "-";
+    if (Array.isArray(acc.rare_skins) && acc.rare_skins.length) skinsStr = acc.rare_skins.join(", ");
+
     document.getElementById("adPreview").innerHTML = `
-        <div class="preview-card">
-            ${mediaHTML}
-            <div class="preview-content">
-                <div class="preview-title">PUBG Mobile Akkaunt</div>
-                <div class="preview-price">${formatPriceCurrency(acc.price, acc.currency)}</div>
+        <div style="background: var(--card); border-radius: 28px; overflow: hidden; border: 1.5px solid var(--border);">
+            ${videoHTML}
+            <div style="padding: 24px;">
+                <div style="font-size: 24px; font-weight: 900;">PUBG Mobile Akkaunt</div>
+                <div style="background: linear-gradient(135deg, #7C5CFC, #FF6B9D); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 26px; font-weight: 900; margin-top: 10px;">
+                    ${formatPriceCurrency(acc.price, acc.currency)}
+                </div>
                 <div class="info-list">
-                    <div class="info-row"><span>${icon('trending-up')} LVL</span><span>${escapeHTML(acc.level)}</span></div>
-                    <div class="info-row"><span>${icon('award')} Kolleksiya</span><span>${escapeHTML(acc.collection)}</span></div>
-                    <div class="info-row"><span>${icon('calendar')} RP</span><span>${escapeHTML(acc.rp)}</span></div>
-                    <div class="info-row"><span>${icon('package')} Mifik kiyimlar</span><span>${escapeHTML(acc.mythicClothes || "-")}</span></div>
+                    <div class="info-row"><span>${icon('trending-up')} LVL</span><span>${escapeHTML(acc.level || "-")}</span></div>
+                    <div class="info-row"><span>${icon('award')} Kolleksiya</span><span>${escapeHTML(acc.collection || "-")}</span></div>
+                    <div class="info-row"><span>${icon('calendar')} RP</span><span>${escapeHTML(acc.rp || "-")}</span></div>
+                    <div class="info-row"><span>${icon('package')} Mifik kiyimlar</span><span>${escapeHTML(acc.mythic_clothes || "-")} ta</span></div>
+                    <div class="info-row"><span>${icon('star')} Redkiy skinlar</span><span>${escapeHTML(skinsStr)}</span></div>
                     <div class="info-row"><span>${icon('target')} Qurollar</span><span>${escapeHTML(gunsStr)}</span></div>
+                    <div class="info-row"><span>${icon('zap')} Jami qurollar</span><span>${escapeHTML(String(acc.guns_count || 0))} ta</span></div>
                     <div class="info-row"><span>${icon('link')} Ulangan</span><span>${escapeHTML(linkedStr)}</span></div>
-                    <div class="info-row"><span>${icon('map-pin')} Manzil</span><span>${escapeHTML(acc.location || "-")}</span></div>
+                    <div class="info-row"><span>${icon('map-pin')} Manzil</span><span>${escapeHTML(acc.full_location || acc.location || "-")}</span></div>
                 </div>
             </div>
         </div>
@@ -3171,7 +3818,7 @@ function renderAdPreview() {
 }
 
 async function submitAd() {
-    const tariffPrice = CONFIG.TARIFF_PRICES[APP_DATA.tariff];
+    const tariffPrice = CONFIG.TARIFFS[APP_DATA.tariff].price;
 
     if (APP_DATA.balance < tariffPrice) {
         showToast("Balans yetarli emas! Hisobni to'ldiring.", "error");
@@ -3184,13 +3831,13 @@ async function submitAd() {
 
     const adData = {
         title: `PUBG Mobile - ${acc.level} LVL`,
-        description: acc.rareSkins || "Zo'r akkaunt!",
-        images: data.mediaType === "image" ? data.mediaList : null,
-        image_url: data.mediaType === "image" ? data.mediaList[0] : null,
-        video_url: data.mediaType === "video" ? data.videoFile : null,
-        price: parseInt(String(acc.price).replace(/\s/g, "")),
+        description: acc.rare_skins && acc.rare_skins.length ? acc.rare_skins.join(", ") : "Zo'r akkaunt!",
+        video_url: data.videoFile,
+        video_duration: Math.round(data.videoDuration),
+        price: parseInt(String(acc.price).replace(/\s/g, "")) || 0,
         currency: acc.currency,
         location: acc.location,
+        full_location: acc.full_location,
         account_data: acc,
         tariff: parseInt(APP_DATA.tariff)
     };
@@ -3212,13 +3859,81 @@ async function submitAd() {
 
             APP_DATA.createStep = 1;
             APP_DATA.tariff = null;
-            APP_DATA.createData = { mediaList: [], mediaType: null, videoFile: null, account: {}, preview: null };
+            APP_DATA.createData = { videoFile: null, videoDuration: 0, account: {}, preview: null };
             await goToPage("myAdsPage");
         }
     } catch (e) {
         showToast("Xatolik: " + e.message, "error");
     }
     hideLoading();
+}
+
+/* ====== FEEDBACK ====== */
+async function submitFeedback() {
+    if (!TELEGRAM_USER) {
+        showToast("Avval tizimga kiring", "error");
+        return;
+    }
+    
+    const text = document.getElementById("feedbackText").value.trim();
+    if (!text) {
+        showToast("Fikr yozing", "error");
+        return;
+    }
+    if (text.length > CONFIG.MAX_FEEDBACK_LENGTH) {
+        showToast(`Maksimal ${CONFIG.MAX_FEEDBACK_LENGTH} belgi`, "error");
+        return;
+    }
+
+    showLoading();
+    try {
+        await apiCall("/api/feedback", "POST", {
+            telegram_id: TELEGRAM_USER.id,
+            text: text,
+            rating: 5
+        });
+        document.getElementById("feedbackText").value = "";
+        document.getElementById("feedbackCounter").textContent = `0 / ${CONFIG.MAX_FEEDBACK_LENGTH}`;
+        showToast("Fikringiz yuborildi! Rahmat!", "success");
+        await loadFeedbacksFromAPI();
+        renderFeedbacks();
+    } catch (e) {
+        showToast("Xatolik: " + e.message, "error");
+    }
+    hideLoading();
+}
+
+function renderFeedbacks() {
+    const container = document.getElementById("feedbackList");
+    if (!container) return;
+
+    if (!APP_DATA.feedbacks.length) {
+        container.innerHTML = `
+            <div class="empty">
+                <svg class="empty-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                </svg>
+                <strong>Hali fikrlar yo'q</strong>
+                <p style="margin-top: 8px;">Birinchi bo'lib fikr qoldiring</p>
+            </div>
+        `;
+        return;
+    }
+
+    container.innerHTML = APP_DATA.feedbacks.map(f => `
+        <div class="feedback-item">
+            <div class="feedback-avatar">
+                ${f.avatar ? `<img src="${f.avatar}">` : icon('user')}
+            </div>
+            <div class="feedback-body">
+                <div class="feedback-name">
+                    ${escapeHTML(f.first_name || "Foydalanuvchi")} ${escapeHTML(f.last_name || "")}
+                </div>
+                <div class="feedback-text">${escapeHTML(f.text)}</div>
+                <div class="feedback-time">${formatTime(f.created_at)}</div>
+            </div>
+        </div>
+    `).join("");
 }
 
 /* ====== CHAT LIST ====== */
@@ -3241,16 +3956,20 @@ function renderChatList() {
 
     container.innerHTML = APP_DATA.chats.map(chat => {
         const lastMsg = chat.last_message || "";
-        const isMine = chat.last_sender_tg === TELEGRAM_USER?.id;
+        const isMine = String(chat.last_sender_tg) === String(TELEGRAM_USER?.id);
         const hasUnread = chat.unread_count > 0;
 
         let tickHTML = "";
         if (isMine) tickHTML = `<span class="msg-tick read">${icon('check-check')}</span>`;
 
+        const otherName = String(chat.seller_tg) === String(TELEGRAM_USER?.id) 
+            ? (chat.buyer_name || "Xaridor") 
+            : (chat.seller_name || "Sotuvchi");
+
         return `
             <div class="chat-item ${hasUnread ? 'unread' : ''}" onclick="openChatRoom(${chat.id})">
                 <div class="chat-avatar ${chat.is_admin_chat ? 'admin' : ''}">
-                    ${chat.ad_image ? `<img src="${chat.ad_image}">` : icon('users')}
+                    ${chat.ad_video ? `<video src="${chat.ad_video}" muted style="width:100%;height:100%;object-fit:cover;"></video>` : icon('users')}
                 </div>
                 <div class="chat-info">
                     <div class="chat-name">${escapeHTML(chat.ad_title || "Chat")}</div>
@@ -3281,13 +4000,26 @@ async function openChatRoom(chatId) {
     document.getElementById("chatRoomName").innerText = chat.ad_title || "Chat";
 
     const avatarEl = document.getElementById("chatRoomAvatar");
-    if (chat.ad_image) avatarEl.innerHTML = `<img src="${chat.ad_image}">`;
-    else avatarEl.innerHTML = icon('users');
+    if (chat.ad_video) {
+        avatarEl.innerHTML = `<video src="${chat.ad_video}" muted style="width:100%;height:100%;object-fit:cover;"></video>`;
+    } else {
+        avatarEl.innerHTML = icon('users');
+    }
+
+    // Participants
+    const myId = TELEGRAM_USER?.id;
+    const sellerName = chat.seller_name || "Sotuvchi";
+    const buyerName = chat.buyer_name || "Xaridor";
+    const sellerTg = chat.seller_tg;
+    const buyerTg = chat.buyer_tg;
+
+    const partnerName = String(sellerTg) === String(myId) ? buyerName : sellerName;
+    const isAdmin = IS_ADMIN;
 
     document.getElementById("chatParticipants").innerHTML = `
-        <span>${icon('user')} ${escapeHTML(chat.seller_name || "Sotuvchi")}</span>
-        <span>${icon('user')} ${escapeHTML(chat.buyer_name || "Xaridor")}</span>
-        <span>${icon('shield')} Admin</span>
+        <span>${icon('user')} ${escapeHTML(sellerName)}</span>
+        <span>${icon('user')} ${escapeHTML(buyerName)}</span>
+        ${isAdmin ? `<span>${icon('shield')} Admin</span>` : ''}
     `;
 
     renderChatMessages();
@@ -3327,7 +4059,7 @@ function renderChatMessages() {
     }
 
     container.innerHTML = APP_DATA.chatMessages.map(msg => {
-        const isMine = msg.telegram_id === TELEGRAM_USER?.id;
+        const isMine = String(msg.telegram_id) === String(TELEGRAM_USER?.id);
         const isAdmin = msg.user_is_admin;
 
         let tickHTML = "";
@@ -3387,7 +4119,7 @@ async function sendMessage() {
     }
 }
 
-/* ====== ADMIN ====== */
+/* ====== ADMIN PANEL ====== */
 async function renderAdminPanel() {
     if (!IS_ADMIN) return;
 
@@ -3396,15 +4128,22 @@ async function renderAdminPanel() {
         const stats = await apiCall("/api/stats");
         const pending = await apiCall("/api/admin/pending-ads");
         const topups = await apiCall("/api/admin/pending-topups");
+        const allAds = await apiCall("/api/admin/all-ads");
 
-        document.getElementById("adminAdsCount").innerText = stats.ads || 0;
-        document.getElementById("adminUsersCount").innerText = stats.users || 0;
-        document.getElementById("adminPendingCount").innerText = stats.pending || 0;
-        document.getElementById("adminPendingTopups").innerText = stats.pending_topups || 0;
+        document.getElementById("adminAdsCount").innerText = (stats.ads || 0).toLocaleString();
+        document.getElementById("adminUsersCount").innerText = (stats.users || 0).toLocaleString();
+        document.getElementById("adminPendingCount").innerText = (stats.pending || 0).toLocaleString();
+        document.getElementById("adminPendingTopups").innerText = (stats.pending_topups || 0).toLocaleString();
+        document.getElementById("adminMonthlyIncome").innerText = (stats.monthly_income || 0).toLocaleString();
+        document.getElementById("adminMonthlySpent").innerText = (stats.monthly_spent || 0).toLocaleString();
+        document.getElementById("adminChatsCount").innerText = (stats.chats || 0).toLocaleString();
+        document.getElementById("adminFeedbacksCount").innerText = (stats.feedbacks || 0).toLocaleString();
 
         APP_DATA.pending = pending.map(mapAd);
         APP_DATA.pendingTopups = topups;
+        APP_DATA.adminAllAds = allAds.map(mapAd);
 
+        // Moderation
         const adsContainer = document.getElementById("moderationList");
         if (!pending.length) {
             adsContainer.innerHTML = `<div class="empty"><strong>Kutilayotgan reklama yo'q</strong></div>`;
@@ -3414,14 +4153,16 @@ async function renderAdminPanel() {
                 return `
                 <div class="moderation-card">
                     <div class="moderation-layout">
-                        ${adObj.video 
-                            ? `<video src="${adObj.video}" class="moderation-photo" controls></video>`
-                            : `<img src="${adObj.image}" class="moderation-photo" onerror="this.src='https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80'">`
-                        }
+                        <div class="moderation-video">
+                            ${adObj.video 
+                                ? `<video src="${adObj.video}" controls></video>`
+                                : `<span style="color:#8B90A8;">Video yo'q</span>`
+                            }
+                        </div>
                         <div class="moderation-info">
                             <h3>${escapeHTML(adObj.title)}</h3>
                             <div class="moderation-meta">${icon('dollar')} ${formatPriceCurrency(adObj.price, adObj.currency)}</div>
-                            <div class="moderation-meta">${icon('map-pin')} ${escapeHTML(adObj.location || "-")}</div>
+                            <div class="moderation-meta">${icon('map-pin')} ${escapeHTML(adObj.fullLocation || adObj.location || "-")}</div>
                             <div class="moderation-meta">${icon('package')} #${adObj.id}</div>
                         </div>
                     </div>
@@ -3433,21 +4174,52 @@ async function renderAdminPanel() {
             `}).join("");
         }
 
+        // All ads
+        const allAdsContainer = document.getElementById("allAdsList");
+        if (!allAds.length) {
+            allAdsContainer.innerHTML = `<div class="empty"><strong>Reklamalar yo'q</strong></div>`;
+        } else {
+            allAdsContainer.innerHTML = allAds.map(ad => {
+                const adObj = mapAd(ad);
+                return `
+                <div class="moderation-card">
+                    <div class="moderation-layout">
+                        <div class="moderation-video">
+                            ${adObj.video 
+                                ? `<video src="${adObj.video}" controls></video>`
+                                : `<span style="color:#8B90A8;">Video yo'q</span>`
+                            }
+                        </div>
+                        <div class="moderation-info">
+                            <h3>${escapeHTML(adObj.title)}</h3>
+                            <div class="moderation-meta">${icon('dollar')} ${formatPriceCurrency(adObj.price, adObj.currency)}</div>
+                            <div class="moderation-meta">${icon('info')} Status: ${getStatusText(adObj.status)}</div>
+                            <div class="moderation-meta">${icon('package')} #${adObj.id}</div>
+                        </div>
+                    </div>
+                    <div class="moderation-actions" style="grid-template-columns: 1fr;">
+                        <button class="btn btn-danger" onclick="openDeleteAdModal(${adObj.id})">${icon('trash')} O'chirish</button>
+                    </div>
+                </div>
+            `}).join("");
+        }
+
+        // Topups
         const topupContainer = document.getElementById("topupList");
         if (!topups.length) {
             topupContainer.innerHTML = `<div class="empty"><strong>Kutilayotgan chek yo'q</strong></div>`;
         } else {
             topupContainer.innerHTML = topups.map(tx => `
-                <div class="topup-card">
-                    <div class="topup-header">
+                <div class="topup-card" style="background: var(--card); border: 1.5px solid var(--border); border-radius: 24px; padding: 20px; margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
                         <div>
-                            <div class="topup-user">${escapeHTML(tx.first_name || '')} ${escapeHTML(tx.last_name || '')}</div>
+                            <div style="font-weight: 800; font-size: 15px;">${escapeHTML(tx.first_name || '')} ${escapeHTML(tx.last_name || '')}</div>
                             <div style="font-size: 12px; color: var(--muted); margin-top: 4px;">+998${tx.phone || '?'}</div>
                         </div>
-                        <div class="topup-amount">${formatPrice(tx.amount)}</div>
+                        <div style="font-size: 22px; font-weight: 900; color: var(--green);">${formatPrice(tx.amount)}</div>
                     </div>
-                    ${tx.receipt_url ? `<img src="${tx.receipt_url}" class="topup-receipt" onerror="this.style.display='none'">` : ""}
-                    <div class="topup-actions">
+                    ${tx.receipt_url ? `<img src="${tx.receipt_url}" style="width: 100%; max-height: 320px; object-fit: contain; border-radius: 16px; margin-bottom: 16px;" onerror="this.style.display='none'">` : ""}
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
                         <button class="btn btn-success" onclick="approveTopup(${tx.id})">${icon('check')} Tasdiqlash</button>
                         <button class="btn btn-danger" onclick="rejectTopup(${tx.id})">${icon('x')} Rad etish</button>
                     </div>
@@ -3456,8 +4228,48 @@ async function renderAdminPanel() {
         }
     } catch (e) {
         console.error("Admin panel xatosi:", e);
+        showToast("Xatolik: " + e.message, "error");
     }
     hideLoading();
+}
+
+async function renderAdminTransactions() {
+    const container = document.getElementById("transactionsList");
+    if (!container) return;
+    container.innerHTML = `<div class="empty"><strong>Yuklanmoqda...</strong></div>`;
+
+    try {
+        const txs = await apiCall("/api/admin/all-transactions");
+        if (!txs.length) {
+            container.innerHTML = `<div class="empty"><strong>Tranzaksiyalar yo'q</strong></div>`;
+            return;
+        }
+        container.innerHTML = txs.map(tx => {
+            const isTopup = tx.type === "topup";
+            return `
+                <div class="tx-item">
+                    <div class="tx-icon ${isTopup ? 'topup' : 'spend'}">
+                        ${isTopup ? icon('plus') : icon('minus')}
+                    </div>
+                    <div class="tx-info">
+                        <div class="tx-user">${escapeHTML(tx.first_name || '')} ${escapeHTML(tx.last_name || '')}</div>
+                        <div class="tx-desc">${escapeHTML(tx.description || '')} · +998${tx.phone || '?'}</div>
+                        <div class="tx-date">${formatDateTime(tx.created_at)}</div>
+                        <span class="tx-status ${(tx.status || '').toLowerCase()}">${getTxStatusText(tx.status)}</span>
+                    </div>
+                    <div class="tx-amount ${isTopup ? 'plus' : 'minus'}">
+                        ${isTopup ? '+' : '-'}${formatPrice(tx.amount)}
+                    </div>
+                </div>
+            `;
+        }).join("");
+    } catch (e) {
+        container.innerHTML = `<div class="empty"><strong>Xatolik: ${e.message}</strong></div>`;
+    }
+}
+
+function getTxStatusText(status) {
+    return { APPROVED: "Tasdiqlangan", PENDING: "Kutilmoqda", REJECTED: "Rad etilgan" }[status] || status;
 }
 
 async function approveAd(adId) {
@@ -3480,6 +4292,30 @@ async function rejectAd(adId) {
         await renderAdminPanel();
     } catch (e) { showToast("Xatolik: " + e.message, "error"); }
     hideLoading();
+}
+
+function openDeleteAdModal(adId) {
+    APP_DATA.deleteAdId = adId;
+    openModal("deleteAdModal");
+}
+
+async function performDeleteAd(adId) {
+    closeModal("deleteAdModal");
+    showLoading();
+    try {
+        await apiCall("/api/admin/delete-ad", "POST", { 
+            admin_telegram_id: TELEGRAM_USER.id, 
+            ad_id: adId 
+        });
+        showToast("Reklama o'chirildi!", "success");
+        closeModal("adDetailModal");
+        await renderAdminPanel();
+        await loadAdsFromAPI();
+    } catch (e) { 
+        showToast("Xatolik: " + e.message, "error"); 
+    }
+    hideLoading();
+    APP_DATA.deleteAdId = null;
 }
 
 async function approveTopup(txId) {
@@ -3555,32 +4391,6 @@ async function renderAdminUsers() {
     }
 }
 
-async function renderAdminBlocked() {
-    const container = document.getElementById("blockedList");
-    if (!container) return;
-    container.innerHTML = `<div class="empty"><strong>Yuklanmoqda...</strong></div>`;
-
-    try {
-        const users = await apiCall("/api/admin/blocked");
-        if (!users.length) {
-            container.innerHTML = `<div class="empty"><strong>Bloklangan foydalanuvchilar yo'q</strong></div>`;
-            return;
-        }
-        container.innerHTML = users.map(u => `
-            <div class="user-card">
-                <div class="user-avatar" style="background: var(--red);">${icon('ban')}</div>
-                <div class="user-info">
-                    <div class="user-name">${escapeHTML(u.first_name || '')} ${escapeHTML(u.last_name || '')}</div>
-                    <div class="user-meta">${icon('info')} ${escapeHTML(u.reason || 'Sabab yo\'q')}</div>
-                </div>
-                <button class="small-btn success" onclick="unblockUser(${u.telegram_id})">${icon('check')} Ochish</button>
-            </div>
-        `).join("");
-    } catch (e) {
-        container.innerHTML = `<div class="empty"><strong>Xatolik: ${e.message}</strong></div>`;
-    }
-}
-
 async function blockUserAdmin(userTelegramId) {
     if (!confirm("Bu foydalanuvchini bloklaysizmi?")) return;
     showLoading();
@@ -3592,14 +4402,39 @@ async function blockUserAdmin(userTelegramId) {
     hideLoading();
 }
 
-async function unblockUser(userTelegramId) {
+async function adminAddBalance() {
+    const phone = document.getElementById("addBalancePhone").value.trim();
+    const amount = parseInt(document.getElementById("addBalanceAmount").value.trim()) || 0;
+
+    if (!phone || phone.length < 9) {
+        showToast("To'g'ri telefon raqam kiriting", "error");
+        return;
+    }
+    if (amount <= 0) {
+        showToast("Summa 0 dan katta bo'lishi kerak", "error");
+        return;
+    }
+
+    if (!confirm(`+998${phone} raqamiga ${amount.toLocaleString()} so'm qo'shilsinmi?`)) return;
+
     showLoading();
     try {
-        await apiCall("/api/admin/unblock-user", "POST", { admin_telegram_id: TELEGRAM_USER.id, user_telegram_id: userTelegramId });
-        showToast("Blokdan chiqarildi", "success");
-        await renderAdminUsers();
-        await renderAdminBlocked();
-    } catch (e) { showToast("Xatolik: " + e.message, "error"); }
+        const result = await apiCall("/api/admin/add-balance", "POST", {
+            admin_telegram_id: TELEGRAM_USER.id,
+            phone: phone,
+            amount: amount
+        });
+
+        if (result.ok) {
+            showToast(`Balans qo'shildi! Yangi balans: ${result.new_balance.toLocaleString()} so'm`, "success");
+            document.getElementById("addBalancePhone").value = "";
+            document.getElementById("addBalanceAmount").value = "";
+        } else {
+            showToast(result.error || "Xatolik", "error");
+        }
+    } catch (e) {
+        showToast("Xatolik: " + e.message, "error");
+    }
     hideLoading();
 }
 
@@ -3667,6 +4502,13 @@ function formatPriceCurrency(price, currency = "UZS") {
     return Number(price).toLocaleString("uz-UZ") + " " + curr.symbol;
 }
 
+function formatDuration(seconds) {
+    if (!seconds || isNaN(seconds)) return "0:00";
+    const m = Math.floor(seconds / 60);
+    const s = Math.floor(seconds % 60);
+    return `${m}:${s.toString().padStart(2, "0")}`;
+}
+
 function formatTime(dateStr) {
     if (!dateStr) return "";
     try {
@@ -3681,8 +4523,19 @@ function formatTime(dateStr) {
     } catch { return ""; }
 }
 
+function formatDateTime(dateStr) {
+    if (!dateStr) return "";
+    try {
+        const d = new Date(dateStr);
+        return d.toLocaleString("uz-UZ", { 
+            day: "2-digit", month: "2-digit", year: "numeric",
+            hour: "2-digit", minute: "2-digit" 
+        });
+    } catch { return ""; }
+}
+
 function escapeHTML(str) {
-    if (!str) return "";
+    if (!str && str !== 0) return "";
     return String(str)
         .replace(/&/g, "&amp;")
         .replace(/</g, "&lt;")
@@ -3693,12 +4546,6 @@ function escapeHTML(str) {
 
 /* ====== INIT ====== */
 document.addEventListener("DOMContentLoaded", init);
-
-document.querySelectorAll(".modal-overlay").forEach(overlay => {
-    overlay.addEventListener("click", (e) => {
-        if (e.target === overlay) closeModal(overlay.id);
-    });
-});
 </script>
 
 </body>
