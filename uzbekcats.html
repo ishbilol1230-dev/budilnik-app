@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="theme-color" content="#7C5CFC">
     <title>Cardinal Reklama Bot</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -35,7 +34,6 @@
             --bg: #F5F6FA;
             --bg-dark: #E8EAF0;
             --card: #FFFFFF;
-            --card-elevated: #FFFFFF;
             --text: #1A1D2E;
             --text-secondary: #5A5F7A;
             --muted: #8B90A8;
@@ -45,21 +43,15 @@
             --shadow: 0 4px 20px rgba(26, 29, 46, 0.08);
             --shadow-md: 0 8px 30px rgba(26, 29, 46, 0.12);
             --shadow-lg: 0 15px 50px rgba(26, 29, 46, 0.15);
-            --shadow-glow: 0 15px 50px rgba(124, 92, 252, 0.35);
             --nav-height: 84px;
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            --radius-sm: 14px;
-            --radius: 20px;
-            --radius-lg: 28px;
-            --radius-xl: 32px;
         }
 
         body.dark {
             --bg: #0A0B12;
             --bg-dark: #060710;
             --card: #14161F;
-            --card-elevated: #1A1D28;
             --text: #FFFFFF;
             --text-secondary: #B8BCCF;
             --muted: #6B7089;
@@ -80,16 +72,14 @@
             overflow-x: hidden;
             font-size: 14px;
             line-height: 1.5;
-            overscroll-behavior-y: none;
         }
 
         button, input, textarea, select { font: inherit; }
-        button { border: 0; cursor: pointer; background: none; color: inherit; }
+        button { border: 0; cursor: pointer; background: none; }
         input, textarea { outline: none; }
-        a { text-decoration: none; color: inherit; }
 
         /* ============================================
-           SVG ICON SYSTEM
+           SVG ICON SYSTEM - TO'LIQ TUZATILGAN
            ============================================ */
         .icon {
             width: 24px;
@@ -110,7 +100,9 @@
         .icon-md { width: 22px; height: 22px; }
         .icon-lg { width: 28px; height: 28px; }
         .icon-xl { width: 36px; height: 36px; }
+        .icon-2xl { width: 48px; height: 48px; }
 
+        /* Barcha SVG'lar to'g'ri o'lchamda ko'rinadi */
         svg {
             width: 24px;
             height: 24px;
@@ -148,7 +140,7 @@
         }
 
         /* ============================================
-           TOP BAR - PREMIUM
+           TOP BAR
            ============================================ */
         .top-bar {
             background: linear-gradient(135deg, #7C5CFC 0%, #5B3FD9 50%, #4A2FB8 100%);
@@ -170,25 +162,6 @@
             border-radius: 50%;
             background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
             pointer-events: none;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        .top-bar::after {
-            content: '';
-            position: absolute;
-            bottom: -40%;
-            left: -10%;
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(255, 107, 157, 0.2) 0%, transparent 70%);
-            pointer-events: none;
-            animation: float 8s ease-in-out infinite reverse;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0) scale(1); }
-            50% { transform: translateY(-20px) scale(1.05); }
         }
 
         .top-bar-content {
@@ -224,6 +197,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            font-size: 28px;
             border: 2.5px solid rgba(255, 255, 255, 0.4);
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
             flex-shrink: 0;
@@ -323,7 +297,7 @@
         }
 
         /* ============================================
-           BOTTOM NAVIGATION
+           BOTTOM NAVIGATION - TUZATILGAN
            ============================================ */
         .bottom-navigation {
             position: fixed; 
@@ -382,7 +356,9 @@
             background: transparent;
         }
 
-        .nav-item .nav-icon svg {
+        /* MUHIM: SVG ikonkalar aniq o'lchamda */
+        .nav-item .nav-icon svg,
+        .nav-item .nav-icon .icon {
             width: 24px !important;
             height: 24px !important;
             stroke: currentColor;
@@ -419,6 +395,7 @@
             letter-spacing: -0.1px;
         }
 
+        /* Markaziy tugma */
         .nav-item.create-btn .nav-icon {
             width: 58px !important; 
             height: 58px !important; 
@@ -433,7 +410,8 @@
             justify-content: center;
         }
 
-        .nav-item.create-btn .nav-icon svg {
+        .nav-item.create-btn .nav-icon svg,
+        .nav-item.create-btn .nav-icon .icon {
             width: 28px !important;
             height: 28px !important;
             stroke: white !important;
@@ -443,6 +421,11 @@
 
         .nav-item.create-btn:active .nav-icon {
             transform: scale(0.9) rotate(90deg);
+        }
+
+        .nav-item.create-btn.active .nav-icon {
+            background: linear-gradient(135deg, #5B3FD9, #7C5CFC);
+            transform: translateY(-3px);
         }
 
         /* ============================================
@@ -470,6 +453,7 @@
             font-weight: 500;
         }
 
+        /* Buttons */
         .btn {
             min-height: 52px; 
             padding: 0 24px; 
@@ -548,9 +532,7 @@
             border-color: var(--primary);
         }
 
-        /* ============================================
-           TABS
-           ============================================ */
+        /* Tabs */
         .category-tabs {
             display: flex; 
             gap: 10px; 
@@ -592,9 +574,7 @@
             transform: translateY(-2px);
         }
 
-        /* ============================================
-           ADS GRID
-           ============================================ */
+        /* Ads Grid */
         .ads-grid {
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -758,9 +738,7 @@
             border-color: rgba(255, 71, 87, 0.3);
         }
 
-        /* ============================================
-           FORMS
-           ============================================ */
+        /* Forms */
         .form-group { margin-bottom: 20px; }
 
         .form-label { 
@@ -818,9 +796,7 @@
             padding-right: 50px;
         }
 
-        /* ============================================
-           MEDIA UPLOAD
-           ============================================ */
+        /* Media Upload */
         .media-upload {
             min-height: 200px;
             border: 2.5px dashed var(--border);
@@ -944,9 +920,7 @@
             margin-top: 2px;
         }
 
-        /* ============================================
-           ACCOUNT FORM - YANGILANGAN
-           ============================================ */
+        /* Account Form */
         .account-form-card {
             background: var(--card);
             border: 1.5px solid var(--border);
@@ -981,126 +955,7 @@
             height: 22px;
         }
 
-        /* ============================================
-           CHECKBOX GRID - ULANGAN TIZIMLAR
-           ============================================ */
-        .checkbox-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-            margin-top: 10px;
-        }
-
-        .checkbox-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 14px 16px;
-            background: var(--bg);
-            border: 2px solid var(--border);
-            border-radius: 16px;
-            cursor: pointer;
-            transition: var(--transition);
-            font-size: 13px;
-            font-weight: 700;
-            color: var(--text);
-            user-select: none;
-        }
-
-        .checkbox-item:active {
-            transform: scale(0.97);
-        }
-
-        .checkbox-item.checked {
-            background: linear-gradient(135deg, rgba(124, 92, 252, 0.12), rgba(124, 92, 252, 0.05));
-            border-color: var(--primary);
-            color: var(--primary);
-        }
-
-        .checkbox-box {
-            width: 24px;
-            height: 24px;
-            border-radius: 8px;
-            border: 2.5px solid var(--border);
-            background: var(--card);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: var(--transition);
-            flex-shrink: 0;
-        }
-
-        .checkbox-item.checked .checkbox-box {
-            background: linear-gradient(135deg, #7C5CFC, #5B3FD9);
-            border-color: transparent;
-        }
-
-        .checkbox-box svg {
-            width: 16px;
-            height: 16px;
-            color: white;
-            opacity: 0;
-            transition: var(--transition);
-            stroke-width: 3;
-        }
-
-        .checkbox-item.checked .checkbox-box svg {
-            opacity: 1;
-        }
-
-        .checkbox-item span {
-            flex: 1;
-        }
-
-        /* ============================================
-           CURRENCY SELECTOR - VALYUTA
-           ============================================ */
-        .currency-selector {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            margin-bottom: 14px;
-        }
-
-        .currency-btn {
-            padding: 16px 10px;
-            border-radius: 18px;
-            background: var(--card);
-            border: 2.5px solid var(--border);
-            font-size: 14px;
-            font-weight: 800;
-            color: var(--text);
-            transition: var(--transition);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 6px;
-            cursor: pointer;
-        }
-
-        .currency-btn:active { transform: scale(0.95); }
-
-        .currency-btn.active {
-            background: linear-gradient(135deg, #7C5CFC, #5B3FD9);
-            border-color: transparent;
-            color: white;
-            box-shadow: 0 8px 25px rgba(124, 92, 252, 0.4);
-            transform: translateY(-2px);
-        }
-
-        .currency-flag {
-            font-size: 28px;
-            line-height: 1;
-        }
-
-        .currency-name {
-            font-size: 12px;
-            font-weight: 700;
-        }
-
-        /* ============================================
-           CHAT LIST
-           ============================================ */
+        /* Chat List */
         .chat-list { display: grid; gap: 6px; }
 
         .chat-item {
@@ -1233,9 +1088,7 @@
             justify-content: center;
         }
 
-        /* ============================================
-           CHAT ROOM
-           ============================================ */
+        /* Chat Room */
         .chat-room {
             position: fixed; 
             inset: 0; 
@@ -1499,9 +1352,7 @@
             transform: scale(0.9);
         }
 
-        /* ============================================
-           PROFILE
-           ============================================ */
+        /* Profile */
         .profile-card {
             background: linear-gradient(135deg, #7C5CFC 0%, #5B3FD9 50%, #FF6B9D 100%);
             color: white;
@@ -1512,18 +1363,6 @@
             position: relative;
             overflow: hidden;
             box-shadow: 0 20px 60px rgba(124, 92, 252, 0.4);
-        }
-
-        .profile-card::before {
-            content: '';
-            position: absolute;
-            top: -30%;
-            right: -20%;
-            width: 250px;
-            height: 250px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
-            pointer-events: none;
         }
 
         .profile-avatar-wrap {
@@ -1654,75 +1493,6 @@
             font-weight: 600;
         }
 
-        /* ============================================
-           IJTIMOIY TARMOQLAR TUGMALARI - YANGI
-           ============================================ */
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 18px;
-            margin-top: 24px;
-            padding-top: 24px;
-            border-top: 1.5px solid var(--border);
-        }
-
-        .social-btn {
-            width: 58px;
-            height: 58px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            transition: var(--transition-bounce);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .social-btn::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, rgba(255,255,255,0.3), transparent);
-            opacity: 0;
-            transition: var(--transition);
-        }
-
-        .social-btn:active {
-            transform: scale(0.9);
-        }
-
-        .social-btn:active::before {
-            opacity: 1;
-        }
-
-        .social-btn svg {
-            width: 28px;
-            height: 28px;
-            color: white;
-            fill: currentColor;
-            stroke: none;
-        }
-
-        .social-btn.youtube {
-            background: linear-gradient(135deg, #FF0000, #CC0000);
-            box-shadow: 0 8px 25px rgba(255, 0, 0, 0.4);
-        }
-
-        .social-btn.telegram {
-            background: linear-gradient(135deg, #0088CC, #006699);
-            box-shadow: 0 8px 25px rgba(0, 136, 204, 0.4);
-        }
-
-        .social-btn.instagram {
-            background: linear-gradient(135deg, #F58529, #DD2A7B, #8134AF, #515BD4);
-            box-shadow: 0 8px 25px rgba(221, 42, 123, 0.4);
-        }
-
-        /* ============================================
-           PROFILE MENU
-           ============================================ */
         .profile-menu { display: grid; gap: 12px; }
 
         .profile-menu-item {
@@ -1737,7 +1507,6 @@
             gap: 16px;
             text-align: left;
             box-shadow: var(--shadow-sm);
-            transition: var(--transition);
         }
 
         .profile-menu-item:active { 
@@ -1788,9 +1557,7 @@
             color: var(--muted);
         }
 
-        /* ============================================
-           BALANCE PAGES
-           ============================================ */
+        /* Balance Pages */
         .balance-page-card {
             background: linear-gradient(135deg, #7C5CFC 0%, #5B3FD9 50%, #FF6B9D 100%);
             color: white;
@@ -1917,9 +1684,7 @@
             border-radius: 20px; 
         }
 
-        /* ============================================
-           MODALS
-           ============================================ */
+        /* Modals */
         .modal-overlay {
             position: fixed; 
             inset: 0; 
@@ -1982,9 +1747,7 @@
             color: white;
         }
 
-        /* ============================================
-           AD DETAIL GALLERY
-           ============================================ */
+        /* Ad Detail Gallery */
         .ad-detail-gallery {
             position: relative;
             width: 100%;
@@ -2081,9 +1844,7 @@
             box-shadow: 0 4px 15px rgba(124, 92, 252, 0.4);
         }
 
-        /* ============================================
-           TOAST
-           ============================================ */
+        /* Toast */
         .toast-container {
             position: fixed; 
             z-index: 1000;
@@ -2136,9 +1897,7 @@
             to { opacity: 1; transform: translateY(0) scale(1); }
         }
 
-        /* ============================================
-           STATUS
-           ============================================ */
+        /* Status */
         .status {
             display: inline-flex; 
             align-items: center; 
@@ -2175,9 +1934,7 @@
             background: rgba(255, 71, 87, 0.12);
         }
 
-        /* ============================================
-           MY ADS
-           ============================================ */
+        /* My Ads */
         .my-ad-item {
             background: var(--card);
             border: 1.5px solid var(--border);
@@ -2220,9 +1977,7 @@
             height: 14px;
         }
 
-        /* ============================================
-           ADMIN PANEL
-           ============================================ */
+        /* Admin */
         .admin-badge {
             padding: 10px 16px; 
             border-radius: 14px;
@@ -2463,9 +2218,7 @@
             padding: 22px;
         }
 
-        /* ============================================
-           STEP INDICATOR
-           ============================================ */
+        /* Step Indicator */
         .step-indicator { 
             display: flex; 
             gap: 8px; 
@@ -2561,9 +2314,7 @@
             text-align: right;
         }
 
-        /* ============================================
-           EMPTY STATE
-           ============================================ */
+        /* Empty State */
         .empty { 
             padding: 60px 24px; 
             text-align: center; 
@@ -2586,9 +2337,7 @@
             display: block;
         }
 
-        /* ============================================
-           LOADING
-           ============================================ */
+        /* Loading */
         .loading-overlay {
             position: fixed; 
             inset: 0; 
@@ -2616,9 +2365,7 @@
             to { transform: rotate(360deg); } 
         }
 
-        /* ============================================
-           RESPONSIVE
-           ============================================ */
+        /* Responsive */
         @media (min-width: 700px) {
             .ads-grid { grid-template-columns: repeat(3, 1fr); }
             .admin-stat-grid { grid-template-columns: repeat(4, 1fr); }
@@ -2645,14 +2392,17 @@
 <body>
 
 <!-- ============================================
-     SVG ICON LIBRARY
+     SVG ICON LIBRARY - TO'LIQ YANGILANGAN
      ============================================ -->
 <svg style="display: none;" xmlns="http://www.w3.org/2000/svg">
     <defs>
+        <!-- Home -->
         <symbol id="icon-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
             <polyline points="9 22 9 12 15 12 15 22"/>
         </symbol>
+        
+        <!-- List -->
         <symbol id="icon-list" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <line x1="8" y1="6" x2="21" y2="6"/>
             <line x1="8" y1="12" x2="21" y2="12"/>
@@ -2661,120 +2411,198 @@
             <line x1="3" y1="12" x2="3.01" y2="12"/>
             <line x1="3" y1="18" x2="3.01" y2="18"/>
         </symbol>
+        
+        <!-- Plus -->
         <symbol id="icon-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <line x1="12" y1="5" x2="12" y2="19"/>
             <line x1="5" y1="12" x2="19" y2="12"/>
         </symbol>
+        
+        <!-- Chat -->
         <symbol id="icon-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
         </symbol>
+        
+        <!-- User -->
         <symbol id="icon-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
             <circle cx="12" cy="7" r="4"/>
         </symbol>
+        
+        <!-- Users -->
         <symbol id="icon-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
             <circle cx="9" cy="7" r="4"/>
             <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
             <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
         </symbol>
+        
+        <!-- Wallet -->
         <symbol id="icon-wallet" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/>
             <path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/>
             <path d="M18 12a2 2 0 0 0 0 4h4v-4Z"/>
         </symbol>
+        
+        <!-- Credit Card -->
         <symbol id="icon-credit-card" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/>
             <line x1="1" y1="10" x2="23" y2="10"/>
         </symbol>
+        
+        <!-- Thumbs Up -->
         <symbol id="icon-thumbs-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/>
         </symbol>
+        
+        <!-- Thumbs Down -->
         <symbol id="icon-thumbs-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3zm7-13h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"/>
         </symbol>
+        
+        <!-- Star -->
         <symbol id="icon-star" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
         </symbol>
+        
+        <!-- Crown -->
         <symbol id="icon-crown" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M2 18h20l-2-10-4 4-4-8-4 8-4-4z"/>
             <path d="M2 18v3h20v-3"/>
         </symbol>
+        
+        <!-- Fire -->
         <symbol id="icon-fire" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/>
         </symbol>
+        
+        <!-- Megaphone -->
         <symbol id="icon-megaphone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="m3 11 18-5v12L3 14v-3z"/>
             <path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/>
         </symbol>
+        
+        <!-- Smartphone -->
         <symbol id="icon-smartphone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
             <line x1="12" y1="18" x2="12.01" y2="18"/>
         </symbol>
+        
+        <!-- Search -->
+        <symbol id="icon-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"/>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </symbol>
+        
+        <!-- Map Pin -->
         <symbol id="icon-map-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
             <circle cx="12" cy="10" r="3"/>
         </symbol>
+        
+        <!-- Eye -->
         <symbol id="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
             <circle cx="12" cy="12" r="3"/>
         </symbol>
+        
+        <!-- Image -->
         <symbol id="icon-image" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
             <circle cx="8.5" cy="8.5" r="1.5"/>
             <polyline points="21 15 16 10 5 21"/>
         </symbol>
+        
+        <!-- Camera -->
         <symbol id="icon-camera" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
             <circle cx="12" cy="13" r="4"/>
         </symbol>
+        
+        <!-- X -->
         <symbol id="icon-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <line x1="18" y1="6" x2="6" y2="18"/>
             <line x1="6" y1="6" x2="18" y2="18"/>
         </symbol>
+        
+        <!-- Check -->
         <symbol id="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="20 6 9 17 4 12"/>
         </symbol>
+        
+        <!-- Check Circle -->
         <symbol id="icon-check-circle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
             <polyline points="22 4 12 14.01 9 11.01"/>
         </symbol>
+        
+        <!-- Check Check -->
         <symbol id="icon-check-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="18 6 7 17 2 12"/>
             <polyline points="22 10 11 21 9 19"/>
         </symbol>
+        
+        <!-- Arrow Left -->
         <symbol id="icon-arrow-left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <line x1="19" y1="12" x2="5" y2="12"/>
             <polyline points="12 19 5 12 12 5"/>
         </symbol>
+        
+        <!-- Arrow Right -->
         <symbol id="icon-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <line x1="5" y1="12" x2="19" y2="12"/>
             <polyline points="12 5 19 12 12 19"/>
         </symbol>
+        
+        <!-- Chevron Right -->
         <symbol id="icon-chevron-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="9 18 15 12 9 6"/>
         </symbol>
+        
+        <!-- Chevron Left -->
         <symbol id="icon-chevron-left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="15 18 9 12 15 6"/>
         </symbol>
+        
+        <!-- Send -->
         <symbol id="icon-send" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <line x1="22" y1="2" x2="11" y2="13"/>
             <polygon points="22 2 15 22 11 13 2 9 22 2"/>
         </symbol>
+        
+        <!-- Trash -->
         <symbol id="icon-trash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="3 6 5 6 21 6"/>
             <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
             <line x1="10" y1="11" x2="10" y2="17"/>
             <line x1="14" y1="11" x2="14" y2="17"/>
         </symbol>
+        
+        <!-- Edit -->
+        <symbol id="icon-edit" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+        </symbol>
+        
+        <!-- Save -->
         <symbol id="icon-save" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
             <polyline points="17 21 17 13 7 13 7 21"/>
             <polyline points="7 3 7 8 15 8"/>
         </symbol>
+        
+        <!-- Settings -->
+        <symbol id="icon-settings" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+        </symbol>
+        
+        <!-- Moon -->
         <symbol id="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
         </symbol>
+        
+        <!-- Sun -->
         <symbol id="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="12" cy="12" r="5"/>
             <line x1="12" y1="1" x2="12" y2="3"/>
@@ -2786,96 +2614,115 @@
             <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
             <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
         </symbol>
+        
+        <!-- Shield -->
         <symbol id="icon-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
         </symbol>
+        
+        <!-- Info -->
         <symbol id="icon-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="12" cy="12" r="10"/>
             <line x1="12" y1="16" x2="12" y2="12"/>
             <line x1="12" y1="8" x2="12.01" y2="8"/>
         </symbol>
+        
+        <!-- Alert -->
         <symbol id="icon-alert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
             <line x1="12" y1="9" x2="12" y2="13"/>
             <line x1="12" y1="17" x2="12.01" y2="17"/>
         </symbol>
+        
+        <!-- Clock -->
         <symbol id="icon-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="12" cy="12" r="10"/>
             <polyline points="12 6 12 12 16 14"/>
         </symbol>
+        
+        <!-- Calendar -->
         <symbol id="icon-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
             <line x1="16" y1="2" x2="16" y2="6"/>
             <line x1="8" y1="2" x2="8" y2="6"/>
             <line x1="3" y1="10" x2="21" y2="10"/>
         </symbol>
+        
+        <!-- Trending Up -->
         <symbol id="icon-trending-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
             <polyline points="17 6 23 6 23 12"/>
         </symbol>
+        
+        <!-- Package -->
         <symbol id="icon-package" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <line x1="16.5" y1="9.4" x2="7.5" y2="4.21"/>
             <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
             <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
             <line x1="12" y1="22.08" x2="12" y2="12"/>
         </symbol>
+        
+        <!-- Phone -->
         <symbol id="icon-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
         </symbol>
+        
+        <!-- Link -->
         <symbol id="icon-link" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
             <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
         </symbol>
+        
+        <!-- Dollar -->
         <symbol id="icon-dollar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <line x1="12" y1="1" x2="12" y2="23"/>
             <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
         </symbol>
+        
+        <!-- Copy -->
         <symbol id="icon-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
             <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
         </symbol>
+        
+        <!-- Upload -->
         <symbol id="icon-upload" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
             <polyline points="17 8 12 3 7 8"/>
             <line x1="12" y1="3" x2="12" y2="15"/>
         </symbol>
+        
+        <!-- Ban -->
         <symbol id="icon-ban" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="12" cy="12" r="10"/>
             <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/>
         </symbol>
+        
+        <!-- Award -->
         <symbol id="icon-award" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="12" cy="8" r="7"/>
             <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/>
         </symbol>
+        
+        <!-- Target -->
         <symbol id="icon-target" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="12" cy="12" r="10"/>
             <circle cx="12" cy="12" r="6"/>
             <circle cx="12" cy="12" r="2"/>
         </symbol>
+        
+        <!-- Zap -->
         <symbol id="icon-zap" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
-        </symbol>
-        <symbol id="icon-gem" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <polygon points="6 3 18 3 22 9 12 22 2 9"/>
-            <path d="M2 9h20"/>
-            <path d="M12 22 6 3"/>
-            <path d="M12 22 18 3"/>
-        </symbol>
-        <symbol id="icon-youtube" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-        </symbol>
-        <symbol id="icon-telegram" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
-        </symbol>
-        <symbol id="icon-instagram" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zm0 10.162a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
         </symbol>
     </defs>
 </svg>
 
 <div class="app">
 
-    <!-- TOP BAR -->
+    <!-- ============================================
+         TOP BAR
+         ============================================ -->
     <div class="top-bar">
         <div class="top-bar-content">
             <div class="brand" onclick="goToPage('profilePage')">
@@ -2902,7 +2749,9 @@
         </div>
     </div>
 
-    <!-- DASHBOARD -->
+    <!-- ============================================
+         DASHBOARD
+         ============================================ -->
     <section class="page active" id="dashboardPage">
         <div class="container">
             <div class="category-tabs" style="padding-top: 8px;">
@@ -2936,7 +2785,9 @@
         </div>
     </section>
 
-    <!-- BALANCE TOP-UP -->
+    <!-- ============================================
+         BALANCE TOP-UP
+         ============================================ -->
     <section class="page" id="balanceTopUpPage">
         <div class="container">
             <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 24px;">
@@ -2982,7 +2833,9 @@
         </div>
     </section>
 
-    <!-- BALANCE PAYMENT -->
+    <!-- ============================================
+         BALANCE PAYMENT
+         ============================================ -->
     <section class="page" id="balancePaymentPage">
         <div class="container">
             <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 24px;">
@@ -3065,7 +2918,9 @@
         </div>
     </section>
 
-    <!-- CREATE AD -->
+    <!-- ============================================
+         CREATE AD
+         ============================================ -->
     <section class="page" id="createAdPage">
         <div class="container">
             <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 24px;">
@@ -3169,13 +3024,12 @@
                 <div class="media-preview-grid" id="mediaPreviewGrid"></div>
             </div>
 
-            <!-- STEP 3: Account Info - YANGILANGAN -->
+            <!-- STEP 3: Account Info -->
             <div class="create-step" data-step="3">
                 <div class="section-title">Akkaunt ma'lumotlari</div>
                 <div class="section-subtitle">Akkaunt haqida to'liq ma'lumot kiriting</div>
 
                 <div style="margin-top: 20px;">
-                    <!-- Asosiy ma'lumotlar -->
                     <div class="account-form-card">
                         <div class="account-form-title">
                             <div class="account-form-title-icon">
@@ -3187,17 +3041,9 @@
                         <div class="form-group">
                             <label class="form-label">
                                 <svg><use href="#icon-trending-up"/></svg>
-                                LVL: Akkaunt darajasi
+                                LVL: Akkaunt urvini
                             </label>
-                            <input class="form-input" id="accLevel" inputmode="numeric" placeholder="Masalan: 75">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label class="form-label">
-                                <svg><use href="#icon-gem"/></svg>
-                                Koleksiya darajasi
-                            </label>
-                            <input class="form-input" id="accCollection" inputmode="numeric" placeholder="Masalan: 30">
+                            <input class="form-input" id="accLevel" placeholder="Masalan: 75">
                         </div>
                         
                         <div class="form-group">
@@ -3205,19 +3051,58 @@
                                 <svg><use href="#icon-award"/></svg>
                                 RP: Nechinchi sezondan boshlangan
                             </label>
-                            <input class="form-input" id="accRP" placeholder="Masalan: 2S sezon">
+                            <input class="form-input" id="accRP" placeholder="Masalan: 15-sezon">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">
+                                <svg><use href="#icon-package"/></svg>
+                                Kiymlar
+                            </label>
+                            <input class="form-input" id="accClothes" placeholder="Masalan: 150+ kiyim, 20 mifik">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">
+                                <svg><use href="#icon-target"/></svg>
+                                Avtomatga Skin
+                            </label>
+                            <input class="form-input" id="accGunSkin" placeholder="Masalan: 77">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">
+                                <svg><use href="#icon-zap"/></svg>
+                                Parashutga Skin
+                            </label>
+                            <input class="form-input" id="accParachuteSkin" placeholder="Masalan: 7">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">
+                                <svg><use href="#icon-package"/></svg>
+                                Papkaga Skin
+                            </label>
+                            <input class="form-input" id="accBagSkin" placeholder="Masalan: 7">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">
+                                <svg><use href="#icon-award"/></svg>
+                                Dostajeniya
+                            </label>
+                            <input class="form-input" id="accAchievement" placeholder="Masalan: 777+">
                         </div>
                         
                         <div class="form-group">
                             <label class="form-label">
                                 <svg><use href="#icon-crown"/></svg>
-                                Mifik kiyimlar (max 300 ta)
+                                Titulari
                             </label>
-                            <input class="form-input" id="accMythic" inputmode="numeric" placeholder="Masalan: 120+ mifik kiyimlar" maxlength="300">
+                            <input class="form-input" id="accTitles" placeholder="Masalan: videoda">
                         </div>
                     </div>
 
-                    <!-- Redkiy skinlar -->
                     <div class="account-form-card">
                         <div class="account-form-title">
                             <div class="account-form-title-icon">
@@ -3228,120 +3113,34 @@
                         
                         <div class="form-group">
                             <label class="form-label">
-                                <svg><use href="#icon-gem"/></svg>
-                                Redkiy skinlar ro'yxati
+                                <svg><use href="#icon-fire"/></svg>
+                                Qo'shimcha
                             </label>
-                            <textarea class="form-textarea" id="accRareSkins" placeholder="Masalan:&#10;Bape&#10;Misiya A&#10;Misiya B" style="min-height: 150px;"></textarea>
+                            <textarea class="form-textarea" id="accExtra" placeholder="Lednik 7 lvl&#10;M24 4 lvl"></textarea>
                         </div>
                     </div>
 
-                    <!-- Kuchaytirilgan qurollar -->
                     <div class="account-form-card">
                         <div class="account-form-title">
                             <div class="account-form-title-icon">
-                                <svg><use href="#icon-zap"/></svg>
+                                <svg><use href="#icon-phone"/></svg>
                             </div>
-                            <span>Kuchaytirilgan qurollar</span>
+                            <span>Qo'shimcha</span>
                         </div>
                         
                         <div class="form-group">
                             <label class="form-label">
-                                <svg><use href="#icon-target"/></svg>
-                                Qurollar nomi (to'liq)
-                            </label>
-                            <textarea class="form-textarea" id="accWeapons" placeholder="Masalan:&#10;Lednik 7 full&#10;Shut 4" style="min-height: 150px;"></textarea>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label class="form-label">
-                                <svg><use href="#icon-package"/></svg>
-                                Jami qurollar soni
-                            </label>
-                            <input class="form-input" id="accWeaponsCount" inputmode="numeric" placeholder="Masalan: 35">
-                        </div>
-                    </div>
-
-                    <!-- Ulangan tizimlar -->
-                    <div class="account-form-card">
-                        <div class="account-form-title">
-                            <div class="account-form-title-icon">
                                 <svg><use href="#icon-link"/></svg>
-                            </div>
-                            <span>Akkaunt nimaga ulangan?</span>
-                        </div>
-                        
-                        <div class="checkbox-grid" id="linkedGrid">
-                            <div class="checkbox-item" data-value="Google">
-                                <div class="checkbox-box"><svg><use href="#icon-check"/></svg></div>
-                                <span>Google</span>
-                            </div>
-                            <div class="checkbox-item" data-value="PSN">
-                                <div class="checkbox-box"><svg><use href="#icon-check"/></svg></div>
-                                <span>PSN</span>
-                            </div>
-                            <div class="checkbox-item" data-value="Facebook">
-                                <div class="checkbox-box"><svg><use href="#icon-check"/></svg></div>
-                                <span>Facebook</span>
-                            </div>
-                            <div class="checkbox-item" data-value="Twitter">
-                                <div class="checkbox-box"><svg><use href="#icon-check"/></svg></div>
-                                <span>Twitter</span>
-                            </div>
-                            <div class="checkbox-item" data-value="W-Kontakt">
-                                <div class="checkbox-box"><svg><use href="#icon-check"/></svg></div>
-                                <span>W-Kontakt</span>
-                            </div>
-                            <div class="checkbox-item" data-value="Email">
-                                <div class="checkbox-box"><svg><use href="#icon-check"/></svg></div>
-                                <span>Email</span>
-                            </div>
-                            <div class="checkbox-item" data-value="Telefon raqam">
-                                <div class="checkbox-box"><svg><use href="#icon-check"/></svg></div>
-                                <span>Telefon raqam</span>
-                            </div>
-                            <div class="checkbox-item" data-value="Apple ID">
-                                <div class="checkbox-box"><svg><use href="#icon-check"/></svg></div>
-                                <span>Apple ID</span>
-                            </div>
-                            <div class="checkbox-item" data-value="Discord">
-                                <div class="checkbox-box"><svg><use href="#icon-check"/></svg></div>
-                                <span>Discord</span>
-                            </div>
-                            <div class="checkbox-item" data-value="Telegram">
-                                <div class="checkbox-box"><svg><use href="#icon-check"/></svg></div>
-                                <span>Telegram</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Valyuta va narx -->
-                    <div class="account-form-card">
-                        <div class="account-form-title">
-                            <div class="account-form-title-icon">
-                                <svg><use href="#icon-dollar"/></svg>
-                            </div>
-                            <span>Valyuta va narx</span>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label class="form-label">
-                                <svg><use href="#icon-dollar"/></svg>
-                                Qaysi valyutada sotmoqchisiz?
+                                Ulangan
                             </label>
-                            <div class="currency-selector" id="currencySelector">
-                                <button class="currency-btn active" data-currency="UZS">
-                                    <span class="currency-flag">🇺🇿</span>
-                                    <span class="currency-name">So'm</span>
-                                </button>
-                                <button class="currency-btn" data-currency="USD">
-                                    <span class="currency-flag">🇺🇸</span>
-                                    <span class="currency-name">Dollar</span>
-                                </button>
-                                <button class="currency-btn" data-currency="RUB">
-                                    <span class="currency-flag">🇷🇺</span>
-                                    <span class="currency-name">Rubl</span>
-                                </button>
-                            </div>
+                            <select class="form-select" id="accLinked">
+                                <option value="">Tanlang</option>
+                                <option value="Telegram">Telegram</option>
+                                <option value="Google">Google</option>
+                                <option value="Facebook">Facebook</option>
+                                <option value="Game Center">Game Center</option>
+                                <option value="Boshqa">Boshqa</option>
+                            </select>
                         </div>
                         
                         <div class="form-group">
@@ -3406,7 +3205,9 @@
         </div>
     </section>
 
-    <!-- MY ADS -->
+    <!-- ============================================
+         MY ADS
+         ============================================ -->
     <section class="page" id="myAdsPage">
         <div class="container">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
@@ -3446,7 +3247,9 @@
         </div>
     </section>
 
-    <!-- CHAT -->
+    <!-- ============================================
+         CHAT
+         ============================================ -->
     <section class="page" id="chatPage">
         <div class="container">
             <div style="margin-bottom: 24px;">
@@ -3461,7 +3264,9 @@
         </div>
     </section>
 
-    <!-- PROFILE -->
+    <!-- ============================================
+         PROFILE
+         ============================================ -->
     <section class="page" id="profilePage">
         <div class="container">
             <div class="profile-card">
@@ -3498,20 +3303,7 @@
                 </div>
             </div>
 
-            <!-- Ijtimoiy tarmoqlar -->
-            <div class="social-links">
-                <a class="social-btn youtube" href="https://www.youtube.com/c/CardinalPubg" target="_blank" title="YouTube">
-                    <svg><use href="#icon-youtube"/></svg>
-                </a>
-                <a class="social-btn telegram" href="https://t.me/Cardinal_PUBG" target="_blank" title="Telegram">
-                    <svg><use href="#icon-telegram"/></svg>
-                </a>
-                <a class="social-btn instagram" href="https://instagram.com/cardinal_pubg" target="_blank" title="Instagram">
-                    <svg><use href="#icon-instagram"/></svg>
-                </a>
-            </div>
-
-            <div class="profile-menu" style="margin-top: 24px;">
+            <div class="profile-menu">
                 <button class="profile-menu-item" onclick="openProfileEdit()">
                     <div class="profile-menu-icon">
                         <svg><use href="#icon-user"/></svg>
@@ -3564,7 +3356,7 @@
                     </div>
                 </button>
 
-                <button class="profile-menu-item" onclick="showToast('Cardinal Reklama Bot v3.0')">
+                <button class="profile-menu-item" onclick="showToast('Cardinal Reklama Bot v2.0')">
                     <div class="profile-menu-icon">
                         <svg><use href="#icon-info"/></svg>
                     </div>
@@ -3580,7 +3372,9 @@
         </div>
     </section>
 
-    <!-- ADMIN PANEL -->
+    <!-- ============================================
+         ADMIN PANEL
+         ============================================ -->
     <section class="page" id="adminPage">
         <div class="container">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
@@ -3701,7 +3495,9 @@
         </div>
     </section>
 
-    <!-- CHAT ROOM -->
+    <!-- ============================================
+         CHAT ROOM
+         ============================================ -->
     <div class="chat-room" id="chatRoom">
         <div class="chat-room-header">
             <button class="chat-room-back" onclick="closeChatRoom()">
@@ -3727,7 +3523,9 @@
         </div>
     </div>
 
-    <!-- BOTTOM NAVIGATION -->
+    <!-- ============================================
+         BOTTOM NAVIGATION
+         ============================================ -->
     <nav class="bottom-navigation">
         <div class="bottom-navigation-inner">
             <button class="nav-item active" data-page="dashboardPage">
@@ -3768,7 +3566,9 @@
     </nav>
 </div>
 
-<!-- MODALS -->
+<!-- ============================================
+     MODALS
+     ============================================ -->
 <div class="modal-overlay" id="profileEditModal">
     <div class="modal">
         <div class="modal-header">
@@ -3847,6 +3647,26 @@
     </div>
 </div>
 
+<div class="modal-overlay" id="messageEditModal">
+    <div class="modal">
+        <div class="modal-header">
+            <div class="modal-title">Xabarni tahrirlash</div>
+            <button class="modal-close" onclick="closeModal('messageEditModal')">
+                <svg><use href="#icon-x"/></svg>
+            </button>
+        </div>
+
+        <div class="form-group">
+            <textarea class="form-textarea" id="editMessageText"></textarea>
+        </div>
+
+        <button class="btn btn-primary btn-block" onclick="saveEditedMessage()">
+            <svg><use href="#icon-save"/></svg>
+            Saqlash
+        </button>
+    </div>
+</div>
+
 <div class="toast-container" id="toastContainer"></div>
 <div class="loading-overlay" id="loadingOverlay">
     <div class="loading-spinner"></div>
@@ -3854,7 +3674,7 @@
 
 <script>
 /* =========================================================
-   CONFIG
+   ⚠️ API URL
    ========================================================= */
 const API_URL = "https://cardinalgithub-production.up.railway.app";
 
@@ -3865,12 +3685,7 @@ const CONFIG = {
     TARIFF_PRICES: { "1": 19000, "2": 9000, "3": 25000, "4": 29000 },
     AD_LIFETIME_DAYS: 7,
     MAX_PHOTOS: 10,
-    MAX_VIDEO_MINUTES: 10,
-    CURRENCIES: {
-        UZS: { symbol: "so'm", flag: "🇺🇿", name: "So'm" },
-        USD: { symbol: "$", flag: "🇺🇸", name: "Dollar" },
-        RUB: { symbol: "₽", flag: "🇷🇺", name: "Rubl" }
-    }
+    MAX_VIDEO_MINUTES: 10
 };
 
 /* =========================================================
@@ -3919,15 +3734,13 @@ let APP_DATA = {
     pendingTopUpAmount: 0,
     pendingReceipt: null,
     pendingAvatar: null,
+    editingMessageId: null,
     myReactions: {},
     createData: {
         mediaList: [],
         mediaType: null,
         videoFile: null,
-        account: {
-            linked: [],
-            currency: "UZS"
-        },
+        account: {},
         preview: null
     },
     profile: {
@@ -4048,10 +3861,8 @@ function mapAd(ad) {
         images: images,
         image: images[0],
         video: ad.video_url,
-        mediaType: ad.media_type,
         type: ad.ad_type || "STANDARD",
         price: ad.price,
-        currency: ad.currency || "UZS",
         location: ad.location || "",
         views: ad.views || 0,
         likes: ad.likes || 0,
@@ -4110,20 +3921,10 @@ async function init() {
 function handleUrlParams() {
     const params = new URLSearchParams(window.location.search);
     const open = params.get("open");
-    const action = params.get("action");
 
     if (open === "ad") {
         const adId = params.get("ad_id");
-        if (adId) {
-            setTimeout(async () => {
-                await loadAdsFromAPI();
-                if (action === "chat") {
-                    startChatWithAdmin(adId);
-                } else {
-                    openAdDetail(adId);
-                }
-            }, 800);
-        }
+        if (adId) setTimeout(() => openAdDetail(adId), 800);
     } else if (open === "create") {
         setTimeout(() => startCreateAd(), 800);
     }
@@ -4275,38 +4076,8 @@ function setupEventListeners() {
         }
     });
 
-    // Faqat son kiritish
-    ["accLevel", "accCollection", "accMythic", "accWeaponsCount"].forEach(id => {
-        document.getElementById(id)?.addEventListener("input", (e) => {
-            e.target.value = e.target.value.replace(/\D/g, "");
-        });
-    });
-
     document.getElementById("accPrice")?.addEventListener("input", (e) => {
         e.target.value = e.target.value.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, " ");
-    });
-
-    // Checkbox tugmalar
-    document.querySelectorAll("#linkedGrid .checkbox-item").forEach(item => {
-        item.addEventListener("click", () => {
-            item.classList.toggle("checked");
-            const value = item.dataset.value;
-            const idx = APP_DATA.createData.account.linked.indexOf(value);
-            if (idx > -1) {
-                APP_DATA.createData.account.linked.splice(idx, 1);
-            } else {
-                APP_DATA.createData.account.linked.push(value);
-            }
-        });
-    });
-
-    // Valyuta tugmalar
-    document.querySelectorAll("#currencySelector .currency-btn").forEach(btn => {
-        btn.addEventListener("click", () => {
-            document.querySelectorAll("#currencySelector .currency-btn").forEach(b => b.classList.remove("active"));
-            btn.classList.add("active");
-            APP_DATA.createData.account.currency = btn.dataset.currency;
-        });
     });
 }
 
@@ -4545,14 +4316,6 @@ function copyCard() {
 }
 
 /* =========================================================
-   CURRENCY HELPER
-   ========================================================= */
-function formatPriceWithCurrency(price, currency = "UZS") {
-    const curr = CONFIG.CURRENCIES[currency] || CONFIG.CURRENCIES.UZS;
-    return `${Number(price).toLocaleString("uz-UZ")} ${curr.symbol}`;
-}
-
-/* =========================================================
    DASHBOARD
    ========================================================= */
 function renderDashboard(search = "", category = "ALL") {
@@ -4606,7 +4369,7 @@ function renderDashboard(search = "", category = "ALL") {
                     <div class="ad-title">${escapeHTML(ad.title)}</div>
                     <div class="ad-meta">${icon('map-pin')} ${escapeHTML(ad.location || "-")}</div>
                     <div class="ad-meta">${icon('eye')} ${ad.views} ko'rishlar</div>
-                    <div class="ad-price">${formatPriceWithCurrency(ad.price, ad.currency)}</div>
+                    <div class="ad-price">${formatPrice(ad.price)}</div>
                     
                     <div class="ad-reactions" onclick="event.stopPropagation();">
                         <button class="reaction-btn ${myReaction === 'like' ? 'liked' : ''}" onclick="reactAd('${ad.id}', 'like')">
@@ -4680,16 +4443,6 @@ function openAdDetail(id) {
         </div>
     ` : "";
 
-    // Ulangan tizimlar
-    let linkedHTML = "-";
-    if (ad.account?.linked) {
-        if (Array.isArray(ad.account.linked)) {
-            linkedHTML = ad.account.linked.join(", ") || "-";
-        } else {
-            linkedHTML = ad.account.linked;
-        }
-    }
-
     document.getElementById("adDetailContent").innerHTML = `
         <div class="ad-detail-gallery" id="adGallery" data-ad-id="${ad.id}">
             ${galleryHTML}
@@ -4700,7 +4453,7 @@ function openAdDetail(id) {
         <div style="margin-top: 24px;">
             <h2 style="font-size: 26px; font-weight: 900;">${escapeHTML(ad.title)}</h2>
             <div style="background: linear-gradient(135deg, #7C5CFC, #FF6B9D); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 24px; font-weight: 900; margin-top: 10px;">
-                ${formatPriceWithCurrency(ad.price, ad.currency)}
+                ${formatPrice(ad.price)}
             </div>
             
             <div class="ad-reactions" style="margin-top: 18px;">
@@ -4714,15 +4467,23 @@ function openAdDetail(id) {
             
             <div class="info-list">
                 <div class="info-row"><span>${icon('trending-up')} LVL</span><span>${escapeHTML(ad.account?.level || "-")}</span></div>
-                <div class="info-row"><span>${icon('gem')} Koleksiya</span><span>${escapeHTML(ad.account?.collection || "-")}</span></div>
                 <div class="info-row"><span>${icon('award')} RP</span><span>${escapeHTML(ad.account?.rp || "-")}</span></div>
-                <div class="info-row"><span>${icon('crown')} Mifik kiyimlar</span><span>${escapeHTML(ad.account?.mythic || "-")}</span></div>
-                <div class="info-row"><span>${icon('gem')} Redkiy skinlar</span><span>${escapeHTML(ad.account?.rare_skins || "-")}</span></div>
-                <div class="info-row"><span>${icon('zap')} Qurollar</span><span>${escapeHTML(ad.account?.weapons || "-")}</span></div>
-                <div class="info-row"><span>${icon('package')} Jami qurollar</span><span>${escapeHTML(ad.account?.weapons_count || "-")}</span></div>
-                <div class="info-row"><span>${icon('link')} Ulangan</span><span>${escapeHTML(linkedHTML)}</span></div>
+                <div class="info-row"><span>${icon('package')} Kiymlar</span><span>${escapeHTML(ad.account?.clothes || "-")}</span></div>
+                <div class="info-row"><span>${icon('target')} Avtomatga Skin</span><span>${escapeHTML(ad.account?.gunSkin || "-")}</span></div>
+                <div class="info-row"><span>${icon('zap')} Parashutga Skin</span><span>${escapeHTML(ad.account?.parachuteSkin || "-")}</span></div>
+                <div class="info-row"><span>${icon('package')} Papkaga Skin</span><span>${escapeHTML(ad.account?.bagSkin || "-")}</span></div>
+                <div class="info-row"><span>${icon('award')} Dostajeniya</span><span>${escapeHTML(ad.account?.achievement || "-")}</span></div>
+                <div class="info-row"><span>${icon('crown')} Titulari</span><span>${escapeHTML(ad.account?.titles || "-")}</span></div>
+                <div class="info-row"><span>${icon('link')} Ulangan</span><span>${escapeHTML(ad.account?.linked || "-")}</span></div>
                 <div class="info-row"><span>${icon('map-pin')} Manzil</span><span>${escapeHTML(ad.location || "-")}</span></div>
             </div>
+            
+            ${ad.account?.extra ? `
+                <div style="margin-top: 20px; padding: 18px; background: var(--bg); border-radius: 18px;">
+                    <div style="font-size: 12px; color: var(--muted); margin-bottom: 8px; font-weight: 700; display: flex; align-items: center; gap: 6px;">${icon('fire')} Qo'shimcha</div>
+                    <div style="font-size: 14px; line-height: 1.7; font-weight: 500;">${escapeHTML(ad.account.extra)}</div>
+                </div>
+            ` : ""}
             
             <button class="btn btn-success btn-block" style="margin-top: 24px;" onclick="startChatWithAdmin('${ad.id}')">
                 ${icon('chat')} Admin bilan savdo
@@ -4831,7 +4592,7 @@ function renderMyAds(filter = "ALL") {
             <img class="my-ad-image" src="${ad.image}" alt="" onerror="this.src='https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80'">
             <div class="my-ad-info">
                 <div class="my-ad-title">${escapeHTML(ad.title)}</div>
-                <div class="my-ad-meta">${icon('dollar')} ${formatPriceWithCurrency(ad.price, ad.currency)}</div>
+                <div class="my-ad-meta">${icon('dollar')} ${formatPrice(ad.price)}</div>
                 <div class="my-ad-meta">${icon('eye')} ${ad.views} · ${icon('thumbs-up')} ${ad.likes} · ${icon('thumbs-down')} ${ad.dislikes}</div>
                 <div class="my-ad-meta">${icon('calendar')} ${new Date(ad.createdAt).toLocaleDateString("uz-UZ")}${daysLeft !== null ? ` · ${icon('clock')} ${daysLeft} kun qoldi` : ""}</div>
                 <span class="status ${(ad.status || 'PENDING').toLowerCase()}">
@@ -4859,7 +4620,7 @@ function startCreateAd() {
         mediaList: [], 
         mediaType: null, 
         videoFile: null, 
-        account: { linked: [], currency: "UZS" }, 
+        account: {}, 
         preview: null 
     };
 
@@ -4873,21 +4634,14 @@ function startCreateAd() {
     document.getElementById("mediaPreviewGrid").innerHTML = "";
     document.getElementById("mediaInput").value = "";
 
-    // Reset all fields
-    ["accLevel", "accCollection", "accRP", "accMythic", "accRareSkins", "accWeapons", "accWeaponsCount", "accPrice"].forEach(id => {
+    ["accLevel", "accRP", "accClothes", "accGunSkin", "accParachuteSkin", "accBagSkin", "accAchievement", "accTitles", "accExtra", "accPrice"].forEach(id => {
         const el = document.getElementById(id);
         if (el) el.value = "";
     });
-    document.getElementById("accLocation").selectedIndex = 0;
-
-    // Reset checkboxes
-    document.querySelectorAll("#linkedGrid .checkbox-item").forEach(item => {
-        item.classList.remove("checked");
+    ["accLinked", "accLocation"].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.selectedIndex = 0;
     });
-
-    // Reset currency
-    document.querySelectorAll("#currencySelector .currency-btn").forEach(b => b.classList.remove("active"));
-    document.querySelector('#currencySelector .currency-btn[data-currency="UZS"]')?.classList.add("active");
 
     renderCreateStep();
     goToPage("createAdPage");
@@ -4946,14 +4700,15 @@ function validateCreateStep() {
 
         APP_DATA.createData.account = {
             level: document.getElementById("accLevel").value.trim(),
-            collection: document.getElementById("accCollection").value.trim(),
             rp: document.getElementById("accRP").value.trim(),
-            mythic: document.getElementById("accMythic").value.trim(),
-            rare_skins: document.getElementById("accRareSkins").value.trim(),
-            weapons: document.getElementById("accWeapons").value.trim(),
-            weapons_count: document.getElementById("accWeaponsCount").value.trim(),
-            linked: APP_DATA.createData.account.linked,
-            currency: APP_DATA.createData.account.currency,
+            clothes: document.getElementById("accClothes").value.trim(),
+            gunSkin: document.getElementById("accGunSkin").value.trim(),
+            parachuteSkin: document.getElementById("accParachuteSkin").value.trim(),
+            bagSkin: document.getElementById("accBagSkin").value.trim(),
+            achievement: document.getElementById("accAchievement").value.trim(),
+            titles: document.getElementById("accTitles").value.trim(),
+            extra: document.getElementById("accExtra").value.trim(),
+            linked: document.getElementById("accLinked").value,
             price: document.getElementById("accPrice").value.trim(),
             location: document.getElementById("accLocation").value
         };
@@ -5064,7 +4819,6 @@ function removeMediaAt(idx) {
 function renderAdPreview() {
     const data = APP_DATA.createData;
     const acc = data.account;
-    const curr = CONFIG.CURRENCIES[acc.currency] || CONFIG.CURRENCIES.UZS;
 
     let mediaHTML = "";
     if (data.mediaType === "video" && data.videoFile) {
@@ -5078,26 +4832,17 @@ function renderAdPreview() {
         `;
     }
 
-    let linkedText = "-";
-    if (Array.isArray(acc.linked) && acc.linked.length > 0) {
-        linkedText = acc.linked.join(", ");
-    }
-
     document.getElementById("adPreview").innerHTML = `
         <div class="preview-card">
             ${mediaHTML}
             <div class="preview-content">
-                <div class="preview-title">PUBG Mobile - ${escapeHTML(acc.level)} LVL</div>
-                <div class="preview-price">${Number(acc.price).toLocaleString("uz-UZ")} ${curr.symbol}</div>
+                <div class="preview-title">PUBG Mobile Akkaunt</div>
+                <div class="preview-price">${formatPrice(acc.price)}</div>
                 <div class="info-list">
                     <div class="info-row"><span>${icon('trending-up')} LVL</span><span>${escapeHTML(acc.level)}</span></div>
-                    <div class="info-row"><span>${icon('gem')} Koleksiya</span><span>${escapeHTML(acc.collection || "-")}</span></div>
                     <div class="info-row"><span>${icon('award')} RP</span><span>${escapeHTML(acc.rp)}</span></div>
-                    <div class="info-row"><span>${icon('crown')} Mifik</span><span>${escapeHTML(acc.mythic || "-")}</span></div>
-                    <div class="info-row"><span>${icon('gem')} Redkiy skinlar</span><span>${escapeHTML((acc.rare_skins || "-").substring(0, 50))}</span></div>
-                    <div class="info-row"><span>${icon('zap')} Qurollar</span><span>${escapeHTML((acc.weapons || "-").substring(0, 50))}</span></div>
-                    <div class="info-row"><span>${icon('package')} Jami qurollar</span><span>${escapeHTML(acc.weapons_count || "-")}</span></div>
-                    <div class="info-row"><span>${icon('link')} Ulangan</span><span>${escapeHTML(linkedText)}</span></div>
+                    <div class="info-row"><span>${icon('package')} Kiymlar</span><span>${escapeHTML(acc.clothes || "-")}</span></div>
+                    <div class="info-row"><span>${icon('link')} Ulangan</span><span>${escapeHTML(acc.linked || "-")}</span></div>
                     <div class="info-row"><span>${icon('map-pin')} Manzil</span><span>${escapeHTML(acc.location || "-")}</span></div>
                 </div>
             </div>
@@ -5119,13 +4864,11 @@ async function submitAd() {
 
     const adData = {
         title: `PUBG Mobile - ${acc.level} LVL`,
-        description: `Mifik: ${acc.mythic || 0} | Qurollar: ${acc.weapons_count || 0}`,
+        description: acc.extra || "Zo'r akkaunt!",
         images: data.mediaType === "image" ? data.mediaList : null,
         image_url: data.mediaType === "image" ? data.mediaList[0] : null,
         video_url: data.mediaType === "video" ? data.videoFile : null,
-        media_type: data.mediaType,
         price: parseInt(String(acc.price).replace(/\s/g, "")),
-        currency: acc.currency || "UZS",
         location: acc.location,
         account_data: acc,
         tariff: parseInt(APP_DATA.tariff)
@@ -5144,14 +4887,11 @@ async function submitAd() {
             APP_DATA.balance -= result.paid;
             updateBalanceDisplay();
             await loadMyAdsFromAPI();
-            showToast("Reklama yuborildi! Admin tasdiqlashini kuting.", "success");
+            showToast("Reklama yuborildi! 1 hafta davomida faol.", "success");
 
             APP_DATA.createStep = 1;
             APP_DATA.tariff = null;
-            APP_DATA.createData = { 
-                mediaList: [], mediaType: null, videoFile: null, 
-                account: { linked: [], currency: "UZS" }, preview: null 
-            };
+            APP_DATA.createData = { mediaList: [], mediaType: null, videoFile: null, account: {}, preview: null };
             await goToPage("myAdsPage");
         }
     } catch (e) {
@@ -5371,10 +5111,9 @@ async function renderAdminPanel() {
                         }
                         <div class="moderation-info">
                             <h3>${escapeHTML(adObj.title)}</h3>
-                            <div class="moderation-meta">${icon('dollar')} ${formatPriceWithCurrency(adObj.price, adObj.currency)}</div>
+                            <div class="moderation-meta">${icon('dollar')} ${formatPrice(adObj.price)}</div>
                             <div class="moderation-meta">${icon('map-pin')} ${escapeHTML(adObj.location || "-")}</div>
                             <div class="moderation-meta">${icon('package')} #${adObj.id}</div>
-                            <div class="moderation-meta">${icon('image')} ${adObj.images.length} ta rasm</div>
                         </div>
                     </div>
                     <div class="moderation-actions">
@@ -5396,7 +5135,7 @@ async function renderAdminPanel() {
                             <div class="topup-user">${escapeHTML(tx.first_name || '')} ${escapeHTML(tx.last_name || '')}</div>
                             <div style="font-size: 12px; color: var(--muted); margin-top: 4px;">+998${tx.phone || '?'}</div>
                         </div>
-                        <div class="topup-amount">${formatPriceWithCurrency(tx.amount, "UZS")}</div>
+                        <div class="topup-amount">${formatPrice(tx.amount)}</div>
                     </div>
                     ${tx.receipt_url ? `<img src="${tx.receipt_url}" class="topup-receipt" onerror="this.style.display='none'">` : ""}
                     <div class="topup-actions">
@@ -5416,7 +5155,7 @@ async function approveAd(adId) {
     showLoading();
     try {
         await apiCall("/api/admin/approve-ad", "POST", { admin_telegram_id: TELEGRAM_USER.id, ad_id: adId });
-        showToast("Tasdiqlandi! Kanalga joylashtirilmoqda...", "success");
+        showToast("Tasdiqlandi! 1 hafta faol bo'ladi.", "success");
         await renderAdminPanel();
     } catch (e) { showToast("Xatolik: " + e.message, "error"); }
     hideLoading();
@@ -5612,6 +5351,10 @@ function showToast(message, type = "") {
     toast.innerHTML = `${icon(iconName)} <span>${message}</span>`;
     container.appendChild(toast);
     setTimeout(() => toast.remove(), 3500);
+}
+
+function formatPrice(price) {
+    return Number(price).toLocaleString("uz-UZ") + " so'm";
 }
 
 function formatTime(dateStr) {
