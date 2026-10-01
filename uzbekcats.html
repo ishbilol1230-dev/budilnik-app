@@ -114,11 +114,6 @@ a{color:inherit;text-decoration:none}
   width:38px;height:30px;border-radius:11px;color:#60A5FA;
 }
 .nav-btn:active .nav-icon{transform:scale(.92)}
-
-/* Reklama tugmasi — KATTA va chiroyli */
-.nav-btn.nav-create{
-  position:relative;
-}
 .nav-btn.nav-create .nav-icon{
   width:56px;height:56px;border-radius:50%;
   background:linear-gradient(135deg,#3B82F6,#06B6D4);
@@ -134,9 +129,7 @@ a{color:inherit;text-decoration:none}
   pointer-events:none;
 }
 .nav-btn.nav-create .nav-icon svg{width:28px;height:28px;stroke-width:2.5}
-.nav-btn.nav-create span:last-child{
-  color:#60A5FA;font-weight:800;font-size:10px;margin-top:4px;
-}
+.nav-btn.nav-create span:last-child{color:#60A5FA;font-weight:800;font-size:10px;margin-top:4px}
 .nav-btn.nav-create:active .nav-icon{transform:scale(.9) rotate(90deg)}
 
 /* ============ HERO ============ */
@@ -163,7 +156,6 @@ a{color:inherit;text-decoration:none}
 @media(min-width:640px){.grid{grid-template-columns:repeat(3,1fr)}}
 @media(min-width:960px){.grid{grid-template-columns:repeat(4,1fr)}}
 
-/* ============ AD CARD — Video + Info ============ */
 .ad{
   background:var(--surface);border:1px solid var(--border);
   border-radius:var(--radius);overflow:hidden;cursor:pointer;
@@ -172,7 +164,6 @@ a{color:inherit;text-decoration:none}
 }
 .ad:active{transform:scale(.97);border-color:var(--border-3)}
 @media(hover:hover){.ad:hover{border-color:var(--border-2);transform:translateY(-2px);box-shadow:var(--shadow-lg)}}
-
 .ad-media{
   position:relative;aspect-ratio:4/5;
   background:linear-gradient(135deg,#0F1729,#141C30);
@@ -213,7 +204,6 @@ a{color:inherit;text-decoration:none}
   display:flex;align-items:center;gap:3px;box-shadow:0 4px 14px rgba(245,158,11,.4);
 }
 .ad-top svg{width:10px;height:10px}
-
 .ad-body{padding:12px 12px 14px;display:flex;flex-direction:column;gap:6px}
 .ad-title{font-size:13.5px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--text)}
 .ad-meta{font-size:11.5px;color:var(--text-3);display:flex;align-items:center;gap:4px;font-weight:500}
@@ -450,8 +440,6 @@ a{color:inherit;text-decoration:none}
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:-.02em;
 }
 .pstat-lbl{font-size:10px;color:var(--text-3);margin-top:2px;font-weight:600;text-transform:uppercase;letter-spacing:.4px}
-
-/* Menu */
 .menu{display:flex;flex-direction:column;gap:8px}
 .menu-item{
   display:flex;align-items:center;gap:14px;padding:14px 16px;
@@ -627,7 +615,6 @@ a{color:inherit;text-decoration:none}
 .feedback-del svg{width:15px;height:15px}
 .feedback-del:active{background:rgba(239,68,68,.2)}
 
-/* Star rating buttons */
 .rate-row{display:flex;gap:8px;margin-top:8px}
 .rate-btn{
   width:48px;height:48px;border-radius:14px;
@@ -750,16 +737,14 @@ a{color:inherit;text-decoration:none}
   <symbol id="i-trash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></symbol>
   <symbol id="i-camera" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></symbol>
   <symbol id="i-lvl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></symbol>
-  <symbol id="i-pkg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="16.5" y1="9.4" x2="7.5" y2="4.21"/><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></symbol>
+  <symbol id="i-target" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></symbol>
   <symbol id="i-award" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></symbol>
   <symbol id="i-shirt" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"/></symbol>
-  <symbol id="i-target" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></symbol>
   <symbol id="i-gift" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></symbol>
   <symbol id="i-car" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 17h2a1 1 0 0 0 1-1v-3l-1.5-4.5A2 2 0 0 0 18.6 7H5.4a2 2 0 0 0-1.9 1.5L2 13v3a1 1 0 0 0 1 1h2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></symbol>
   <symbol id="i-link" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></symbol>
   <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
   <symbol id="i-msg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></symbol>
-  <symbol id="i-msg-square" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></symbol>
   <symbol id="i-send" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></symbol>
   <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></symbol>
   <symbol id="i-ban" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></symbol>
@@ -769,7 +754,6 @@ a{color:inherit;text-decoration:none}
   <symbol id="i-zap" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></symbol>
   <symbol id="i-play" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20"/></symbol>
   <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></symbol>
-  <symbol id="i-doc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></symbol>
 </svg>
 
 <!-- APP -->
@@ -794,7 +778,7 @@ a{color:inherit;text-decoration:none}
     </div>
   </header>
 
-  <!-- PAGE: DASHBOARD -->
+  <!-- DASHBOARD -->
   <section class="page active" id="pageDashboard">
     <div class="container">
       <div class="hero">
@@ -811,7 +795,7 @@ a{color:inherit;text-decoration:none}
     </div>
   </section>
 
-  <!-- PAGE: SAVED -->
+  <!-- SAVED -->
   <section class="page" id="pageSaved">
     <div class="container">
       <div class="page-head">
@@ -825,7 +809,7 @@ a{color:inherit;text-decoration:none}
     </div>
   </section>
 
-  <!-- PAGE: CREATE AD -->
+  <!-- CREATE AD -->
   <section class="page" id="pageCreate">
     <div class="container">
       <div class="page-head">
@@ -837,14 +821,14 @@ a{color:inherit;text-decoration:none}
       </div>
       <div class="steps" id="steps"></div>
 
-      <!-- STEP 1: Tariff -->
+      <!-- STEP 1 -->
       <div class="step-page active" data-step="1">
         <div class="hero"><h2 class="hero-title" style="font-size:20px">Tarifni <span class="accent">tanlang</span></h2>
           <p class="hero-sub">Reklamangiz qayerda chiqishini tanlang</p></div>
         <div id="tariffList" style="margin-top:16px"></div>
       </div>
 
-      <!-- STEP 2: Video -->
+      <!-- STEP 2 -->
       <div class="step-page" data-step="2">
         <div class="hero"><h2 class="hero-title" style="font-size:20px">Video <span class="accent">yuklang</span></h2>
           <p class="hero-sub">MP4 formatda, max 200 MB, 10 daqiqagacha</p></div>
@@ -857,7 +841,7 @@ a{color:inherit;text-decoration:none}
         <div id="videoPreview"></div>
       </div>
 
-      <!-- STEP 3: Akkaunt info -->
+      <!-- STEP 3 -->
       <div class="step-page" data-step="3">
         <div class="hero"><h2 class="hero-title" style="font-size:20px">Akkaunt <span class="accent">ma'lumotlari</span></h2>
           <p class="hero-sub">Barcha maydonlarni to'ldiring</p></div>
@@ -873,7 +857,7 @@ a{color:inherit;text-decoration:none}
             <input class="input" id="accColl" inputmode="numeric" placeholder="Masalan: 56">
           </div>
           <div class="field">
-            <label class="label"><svg><use href="#i-award"/></svg>RP · Nechinchi sezondan boshlangan<span class="hint">max 50 harf</span></label>
+            <label class="label"><svg><use href="#i-award"/></svg>RP · Nechinchi sezondan<span class="hint">max 50 harf</span></label>
             <input class="input" id="accRP" maxlength="50" placeholder="Masalan: S2 sezondan">
           </div>
           <div class="field" style="margin-bottom:0">
@@ -956,7 +940,7 @@ a{color:inherit;text-decoration:none}
         </div>
       </div>
 
-      <!-- STEP 4: Preview -->
+      <!-- STEP 4 -->
       <div class="step-page" data-step="4">
         <div class="hero"><h2 class="hero-title" style="font-size:20px">Tekshiring va <span class="accent">tasdiqlang</span></h2>
           <p class="hero-sub">Ma'lumotlarni diqqat bilan ko'rib chiqing</p></div>
@@ -970,7 +954,7 @@ a{color:inherit;text-decoration:none}
     </div>
   </section>
 
-  <!-- PAGE: MY ADS (Reklamalarim) -->
+  <!-- MY ADS -->
   <section class="page" id="pageMyAds">
     <div class="container">
       <div class="page-head">
@@ -985,7 +969,7 @@ a{color:inherit;text-decoration:none}
     </div>
   </section>
 
-  <!-- PAGE: FEEDBACKS (Otziflar) -->
+  <!-- FEEDBACKS -->
   <section class="page" id="pageFeedbacks">
     <div class="container">
       <div class="page-head">
@@ -1000,7 +984,7 @@ a{color:inherit;text-decoration:none}
     </div>
   </section>
 
-  <!-- PAGE: PROFILE -->
+  <!-- PROFILE -->
   <section class="page" id="pageProfile">
     <div class="container">
       <div class="page-head">
@@ -1065,7 +1049,7 @@ a{color:inherit;text-decoration:none}
     </div>
   </section>
 
-  <!-- PAGE: ADMIN -->
+  <!-- ADMIN -->
   <section class="page" id="pageAdmin">
     <div class="container">
       <div class="page-head">
@@ -1086,12 +1070,14 @@ a{color:inherit;text-decoration:none}
         <button class="admin-tab" data-at="cards"><svg><use href="#i-credit"/></svg>Kartalar</button>
         <button class="admin-tab" data-at="users"><svg><use href="#i-users"/></svg>Users</button>
         <button class="admin-tab" data-at="feedbacks"><svg><use href="#i-star"/></svg>Otziflar</button>
+        <button class="admin-tab" data-at="userbot"><svg><use href="#i-phone"/></svg>Userbot</button>
         <button class="admin-tab" data-at="broadcast"><svg><use href="#i-send"/></svg>Xabar</button>
       </div>
       <div id="atAds"></div>
       <div id="atCards" class="hidden"></div>
       <div id="atUsers" class="hidden"></div>
       <div id="atFeedbacks" class="hidden"></div>
+      <div id="atUserbot" class="hidden"></div>
       <div id="atBroadcast" class="hidden">
         <div class="card-box">
           <div class="card-box-title"><div class="card-box-ic"><svg><use href="#i-send"/></svg></div>Barcha foydalanuvchilarga xabar</div>
@@ -1102,7 +1088,7 @@ a{color:inherit;text-decoration:none}
     </div>
   </section>
 
-  <!-- PAGE: TOPUP (alohida sahifa) -->
+  <!-- TOPUP -->
   <section class="page" id="pageTopup">
     <div class="container">
       <div class="page-head">
@@ -1113,7 +1099,6 @@ a{color:inherit;text-decoration:none}
         </div>
       </div>
 
-      <!-- STEP 1 -->
       <div id="topupStep1" class="mt-16">
         <div class="card-box">
           <div class="card-box-title">
@@ -1135,36 +1120,27 @@ a{color:inherit;text-decoration:none}
             </div>
           </div>
         </div>
-
-        <div class="pay-note">
-          ⚡ To'lov <b>5 daqiqa</b> ichida amalga oshirilishi kerak
-        </div>
-
+        <div class="pay-note">⚡ To'lov <b>5 daqiqa</b> ichida amalga oshirilishi kerak</div>
         <button class="btn btn-primary btn-block mt-16" id="topupBtn" onclick="topupSend()" disabled>
           <svg><use href="#i-chev-r"/></svg>
           Davom etish
         </button>
       </div>
 
-      <!-- STEP 2 -->
       <div id="topupStep2" class="hidden">
         <div class="pay-card">
           <div class="pay-card-lbl">To'lov uchun karta</div>
           <div class="pay-card-num" id="payCard">----</div>
           <div class="pay-card-amt">Summa: <b id="payAmt">0</b></div>
         </div>
-
         <button class="btn btn-secondary btn-block mt-16" onclick="copyPayCard()">
           <svg><use href="#i-copy"/></svg>
           Karta raqamini nusxalash
         </button>
-
         <div class="pay-timer" id="payTimer">05:00</div>
-
         <div class="pay-note">
-          ✅ Pul o'tkazgach <b>hech narsa qilish shart emas</b> — tizim avtomatik tekshiradi va balansingizni to'ldiradi
+          ✅ Pul o'tkazgach <b>hech narsa qilish shart emas</b> — tizim avtomatik tekshiradi
         </div>
-
         <div class="card-box" style="margin-top:14px">
           <div class="card-box-title">
             <div class="card-box-ic"><svg><use href="#i-info"/></svg></div>
@@ -1177,7 +1153,6 @@ a{color:inherit;text-decoration:none}
             4. Sahifa yangilanadi
           </div>
         </div>
-
         <button class="btn btn-secondary btn-block mt-16" onclick="closeTopup()">
           <svg><use href="#i-x"/></svg>
           Bekor qilish
@@ -1186,7 +1161,7 @@ a{color:inherit;text-decoration:none}
     </div>
   </section>
 
-  <!-- NAV (5 ta) -->
+  <!-- NAV -->
   <nav class="nav">
     <div class="nav-in">
       <button class="nav-btn active" data-nav="pageDashboard"><div class="nav-icon"><svg><use href="#i-home"/></svg></div><span>Asosiy</span></button>
@@ -1245,7 +1220,7 @@ a{color:inherit;text-decoration:none}
 // =========================================================
 const API_URL = "https://cardinalgithub-production.up.railway.app";
 const BOT_LINK = "https://t.me/CardinalReklama_Bot";
-const ADMIN_BOT_LINK = "https://t.me/CardinalReklama_Bot";
+const USERBOT_BOT = "CardXabarBot";
 
 // =========================================================
 // STATE
@@ -1263,6 +1238,7 @@ let S = {
   topupTimer:null, topupPoll:null,
   fbRating:5,
 };
+let UB_PHONE = null;
 
 // =========================================================
 // HELPERS
@@ -1282,7 +1258,7 @@ function toast(msg, type="info"){
   const ic = type==="success" ? "i-check-circle" : type==="error" ? "i-info" : "i-info";
   t.innerHTML = `${svg(ic)}<span>${esc(msg)}</span>`;
   w.appendChild(t);
-  setTimeout(() => t.remove(), 3500);
+  setTimeout(() => t.remove(), 3200);
 }
 
 function openModal(id){ $(id).classList.add("active"); document.body.style.overflow = "hidden" }
@@ -1299,27 +1275,20 @@ async function api(path, method="GET", body=null, auth=true){
   return d;
 }
 
-// Narxni valyutaga qarab formatlash
 const CURRENCIES = [
   {code:"UZS", flag:"🇺🇿", name:"So'm", sym:"so'm", label:"Akkauntiz narxini yozing", placeholder:"400 000"},
   {code:"USD", flag:"🇺🇸", name:"Dollar", sym:"$", label:"Akkauntiz narxini yozing", placeholder:"80"},
   {code:"RUB", flag:"🇷🇺", name:"Rubl", sym:"₽", label:"Akkauntiz narxini yozing", placeholder:"7 500"},
 ];
 
-function getCur(code){
-  return CURRENCIES.find(c => c.code === code) || CURRENCIES[0];
-}
+function getCur(code){ return CURRENCIES.find(c => c.code === code) || CURRENCIES[0] }
 
 function fmtPrice(price, cur="UZS"){
   const c = getCur(cur);
   const n = Number(price)||0;
-  if(c.code === "UZS"){
-    return `${num(n)} so'm`;
-  } else if(c.code === "USD"){
-    return `${n}$`;
-  } else if(c.code === "RUB"){
-    return `${num(n)} ₽`;
-  }
+  if(c.code === "UZS") return `${num(n)} so'm`;
+  if(c.code === "USD") return `${n}$`;
+  if(c.code === "RUB") return `${num(n)} ₽`;
   return `${num(n)} ${c.sym}`;
 }
 
@@ -1333,6 +1302,20 @@ function go(pageId){
   if(pageId === "pageProfile") renderProfile();
   if(pageId === "pageAdmin") renderAdmin();
   if(pageId === "pageFeedbacks") renderFeedbacks();
+}
+
+function formatTime(dateStr){
+  if(!dateStr) return "";
+  try{
+    const d = new Date(dateStr);
+    const now = new Date();
+    const diff = Math.floor((now - d) / 1000);
+    if(diff < 60) return "hozir";
+    if(diff < 3600) return `${Math.floor(diff/60)} daqiqa oldin`;
+    if(diff < 86400) return `${Math.floor(diff/3600)} soat oldin`;
+    if(diff < 604800) return `${Math.floor(diff/86400)} kun oldin`;
+    return d.toLocaleDateString("uz-UZ");
+  } catch { return "" }
 }
 
 // =========================================================
@@ -1369,9 +1352,6 @@ async function initAuth(){
   hide();
 }
 
-// =========================================================
-// TOPBAR
-// =========================================================
 function updateTopbar(){
   $("balVal").innerText = num(S.balance);
   if(USER){
@@ -1444,10 +1424,7 @@ async function openAd(id){
     const isSaved = a.is_saved === true;
 
     const linked = Array.isArray(acc.linked) ? acc.linked : [];
-    const linkNames = {
-      google:"Google", facebook:"Facebook", twitter:"Twitter/X", vk:"VKontakte",
-      email:"Email", phone:"Telefon", apple:"Apple ID", discord:"Discord"
-    };
+    const linkNames = {google:"Google", facebook:"Facebook", twitter:"Twitter/X", vk:"VKontakte", email:"Email", phone:"Telefon", apple:"Apple ID", discord:"Discord"};
     const linkedTxt = linked.map(x => linkNames[x] || x).join(", ") || "-";
 
     const skins = Array.isArray(acc.rare_skins) ? acc.rare_skins : [];
@@ -1459,10 +1436,8 @@ async function openAd(id){
     if(a.video_file_id){
       html += `<video class="detail-video" src="${API_URL}/api/ad/${a.id}/video" controls playsinline></video>`;
     }
-
     html += `<h2 class="detail-title">PUBG Mobile · ${esc(acc.level||"?")} LVL</h2>`;
     html += `<div class="detail-price">${fmtPrice(a.price, cur)}</div>`;
-
     html += `<div class="detail-actions">
       <button class="detail-heart ${isSaved?'saved':''}" id="detailHeart" onclick="toggleSaveDetail(${a.id})">${svg("i-heart")}</button>
       <button class="btn btn-primary" onclick="advertiseBot()">${svg("i-mega")}Sotuvchi bilan bog'lanish</button>
@@ -1524,7 +1499,7 @@ function toggleSaveDetail(id){
 }
 
 // =========================================================
-// SAVE / HEART
+// SAVE
 // =========================================================
 async function toggleSave(adId, btn){
   if(!USER) return;
@@ -1532,7 +1507,6 @@ async function toggleSave(adId, btn){
     const r = await api("/api/toggle-save", "POST", {
       ad_id: adId, telegram_id: USER.telegram_id
     });
-
     if(btn) btn.classList.toggle("saved", r.saved);
 
     const find = (arr) => arr.find(x => x.id === adId);
@@ -1548,7 +1522,6 @@ async function toggleSave(adId, btn){
       toast("Saqlanganlardan olib tashlandi");
       S.saved = S.saved.filter(x => x.id !== adId);
     }
-
     renderAds();
     renderSaved();
   }catch(e){
@@ -1589,11 +1562,8 @@ function renderProfile(){
   $("profBal").innerText = num(S.balance);
   $("profSpent").innerText = num(S.spent);
   $("profAds").innerText = S.myAds.length;
-  if(S.avatar){
-    $("profAv").innerHTML = `<img src="${S.avatar}" alt="">`;
-  }else{
-    $("profAv").innerText = (USER.first_name || "U").slice(0,1).toUpperCase();
-  }
+  if(S.avatar) $("profAv").innerHTML = `<img src="${S.avatar}" alt="">`;
+  else $("profAv").innerText = (USER.first_name || "U").slice(0,1).toUpperCase();
 }
 
 function openEditProfile(){
@@ -1609,13 +1579,10 @@ async function saveProfile(){
   show();
   try{
     await api("/api/update-profile", "POST", {
-      telegram_id: USER.telegram_id,
-      first_name: f, last_name: l
+      telegram_id: USER.telegram_id, first_name: f, last_name: l
     });
-    USER.first_name = f;
-    USER.last_name = l;
-    updateTopbar();
-    renderProfile();
+    USER.first_name = f; USER.last_name = l;
+    updateTopbar(); renderProfile();
     closeModal("mProfile");
     toast("Profil saqlandi", "success");
   }catch(e){ toast(e.message, "error") }
@@ -1628,7 +1595,7 @@ function openEditAv(){
   input.onchange = async (e) => {
     const f = e.target.files[0];
     if(!f) return;
-    if(f.size > 2 * 1024 * 1024){ toast("Rasm 2 MB dan kichik bo'lishi kerak", "error"); return }
+    if(f.size > 2 * 1024 * 1024){ toast("Rasm 2 MB dan kichik", "error"); return }
     const r = new FileReader();
     r.onload = async ev => {
       show();
@@ -1640,8 +1607,7 @@ function openEditAv(){
           avatar: ev.target.result
         });
         S.avatar = ev.target.result;
-        updateTopbar();
-        renderProfile();
+        updateTopbar(); renderProfile();
         toast("Rasm saqlandi", "success");
       }catch(err){ toast(err.message, "error") }
       hide();
@@ -1652,7 +1618,7 @@ function openEditAv(){
 }
 
 // =========================================================
-// FEEDBACKS (Otziflar)
+// FEEDBACKS
 // =========================================================
 async function loadFeedbacks(){
   try{ S.feedbacks = await api("/api/feedbacks", "GET", null, false) }
@@ -1670,31 +1636,29 @@ function renderFeedbacks(){
     </div>`;
     return;
   }
-  c.innerHTML = S.feedbacks.map(fb => {
-    const stars = Array(5).fill(0).map((_, i) =>
-      `<svg style="${i < (fb.rating||5) ? 'fill:#FBBF24;stroke:#FBBF24' : 'fill:none;stroke:#6B7A94'}" viewBox="0 0 24 24" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`
-    ).join("");
-    const isAdmin = fb.is_admin;
-    return `
-      <div class="feedback-card">
-        <div class="feedback-head">
-          <div class="feedback-av">
-            ${fb.avatar ? `<img src="${fb.avatar}">` : (fb.first_name||"U")[0].toUpperCase()}
+  c.innerHTML = S.feedbacks.map(fb => feedbackCard(fb, IS_ADMIN)).join("");
+}
+
+function feedbackCard(fb, showDelete){
+  const stars = Array(5).fill(0).map((_, i) =>
+    `<svg style="${i < (fb.rating||5) ? 'fill:#FBBF24;stroke:#FBBF24' : 'fill:none;stroke:#6B7A94'}" viewBox="0 0 24 24" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`
+  ).join("");
+  return `
+    <div class="feedback-card">
+      <div class="feedback-head">
+        <div class="feedback-av">${fb.avatar ? `<img src="${fb.avatar}">` : (fb.first_name||"U")[0].toUpperCase()}</div>
+        <div style="flex:1;min-width:0">
+          <div class="feedback-name">${esc(fb.first_name||"Foydalanuvchi")} ${esc(fb.last_name||"")}
+            ${fb.is_admin ? `<span class="feedback-admin">${svg("i-check")}</span>` : ""}
           </div>
-          <div>
-            <div class="feedback-name">
-              ${esc(fb.first_name||"Foydalanuvchi")} ${esc(fb.last_name||"")}
-              ${isAdmin ? `<span class="feedback-admin">${svg("i-check")}</span>` : ""}
-            </div>
-            <div class="feedback-time">${formatTime(fb.created_at)}</div>
-          </div>
-          ${IS_ADMIN ? `<button class="feedback-del" onclick="deleteFeedback(${fb.id})">${svg("i-trash")}</button>` : ""}
+          <div class="feedback-time">${formatTime(fb.created_at)}</div>
         </div>
-        <div class="feedback-stars">${stars}</div>
-        <div class="feedback-text">${esc(fb.text)}</div>
+        ${showDelete ? `<button class="feedback-del" onclick="deleteFeedback(${fb.id})">${svg("i-trash")}</button>` : ""}
       </div>
-    `;
-  }).join("");
+      <div class="feedback-stars">${stars}</div>
+      <div class="feedback-text">${esc(fb.text)}</div>
+    </div>
+  `;
 }
 
 function openFeedbackCompose(){
@@ -1706,16 +1670,12 @@ function openFeedbackCompose(){
 
 function updateFbStars(){
   document.querySelectorAll("#fbStars .rate-btn").forEach(b => {
-    const r = +b.dataset.r;
-    b.classList.toggle("on", r <= S.fbRating);
+    b.classList.toggle("on", +b.dataset.r <= S.fbRating);
   });
 }
 
 document.querySelectorAll("#fbStars .rate-btn").forEach(b => {
-  b.onclick = () => {
-    S.fbRating = +b.dataset.r;
-    updateFbStars();
-  };
+  b.onclick = () => { S.fbRating = +b.dataset.r; updateFbStars() };
 });
 
 async function submitFeedback(){
@@ -1742,23 +1702,9 @@ async function deleteFeedback(id){
     toast("O'chirildi", "success");
     await loadFeedbacks();
     renderFeedbacks();
-    if(IS_ADMIN && $("pageAdmin").classList.contains("active")) renderAdmin();
+    if($("pageAdmin").classList.contains("active")) renderAdmin();
   }catch(e){ toast(e.message, "error") }
   hide();
-}
-
-function formatTime(dateStr){
-  if(!dateStr) return "";
-  try{
-    const d = new Date(dateStr);
-    const now = new Date();
-    const diff = Math.floor((now - d) / 1000);
-    if(diff < 60) return "hozir";
-    if(diff < 3600) return `${Math.floor(diff/60)} daqiqa oldin`;
-    if(diff < 86400) return `${Math.floor(diff/3600)} soat oldin`;
-    if(diff < 604800) return `${Math.floor(diff/86400)} kun oldin`;
-    return d.toLocaleDateString("uz-UZ");
-  } catch { return "" }
 }
 
 // =========================================================
@@ -1775,9 +1721,7 @@ const LINKED_OPTIONS = [
   {id:"discord", name:"Discord", icon:"🎮"},
 ];
 
-const REGIONS = ["Toshkent","Samarqand","Buxoro","Namangan","Andijon","Farg'ona",
-  "Qashqadaryo","Surxondaryo","Xorazm","Navoiy","Jizzax","Sirdaryo",
-  "Toshkent viloyati","Qoraqalpog'iston"];
+const REGIONS = ["Toshkent","Samarqand","Buxoro","Namangan","Andijon","Farg'ona","Qashqadaryo","Surxondaryo","Xorazm","Navoiy","Jizzax","Sirdaryo","Toshkent viloyati","Qoraqalpog'iston"];
 
 const TARIFFS = [
   {id:1, name:"STANDART", price:9000, desc:"Faqat Web App'da chiqadi", badge:null,
@@ -1814,7 +1758,6 @@ function renderTariffs(){
       </div>
     </div>
   `).join("");
-
   $("tariffList").querySelectorAll(".tariff").forEach(el => {
     el.onclick = () => {
       $("tariffList").querySelectorAll(".tariff").forEach(x => x.classList.remove("selected"));
@@ -1836,13 +1779,8 @@ function renderLinked(){
   $("linkedGrid").querySelectorAll(".chip").forEach(c => {
     c.onclick = () => {
       const id = c.dataset.l;
-      if(S.linked.includes(id)){
-        S.linked = S.linked.filter(x => x !== id);
-        c.classList.remove("active");
-      }else{
-        S.linked.push(id);
-        c.classList.add("active");
-      }
+      if(S.linked.includes(id)){ S.linked = S.linked.filter(x => x !== id); c.classList.remove("active") }
+      else{ S.linked.push(id); c.classList.add("active") }
     };
   });
 }
@@ -1872,13 +1810,12 @@ function updatePriceUI(){
   $("priceSuffix").innerText = c.sym;
   $("priceLabel").innerHTML = `${svg("i-wallet")}${c.label}`;
   const inp = $("accPrice");
-  inp.placeholder = c.placeholder;
+  if(inp) inp.placeholder = c.placeholder;
   updatePricePreview();
 }
 
 function updatePricePreview(){
   const v = +($("accPrice")?.value.replace(/\D/g,"")) || 0;
-  const c = getCur(S.currency);
   if(v > 0){
     $("pricePreview").innerText = `Ko'rinishi: ${fmtPrice(v, S.currency)}`;
   } else {
@@ -1888,6 +1825,7 @@ function updatePricePreview(){
 
 function addDyn(listId, cls, ph){
   const c = $(listId);
+  if(!c) return;
   if(c.children.length >= 25){ toast("Maksimal 25 ta", "error"); return }
   const d = document.createElement("div");
   d.className = "dyn-row";
@@ -1904,7 +1842,7 @@ function startCreate(){
   ["accLevel","accColl","accRP","accMythic","gunsCount","accFull","accPrice","accPhone","accUser"].forEach(id => {
     const el = $(id); if(el) el.value = "";
   });
-  ["skinsList","xcList","gunsList","carList"].forEach(id => $(id).innerHTML = "");
+  ["skinsList","xcList","gunsList","carList"].forEach(id => { const el = $(id); if(el) el.innerHTML = "" });
   $("videoPreview").innerHTML = "";
   $("videoInput").value = "";
   renderTariffs();
@@ -1956,7 +1894,6 @@ function prevStep(){
   window.scrollTo({top:0, behavior:"smooth"});
 }
 
-// VIDEO UPLOAD
 $("videoInput").addEventListener("change", e => {
   const f = e.target.files[0];
   if(!f) return;
@@ -1989,7 +1926,7 @@ function removeVideo(){
 }
 
 function collectAd(){
-  const acc = {
+  return {
     level: $("accLevel").value.trim(),
     collection: $("accColl").value.trim(),
     rp: $("accRP").value.trim(),
@@ -2003,7 +1940,6 @@ function collectAd(){
     phone: $("accPhone").value.trim(),
     username: $("accUser").value.trim(),
   };
-  return acc;
 }
 
 function renderPreview(){
@@ -2098,7 +2034,7 @@ function renderMyAds(){
 }
 
 // =========================================================
-// TOPUP (sahifa sifatida)
+// TOPUP
 // =========================================================
 function openTopup(){
   $("topupStep1").classList.remove("hidden");
@@ -2110,8 +2046,8 @@ function openTopup(){
 }
 
 function closeTopup(){
-  if(S.topupTimer){ clearInterval(S.topupTimer); S.topupTimer = null; }
-  if(S.topupPoll){ clearInterval(S.topupPoll); S.topupPoll = null; }
+  if(S.topupTimer){ clearInterval(S.topupTimer); S.topupTimer = null }
+  if(S.topupPoll){ clearInterval(S.topupPoll); S.topupPoll = null }
   go("pageDashboard");
 }
 
@@ -2127,8 +2063,7 @@ async function topupSend(){
     $("topupStep2").classList.remove("hidden");
     const c = r.card_number;
     $("payCard").innerText = c.length === 16
-      ? `${c.slice(0,4)} ${c.slice(4,8)} ${c.slice(8,12)} ${c.slice(12,16)}`
-      : c;
+      ? `${c.slice(0,4)} ${c.slice(4,8)} ${c.slice(8,12)} ${c.slice(12,16)}` : c;
     $("payAmt").innerText = num(amt) + " so'm";
     startTopupTimer(new Date(r.expires_at));
     startTopupPoll();
@@ -2145,9 +2080,8 @@ function startTopupTimer(expiresAt){
     const s = String(left%60).padStart(2,"0");
     $("payTimer").innerText = `${m}:${s}`;
     if(left <= 0){
-      clearInterval(S.topupTimer);
-      S.topupTimer = null;
-      if(S.topupPoll){ clearInterval(S.topupPoll); S.topupPoll = null; }
+      clearInterval(S.topupTimer); S.topupTimer = null;
+      if(S.topupPoll){ clearInterval(S.topupPoll); S.topupPoll = null }
       toast("To'lov vaqti tugadi", "error");
       setTimeout(closeTopup, 1500);
     }
@@ -2166,19 +2100,15 @@ function startTopupPoll(){
       const r = await api(`/api/topup/pending?telegram_id=${USER.telegram_id}`);
       if(r.status !== "waiting"){
         clearInterval(S.topupPoll); S.topupPoll = null;
-        if(S.topupTimer){ clearInterval(S.topupTimer); S.topupTimer = null; }
+        if(S.topupTimer){ clearInterval(S.topupTimer); S.topupTimer = null }
         S.balance = r.balance || S.balance;
         updateTopbar();
-        if(S.balance > oldBal){
-          toast(`✅ Hisob to'ldirildi: +${num(S.balance - oldBal)} so'm`, "success");
-        }
+        if(S.balance > oldBal) toast(`✅ Hisob to'ldirildi: +${num(S.balance - oldBal)} so'm`, "success");
         setTimeout(() => go("pageDashboard"), 800);
         renderProfile();
       }
     }catch(e){ console.warn("Poll:", e) }
-    if(attempts > 100){
-      clearInterval(S.topupPoll); S.topupPoll = null;
-    }
+    if(attempts > 100){ clearInterval(S.topupPoll); S.topupPoll = null }
   }, 3000);
 }
 
@@ -2214,7 +2144,7 @@ async function renderAdmin(){
       $("atAds").innerHTML = pending.map(a => `
         <div class="mod-card">
           <div class="mod-head">
-            <div class="mod-thumb">${svg("i-play")}</div>
+            <div class="mod-thumb">${a.video_file_id ? `<video src="${API_URL}/api/ad/${a.id}/video" muted></video>` : svg("i-play")}</div>
             <div class="mod-body">
               <div class="mod-title">${esc(a.title)}</div>
               <div class="mod-meta">${svg("i-wallet")}${fmtPrice(a.price, a.currency)}</div>
@@ -2269,30 +2199,191 @@ async function renderAdmin(){
       </div>
     `).join("") : `<div class="empty"><h3>Foydalanuvchi yo'q</h3></div>`;
 
-    // FEEDBACKS (admin panel)
+    // FEEDBACKS
     await loadFeedbacks();
     if(!S.feedbacks.length){
       $("atFeedbacks").innerHTML = `<div class="empty"><h3>Otziflar yo'q</h3></div>`;
     }else{
-      $("atFeedbacks").innerHTML = S.feedbacks.map(fb => `
-        <div class="feedback-card">
-          <div class="feedback-head">
-            <div class="feedback-av">${fb.avatar ? `<img src="${fb.avatar}">` : (fb.first_name||"U")[0].toUpperCase()}</div>
-            <div style="flex:1">
-              <div class="feedback-name">${esc(fb.first_name||"")} ${esc(fb.last_name||"")}</div>
-              <div class="feedback-time">${formatTime(fb.created_at)}</div>
+      $("atFeedbacks").innerHTML = S.feedbacks.map(fb => feedbackCard(fb, true)).join("");
+    }
+
+    // USERBOT
+    await renderUserbotSection();
+  }catch(e){ toast(e.message, "error") }
+  hide();
+}
+
+// =========================================================
+// USERBOT (admin panel)
+// =========================================================
+async function renderUserbotSection(){
+  const c = $("atUserbot");
+  if(!c) return;
+  try{
+    const s = await api("/api/admin/userbot/status");
+    let html = "";
+
+    if(s.has_session && s.connected){
+      html = `
+        <div class="card-box" style="border-color:rgba(16,185,129,.3)">
+          <div class="card-box-title">
+            <div class="card-box-ic" style="background:linear-gradient(135deg,rgba(16,185,129,.2),rgba(16,185,129,.1));color:#34D399">
+              ${svg("i-check-circle")}
             </div>
-            <button class="feedback-del" onclick="deleteFeedback(${fb.id})">${svg("i-trash")}</button>
+            Userbot aktiv ✅
           </div>
-          <div class="feedback-stars">${Array(5).fill(0).map((_,i) =>
-            `<svg style="${i<(fb.rating||5)?'fill:#FBBF24;stroke:#FBBF24':'fill:none;stroke:#6B7A94'}" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`
-          ).join("")}</div>
-          <div class="feedback-text">${esc(fb.text)}</div>
+          <div class="detail-info-row"><span class="k">${svg("i-phone")}Telefon</span><span class="v">${esc(s.phone||"-")}</span></div>
+          ${s.me ? `<div class="detail-info-row"><span class="k">${svg("i-user")}Username</span><span class="v">@${esc(s.me.username||"-")}</span></div>` : ""}
+          ${s.me ? `<div class="detail-info-row"><span class="k">${svg("i-info")}Ism</span><span class="v">${esc(s.me.first_name||"-")}</span></div>` : ""}
+          <button class="btn btn-danger btn-block mt-16" onclick="userbotLogout()">
+            ${svg("i-ban")}
+            Userbotni o'chirish
+          </button>
         </div>
-      `).join("");
+        <div class="pay-note">
+          ✅ Userbot @${USERBOT_BOT} dan kelgan to'lovlarni avtomatik kuzatadi
+        </div>
+      `;
+    } else {
+      html = `
+        <div class="card-box">
+          <div class="card-box-title">
+            <div class="card-box-ic">${svg("i-phone")}</div>
+            Userbot qo'shish
+          </div>
+          <div class="pay-note" style="text-align:left;margin-bottom:14px">
+            ℹ️ Userbot <b>@${USERBOT_BOT}</b> dan kelgan to'lov xabarlarini kuzatadi va avtomatik balansni to'ldiradi.
+          </div>
+
+          <div id="ub-step1">
+            <div class="field">
+              <label class="label">${svg("i-phone")}Telefon raqam</label>
+              <div class="input-group">
+                <div class="input-prefix">+998</div>
+                <input class="input" id="ubPhone" inputmode="numeric" maxlength="9" placeholder="901234567">
+              </div>
+            </div>
+            <button class="btn btn-primary btn-block" onclick="userbotSendCode()">
+              ${svg("i-send")}
+              Kod yuborish
+            </button>
+          </div>
+
+          <div id="ub-step2" class="hidden">
+            <div class="field">
+              <label class="label">${svg("i-msg")}Telegram dan kelgan kod</label>
+              <input class="input" id="ubCode" inputmode="numeric" maxlength="6" placeholder="12345" style="text-align:center;font-size:20px;letter-spacing:4px">
+            </div>
+            <button class="btn btn-primary btn-block" onclick="userbotVerifyCode()">
+              ${svg("i-check")}
+              Tasdiqlash
+            </button>
+            <button class="btn btn-secondary btn-block mt-8" onclick="userbotBack()">
+              ${svg("i-arrow-l")}
+              Orqaga
+            </button>
+          </div>
+
+          <div id="ub-step3" class="hidden">
+            <div class="field">
+              <label class="label">${svg("i-shield")}2FA parolingiz</label>
+              <input class="input" id="ubPassword" type="password" placeholder="••••••••">
+            </div>
+            <button class="btn btn-primary btn-block" onclick="userbotVerify2FA()">
+              ${svg("i-check")}
+              Tasdiqlash
+            </button>
+          </div>
+        </div>
+      `;
+    }
+
+    c.innerHTML = html;
+
+    const inp = $("ubPhone");
+    if(inp) inp.oninput = e => { e.target.value = e.target.value.replace(/\D/g,"").slice(0,9) };
+    const codeInp = $("ubCode");
+    if(codeInp) codeInp.oninput = e => { e.target.value = e.target.value.replace(/\D/g,"").slice(0,6) };
+  }catch(e){
+    c.innerHTML = `<div class="empty"><h3>Xatolik: ${esc(e.message)}</h3></div>`;
+  }
+}
+
+async function userbotSendCode(){
+  const phone = ($("ubPhone")?.value || "").replace(/\D/g,"");
+  if(phone.length !== 9){ toast("Telefon 9 xonali", "error"); return }
+  const fullPhone = "+998" + phone;
+  show();
+  try{
+    const r = await api("/api/admin/userbot/send-code", "POST", { phone: fullPhone });
+    if(r.ok){
+      UB_PHONE = fullPhone;
+      $("ub-step1").classList.add("hidden");
+      $("ub-step2").classList.remove("hidden");
+      toast("Kod yuborildi! Telegram dan tekshiring", "success");
+    } else {
+      toast(r.error || "Xatolik", "error");
     }
   }catch(e){ toast(e.message, "error") }
   hide();
+}
+
+async function userbotVerifyCode(){
+  const code = ($("ubCode")?.value || "").replace(/\D/g,"");
+  if(code.length < 5){ toast("Kodni kiriting", "error"); return }
+  show();
+  try{
+    const r = await api("/api/admin/userbot/verify-code", "POST", {
+      phone: UB_PHONE, code: code
+    });
+    if(r.ok && r.need_2fa){
+      $("ub-step2").classList.add("hidden");
+      $("ub-step3").classList.remove("hidden");
+      toast("2FA parolni kiriting", "info");
+    } else if(r.ok){
+      toast("✅ Userbot muvaffaqiyatli ulandi!", "success");
+      setTimeout(() => renderUserbotSection(), 500);
+    } else {
+      toast(r.error || "Kod xato", "error");
+    }
+  }catch(e){ toast(e.message, "error") }
+  hide();
+}
+
+async function userbotVerify2FA(){
+  const password = $("ubPassword")?.value || "";
+  if(!password){ toast("Parolni kiriting", "error"); return }
+  show();
+  try{
+    const r = await api("/api/admin/userbot/verify-2fa", "POST", {
+      phone: UB_PHONE, password: password
+    });
+    if(r.ok){
+      toast("✅ Userbot muvaffaqiyatli ulandi!", "success");
+      setTimeout(() => renderUserbotSection(), 500);
+    } else {
+      toast(r.error || "Parol xato", "error");
+    }
+  }catch(e){ toast(e.message, "error") }
+  hide();
+}
+
+async function userbotLogout(){
+  if(!confirm("Userbotni o'chirmoqchimisiz?")) return;
+  show();
+  try{
+    await api("/api/admin/userbot/logout", "POST", {});
+    toast("Userbot o'chirildi", "success");
+    UB_PHONE = null;
+    setTimeout(() => renderUserbotSection(), 500);
+  }catch(e){ toast(e.message, "error") }
+  hide();
+}
+
+function userbotBack(){
+  $("ub-step2").classList.add("hidden");
+  $("ub-step1").classList.remove("hidden");
+  UB_PHONE = null;
 }
 
 async function adminApprove(id){
@@ -2350,21 +2441,18 @@ async function sendBroadcast(){
 // BOT LINK
 // =========================================================
 function advertiseBot(){
-  if(tg) tg.openTelegramLink(ADMIN_BOT_LINK);
-  else window.open(ADMIN_BOT_LINK, "_blank");
+  if(tg) tg.openTelegramLink(BOT_LINK);
+  else window.open(BOT_LINK, "_blank");
 }
 
 // =========================================================
 // INIT
 // =========================================================
 async function init(){
-  // Region select
   $("accRegion").innerHTML = `<option value="">Viloyatni tanlang</option>` + REGIONS.map(r => `<option>${r}</option>`).join("");
 
-  // Auth
   await initAuth();
 
-  // Load data
   await Promise.all([loadAds(), loadMyAds(), loadSaved(), loadFeedbacks()]);
 
   renderAds();
@@ -2373,12 +2461,10 @@ async function init(){
   renderProfile();
   renderFeedbacks();
 
-  // Nav buttons
   document.querySelectorAll(".nav-btn[data-nav]").forEach(b => {
     b.onclick = () => go(b.dataset.nav);
   });
 
-  // Category tabs
   document.querySelectorAll("#pageDashboard .cat").forEach(c => {
     c.onclick = () => {
       document.querySelectorAll("#pageDashboard .cat").forEach(x => x.classList.remove("active"));
@@ -2388,20 +2474,19 @@ async function init(){
     };
   });
 
-  // Admin tabs
   document.querySelectorAll(".admin-tab").forEach(t => {
     t.onclick = () => {
       document.querySelectorAll(".admin-tab").forEach(x => x.classList.remove("active"));
       t.classList.add("active");
       const at = t.dataset.at;
-      ["ads","cards","users","feedbacks","broadcast"].forEach(k => {
+      ["ads","cards","users","feedbacks","userbot","broadcast"].forEach(k => {
         const el = $("at" + k.charAt(0).toUpperCase() + k.slice(1));
         if(el) el.classList.toggle("hidden", k !== at);
       });
+      if(at === "userbot") renderUserbotSection();
     };
   });
 
-  // Topup
   $("topupAmt").oninput = e => {
     e.target.value = e.target.value.replace(/\D/g,"").replace(/\B(?=(\d{3})+(?!\d))/g," ");
     const v = +e.target.value.replace(/\D/g,"") || 0;
@@ -2416,7 +2501,6 @@ async function init(){
     };
   });
 
-  // Form inputs
   $("accPrice").oninput = e => {
     e.target.value = e.target.value.replace(/\D/g,"").replace(/\B(?=(\d{3})+(?!\d))/g," ");
     updatePricePreview();
@@ -2430,7 +2514,6 @@ async function init(){
   };
   $("accPhone").oninput = e => { e.target.value = e.target.value.replace(/\D/g,"").slice(0,9) };
 
-  // Buttons
   $("btnBack").onclick = prevStep;
   $("btnNext").onclick = nextStep;
 }
