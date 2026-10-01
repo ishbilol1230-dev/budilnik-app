@@ -10,7 +10,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
-/* ============ RESET ============ */
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{width:100%;min-height:100%;overflow-x:hidden}
 body{
@@ -26,7 +25,6 @@ input,select,textarea{outline:0;border:0;background:none}
 img,video{display:block;max-width:100%}
 a{color:inherit;text-decoration:none}
 
-/* ============ VARIABLES ============ */
 :root{
   --bg:#070A12;--bg-2:#0B1220;--surface:#0F1729;--surface-2:#141C30;--surface-3:#1A2440;
   --border:rgba(96,165,250,.10);--border-2:rgba(96,165,250,.18);--border-3:rgba(96,165,250,.32);
@@ -34,18 +32,16 @@ a{color:inherit;text-decoration:none}
   --text:#E8EBF2;--text-2:#A8B2C7;--text-3:#6B7A94;--text-4:#4A5670;
   --heart:#FF3B6B;--green:#10B981;--amber:#F59E0B;--red:#EF4444;
   --shadow-sm:0 1px 2px rgba(0,0,0,.4);--shadow:0 4px 16px rgba(0,0,0,.5);
-  --shadow-lg:0 12px 40px rgba(0,0,0,.6);--shadow-blue:0 12px 40px rgba(59,130,246,.25);
+  --shadow-lg:0 12px 40px rgba(0,0,0,.6);
   --radius:20px;--radius-sm:14px;--radius-lg:26px;
 }
 
-/* ============ LAYOUT ============ */
 .app{min-height:100vh;position:relative}
 .container{width:100%;max-width:1200px;margin:0 auto;padding:0 16px}
 .page{display:none}
 .page.active{display:block;animation:pageIn .35s cubic-bezier(.16,1,.3,1)}
 @keyframes pageIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 
-/* ============ TOP BAR ============ */
 .topbar{
   position:sticky;top:0;z-index:50;
   background:rgba(7,10,18,.85);backdrop-filter:blur(20px) saturate(180%);
@@ -81,7 +77,6 @@ a{color:inherit;text-decoration:none}
 .balance-val{font-size:13px;font-weight:800;white-space:nowrap}
 .balance-lbl{font-size:9px;color:var(--text-3);font-weight:600;text-transform:uppercase;letter-spacing:.6px;margin-top:1px}
 
-/* ============ BOTTOM NAV ============ */
 .nav{
   position:fixed;left:0;right:0;bottom:0;z-index:100;
   padding:0 12px calc(8px + env(safe-area-inset-bottom,0));
@@ -132,13 +127,11 @@ a{color:inherit;text-decoration:none}
 .nav-btn.nav-create span:last-child{color:#60A5FA;font-weight:800;font-size:10px;margin-top:4px}
 .nav-btn.nav-create:active .nav-icon{transform:scale(.9) rotate(90deg)}
 
-/* ============ HERO ============ */
 .hero{padding:24px 0 8px}
 .hero-title{font-size:28px;font-weight:700;display:flex;align-items:center;gap:10px;line-height:1.15;flex-wrap:wrap}
 .hero-title .accent{background:linear-gradient(135deg,#60A5FA,#22D3EE);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .hero-sub{font-size:13px;color:var(--text-3);margin-top:6px;font-weight:500}
 
-/* ============ CATEGORY TABS ============ */
 .cats{display:flex;gap:8px;overflow-x:auto;padding:16px 0 4px;margin:0 -16px;padding-left:16px;padding-right:16px;scrollbar-width:none}
 .cats::-webkit-scrollbar{display:none}
 .cat{
@@ -151,7 +144,6 @@ a{color:inherit;text-decoration:none}
 .cat:active{transform:scale(.95)}
 .cat.active{background:linear-gradient(135deg,#3B82F6,#2563EB);color:#fff;border-color:transparent;box-shadow:0 6px 20px rgba(59,130,246,.4);font-weight:700}
 
-/* ============ AD GRID ============ */
 .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:16px}
 @media(min-width:640px){.grid{grid-template-columns:repeat(3,1fr)}}
 @media(min-width:960px){.grid{grid-template-columns:repeat(4,1fr)}}
@@ -217,7 +209,6 @@ a{color:inherit;text-decoration:none}
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
 }
 
-/* ============ EMPTY ============ */
 .empty{grid-column:1/-1;padding:60px 20px;text-align:center;color:var(--text-3)}
 .empty-icon{
   width:64px;height:64px;margin:0 auto 14px;border-radius:20px;
@@ -229,7 +220,6 @@ a{color:inherit;text-decoration:none}
 .empty h3{font-size:15px;font-weight:700;color:var(--text);margin-bottom:6px}
 .empty p{font-size:12.5px;color:var(--text-3);max-width:280px;margin:0 auto}
 
-/* ============ BUTTONS ============ */
 .btn{
   display:inline-flex;align-items:center;justify-content:center;gap:8px;
   padding:13px 20px;border-radius:14px;font-size:13.5px;font-weight:700;
@@ -257,13 +247,11 @@ a{color:inherit;text-decoration:none}
 .icon-btn.small{width:40px;height:40px;border-radius:12px}
 .icon-btn.small svg{width:17px;height:17px}
 
-/* ============ PAGE HEAD ============ */
 .page-head{display:flex;align-items:center;gap:12px;padding:20px 0 8px}
 .page-head-txt{flex:1;min-width:0}
 .page-head h1{font-size:22px;font-weight:700;line-height:1.2}
 .page-head p{font-size:12.5px;color:var(--text-3);margin-top:2px;font-weight:500}
 
-/* ============ FORMS ============ */
 .field{margin-bottom:16px}
 .label{display:flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;color:var(--text-2);margin-bottom:8px}
 .label svg{width:15px;height:15px;color:#60A5FA;flex-shrink:0}
@@ -290,7 +278,6 @@ a{color:inherit;text-decoration:none}
 }
 .input-group .input{flex:1;min-width:0}
 
-/* ============ CARD BOX ============ */
 .card-box{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:18px;margin-bottom:14px}
 .card-box-title{font-size:14px;font-weight:700;display:flex;align-items:center;gap:10px;margin-bottom:16px;color:var(--text)}
 .card-box-ic{
@@ -301,7 +288,6 @@ a{color:inherit;text-decoration:none}
 }
 .card-box-ic svg{width:17px;height:17px;stroke-width:2}
 
-/* ============ DYNAMIC ROWS ============ */
 .dyn-row{display:flex;gap:8px;margin-bottom:8px}
 .dyn-row .input{flex:1;min-width:0}
 .dyn-del{
@@ -312,7 +298,6 @@ a{color:inherit;text-decoration:none}
 .dyn-del svg{width:16px;height:16px}
 .dyn-del:active{background:rgba(239,68,68,.15)}
 
-/* ============ CHIPS ============ */
 .chips{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
 .chip{
   display:flex;align-items:center;gap:10px;padding:12px 14px;
@@ -331,7 +316,6 @@ a{color:inherit;text-decoration:none}
 .chip.active .chip-check svg{opacity:1}
 .chip-icon{font-size:16px;flex-shrink:0}
 
-/* ============ CURRENCY ============ */
 .cur-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 .cur{
   padding:14px 8px;border-radius:14px;background:var(--surface-2);
@@ -345,7 +329,6 @@ a{color:inherit;text-decoration:none}
 .cur.active{background:linear-gradient(135deg,rgba(59,130,246,.2),rgba(34,211,238,.1));border-color:#3B82F6;box-shadow:0 0 0 4px rgba(59,130,246,.08)}
 .cur.active .cur-name{color:#93C5FD}
 
-/* ============ TARIFF ============ */
 .tariff{
   position:relative;padding:20px;background:var(--surface);
   border:2px solid var(--border-2);border-radius:var(--radius-lg);
@@ -375,14 +358,12 @@ a{color:inherit;text-decoration:none}
 .feat.no .feat-ic{background:rgba(239,68,68,.1);color:#F87171}
 .feat.no{color:var(--text-4)}
 
-/* ============ STEPS ============ */
 .steps{display:flex;gap:6px;margin:20px 0 24px}
 .step{height:4px;flex:1;border-radius:10px;background:var(--surface-3);transition:all .4s cubic-bezier(.16,1,.3,1)}
 .step.active{background:linear-gradient(90deg,#3B82F6,#22D3EE);box-shadow:0 0 12px rgba(59,130,246,.5)}
 .step-page{display:none}
 .step-page.active{display:block;animation:pageIn .35s cubic-bezier(.16,1,.3,1)}
 
-/* ============ UPLOAD ============ */
 .upload{
   display:flex;flex-direction:column;align-items:center;justify-content:center;
   gap:10px;padding:44px 24px;background:var(--surface);
@@ -400,7 +381,6 @@ a{color:inherit;text-decoration:none}
 .upload span{font-size:12px;color:var(--text-3)}
 .preview-video{width:100%;border-radius:var(--radius);background:#000;max-height:400px;margin-top:14px}
 
-/* ============ PROFILE ============ */
 .profile-hero{
   position:relative;padding:28px 20px;
   background:linear-gradient(135deg,#0B1220 0%,#0F1729 100%);
@@ -459,7 +439,6 @@ a{color:inherit;text-decoration:none}
 .menu-arrow{color:var(--text-4);flex-shrink:0}
 .menu-arrow svg{width:18px;height:18px}
 
-/* ============ MODAL ============ */
 .modal{
   position:fixed;inset:0;z-index:500;background:rgba(0,0,0,.75);
   backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
@@ -485,7 +464,6 @@ a{color:inherit;text-decoration:none}
 .modal-close svg{width:17px;height:17px;stroke-width:2.5}
 .modal-handle{width:40px;height:4px;border-radius:10px;background:var(--surface-3);margin:0 auto 12px}
 
-/* ============ AD DETAIL ============ */
 .detail-video{width:100%;border-radius:18px;background:#000;max-height:60vh;object-fit:contain;margin-bottom:16px}
 .detail-title{font-size:22px;font-weight:700;font-family:'Space Grotesk',sans-serif;line-height:1.2;margin-bottom:8px}
 .detail-price{
@@ -530,7 +508,6 @@ a{color:inherit;text-decoration:none}
 .detail-info-row .k svg{width:13px;height:13px}
 .detail-info-row .v{font-weight:700;text-align:right;color:var(--text)}
 
-/* ============ TOPUP ============ */
 .amount-wrap{position:relative;margin-bottom:14px}
 .amount-input{
   width:100%;padding:22px 66px 22px 22px;background:var(--surface);
@@ -566,13 +543,13 @@ a{color:inherit;text-decoration:none}
   font-size:12px;color:#34D399;font-weight:600;line-height:1.5;text-align:center;
 }
 
-/* ============ MY ADS ============ */
 .my-ad{display:flex;gap:12px;padding:12px;background:var(--surface);border:1px solid var(--border);border-radius:18px;margin-bottom:10px}
 .my-ad-thumb{
   width:80px;height:80px;flex-shrink:0;border-radius:14px;
   background:linear-gradient(135deg,#0F1729,#141C30);
   display:flex;align-items:center;justify-content:center;
   font-size:28px;overflow:hidden;
+  color:#60A5FA;
 }
 .my-ad-thumb img,.my-ad-thumb video{width:100%;height:100%;object-fit:cover}
 .my-ad-body{flex:1;min-width:0;display:flex;flex-direction:column;gap:4px}
@@ -587,7 +564,6 @@ a{color:inherit;text-decoration:none}
 .my-ad-status.rejected{background:rgba(239,68,68,.12);color:#F87171;border:1px solid rgba(239,68,68,.2)}
 .my-ad-status.expired{background:rgba(107,122,148,.12);color:var(--text-3);border:1px solid var(--border)}
 
-/* ============ FEEDBACK ============ */
 .feedback-card{
   padding:16px;background:var(--surface);border:1px solid var(--border);
   border-radius:16px;margin-bottom:10px;
@@ -627,7 +603,6 @@ a{color:inherit;text-decoration:none}
 .rate-btn.on{background:linear-gradient(135deg,#3B82F6,#06B6D4);border-color:transparent;box-shadow:0 6px 20px rgba(59,130,246,.4)}
 .rate-btn.on svg{stroke:#fff;fill:#fff}
 
-/* ============ ADMIN ============ */
 .admin-stat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:16px}
 .admin-stat{padding:16px;background:var(--surface);border:1px solid var(--border);border-radius:16px}
 .admin-stat-ic{
@@ -659,6 +634,7 @@ a{color:inherit;text-decoration:none}
   width:64px;height:64px;border-radius:12px;flex-shrink:0;
   background:linear-gradient(135deg,#0B1220,#141C30);
   display:flex;align-items:center;justify-content:center;font-size:24px;overflow:hidden;
+  color:#60A5FA;
 }
 .mod-thumb video,.mod-thumb img{width:100%;height:100%;object-fit:cover}
 .mod-body{flex:1;min-width:0}
@@ -684,7 +660,6 @@ a{color:inherit;text-decoration:none}
 .card-num{flex:1;font-family:'Space Grotesk',monospace;font-weight:700;font-size:13px;color:#93C5FD;letter-spacing:.5px}
 .card-sum{font-size:11px;color:var(--text-3);margin-top:2px}
 
-/* ============ TOAST ============ */
 .toast-wrap{position:fixed;top:14px;left:14px;right:14px;z-index:1000;display:flex;flex-direction:column;align-items:center;gap:8px;pointer-events:none}
 .toast{
   background:linear-gradient(135deg,#0F1729,#141C30);
@@ -701,13 +676,11 @@ a{color:inherit;text-decoration:none}
 .toast.error svg{color:#F87171}
 @keyframes toastIn{from{opacity:0;transform:translateY(-20px) scale(.9)}to{opacity:1;transform:translateY(0) scale(1)}}
 
-/* ============ LOADING ============ */
 .load{position:fixed;inset:0;z-index:9999;background:rgba(7,10,18,.85);backdrop-filter:blur(12px);display:none;align-items:center;justify-content:center}
 .load.active{display:flex}
 .spin{width:48px;height:48px;border:3px solid rgba(59,130,246,.15);border-top-color:#3B82F6;border-right-color:#22D3EE;border-radius:50%;animation:spin .8s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 
-/* Helpers */
 .hidden{display:none !important}
 .mt-8{margin-top:8px}.mt-16{margin-top:16px}.mt-24{margin-top:24px}
 .mb-16{margin-bottom:16px}
@@ -756,9 +729,7 @@ a{color:inherit;text-decoration:none}
   <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></symbol>
 </svg>
 
-<!-- APP -->
 <div class="app">
-  <!-- TOPBAR -->
   <header class="topbar">
     <div class="topbar-in">
       <div class="brand" onclick="go('pageProfile')">
@@ -821,14 +792,12 @@ a{color:inherit;text-decoration:none}
       </div>
       <div class="steps" id="steps"></div>
 
-      <!-- STEP 1 -->
       <div class="step-page active" data-step="1">
         <div class="hero"><h2 class="hero-title" style="font-size:20px">Tarifni <span class="accent">tanlang</span></h2>
           <p class="hero-sub">Reklamangiz qayerda chiqishini tanlang</p></div>
         <div id="tariffList" style="margin-top:16px"></div>
       </div>
 
-      <!-- STEP 2 -->
       <div class="step-page" data-step="2">
         <div class="hero"><h2 class="hero-title" style="font-size:20px">Video <span class="accent">yuklang</span></h2>
           <p class="hero-sub">MP4 formatda, max 200 MB, 10 daqiqagacha</p></div>
@@ -841,7 +810,6 @@ a{color:inherit;text-decoration:none}
         <div id="videoPreview"></div>
       </div>
 
-      <!-- STEP 3 -->
       <div class="step-page" data-step="3">
         <div class="hero"><h2 class="hero-title" style="font-size:20px">Akkaunt <span class="accent">ma'lumotlari</span></h2>
           <p class="hero-sub">Barcha maydonlarni to'ldiring</p></div>
@@ -940,7 +908,6 @@ a{color:inherit;text-decoration:none}
         </div>
       </div>
 
-      <!-- STEP 4 -->
       <div class="step-page" data-step="4">
         <div class="hero"><h2 class="hero-title" style="font-size:20px">Tekshiring va <span class="accent">tasdiqlang</span></h2>
           <p class="hero-sub">Ma'lumotlarni diqqat bilan ko'rib chiqing</p></div>
@@ -1161,7 +1128,6 @@ a{color:inherit;text-decoration:none}
     </div>
   </section>
 
-  <!-- NAV -->
   <nav class="nav">
     <div class="nav-in">
       <button class="nav-btn active" data-nav="pageDashboard"><div class="nav-icon"><svg><use href="#i-home"/></svg></div><span>Asosiy</span></button>
@@ -1239,6 +1205,7 @@ let S = {
   fbRating:5,
 };
 let UB_PHONE = null;
+let _videoObserver = null;
 
 // =========================================================
 // HELPERS
@@ -1319,6 +1286,43 @@ function formatTime(dateStr){
 }
 
 // =========================================================
+// VIDEO OBSERVER (WebView crash oldini olish)
+// =========================================================
+function setupVideoObserver(){
+  if(!window.IntersectionObserver) return;
+  // Eski observerni tozalash
+  if(_videoObserver){
+    try { _videoObserver.disconnect(); } catch(e){}
+  }
+  _videoObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const v = entry.target;
+      if(entry.isIntersecting){
+        // Faqat ekranga kirganda yuklash
+        if(v.dataset.loaded !== "1"){
+          v.dataset.loaded = "1";
+          try {
+            v.preload = "metadata";
+            const p = v.play();
+            if(p && p.catch) p.catch(() => {});
+          } catch(e){}
+        } else {
+          try { v.play().catch(() => {}); } catch(e){}
+        }
+      } else {
+        // Ekrandan chiqqanda to'xtatish — xotira tejash
+        try { v.pause(); } catch(e){}
+      }
+    });
+  }, { threshold: 0.3, rootMargin: "50px" });
+
+  document.querySelectorAll(".ad-media video").forEach(v => {
+    if(!v.dataset.loaded) v.dataset.loaded = "0";
+    _videoObserver.observe(v);
+  });
+}
+
+// =========================================================
 // AUTH
 // =========================================================
 async function initAuth(){
@@ -1383,6 +1387,7 @@ function renderAds(){
     return;
   }
   g.innerHTML = arr.map(adCard).join("");
+  setTimeout(setupVideoObserver, 100);
 }
 
 function adCard(a){
@@ -1396,7 +1401,7 @@ function adCard(a){
     <article class="ad" onclick="openAd(${a.id})">
       <div class="ad-media">
         ${a.video_file_id
-          ? `<video src="${API_URL}/api/ad/${a.id}/video" muted loop autoplay playsinline preload="metadata" onerror="this.style.display='none'"></video>`
+          ? `<video src="${API_URL}/api/ad/${a.id}/video" muted playsinline preload="none" data-loaded="0" onerror="this.style.display='none'"></video>`
           : `<div class="placeholder">${svg("i-play")}</div>`
         }
         <div class="ad-badge ${badge.c}">${svg(badge.i)}${badge.t}</div>
@@ -1434,7 +1439,7 @@ async function openAd(id){
 
     let html = "";
     if(a.video_file_id){
-      html += `<video class="detail-video" src="${API_URL}/api/ad/${a.id}/video" controls playsinline></video>`;
+      html += `<video class="detail-video" src="${API_URL}/api/ad/${a.id}/video" controls playsinline preload="metadata"></video>`;
     }
     html += `<h2 class="detail-title">PUBG Mobile · ${esc(acc.level||"?")} LVL</h2>`;
     html += `<div class="detail-price">${fmtPrice(a.price, cur)}</div>`;
@@ -1498,9 +1503,6 @@ function toggleSaveDetail(id){
   toggleSave(id, btn, true);
 }
 
-// =========================================================
-// SAVE
-// =========================================================
 async function toggleSave(adId, btn){
   if(!USER) return;
   try{
@@ -1549,6 +1551,7 @@ function renderSaved(){
     return;
   }
   g.innerHTML = S.saved.map(a => adCard({...a, is_saved:true})).join("");
+  setTimeout(setupVideoObserver, 100);
 }
 
 // =========================================================
@@ -1994,7 +1997,7 @@ async function submitAd(){
 }
 
 // =========================================================
-// MY ADS
+// MY ADS — video thumb ko'rsatilmaydi (WebView crash uchun)
 // =========================================================
 async function loadMyAds(){
   if(!USER) return;
@@ -2020,7 +2023,7 @@ function renderMyAds(){
                {c:"expired", t:"Tugagan", i:"i-clock"};
     return `
       <div class="my-ad">
-        <div class="my-ad-thumb">${a.video_file_id ? `<video src="${API_URL}/api/ad/${a.id}/video" muted></video>` : svg("i-play")}</div>
+        <div class="my-ad-thumb">${svg("i-play")}</div>
         <div class="my-ad-body">
           <div class="my-ad-title">${esc(a.title)}</div>
           <div class="my-ad-price">${fmtPrice(a.price, a.currency)}</div>
@@ -2137,14 +2140,13 @@ async function renderAdmin(){
     $("sPending").innerText = stats.pending || 0;
     $("sCards").innerText = stats.cards || 0;
 
-    // ADS
     if(!pending.length){
       $("atAds").innerHTML = `<div class="empty"><div class="empty-icon">${svg("i-check-circle")}</div><h3>Kutilayotgan e'lon yo'q</h3></div>`;
     }else{
       $("atAds").innerHTML = pending.map(a => `
         <div class="mod-card">
           <div class="mod-head">
-            <div class="mod-thumb">${a.video_file_id ? `<video src="${API_URL}/api/ad/${a.id}/video" muted></video>` : svg("i-play")}</div>
+            <div class="mod-thumb">${svg("i-play")}</div>
             <div class="mod-body">
               <div class="mod-title">${esc(a.title)}</div>
               <div class="mod-meta">${svg("i-wallet")}${fmtPrice(a.price, a.currency)}</div>
@@ -2160,7 +2162,6 @@ async function renderAdmin(){
       `).join("");
     }
 
-    // CARDS
     $("atCards").innerHTML = `
       <div class="card-box">
         <div class="card-box-title"><div class="card-box-ic">${svg("i-credit")}</div>Kartalar</div>
@@ -2181,7 +2182,6 @@ async function renderAdmin(){
       </div>
     `;
 
-    // USERS
     $("atUsers").innerHTML = users.length ? users.map(u => `
       <div class="user-row">
         <div class="user-av">${u.avatar ? `<img src="${u.avatar}">` : (u.first_name||"U")[0]}</div>
@@ -2199,7 +2199,6 @@ async function renderAdmin(){
       </div>
     `).join("") : `<div class="empty"><h3>Foydalanuvchi yo'q</h3></div>`;
 
-    // FEEDBACKS
     await loadFeedbacks();
     if(!S.feedbacks.length){
       $("atFeedbacks").innerHTML = `<div class="empty"><h3>Otziflar yo'q</h3></div>`;
@@ -2207,14 +2206,13 @@ async function renderAdmin(){
       $("atFeedbacks").innerHTML = S.feedbacks.map(fb => feedbackCard(fb, true)).join("");
     }
 
-    // USERBOT
     await renderUserbotSection();
   }catch(e){ toast(e.message, "error") }
   hide();
 }
 
 // =========================================================
-// USERBOT (admin panel)
+// USERBOT
 // =========================================================
 async function renderUserbotSection(){
   const c = $("atUserbot");
@@ -2437,9 +2435,6 @@ async function sendBroadcast(){
   hide();
 }
 
-// =========================================================
-// BOT LINK
-// =========================================================
 function advertiseBot(){
   if(tg) tg.openTelegramLink(BOT_LINK);
   else window.open(BOT_LINK, "_blank");
@@ -2516,6 +2511,11 @@ async function init(){
 
   $("btnBack").onclick = prevStep;
   $("btnNext").onclick = nextStep;
+
+  // Telegram close
+  if(tg && tg.onEvent){
+    tg.onEvent("viewportChanged", () => {});
+  }
 }
 
 document.addEventListener("DOMContentLoaded", init);
@@ -2523,6 +2523,7 @@ document.addEventListener("DOMContentLoaded", init);
 window.addEventListener("beforeunload", () => {
   if(S.topupTimer) clearInterval(S.topupTimer);
   if(S.topupPoll) clearInterval(S.topupPoll);
+  if(_videoObserver){ try { _videoObserver.disconnect(); } catch(e){} }
 });
 </script>
 
